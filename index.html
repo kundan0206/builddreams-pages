@@ -382,13 +382,8 @@
     <!-- ========= NAV ========= -->
     <header id="nav" class="fixed top-0 inset-x-0 z-50 transition-all duration-300">
         <div class="max-w-[1320px] mx-auto px-6 lg:px-10 h-[72px] flex items-center justify-between">
-            <a href="#" class="flex items-center gap-2" data-testid="nav-logo">
-                <svg width="28" height="28" viewBox="0 0 48 48" fill="none">
-                    <path d="M6 32 C 10 10, 32 6, 42 14 C 34 20, 30 26, 26 38 C 18 40, 10 38, 6 32 Z" fill="#009599" />
-                    <path d="M16 34 C 22 22, 34 18, 40 22" stroke="#021346" stroke-width="2.5" stroke-linecap="round"
-                        fill="none" />
-                </svg>
-                <span class="text-[19px] font-semibold tracking-tight text-navy">BuildDreams</span>
+            <a href="/" class="flex items-center" data-testid="nav-logo">
+                <img src="builddreams.png" alt="BuildDreams logo" class="h-10 w-auto" loading="eager" />
             </a>
             <nav class="hidden lg:flex items-center gap-9 text-[14px] text-navy/80">
                 <a href="#services" class="hover:text-navy transition">Services</a>
@@ -401,7 +396,7 @@
             <div class="flex items-center gap-3">
                 <a href="#contact" class="hidden md:inline-flex btn btn-ghost" data-testid="nav-contact">Talk to
                     sales</a>
-                <a href="product.html" class="btn btn-primary" data-testid="nav-demo">
+                <a href="/product" class="btn btn-primary" data-testid="nav-demo">
                     Book a demo <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
                 </a>
             </div>
@@ -682,12 +677,12 @@
                         Flagship products, <span class="font-display italic text-teal">ready today.</span>
                     </h2>
                 </div>
-                <a href="product.html" class="btn btn-teal self-start lg:self-end" data-testid="view-all-products">View
+                <a href="/product" class="btn btn-teal self-start lg:self-end" data-testid="view-all-products">View
                     all products <i data-lucide="arrow-up-right" class="w-4 h-4"></i></a>
             </div>
 
             <div class="grid md:grid-cols-3 gap-6">
-                <a href="product.html"
+                <a href="/product"
                     class="tilt reveal group relative p-7 rounded-[20px] bg-white/[0.04] border border-white/10 hover:border-teal/50 transition-colors block"
                     data-testid="product-synchr">
                     <div class="flex items-start justify-between">
@@ -705,7 +700,7 @@
                     </div>
                 </a>
 
-                <a href="product.html"
+                <a href="/product"
                     class="tilt reveal group relative p-7 rounded-[20px] bg-white/[0.04] border border-white/10 hover:border-teal/50 transition-colors block"
                     data-testid="product-nova">
                     <div class="flex items-start justify-between">
@@ -724,7 +719,7 @@
                     </div>
                 </a>
 
-                <a href="product.html"
+                <a href="/product"
                     class="tilt reveal group relative p-7 rounded-[20px] bg-white/[0.04] border border-white/10 hover:border-teal/50 transition-colors block"
                     data-testid="product-atlas">
                     <div class="flex items-start justify-between">
@@ -1152,14 +1147,8 @@
         <div class="max-w-[1320px] mx-auto px-6 lg:px-10">
             <div class="grid md:grid-cols-12 gap-10 pb-14 border-b border-white/10">
                 <div class="md:col-span-5">
-                    <div class="flex items-center gap-2">
-                        <svg width="28" height="28" viewBox="0 0 48 48" fill="none">
-                            <path d="M6 32 C 10 10, 32 6, 42 14 C 34 20, 30 26, 26 38 C 18 40, 10 38, 6 32 Z"
-                                fill="#009599" />
-                            <path d="M16 34 C 22 22, 34 18, 40 22" stroke="#ffffff" stroke-width="2.5"
-                                stroke-linecap="round" fill="none" />
-                        </svg>
-                        <span class="text-[19px] font-semibold">BuildDreams</span>
+                    <div class="flex items-center">
+                        <img src="builddreams.png" alt="BuildDreams logo" class="h-10 w-auto" loading="lazy" />
                     </div>
                     <p class="mt-5 text-[14px] text-white/60 max-w-sm leading-[1.7]">
                         Engineered in Bengaluru · Singapore · Berlin. Trusted by teams from São Paulo to Sydney.
@@ -1182,9 +1171,9 @@
                 <div class="md:col-span-2">
                     <div class="font-mono text-[11px] text-white/40">PRODUCT</div>
                     <ul class="mt-5 space-y-3 text-[14px] text-white/75">
-                        <li><a href="product.html" class="hover:text-teal">Synchr Platform</a></li>
-                        <li><a href="product.html" class="hover:text-teal">Nova Wealth</a></li>
-                        <li><a href="product.html" class="hover:text-teal">Atlas ERP Lite</a></li>
+                        <li><a href="/product" class="hover:text-teal">Synchr Platform</a></li>
+                        <li><a href="/product" class="hover:text-teal">Nova Wealth</a></li>
+                        <li><a href="/product" class="hover:text-teal">Atlas ERP Lite</a></li>
                         <li><a href="#pricing" class="hover:text-teal">Pricing</a></li>
                     </ul>
                 </div>
