@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Synchr Platform by BuildDreams — The Unified Workflow OS</title>
+    <title>Synchr — Project Showcase | BuildDreams</title>
     <meta name="description"
-        content="Synchr Platform: CRM, operations, finance and analytics on a single schema. Built for mid-market teams and global enterprises." />
+        content="Project showcase for Synchr by BuildDreams — product highlights, screenshots, offerings and demo." />
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,14 +23,18 @@
     <style>
         :root {
             --navy: #021346;
+            --navy-2: #0a1f5c;
             --teal: #009599;
+            --teal-2: #00b8bc;
             --ink: #0b1020;
+            --mist: #f4f7f8;
             --line: rgba(2, 19, 70, 0.08);
             --muted: #5a6472;
         }
 
         * {
             -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         html,
@@ -42,6 +46,8 @@
 
         .font-display {
             font-family: 'Instrument Serif', serif;
+            font-weight: 400;
+            letter-spacing: -0.01em;
         }
 
         .font-mono {
@@ -54,6 +60,25 @@
 
         .text-navy {
             color: var(--navy);
+        }
+
+        .text-ink {
+            color: var(--ink);
+        }
+
+        /* Footer social icons — force dark color for SVGs created by lucide */
+        .footer-social i,
+        .footer-social svg,
+        .footer-social svg * {
+            color: var(--ink) !important;
+            stroke: var(--ink) !important;
+            fill: var(--ink) !important;
+        }
+
+        .footer-social img {
+            width: 1rem;
+            height: 1rem;
+            display: block;
         }
 
         .text-teal {
@@ -72,6 +97,13 @@
             background: radial-gradient(120% 140% at 100% 0%, #00b8bc 0%, #009599 32%, #074286 68%, #021346 100%);
         }
 
+        .grid-bg {
+            background-image:
+                linear-gradient(var(--line) 1px, transparent 1px),
+                linear-gradient(90deg, var(--line) 1px, transparent 1px);
+            background-size: 64px 64px;
+        }
+
         .btn {
             display: inline-flex;
             align-items: center;
@@ -80,26 +112,12 @@
             border-radius: 999px;
             font-weight: 500;
             font-size: .925rem;
-            transition: all .3s ease;
+            transition: transform .3s ease, background-color .3s ease, color .3s ease, border-color .3s ease;
         }
 
         .btn-primary {
             background: var(--navy);
             color: #fff;
-        }
-
-        .btn-primary:hover {
-            background: #041a5c;
-            transform: translateY(-1px);
-        }
-
-        .btn-teal {
-            background: var(--teal);
-            color: #fff;
-        }
-
-        .btn-teal:hover {
-            background: #00a7ab;
         }
 
         .btn-ghost {
@@ -108,8 +126,9 @@
             border: 1px solid var(--line);
         }
 
-        .btn-ghost:hover {
-            border-color: var(--navy);
+        .btn-teal {
+            background: var(--teal);
+            color: #fff;
         }
 
         .chip {
@@ -131,135 +150,6 @@
             transform: translateY(24px);
         }
 
-        .grid-bg {
-            background-image:
-                linear-gradient(var(--line) 1px, transparent 1px),
-                linear-gradient(90deg, var(--line) 1px, transparent 1px);
-            background-size: 64px 64px;
-        }
-
-        .noise::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            opacity: .06;
-            mix-blend-mode: overlay;
-            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-        }
-
-        .nav-solid {
-            background: rgba(255, 255, 255, .82);
-            backdrop-filter: saturate(160%) blur(14px);
-            border-bottom: 1px solid var(--line);
-        }
-
-        ::selection {
-            background: var(--teal);
-            color: #fff;
-        }
-
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #cfd6d7;
-            border-radius: 10px;
-        }
-
-        /* Feature card */
-        .feat {
-            transition: transform .4s ease, border-color .3s ease, background-color .3s ease;
-        }
-
-        .feat:hover {
-            transform: translateY(-4px);
-            border-color: rgba(0, 149, 153, .5);
-        }
-
-        /* Mock dashboard */
-        .mock {
-            position: relative;
-            border-radius: 20px;
-            overflow: hidden;
-            border: 1px solid var(--line);
-            background: #fff;
-            box-shadow: 0 40px 80px -30px rgba(2, 19, 70, .25);
-        }
-
-        .mock-top {
-            display: flex;
-            gap: 6px;
-            padding: 10px 14px;
-            border-bottom: 1px solid var(--line);
-            background: #f8fafa;
-        }
-
-        .mock-top span {
-            width: 10px;
-            height: 10px;
-            border-radius: 999px;
-            background: #dbe2e4;
-        }
-
-        /* Bar chart */
-        .bar {
-            transform-origin: bottom;
-        }
-
-        /* Sticky section nav for tabs */
-        .tab-btn[aria-selected="true"] {
-            background: var(--navy);
-            color: #fff;
-        }
-
-        /* Integration grid */
-        .int-card {
-            aspect-ratio: 1/1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid var(--line);
-            border-radius: 14px;
-            background: #fff;
-            transition: all .3s ease;
-            font-weight: 600;
-            color: var(--navy);
-        }
-
-        .int-card:hover {
-            transform: translateY(-2px) scale(1.02);
-            border-color: var(--teal);
-            color: var(--teal);
-        }
-
-        /* Section dividers */
-        .section-divider {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--line), transparent);
-        }
-
-        /* Compare table */
-        .cmp th,
-        .cmp td {
-            padding: 14px 18px;
-            text-align: left;
-            font-size: 14px;
-        }
-
-        .cmp tbody tr {
-            border-top: 1px solid var(--line);
-        }
-
-        .cmp th {
-            font-weight: 500;
-            color: var(--muted);
-            font-size: 12px;
-            letter-spacing: .1em;
-            text-transform: uppercase;
-        }
-
         .cursor-dot {
             position: fixed;
             top: 0;
@@ -271,6 +161,7 @@
             pointer-events: none;
             z-index: 9999;
             mix-blend-mode: difference;
+            transition: transform .15s ease, width .2s ease, height .2s ease;
             transform: translate(-50%, -50%);
         }
 
@@ -288,11 +179,139 @@
             transition: width .25s ease, height .25s ease, border-color .25s ease;
         }
 
-        @media(max-width:900px) {
+        @media (max-width: 900px) {
 
             .cursor-dot,
             .cursor-ring {
                 display: none;
+            }
+        }
+
+        .marquee {
+            display: flex;
+            gap: 4rem;
+            animation: marq 28s linear infinite;
+        }
+
+        @keyframes marq {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        .service-card {
+            transition: transform .45s cubic-bezier(.2, .7, .2, 1), background-color .45s ease, color .45s ease;
+        }
+
+        .service-card:hover {
+            background: var(--navy);
+            color: #fff;
+            transform: translateY(-4px);
+        }
+
+        .svc-arrow {
+            transition: transform .4s ease, color .3s ease;
+        }
+
+        .tilt {
+            transform-style: preserve-3d;
+            transition: transform .6s cubic-bezier(.2, .7, .2, 1);
+        }
+
+        /* Title hover inside cards */
+        .tilt:hover h3,
+        .group:hover h3 {
+            color: var(--teal);
+            transform: translateY(-4px);
+            transition: color .25s ease, transform .35s ease;
+        }
+
+        .t-ring {
+            background:
+                radial-gradient(60% 60% at 50% 0%, rgba(0, 149, 153, .18), transparent 60%),
+                radial-gradient(60% 60% at 100% 100%, rgba(2, 19, 70, .15), transparent 60%);
+        }
+
+        ::selection {
+            background: var(--teal);
+            color: #fff;
+        }
+
+        .nav-solid {
+            background: rgba(255, 255, 255, .82);
+            backdrop-filter: saturate(160%) blur(14px);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .ping-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background: var(--teal);
+            box-shadow: 0 0 0 0 rgba(0, 149, 153, .7);
+            animation: ping 2s infinite;
+        }
+
+        @keyframes ping {
+            0% {
+                box-shadow: 0 0 0 0 rgba(0, 149, 153, .6);
+            }
+
+            70% {
+                box-shadow: 0 0 0 14px rgba(0, 149, 153, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 149, 153, 0);
+            }
+        }
+
+        .price-card {
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            background: #fff;
+            transition: transform .4s ease, box-shadow .4s ease, border-color .3s ease;
+        }
+
+        .price-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 24px 60px -20px rgba(2, 19, 70, .18);
+            border-color: rgba(0, 149, 153, .4);
+        }
+
+        .price-card.featured {
+            background: var(--navy);
+            color: #fff;
+            border-color: transparent;
+        }
+
+        .foot-grad {
+            background: linear-gradient(180deg, #021346 0%, #031a60 60%, #052578 100%);
+        }
+
+        html.lenis {
+            height: auto;
+        }
+
+        html.lenis body {
+            overflow: hidden;
+        }
+
+        .lenis.lenis-smooth [data-lenis-prevent] {
+            overscroll-behavior: contain;
+        }
+
+        .rotating-badge {
+            animation: spin 22s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
             }
         }
     </style>
@@ -303,706 +322,365 @@
     <div class="cursor-ring" id="cursorRing"></div>
     <div class="cursor-dot" id="cursorDot"></div>
 
-    <!-- NAV -->
-    <header id="nav" class="fixed top-0 inset-x-0 z-50 transition-all">
+    <!-- NAV (minimal) -->
+    <!-- <header id="nav" class="fixed top-0 inset-x-0 z-50 transition-all bg-white border-b border-line">
         <div class="max-w-[1320px] mx-auto px-6 lg:px-10 h-[72px] flex items-center justify-between">
-            <a href="/" class="flex items-center" data-testid="nav-logo">
-                <img src="builddreams.png" alt="BuildDreams logo" class="h-10 w-auto" loading="eager" />
-                <span class="hidden sm:inline-flex ml-3 font-mono text-[11px] text-navy/50">/ SYNCHR PLATFORM</span>
+            <a href="/index.html" class="flex items-center" data-testid="nav-logo">
+                <img src="/assets/images/builddreams.png" alt="BuildDreams logo" class="h-10 w-auto" loading="eager" />
             </a>
-            <nav class="hidden lg:flex items-center gap-9 text-[14px] text-navy/80">
-                <a href="#features" class="hover:text-navy transition">Features</a>
-                <a href="#modules" class="hover:text-navy transition">Modules</a>
-                <a href="#integrations" class="hover:text-navy transition">Integrations</a>
-                <a href="#compare" class="hover:text-navy transition">Compare</a>
-                <a href="#pricing" class="hover:text-navy transition">Pricing</a>
-            </nav>
-            <div class="flex items-center gap-3">
-                <a href="/" class="hidden md:inline-flex btn btn-ghost" data-testid="nav-back"><i
-                        data-lucide="arrow-left" class="w-4 h-4"></i> Back</a>
-                <a href="#cta" class="btn btn-primary" data-testid="nav-trial">Start free trial</a>
-            </div>
         </div>
-    </header>
+    </header> -->
 
-    <!-- HERO -->
-    <section class="relative pt-[140px] pb-[100px] overflow-hidden" data-testid="product-hero">
-        <div class="absolute inset-0 grid-bg opacity-50 pointer-events-none"></div>
-        <div class="absolute -top-40 -right-32 w-[580px] h-[580px] rounded-full blur-3xl opacity-20 bg-teal"></div>
+    <main class="">
+        <!-- PRODUCTS: only the product cards grid -->
+        <section id="products" class="py-[50px] bg-navy text-white relative overflow-hidden">
+            <div class="absolute inset-0 opacity-10 grid-bg" style="--line: rgba(255,255,255,.25);"></div>
+            <div class="absolute -top-40 right-10 w-[520px] h-[520px] rounded-full blur-3xl opacity-30 bg-teal"></div>
 
-        <div class="max-w-[1320px] mx-auto px-6 lg:px-10 relative">
-            <div class="max-w-3xl">
-                <div class="chip reveal" data-testid="hero-chip"><span
-                        class="w-1.5 h-1.5 rounded-full bg-teal"></span><span class="font-mono text-[11px]">BUILDDREAMS
-                        · FLAGSHIP PRODUCT</span></div>
-                <h1
-                    class="reveal mt-6 text-[52px] md:text-[84px] leading-[0.98] tracking-[-0.035em] font-medium text-navy">
-                    <span class="hero-line block">The workflow OS</span>
-                    <span class="hero-line block">your ops team <span
-                            class="font-display italic text-teal">deserves.</span></span>
-                </h1>
-                <p class="reveal mt-7 text-[17px] leading-[1.7] text-[color:var(--muted)] max-w-2xl">
-                    Synchr unifies CRM, operations, finance and analytics on a single schema — so your data stops lying
-                    and your teams stop duplicating work. Ship in days, not quarters.
-                </p>
-                <div class="reveal mt-10 flex flex-wrap items-center gap-3">
-                    <a href="#cta" class="btn btn-primary" data-testid="hero-cta">Start 14-day free trial <i
-                            data-lucide="arrow-right" class="w-4 h-4"></i></a>
-                    <a href="#features" class="btn btn-ghost" data-testid="hero-cta2"><i data-lucide="play"
-                            class="w-4 h-4"></i> Watch 90s demo</a>
+            <div class="max-w-[1320px] mx-auto px-6 lg:px-10 relative">
+                <div class="text-center mb-10 reveal">
+                    <h2 class="text-[28px] md:text-[60px] font-display font-medium text-white">Product Showcase</h2>
                 </div>
-                <div class="reveal mt-8 flex items-center gap-5 text-[12.5px] text-[color:var(--muted)]">
-                    <span class="flex items-center gap-1.5"><i data-lucide="check" class="w-4 h-4 text-teal"></i> No
-                        credit card</span>
-                    <span class="flex items-center gap-1.5"><i data-lucide="check" class="w-4 h-4 text-teal"></i> Cancel
-                        anytime</span>
-                    <span class="flex items-center gap-1.5"><i data-lucide="check" class="w-4 h-4 text-teal"></i> Free
-                        white-glove onboarding</span>
-                </div>
-            </div>
+                <div class="grid md:grid-cols-3 gap-6">
 
-            <!-- Mock dashboard -->
-            <div class="mt-20 reveal">
-                <div class="mock" data-testid="hero-mock">
-                    <div class="mock-top"><span></span><span></span><span></span>
-                        <div class="ml-3 text-[11px] font-mono text-navy/50">synchr.builddreams.com/dashboard</div>
-                    </div>
-                    <div class="grid md:grid-cols-12 gap-0">
-                        <aside class="md:col-span-2 border-r border-line p-5 bg-[#f8fafa] hidden md:block">
-                            <div class="text-[11px] font-mono text-navy/40">WORKSPACE</div>
-                            <div class="mt-2 text-[13px] font-medium text-navy">BuildDreams · HQ</div>
-                            <ul class="mt-6 space-y-3 text-[13px] text-navy/70">
-                                <li class="flex items-center gap-2 text-navy font-medium"><i
-                                        data-lucide="layout-dashboard" class="w-4 h-4 text-teal"></i> Overview</li>
-                                <li class="flex items-center gap-2"><i data-lucide="users" class="w-4 h-4"></i> CRM</li>
-                                <li class="flex items-center gap-2"><i data-lucide="truck" class="w-4 h-4"></i>
-                                    Operations</li>
-                                <li class="flex items-center gap-2"><i data-lucide="wallet" class="w-4 h-4"></i> Finance
-                                </li>
-                                <li class="flex items-center gap-2"><i data-lucide="bar-chart-3" class="w-4 h-4"></i>
-                                    Analytics</li>
-                                <li class="flex items-center gap-2"><i data-lucide="settings" class="w-4 h-4"></i>
-                                    Settings</li>
-                            </ul>
-                        </aside>
-                        <div class="md:col-span-10 p-6">
-                            <div class="flex items-center justify-between">
-                                <div>
-                                    <div class="text-[11px] font-mono text-navy/40">OVERVIEW · Q1 2026</div>
-                                    <h3 class="text-[22px] font-medium text-navy mt-1">Good morning, Aarav 👋</h3>
-                                </div>
-                                <div class="flex items-center gap-2">
-                                    <div class="chip"><i data-lucide="sparkles" class="w-3.5 h-3.5 text-teal"></i><span
-                                            class="font-mono">SYNCHR AI</span></div>
-                                </div>
+                    <!-- Product Card: Synchr -->
+                    <a href="/product.html"
+                        class="tilt reveal group relative p-7 rounded-[20px] bg-white/[0.04] border border-white/10 hover:border-teal/50 transition-colors block"
+                        data-testid="product-synchr">
+                        <div class="flex items-start justify-between">
+                            <div class="w-11 h-11 rounded-xl gradient-brand flex items-center justify-center">
+                                <i data-lucide="waypoints" class="w-5 h-5 text-white"></i>
                             </div>
-                            <div class="mt-6 grid grid-cols-2 md:grid-cols-4 gap-3">
-                                <div class="p-4 rounded-xl border border-line">
-                                    <div class="text-[11px] text-[color:var(--muted)]">MRR</div>
-                                    <div class="text-[22px] font-semibold text-navy mt-1" data-counter="842"
-                                        data-suffix="K">0</div>
-                                    <div class="text-[11px] text-teal mt-1">▲ 14.2% WoW</div>
-                                </div>
-                                <div class="p-4 rounded-xl border border-line">
-                                    <div class="text-[11px] text-[color:var(--muted)]">Active Users</div>
-                                    <div class="text-[22px] font-semibold text-navy mt-1" data-counter="18240"
-                                        data-suffix="">0</div>
-                                    <div class="text-[11px] text-teal mt-1">▲ 8.9% WoW</div>
-                                </div>
-                                <div class="p-4 rounded-xl border border-line">
-                                    <div class="text-[11px] text-[color:var(--muted)]">NRR</div>
-                                    <div class="text-[22px] font-semibold text-navy mt-1" data-counter="128"
-                                        data-suffix="%">0</div>
-                                    <div class="text-[11px] text-teal mt-1">▲ 3.1% QoQ</div>
-                                </div>
-                                <div class="p-4 rounded-xl border border-line">
-                                    <div class="text-[11px] text-[color:var(--muted)]">Tickets / hr</div>
-                                    <div class="text-[22px] font-semibold text-navy mt-1" data-counter="37"
-                                        data-suffix="">0</div>
-                                    <div class="text-[11px] text-red-500 mt-1">▼ 2.1%</div>
-                                </div>
-                            </div>
-                            <div class="mt-6 p-5 rounded-xl border border-line">
-                                <div class="flex items-center justify-between">
-                                    <div class="text-[13px] font-medium text-navy">Revenue · Last 12 weeks</div>
-                                    <div class="text-[11px] text-[color:var(--muted)] font-mono">USD</div>
-                                </div>
-                                <div class="mt-5 flex items-end gap-2 h-[160px]">
-                                    <div class="bar flex-1 rounded-t bg-navy/20" style="height:30%"></div>
-                                    <div class="bar flex-1 rounded-t bg-navy/30" style="height:42%"></div>
-                                    <div class="bar flex-1 rounded-t bg-navy/25" style="height:38%"></div>
-                                    <div class="bar flex-1 rounded-t bg-navy/40" style="height:52%"></div>
-                                    <div class="bar flex-1 rounded-t bg-navy/35" style="height:48%"></div>
-                                    <div class="bar flex-1 rounded-t bg-navy/50" style="height:62%"></div>
-                                    <div class="bar flex-1 rounded-t bg-teal/70" style="height:70%"></div>
-                                    <div class="bar flex-1 rounded-t bg-teal/80" style="height:78%"></div>
-                                    <div class="bar flex-1 rounded-t bg-teal" style="height:85%"></div>
-                                    <div class="bar flex-1 rounded-t bg-teal" style="height:92%"></div>
-                                    <div class="bar flex-1 rounded-t bg-teal" style="height:88%"></div>
-                                    <div class="bar flex-1 rounded-t bg-teal" style="height:100%"></div>
-                                </div>
-                            </div>
+                            <span class="font-mono text-[11px] text-white/50">FLAGSHIP</span>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- TRUSTED BY -->
-    <section class="py-12 border-y border-line bg-white">
-        <div class="max-w-[1320px] mx-auto px-6 lg:px-10">
-            <div class="text-center text-[11px] font-mono tracking-[0.2em] text-navy/50 mb-6">TRUSTED BY FAST-MOVING
-                TEAMS</div>
-            <div class="flex flex-wrap justify-center items-center gap-x-14 gap-y-4 text-navy/60">
-                <span class="font-display text-2xl">Tata Digital</span>
-                <span class="font-semibold tracking-tight text-xl">INFOSYS·BPM</span>
-                <span class="font-display italic text-2xl">Reliance Jio</span>
-                <span class="font-semibold text-xl">ZERODHA</span>
-                <span class="font-display text-2xl">Swiggy</span>
-                <span class="font-semibold tracking-[0.2em] text-xl">RAZORPAY</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- FEATURES -->
-    <section id="features" class="py-[120px]" data-testid="features">
-        <div class="max-w-[1320px] mx-auto px-6 lg:px-10">
-            <div class="max-w-2xl">
-                <div class="chip reveal"><span class="font-mono text-[11px]">CAPABILITIES</span></div>
-                <h2
-                    class="reveal mt-6 text-[40px] md:text-[60px] leading-[1.02] tracking-[-0.02em] font-medium text-navy">
-                    Everything your ops team asks for, <span class="font-display italic text-teal">out of the
-                        box.</span>
-                </h2>
-            </div>
-
-            <div class="mt-16 grid md:grid-cols-3 gap-5">
-                <div class="feat reveal p-8 rounded-2xl border border-line bg-white" data-testid="feat-1">
-                    <div class="w-11 h-11 rounded-xl gradient-brand flex items-center justify-center"><i
-                            data-lucide="users" class="w-5 h-5 text-white"></i></div>
-                    <h3 class="mt-6 text-[20px] font-medium text-navy">Unified CRM</h3>
-                    <p class="mt-2 text-[14px] text-[color:var(--muted)] leading-[1.7]">Contacts, accounts, pipelines
-                        and support — all powered by one identity graph.</p>
-                </div>
-                <div class="feat reveal p-8 rounded-2xl border border-line bg-white" data-testid="feat-2">
-                    <div class="w-11 h-11 rounded-xl bg-teal/15 border border-teal/40 flex items-center justify-center">
-                        <i data-lucide="git-branch" class="w-5 h-5 text-teal"></i></div>
-                    <h3 class="mt-6 text-[20px] font-medium text-navy">Workflow Builder</h3>
-                    <p class="mt-2 text-[14px] text-[color:var(--muted)] leading-[1.7]">Drag-drop automations with
-                        conditionals, loops, and AI-powered branches.</p>
-                </div>
-                <div class="feat reveal p-8 rounded-2xl border border-line bg-white" data-testid="feat-3">
-                    <div class="w-11 h-11 rounded-xl bg-navy/10 border border-navy/20 flex items-center justify-center">
-                        <i data-lucide="bar-chart-3" class="w-5 h-5 text-navy"></i></div>
-                    <h3 class="mt-6 text-[20px] font-medium text-navy">Live Analytics</h3>
-                    <p class="mt-2 text-[14px] text-[color:var(--muted)] leading-[1.7]">Sub-second dashboards backed by
-                        a columnar warehouse — no ETL required.</p>
-                </div>
-                <div class="feat reveal p-8 rounded-2xl border border-line bg-white" data-testid="feat-4">
-                    <div class="w-11 h-11 rounded-xl gradient-brand flex items-center justify-center"><i
-                            data-lucide="wallet" class="w-5 h-5 text-white"></i></div>
-                    <h3 class="mt-6 text-[20px] font-medium text-navy">Finance Ops</h3>
-                    <p class="mt-2 text-[14px] text-[color:var(--muted)] leading-[1.7]">Invoicing, revenue recognition,
-                        multi-currency and GST / VAT handled natively.</p>
-                </div>
-                <div class="feat reveal p-8 rounded-2xl border border-line bg-white" data-testid="feat-5">
-                    <div class="w-11 h-11 rounded-xl bg-teal/15 border border-teal/40 flex items-center justify-center">
-                        <i data-lucide="sparkles" class="w-5 h-5 text-teal"></i></div>
-                    <h3 class="mt-6 text-[20px] font-medium text-navy">Synchr AI</h3>
-                    <p class="mt-2 text-[14px] text-[color:var(--muted)] leading-[1.7]">Ask your data questions in
-                        English, Hindi, Tamil, French — and get charts back.</p>
-                </div>
-                <div class="feat reveal p-8 rounded-2xl border border-line bg-white" data-testid="feat-6">
-                    <div class="w-11 h-11 rounded-xl bg-navy/10 border border-navy/20 flex items-center justify-center">
-                        <i data-lucide="shield-check" class="w-5 h-5 text-navy"></i></div>
-                    <h3 class="mt-6 text-[20px] font-medium text-navy">Enterprise Security</h3>
-                    <p class="mt-2 text-[14px] text-[color:var(--muted)] leading-[1.7]">SOC 2 Type II, ISO 27001, GDPR,
-                        DPDP — with SSO, SCIM, and field-level RBAC.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- MODULES / TABS -->
-    <section id="modules" class="py-[120px] bg-navy text-white relative overflow-hidden">
-        <div class="absolute inset-0 grid-bg opacity-10" style="--line:rgba(255,255,255,.25);"></div>
-        <div class="max-w-[1320px] mx-auto px-6 lg:px-10 relative">
-            <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-10">
-                <div>
-                    <div class="chip reveal"
-                        style="background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.15); color:#9ff2f5;">
-                        <span class="font-mono text-[11px]">MODULES</span></div>
-                    <h2 class="reveal mt-5 text-[40px] md:text-[56px] leading-[1.02] tracking-[-0.02em] font-medium">
-                        One <span class="font-display italic text-teal">platform.</span> Four superpowers.
-                    </h2>
-                </div>
-                <div class="flex flex-wrap gap-2" role="tablist">
-                    <button class="tab-btn px-4 py-2 rounded-full border border-white/20 text-[13px]"
-                        aria-selected="true" data-tab="crm" data-testid="tab-crm">CRM</button>
-                    <button class="tab-btn px-4 py-2 rounded-full border border-white/20 text-[13px]" data-tab="ops"
-                        data-testid="tab-ops">Operations</button>
-                    <button class="tab-btn px-4 py-2 rounded-full border border-white/20 text-[13px]" data-tab="fin"
-                        data-testid="tab-fin">Finance</button>
-                    <button class="tab-btn px-4 py-2 rounded-full border border-white/20 text-[13px]" data-tab="ana"
-                        data-testid="tab-ana">Analytics</button>
-                </div>
-            </div>
-
-            <div class="grid lg:grid-cols-12 gap-10 items-center">
-                <div class="lg:col-span-5 space-y-6">
-                    <div class="tab-pane" data-pane="crm">
-                        <div class="font-mono text-[11px] text-white/50">MODULE · CRM</div>
-                        <h3 class="mt-3 text-[32px] leading-tight font-medium">Pipelines that move themselves.</h3>
-                        <p class="mt-4 text-[15px] text-white/70 leading-[1.7]">Track leads, accounts and deals across
-                            14 stages. Synchr AI drafts follow-ups, flags churn risk, and auto-assigns SDRs based on
-                            capacity.</p>
-                        <ul class="mt-6 space-y-2 text-[14px] text-white/85">
-                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-teal"></i>
-                                Email & call intelligence</li>
-                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-teal"></i>
-                                WhatsApp Business & SMS built-in</li>
-                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-teal"></i>
-                                Deal room & quoting</li>
-                        </ul>
-                    </div>
-                    <div class="tab-pane hidden" data-pane="ops">
-                        <div class="font-mono text-[11px] text-white/50">MODULE · OPERATIONS</div>
-                        <h3 class="mt-3 text-[32px] leading-tight font-medium">Run the business, not the spreadsheet.
-                        </h3>
-                        <p class="mt-4 text-[15px] text-white/70 leading-[1.7]">Procurement, inventory, vendor SLAs, and
-                            delivery tracking — with automations that fire when thresholds are breached.</p>
-                        <ul class="mt-6 space-y-2 text-[14px] text-white/85">
-                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-teal"></i>
-                                Real-time inventory</li>
-                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-teal"></i>
-                                Vendor scorecards</li>
-                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-teal"></i>
-                                IoT-ready logistics</li>
-                        </ul>
-                    </div>
-                    <div class="tab-pane hidden" data-pane="fin">
-                        <div class="font-mono text-[11px] text-white/50">MODULE · FINANCE</div>
-                        <h3 class="mt-3 text-[32px] leading-tight font-medium">Close the books, on time, every time.
-                        </h3>
-                        <p class="mt-4 text-[15px] text-white/70 leading-[1.7]">Multi-entity, multi-currency general
-                            ledger with audit trails Big 4 auditors actually enjoy reviewing.</p>
-                        <ul class="mt-6 space-y-2 text-[14px] text-white/85">
-                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-teal"></i>
-                                GAAP / Ind-AS / IFRS-ready</li>
-                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-teal"></i>
-                                GST, VAT & 1099 automation</li>
-                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-teal"></i>
-                                Stripe, Razorpay, PayPal native</li>
-                        </ul>
-                    </div>
-                    <div class="tab-pane hidden" data-pane="ana">
-                        <div class="font-mono text-[11px] text-white/50">MODULE · ANALYTICS</div>
-                        <h3 class="mt-3 text-[32px] leading-tight font-medium">Dashboards that load before you blink.
-                        </h3>
-                        <p class="mt-4 text-[15px] text-white/70 leading-[1.7]">A built-in columnar warehouse & semantic
-                            layer. Slice by any dimension, share any view, embed anywhere.</p>
-                        <ul class="mt-6 space-y-2 text-[14px] text-white/85">
-                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-teal"></i>
-                                Sub-second queries up to 10B rows</li>
-                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-teal"></i>
-                                Embed dashboards with JWT</li>
-                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-teal"></i>
-                                Alerts to Slack, Email, SMS</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="lg:col-span-7">
-                    <div class="mock bg-white text-navy">
-                        <div class="mock-top"><span></span><span></span><span></span></div>
-                        <div class="p-6 grid grid-cols-2 gap-4">
-                            <div class="col-span-2 p-4 rounded-xl border border-line">
-                                <div class="text-[11px] text-[color:var(--muted)] font-mono">SYNCHR · AI COMMAND</div>
-                                <div class="mt-2 text-[15px]">"Show me enterprise deals closing in Q1 with &gt; ₹50L ACV
-                                    in the Middle East"</div>
-                                <div class="mt-3 p-3 rounded-lg bg-[#f8fafa] text-[13px] text-navy/80 font-mono">→ 12
-                                    deals · ₹8.42Cr pipeline · 67% forecast win-rate</div>
-                            </div>
-                            <div class="p-4 rounded-xl border border-line">
-                                <div class="text-[11px] text-[color:var(--muted)]">Pipeline</div>
-                                <div class="mt-3 space-y-2">
-                                    <div class="flex justify-between text-[12px]"><span>Discovery</span><span
-                                            class="font-medium">₹1.8Cr</span></div>
-                                    <div class="h-1 bg-line rounded-full">
-                                        <div class="h-1 bg-teal rounded-full" style="width:45%"></div>
-                                    </div>
-                                    <div class="flex justify-between text-[12px] mt-3"><span>Proposal</span><span
-                                            class="font-medium">₹2.6Cr</span></div>
-                                    <div class="h-1 bg-line rounded-full">
-                                        <div class="h-1 bg-teal rounded-full" style="width:68%"></div>
-                                    </div>
-                                    <div class="flex justify-between text-[12px] mt-3"><span>Close</span><span
-                                            class="font-medium">₹4.0Cr</span></div>
-                                    <div class="h-1 bg-line rounded-full">
-                                        <div class="h-1 bg-navy rounded-full" style="width:88%"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="p-4 rounded-xl border border-line">
-                                <div class="text-[11px] text-[color:var(--muted)]">Automations firing</div>
-                                <ul class="mt-3 space-y-2 text-[12.5px]">
-                                    <li class="flex items-center gap-2"><span
-                                            class="w-1.5 h-1.5 rounded-full bg-teal"></span> Lead → SDR assigned · 14
-                                        today</li>
-                                    <li class="flex items-center gap-2"><span
-                                            class="w-1.5 h-1.5 rounded-full bg-teal"></span> Invoice sent · 38 today
-                                    </li>
-                                    <li class="flex items-center gap-2"><span
-                                            class="w-1.5 h-1.5 rounded-full bg-navy"></span> NPS follow-up · 9 today
-                                    </li>
-                                    <li class="flex items-center gap-2"><span
-                                            class="w-1.5 h-1.5 rounded-full bg-navy"></span> Churn alert · 2 today</li>
-                                </ul>
-                            </div>
+                        <h3 class="mt-6 text-[26px] font-medium">Synchr Platform</h3>
+                        <p class="mt-2 text-[14px] text-white/60 leading-[1.7]">Unified workflow OS for mid-market teams
+                            —
+                            CRM, ops, finance and analytics on one schema.</p>
+                        <div class="mt-6 flex items-center justify-between text-[12px] text-white/60">
+                            <span>From ₹1,999 / seat / mo</span>
+                            <i data-lucide="arrow-up-right" class="w-4 h-4 group-hover:text-teal transition-colors"></i>
                         </div>
+                    </a>
+
+                    <!-- Product Card: Nova -->
+                    <a href="/product.html"
+                        class="tilt reveal group relative p-7 rounded-[20px] bg-white/[0.04] border border-white/10 hover:border-teal/50 transition-colors block"
+                        data-testid="product-nova">
+                        <div class="flex items-start justify-between">
+                            <div
+                                class="w-11 h-11 rounded-xl bg-teal/20 border border-teal/40 flex items-center justify-center">
+                                <i data-lucide="line-chart" class="w-5 h-5 text-teal"></i>
+                            </div>
+                            <span class="font-mono text-[11px] text-white/50">ANALYTICS</span>
+                        </div>
+                        <h3 class="mt-6 text-[26px] font-medium">Nova Wealth</h3>
+                        <p class="mt-2 text-[14px] text-white/60 leading-[1.7]">AI-native analytics for wealth managers,
+                            RIAs and family offices. SEBI &amp; SEC compliant.</p>
+                        <div class="mt-6 flex items-center justify-between text-[12px] text-white/60">
+                            <span>From $149 / seat / mo</span>
+                            <i data-lucide="arrow-up-right" class="w-4 h-4 group-hover:text-teal transition-colors"></i>
+                        </div>
+                    </a>
+
+                    <!-- Product Card: Nova -->
+                    <a href="/product.html"
+                        class="tilt reveal group relative p-7 rounded-[20px] bg-white/[0.04] border border-white/10 hover:border-teal/50 transition-colors block"
+                        data-testid="product-atlas">
+                        <div class="flex items-start justify-between">
+                            <div
+                                class="w-11 h-11 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center">
+                                <i data-lucide="boxes" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <span class="font-mono text-[11px] text-white/50">ERP</span>
+                        </div>
+                        <h3 class="mt-6 text-[26px] font-medium">Atlas ERP Lite</h3>
+                        <p class="mt-2 text-[14px] text-white/60 leading-[1.7]">A radically simple ERP for D2C brands,
+                            exporters and manufacturing SMBs in APAC &amp; EU.</p>
+                        <div class="mt-6 flex items-center justify-between text-[12px] text-white/60">
+                            <span>From ₹12,000 / mo</span>
+                            <i data-lucide="arrow-up-right" class="w-4 h-4 group-hover:text-teal transition-colors"></i>
+                        </div>
+                    </a>
+
+                    <!-- Product Card: Nova -->
+                    <a href="/product.html"
+                        class="tilt reveal group relative p-7 rounded-[20px] bg-white/[0.04] border border-white/10 hover:border-teal/50 transition-colors block"
+                        data-testid="product-atlas">
+                        <div class="flex items-start justify-between">
+                            <div
+                                class="w-11 h-11 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center">
+                                <i data-lucide="boxes" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <span class="font-mono text-[11px] text-white/50">ERP</span>
+                        </div>
+                        <h3 class="mt-6 text-[26px] font-medium">Atlas ERP Lite</h3>
+                        <p class="mt-2 text-[14px] text-white/60 leading-[1.7]">A radically simple ERP for D2C brands,
+                            exporters and manufacturing SMBs in APAC &amp; EU.</p>
+                        <div class="mt-6 flex items-center justify-between text-[12px] text-white/60">
+                            <span>From ₹12,000 / mo</span>
+                            <i data-lucide="arrow-up-right" class="w-4 h-4 group-hover:text-teal transition-colors"></i>
+                        </div>
+                    </a>
+
+                    <!-- Product Card: Nova -->
+                    <a href="/product.html"
+                        class="tilt reveal group relative p-7 rounded-[20px] bg-white/[0.04] border border-white/10 hover:border-teal/50 transition-colors block"
+                        data-testid="product-atlas">
+                        <div class="flex items-start justify-between">
+                            <div
+                                class="w-11 h-11 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center">
+                                <i data-lucide="boxes" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <span class="font-mono text-[11px] text-white/50">ERP</span>
+                        </div>
+                        <h3 class="mt-6 text-[26px] font-medium">Atlas ERP Lite</h3>
+                        <p class="mt-2 text-[14px] text-white/60 leading-[1.7]">A radically simple ERP for D2C brands,
+                            exporters and manufacturing SMBs in APAC &amp; EU.</p>
+                        <div class="mt-6 flex items-center justify-between text-[12px] text-white/60">
+                            <span>From ₹12,000 / mo</span>
+                            <i data-lucide="arrow-up-right" class="w-4 h-4 group-hover:text-teal transition-colors"></i>
+                        </div>
+                    </a>
+
+                    <!-- Product Card: Nova -->
+                    <a href="/product.html"
+                        class="tilt reveal group relative p-7 rounded-[20px] bg-white/[0.04] border border-white/10 hover:border-teal/50 transition-colors block"
+                        data-testid="product-atlas">
+                        <div class="flex items-start justify-between">
+                            <div
+                                class="w-11 h-11 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center">
+                                <i data-lucide="boxes" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <span class="font-mono text-[11px] text-white/50">ERP</span>
+                        </div>
+                        <h3 class="mt-6 text-[26px] font-medium">Atlas ERP Lite</h3>
+                        <p class="mt-2 text-[14px] text-white/60 leading-[1.7]">A radically simple ERP for D2C brands,
+                            exporters and manufacturing SMBs in APAC &amp; EU.</p>
+                        <div class="mt-6 flex items-center justify-between text-[12px] text-white/60">
+                            <span>From ₹12,000 / mo</span>
+                            <i data-lucide="arrow-up-right" class="w-4 h-4 group-hover:text-teal transition-colors"></i>
+                        </div>
+                    </a>
+
+                    <!-- Product Card: Nova -->
+                    <a href="/product.html"
+                        class="tilt reveal group relative p-7 rounded-[20px] bg-white/[0.04] border border-white/10 hover:border-teal/50 transition-colors block"
+                        data-testid="product-atlas">
+                        <div class="flex items-start justify-between">
+                            <div
+                                class="w-11 h-11 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center">
+                                <i data-lucide="boxes" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <span class="font-mono text-[11px] text-white/50">ERP</span>
+                        </div>
+                        <h3 class="mt-6 text-[26px] font-medium">Atlas ERP Lite</h3>
+                        <p class="mt-2 text-[14px] text-white/60 leading-[1.7]">A radically simple ERP for D2C brands,
+                            exporters and manufacturing SMBs in APAC &amp; EU.</p>
+                        <div class="mt-6 flex items-center justify-between text-[12px] text-white/60">
+                            <span>From ₹12,000 / mo</span>
+                            <i data-lucide="arrow-up-right" class="w-4 h-4 group-hover:text-teal transition-colors"></i>
+                        </div>
+                    </a>
+
+                    <!-- Product Card: Nova -->
+                    <a href="/product.html"
+                        class="tilt reveal group relative p-7 rounded-[20px] bg-white/[0.04] border border-white/10 hover:border-teal/50 transition-colors block"
+                        data-testid="product-atlas">
+                        <div class="flex items-start justify-between">
+                            <div
+                                class="w-11 h-11 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center">
+                                <i data-lucide="boxes" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <span class="font-mono text-[11px] text-white/50">ERP</span>
+                        </div>
+                        <h3 class="mt-6 text-[26px] font-medium">Atlas ERP Lite</h3>
+                        <p class="mt-2 text-[14px] text-white/60 leading-[1.7]">A radically simple ERP for D2C brands,
+                            exporters and manufacturing SMBs in APAC &amp; EU.</p>
+                        <div class="mt-6 flex items-center justify-between text-[12px] text-white/60">
+                            <span>From ₹12,000 / mo</span>
+                            <i data-lucide="arrow-up-right" class="w-4 h-4 group-hover:text-teal transition-colors"></i>
+                        </div>
+                    </a>
+
+                    <!-- Product Card: Nova -->
+                    <a href="/product.html"
+                        class="tilt reveal group relative p-7 rounded-[20px] bg-white/[0.04] border border-white/10 hover:border-teal/50 transition-colors block"
+                        data-testid="product-atlas">
+                        <div class="flex items-start justify-between">
+                            <div
+                                class="w-11 h-11 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center">
+                                <i data-lucide="boxes" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <span class="font-mono text-[11px] text-white/50">ERP</span>
+                        </div>
+                        <h3 class="mt-6 text-[26px] font-medium">Atlas ERP Lite</h3>
+                        <p class="mt-2 text-[14px] text-white/60 leading-[1.7]">A radically simple ERP for D2C brands,
+                            exporters and manufacturing SMBs in APAC &amp; EU.</p>
+                        <div class="mt-6 flex items-center justify-between text-[12px] text-white/60">
+                            <span>From ₹12,000 / mo</span>
+                            <i data-lucide="arrow-up-right" class="w-4 h-4 group-hover:text-teal transition-colors"></i>
+                        </div>
+                    </a>
+
+                    <!-- Product Card: Nova -->
+                    <a href="/product.html"
+                        class="tilt reveal group relative p-7 rounded-[20px] bg-white/[0.04] border border-white/10 hover:border-teal/50 transition-colors block"
+                        data-testid="product-atlas">
+                        <div class="flex items-start justify-between">
+                            <div
+                                class="w-11 h-11 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center">
+                                <i data-lucide="boxes" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <span class="font-mono text-[11px] text-white/50">ERP</span>
+                        </div>
+                        <h3 class="mt-6 text-[26px] font-medium">Atlas ERP Lite</h3>
+                        <p class="mt-2 text-[14px] text-white/60 leading-[1.7]">A radically simple ERP for D2C brands,
+                            exporters and manufacturing SMBs in APAC &amp; EU.</p>
+                        <div class="mt-6 flex items-center justify-between text-[12px] text-white/60">
+                            <span>From ₹12,000 / mo</span>
+                            <i data-lucide="arrow-up-right" class="w-4 h-4 group-hover:text-teal transition-colors"></i>
+                        </div>
+                    </a>
+
+                    <!-- Product Card: Nova -->
+                    <a href="/product.html"
+                        class="tilt reveal group relative p-7 rounded-[20px] bg-white/[0.04] border border-white/10 hover:border-teal/50 transition-colors block"
+                        data-testid="product-atlas">
+                        <div class="flex items-start justify-between">
+                            <div
+                                class="w-11 h-11 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center">
+                                <i data-lucide="boxes" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <span class="font-mono text-[11px] text-white/50">ERP</span>
+                        </div>
+                        <h3 class="mt-6 text-[26px] font-medium">Atlas ERP Lite</h3>
+                        <p class="mt-2 text-[14px] text-white/60 leading-[1.7]">A radically simple ERP for D2C brands,
+                            exporters and manufacturing SMBs in APAC &amp; EU.</p>
+                        <div class="mt-6 flex items-center justify-between text-[12px] text-white/60">
+                            <span>From ₹12,000 / mo</span>
+                            <i data-lucide="arrow-up-right" class="w-4 h-4 group-hover:text-teal transition-colors"></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    <!-- ========= FOOTER (white theme) ========= -->
+    <footer class="bg-white text-navy pt-20 pb-10 border-t border-line">
+        <div class="max-w-[1320px] mx-auto px-6 lg:px-10">
+            <div class="grid md:grid-cols-12 gap-10 pb-14 border-b border-line">
+                <div class="md:col-span-5">
+                    <div class="flex items-center">
+                        <img src="assets/images/builddreams.png" alt="BuildDreams logo" class="h-10 w-auto"
+                            loading="lazy" />
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- INTEGRATIONS -->
-    <section id="integrations" class="py-[120px] bg-white">
-        <div class="max-w-[1320px] mx-auto px-6 lg:px-10">
-            <div class="flex items-end justify-between gap-8 mb-12">
-                <div>
-                    <div class="chip reveal"><span class="font-mono text-[11px]">INTEGRATIONS</span></div>
-                    <h2
-                        class="reveal mt-6 text-[40px] md:text-[56px] leading-[1.02] tracking-[-0.02em] font-medium text-navy max-w-3xl">
-                        Plays nice with <span class="font-display italic text-teal">200+</span> tools you already love.
-                    </h2>
-                </div>
-            </div>
-            <div class="grid grid-cols-3 md:grid-cols-6 gap-3">
-                <div class="int-card reveal">Slack</div>
-                <div class="int-card reveal">Gmail</div>
-                <div class="int-card reveal">Stripe</div>
-                <div class="int-card reveal">Razorpay</div>
-                <div class="int-card reveal">HubSpot</div>
-                <div class="int-card reveal">Zoho</div>
-                <div class="int-card reveal">Tally</div>
-                <div class="int-card reveal">Zapier</div>
-                <div class="int-card reveal">Notion</div>
-                <div class="int-card reveal">Jira</div>
-                <div class="int-card reveal">Shopify</div>
-                <div class="int-card reveal">QuickBooks</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- COMPARE -->
-    <section id="compare" class="py-[120px] bg-[#fbfcfc]">
-        <div class="max-w-[1320px] mx-auto px-6 lg:px-10">
-            <div class="chip reveal"><span class="font-mono text-[11px]">COMPARE</span></div>
-            <h2
-                class="reveal mt-6 text-[40px] md:text-[56px] leading-[1.02] tracking-[-0.02em] font-medium text-navy max-w-3xl">
-                Synchr vs. <span class="font-display italic text-teal">the usual stack.</span>
-            </h2>
-            <div class="mt-10 overflow-x-auto rounded-2xl border border-line bg-white reveal">
-                <table class="cmp w-full min-w-[720px]">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th class="text-navy">Synchr Platform</th>
-                            <th>Salesforce + Stack</th>
-                            <th>Zoho One</th>
-                            <th>DIY</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="font-medium text-navy">Time-to-live</td>
-                            <td class="text-teal font-medium">2 days</td>
-                            <td>3 months</td>
-                            <td>3 weeks</td>
-                            <td>6+ months</td>
-                        </tr>
-                        <tr>
-                            <td class="font-medium text-navy">Unified schema</td>
-                            <td class="text-teal">✓ Native</td>
-                            <td>Integrated</td>
-                            <td>Partial</td>
-                            <td>Build yourself</td>
-                        </tr>
-                        <tr>
-                            <td class="font-medium text-navy">AI built-in</td>
-                            <td class="text-teal">✓ Synchr AI</td>
-                            <td>Add-on ($$)</td>
-                            <td>Limited</td>
-                            <td>DIY</td>
-                        </tr>
-                        <tr>
-                            <td class="font-medium text-navy">Starting price</td>
-                            <td class="text-teal">₹1,999/seat</td>
-                            <td>₹12,000/seat</td>
-                            <td>₹2,800/seat</td>
-                            <td>—</td>
-                        </tr>
-                        <tr>
-                            <td class="font-medium text-navy">Data residency (IN)</td>
-                            <td class="text-teal">✓ Mumbai</td>
-                            <td>Available</td>
-                            <td>✓</td>
-                            <td>DIY</td>
-                        </tr>
-                        <tr>
-                            <td class="font-medium text-navy">White-glove onboarding</td>
-                            <td class="text-teal">✓ Free</td>
-                            <td>$10K+</td>
-                            <td>Partner-led</td>
-                            <td>—</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section>
-
-    <!-- TESTIMONIAL -->
-    <section class="py-[120px] bg-white">
-        <div class="max-w-[1020px] mx-auto px-6 lg:px-10 text-center reveal">
-            <i data-lucide="quote" class="w-10 h-10 text-teal mx-auto"></i>
-            <blockquote class="mt-6 text-[28px] md:text-[40px] leading-[1.25] tracking-[-0.01em] text-navy font-medium">
-                "We replaced Salesforce, NetSuite and Looker with <span
-                    class="font-display italic text-teal">Synchr</span>. Nine months in, we saved <span
-                    class="font-display italic">$1.2M</span> and closed the books 4 days faster."
-            </blockquote>
-            <div class="mt-8 flex items-center justify-center gap-3">
-                <div class="w-10 h-10 rounded-full gradient-brand"></div>
-                <div class="text-left">
-                    <div class="text-[14px] font-medium text-navy">Rohan Varma</div>
-                    <div class="text-[12px] text-[color:var(--muted)]">CFO · Veraxis Materials · Pune + Singapore</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PRICING -->
-    <section id="pricing" class="py-[120px] bg-[#fbfcfc]">
-        <div class="max-w-[1320px] mx-auto px-6 lg:px-10">
-            <div class="text-center max-w-2xl mx-auto">
-                <div class="chip reveal inline-flex"><span class="font-mono text-[11px]">PLANS</span></div>
-                <h2
-                    class="reveal mt-6 text-[40px] md:text-[56px] leading-[1.02] tracking-[-0.02em] font-medium text-navy">
-                    Pick a plan. <span class="font-display italic text-teal">Scale when ready.</span>
-                </h2>
-            </div>
-            <div class="mt-14 grid md:grid-cols-3 gap-6">
-                <div class="reveal p-8 rounded-[20px] border border-line bg-white" data-testid="plan-starter">
-                    <div class="font-mono text-[11px] text-navy/50">STARTER</div>
-                    <h3 class="mt-3 font-display text-[44px] leading-none text-navy">₹1,999<span
-                            class="text-[15px] text-[color:var(--muted)] font-sans"> /seat/mo</span></h3>
-                    <ul class="mt-6 space-y-2 text-[13.5px] text-navy/80">
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-teal"></i> CRM
-                            core</li>
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-teal"></i> 20
-                            seats</li>
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-teal"></i> Email
-                            support</li>
-                    </ul>
-                    <a href="#cta" class="btn btn-ghost w-full justify-center mt-8">Start trial</a>
-                </div>
-                <div class="reveal p-8 rounded-[20px] bg-navy text-white relative" data-testid="plan-growth">
-                    <div class="absolute -top-3 right-6 chip"
-                        style="background:#009599;color:#fff;border-color:#009599;">Most popular</div>
-                    <div class="font-mono text-[11px] text-white/60">GROWTH</div>
-                    <h3 class="mt-3 font-display text-[44px] leading-none">₹3,499<span
-                            class="text-[15px] text-white/60 font-sans"> /seat/mo</span></h3>
-                    <ul class="mt-6 space-y-2 text-[13.5px] text-white/85">
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-teal"></i> All
-                            modules unlocked</li>
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-teal"></i> SSO +
-                            SCIM + Audit</li>
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-teal"></i> Synchr
-                            AI included</li>
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-teal"></i> 24×7
-                            priority support</li>
-                    </ul>
-                    <a href="#cta" class="btn btn-teal w-full justify-center mt-8">Talk to sales</a>
-                </div>
-                <div class="reveal p-8 rounded-[20px] border border-line bg-white" data-testid="plan-enterprise">
-                    <div class="font-mono text-[11px] text-navy/50">ENTERPRISE</div>
-                    <h3 class="mt-3 font-display text-[44px] leading-none text-navy">Custom</h3>
-                    <ul class="mt-6 space-y-2 text-[13.5px] text-navy/80">
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-teal"></i> VPC /
-                            on-prem</li>
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-teal"></i>
-                            Dedicated pod</li>
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-teal"></i> Custom
-                            SLAs</li>
-                    </ul>
-                    <a href="#cta" class="btn btn-ghost w-full justify-center mt-8">Request proposal</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ -->
-    <section class="py-[120px] bg-white">
-        <div class="max-w-[1020px] mx-auto px-6 lg:px-10">
-            <div class="chip reveal"><span class="font-mono text-[11px]">FAQ</span></div>
-            <h2 class="reveal mt-6 text-[40px] md:text-[56px] leading-[1.02] tracking-[-0.02em] font-medium text-navy">
-                Answers, <span class="font-display italic text-teal">before you ask.</span>
-            </h2>
-            <div class="mt-10 divide-y divide-[color:var(--line)] border-y border-line">
-                <details class="group py-6" data-testid="pfaq-1">
-                    <summary class="flex items-center justify-between cursor-pointer list-none">
-                        <span class="text-[18px] font-medium text-navy">How fast can we go live?</span>
-                        <i data-lucide="plus" class="w-5 h-5 text-navy group-open:rotate-45 transition-transform"></i>
-                    </summary>
-                    <p class="mt-4 text-[14.5px] text-[color:var(--muted)] leading-[1.7]">Most teams are in production
-                        within 48-72 hours. Enterprises with complex migrations typically go live in 2-3 weeks with our
-                        white-glove team.</p>
-                </details>
-                <details class="group py-6" data-testid="pfaq-2">
-                    <summary class="flex items-center justify-between cursor-pointer list-none">
-                        <span class="text-[18px] font-medium text-navy">Can we self-host Synchr?</span>
-                        <i data-lucide="plus" class="w-5 h-5 text-navy group-open:rotate-45 transition-transform"></i>
-                    </summary>
-                    <p class="mt-4 text-[14.5px] text-[color:var(--muted)] leading-[1.7]">Yes — on the Enterprise plan,
-                        we ship a Helm chart that deploys into your VPC (AWS, GCP, Azure) or on-prem Kubernetes cluster.
+                    <p class="mt-5 text-[14px] text-navy opacity-60 max-w-sm leading-[1.7]">
+                        Engineered in Bengaluru · Singapore · Berlin. Trusted by teams from São Paulo to Sydney.
                     </p>
-                </details>
-                <details class="group py-6" data-testid="pfaq-3">
-                    <summary class="flex items-center justify-between cursor-pointer list-none">
-                        <span class="text-[18px] font-medium text-navy">Do you offer a free trial?</span>
-                        <i data-lucide="plus" class="w-5 h-5 text-navy group-open:rotate-45 transition-transform"></i>
-                    </summary>
-                    <p class="mt-4 text-[14.5px] text-[color:var(--muted)] leading-[1.7]">14 days, no credit card. All
-                        features unlocked. Extend to 30 days if your onboarding needs more time.</p>
-                </details>
+                </div>
+                <div class="md:col-span-2">
+                    <div class="font-mono text-[11px] text-navy opacity-40">PRODUCT</div>
+                    <ul class="mt-5 space-y-3 text-[14px] text-navy opacity-75">
+                        <li><a href="/product.html" class="hover:text-teal">Synchr Platform</a></li>
+                        <li><a href="/product.html" class="hover:text-teal">Nova Wealth</a></li>
+                        <li><a href="/product.html" class="hover:text-teal">Atlas ERP Lite</a></li>
+                        <li><a href="#pricing" class="hover:text-teal">Pricing</a></li>
+                    </ul>
+                </div>
+                <div class="md:col-span-2">
+                    <div class="font-mono text-[11px] text-navy opacity-40">COMPANY</div>
+                    <ul class="mt-5 space-y-3 text-[14px] text-navy opacity-75">
+                        <li><a href="#services" class="hover:text-teal">Services</a></li>
+                        <li><a href="#stories" class="hover:text-teal">Case studies</a></li>
+                        <li><a href="#contact" class="hover:text-teal">Contact</a></li>
+                        <li><a href="#" class="hover:text-teal">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="md:col-span-3">
+                    <div class="font-mono text-[11px] text-navy opacity-40">NEWSLETTER</div>
+                    <p class="mt-5 text-[13.5px] text-navy opacity-70 leading-[1.7]">Monthly field notes on enterprise
+                        SaaS,
+                        architecture & compounding product teams.</p>
+                    <form class="mt-4 flex gap-2" onsubmit="event.preventDefault();" data-testid="newsletter">
+                        <input type="email" placeholder="you@company.com"
+                            class="flex-1 px-4 py-3 rounded-full border border-line text-[13px] focus:border-teal outline-none placeholder:text-navy opacity-40"
+                            style="background: #f4f7f8;" />
+                        <button class="btn btn-teal"><i data-lucide="arrow-right" class="w-4 h-4"></i></button>
+                    </form>
+                </div>
             </div>
-        </div>
-    </section>
-
-    <!-- CTA -->
-    <section id="cta" class="py-[120px] bg-navy text-white relative overflow-hidden noise">
-        <div class="absolute inset-0 grid-bg opacity-10" style="--line:rgba(255,255,255,.25);"></div>
-        <div class="absolute -top-20 -right-10 w-[420px] h-[420px] rounded-full blur-3xl opacity-30 bg-teal"></div>
-        <div class="max-w-[1020px] mx-auto px-6 lg:px-10 text-center relative">
-            <div class="chip reveal inline-flex"
-                style="background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.15); color:#9ff2f5;"><span
-                    class="font-mono text-[11px]">GET STARTED</span></div>
-            <h2 class="reveal mt-6 text-[48px] md:text-[80px] leading-[0.98] tracking-[-0.02em] font-medium">
-                Try Synchr free. <br />
-                <span class="font-display italic text-teal">See the difference in a day.</span>
-            </h2>
-            <div class="reveal mt-10 flex flex-wrap justify-center gap-3">
-                <a href="#" class="btn btn-teal" data-testid="cta-primary">Start 14-day trial <i
-                        data-lucide="arrow-right" class="w-4 h-4"></i></a>
-                <a href="index.html#contact" class="btn border border-white/20 text-white"
-                    data-testid="cta-secondary">Book a demo</a>
+            <div
+                class="pt-8 flex flex-col md:flex-row md:items-center justify-between gap-4 text-[12px] text-navy opacity-50">
+                <div>© 2026 BuildDreams Technologies</div>
+                <div class="flex items-center gap-5">
+                    <a href="#" class="hover:text-teal">Privacy</a>
+                    <a href="#" class="hover:text-teal">Terms</a>
+                    <a href="#" class="hover:text-teal">Security</a>
+                    <a href="#" class="hover:text-teal">DPA</a>
+                </div>
             </div>
-            <p class="reveal mt-6 text-[12.5px] text-white/60">No credit card · Deploy in 48h · Cancel anytime</p>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="bg-navy text-white pt-14 pb-10 border-t border-white/10">
-        <div
-            class="max-w-[1320px] mx-auto px-6 lg:px-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 text-[13px] text-white/60">
-            <div class="flex items-center gap-3 text-white">
-                <img src="builddreams.png" alt="BuildDreams logo" class="h-8 w-auto" loading="lazy" />
-                <span class="font-medium">BuildDreams · Synchr Platform</span>
-            </div>
-            <div class="flex items-center gap-5">
-                <a href="/" class="hover:text-teal">← Back to home</a>
-                <a href="#" class="hover:text-teal">Privacy</a>
-                <a href="#" class="hover:text-teal">Terms</a>
-                <a href="#" class="hover:text-teal">Security</a>
-            </div>
-            <div>© 2026 BuildDreams Technologies</div>
         </div>
     </footer>
 
     <script>
         lucide.createIcons();
-
-        // Lenis
+        // Fallback: if lucide didn't render footer SVGs, inject small inline SVG images.
+        (function ensureFooterIcons() {
+            try {
+                const icons = {
+                    twitter: `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'><circle cx='12' cy='12' r='10' fill='#0b1020'/><text x='12' y='16' text-anchor='middle' font-size='10' fill='#ffffff' font-family='Inter, Arial, sans-serif'>t</text></svg>`,
+                    linkedin: `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'><circle cx='12' cy='12' r='10' fill='#0b1020'/><text x='12' y='16' text-anchor='middle' font-size='9' fill='#ffffff' font-family='Inter, Arial, sans-serif'>in</text></svg>`,
+                    github: `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'><circle cx='12' cy='12' r='10' fill='#0b1020'/><text x='12' y='16' text-anchor='middle' font-size='9' fill='#ffffff' font-family='Inter, Arial, sans-serif'>gh</text></svg>`,
+                    dribbble: `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'><circle cx='12' cy='12' r='10' fill='#0b1020'/><text x='12' y='16' text-anchor='middle' font-size='10' fill='#ffffff' font-family='Inter, Arial, sans-serif'>d</text></svg>`
+                };
+                document.querySelectorAll('.footer-social a').forEach(a => {
+                    if (a.querySelector('svg')) return;
+                    const i = a.querySelector('i[data-lucide]');
+                    const name = i ? i.getAttribute('data-lucide') : null;
+                    const svg = icons[name];
+                    if (svg) {
+                        const img = document.createElement('img');
+                        img.src = 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
+                        img.alt = name || 'icon';
+                        img.className = 'w-4 h-4';
+                        a.appendChild(img);
+                        if (i) i.style.display = 'none';
+                    }
+                });
+            } catch (e) {
+                console.warn('ensureFooterIcons error', e);
+            }
+        })();
         const lenis = new Lenis({ duration: 1.1, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
         function raf(t) { lenis.raf(t); requestAnimationFrame(raf); } requestAnimationFrame(raf);
-
-        // GSAP
         gsap.registerPlugin(ScrollTrigger);
         lenis.on('scroll', ScrollTrigger.update);
         gsap.ticker.add(t => lenis.raf(t * 1000));
         gsap.ticker.lagSmoothing(0);
-
-        // Cursor
         const dot = document.getElementById('cursorDot'), ring = document.getElementById('cursorRing');
-        let mx = -100, my = -100, rx = -100, ry = -100;
-        window.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; dot.style.transform = `translate(${mx}px, ${my}px)`; });
-        (function tick() { rx += (mx - rx) * 0.16; ry += (my - ry) * 0.16; ring.style.transform = `translate(${rx}px, ${ry}px)`; requestAnimationFrame(tick); })();
-        document.querySelectorAll('a,button,summary,.int-card,.feat').forEach(el => {
-            el.addEventListener('mouseenter', () => { ring.style.width = '56px'; ring.style.height = '56px'; ring.style.borderColor = 'rgba(0,149,153,.7)'; });
-            el.addEventListener('mouseleave', () => { ring.style.width = '38px'; ring.style.height = '38px'; ring.style.borderColor = 'rgba(2,19,70,.35)'; });
+        let mx = -100, my = -100, rx = -100, ry = -100; window.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; if (dot) dot.style.transform = `translate(${mx}px, ${my}px)` }); (function tick() { rx += (mx - rx) * 0.16; ry += (my - ry) * 0.16; if (ring) ring.style.transform = `translate(${rx}px, ${ry}px)`; requestAnimationFrame(tick) })();
+        document.querySelectorAll('a,button,summary,.service-card,.price-card,.tilt,.feature-card').forEach(el => {
+            el.addEventListener('mouseenter', () => { if (ring) { ring.style.width = '56px'; ring.style.height = '56px'; ring.style.borderColor = 'rgba(0,149,153,.7)' } });
+            el.addEventListener('mouseleave', () => { if (ring) { ring.style.width = '38px'; ring.style.height = '38px'; ring.style.borderColor = 'rgba(2,19,70,.35)' } });
         });
 
-        // Nav solid
-        ScrollTrigger.create({ start: 'top -40', onUpdate: self => { const n = document.getElementById('nav'); self.scroll() > 40 ? n.classList.add('nav-solid') : n.classList.remove('nav-solid'); } });
-
-        // Hero lines
-        const heroLines = document.querySelectorAll('.hero-line');
-        gsap.set(heroLines, { yPercent: 110, opacity: 0 });
-        gsap.to(heroLines, { yPercent: 0, opacity: 1, duration: 1.1, ease: 'expo.out', stagger: 0.12, delay: 0.2 });
-
-        // Reveals
-        gsap.utils.toArray('.reveal').forEach(el => {
-            gsap.to(el, { opacity: 1, y: 0, duration: 1, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 88%' } });
-        });
-
-        // Counters
-        document.querySelectorAll('[data-counter]').forEach(el => {
-            const target = parseFloat(el.dataset.counter); const suffix = el.dataset.suffix || ''; const obj = { v: 0 };
-            ScrollTrigger.create({
-                trigger: el, start: 'top 92%', once: true,
-                onEnter: () => gsap.to(obj, {
-                    v: target, duration: 2, ease: 'power3.out',
-                    onUpdate: () => { const n = target % 1 !== 0 ? obj.v.toFixed(2) : Math.floor(obj.v); el.textContent = (target >= 1000 ? n.toLocaleString() : n) + suffix; }
-                })
+        // ---------- Tilt on product cards ----------
+        document.querySelectorAll('.tilt').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const r = card.getBoundingClientRect();
+                const x = (e.clientX - r.left) / r.width - 0.5;
+                const y = (e.clientY - r.top) / r.height - 0.5;
+                card.style.transform = `perspective(900px) rotateY(${x * 6}deg) rotateX(${-y * 6}deg) translateZ(0)`;
             });
+            card.addEventListener('mouseleave', () => { card.style.transform = 'perspective(900px) rotateY(0) rotateX(0)'; });
         });
-
-        // Bar chart animate
-        gsap.utils.toArray('.bar').forEach((b, i) => {
-            const h = b.style.height;
-            b.style.height = '0%';
-            gsap.to(b, {
-                height: h, duration: 1.2, ease: 'expo.out', delay: i * 0.05,
-                scrollTrigger: { trigger: b, start: 'top 90%' }
-            });
-        });
-
-        // Tabs
-        const tabs = document.querySelectorAll('.tab-btn');
-        const panes = document.querySelectorAll('.tab-pane');
-        tabs.forEach(t => t.addEventListener('click', () => {
-            tabs.forEach(x => x.setAttribute('aria-selected', 'false'));
-            t.setAttribute('aria-selected', 'true');
-            panes.forEach(p => p.classList.toggle('hidden', p.dataset.pane !== t.dataset.tab));
-            const visible = document.querySelector(`.tab-pane[data-pane="${t.dataset.tab}"]`);
-            gsap.from(visible, { y: 16, opacity: 0, duration: .6, ease: 'expo.out' });
-        }));
-
-        // Integrations stagger
-        gsap.utils.toArray('.int-card').forEach((c, i) => {
-            gsap.from(c, {
-                y: 18, opacity: 0, duration: .6, ease: 'expo.out', delay: (i % 6) * 0.05,
-                scrollTrigger: { trigger: c, start: 'top 92%' }
-            });
-        });
+        ScrollTrigger.create({ start: 'top -40', onUpdate: self => { const n = document.getElementById('nav'); if (!n) return; self.scroll() > 40 ? n.classList.add('nav-solid') : n.classList.remove('nav-solid'); } });
+        gsap.utils.toArray('.reveal').forEach(el => { gsap.to(el, { opacity: 1, y: 0, duration: .9, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 92%' } }) });
+        const contactForm = document.getElementById('contactForm'); const contactNote = document.getElementById('contactNote'); if (contactForm) { contactForm.addEventListener('submit', e => { e.preventDefault(); const f = e.target; const name = (f.name.value || '').trim(); const email = (f.email.value || '').trim(); const company = (f.company.value || '').trim(); const message = (f.message.value || '').trim(); if (!email || !name) { if (contactNote) contactNote.textContent = 'Please provide name and email.'; return; } const subject = encodeURIComponent('Demo request from ' + (company || name)); const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nCompany: ${company}\n\n${message}`); window.location.href = `mailto:hello@builddreams.com?subject=${subject}&body=${body}` }) }
     </script>
-    <script defer
-        src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516"
-        integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg=="
-        data-cf-beacon='{"version":"2024.11.0","token":"7f7b0fd8732c4326aae4b9d58d5c514a","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}'
-        crossorigin="anonymous"></script>
 </body>
 
 </html>
