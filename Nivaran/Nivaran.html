@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nivaran | B2B Service Intake and Ticket Management Platform</title>
+  <meta name="description" content="Nivaran is a customizable B2B ticket management, kiosk intake, voice complaint, document upload, and escalation workflow platform for service-heavy organizations." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: #f7f9fb;
+      color: #0b1020;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    :root {
+      --ink: #0b1020;
+      --navy: #06204f;
+      --teal: #008f95;
+      --green: #168a52;
+      --gold: #a56c00;
+      --red: #b73737;
+      --muted: #647184;
+      --line: rgba(6, 32, 79, 0.11);
+      --line-strong: rgba(6, 32, 79, 0.2);
+      --paper: #ffffff;
+      --soft: #edf4f6;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    .font-display { font-family: "Instrument Serif", Georgia, serif; }
+    .font-mono { font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .container { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
+    .wide { width: min(1320px, calc(100% - 40px)); margin: 0 auto; }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 30px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 5px 11px;
+      color: rgba(6, 32, 79, 0.72);
+      background: rgba(255,255,255,0.66);
+      font: 600 11px/1 "JetBrains Mono", monospace;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .chip-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--teal); box-shadow: 0 0 0 4px rgba(0,143,149,0.12); }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 46px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 700;
+      font-size: 14px;
+      transition: transform .2s ease, background .2s ease, border-color .2s ease, color .2s ease;
+      cursor: pointer;
+    }
+    .btn i { width: 17px; height: 17px; }
+    .btn-primary { background: var(--navy); color: #fff; box-shadow: 0 16px 34px -22px rgba(6,32,79,0.8); }
+    .btn-primary:hover { transform: translateY(-1px); background: #082b67; }
+    .btn-ghost { background: rgba(255,255,255,0.66); color: var(--navy); border-color: var(--line); }
+    .btn-ghost:hover { border-color: rgba(6,32,79,0.36); transform: translateY(-1px); }
+    .btn-light { background: #fff; color: var(--navy); border-color: rgba(255,255,255,0.2); }
+    .btn-teal { background: var(--teal); color: #fff; }
+    .nav {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 40;
+      transition: background .25s ease, border-color .25s ease, backdrop-filter .25s ease;
+      border-bottom: 1px solid transparent;
+    }
+    .nav.scrolled {
+      background: rgba(247,249,251,0.85);
+      backdrop-filter: blur(16px) saturate(160%);
+      border-color: var(--line);
+    }
+    .nav-inner {
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .brand { display: flex; align-items: center; gap: 12px; color: var(--navy); }
+    .brand-logo { height: 40px; width: auto; object-fit: contain; flex: none; }
+    .brand-kicker {
+      display: inline-flex;
+      color: rgba(6, 32, 79, 0.5);
+      font: 600 11px/1 "JetBrains Mono", monospace;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .nav-links { display: flex; align-items: center; gap: 24px; color: rgba(11,16,32,0.72); font-size: 14px; font-weight: 600; }
+    .nav-links a:hover { color: var(--navy); }
+    .nav-actions { display: flex; align-items: center; gap: 10px; }
+
+    .hero {
+      min-height: 94vh;
+      padding: 120px 0 42px;
+      display: grid;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+      background:
+        linear-gradient(115deg, rgba(0,143,149,0.12), transparent 32%),
+        linear-gradient(185deg, rgba(165,108,0,0.12), transparent 24%),
+        #f7f9fb;
+    }
+    .hero-grid { display: grid; grid-template-columns: 0.94fr 1.06fr; gap: 56px; align-items: center; }
+    h1 {
+      margin: 18px 0 0;
+      max-width: 660px;
+      font-size: clamp(42px, 6.2vw, 82px);
+      line-height: 0.94;
+      letter-spacing: -0.055em;
+      color: var(--navy);
+    }
+    h1 span { color: var(--teal); }
+    .hero-copy {
+      max-width: 590px;
+      margin: 24px 0 0;
+      color: var(--muted);
+      font-size: clamp(16px, 1.5vw, 18px);
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+    .hero-proof {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin-top: 30px;
+      color: rgba(11,16,32,0.68);
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .hero-proof span { display: inline-flex; align-items: center; gap: 8px; }
+    .hero-proof i { width: 16px; height: 16px; color: var(--teal); }
+    .visual-shell {
+      position: relative;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: rgba(255,255,255,0.68);
+      padding: 14px;
+      box-shadow: 0 34px 90px -60px rgba(6,32,79,0.8);
+    }
+    .browser {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #fff;
+    }
+    .browser-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      height: 42px;
+      padding: 0 14px;
+      border-bottom: 1px solid var(--line);
+      background: #fbfcfd;
+    }
+    .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .dot.red { background: #ef5b56; }
+    .dot.yellow { background: #e8aa2e; }
+    .dot.green { background: #25b36b; }
+    .url { margin-left: 8px; color: rgba(11,16,32,0.42); font-size: 12px; }
+    .dashboard {
+      display: grid;
+      grid-template-columns: 184px 1fr;
+      min-height: 452px;
+      background: #f8fafc;
+    }
+    .sidebar { padding: 18px 12px; background: #0d1d3e; color: #c7d6ef; }
+    .side-title { display: flex; gap: 9px; align-items: center; padding: 0 6px 16px; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 12px; }
+    .side-title i { width: 18px; height: 18px; color: #8de1df; }
+    .side-title strong { display: block; color: #fff; font-size: 13px; }
+    .side-title small { color: rgba(255,255,255,0.48); font-size: 10px; }
+    .side-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 34px;
+      padding: 8px 9px;
+      border-radius: 8px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.68);
+    }
+    .side-item i { width: 14px; height: 14px; }
+    .side-item.active { background: rgba(255,255,255,0.1); color: #fff; }
+    .dash-main { padding: 22px; min-width: 0; }
+    .dash-top { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; margin-bottom: 18px; }
+    .dash-top h2 { margin: 0; font-size: 22px; letter-spacing: -0.03em; color: var(--navy); }
+    .dash-top p { margin: 4px 0 0; color: var(--muted); font-size: 12px; }
+    .live-badge { color: var(--green); background: rgba(22,138,82,0.1); border: 1px solid rgba(22,138,82,0.2); border-radius: 999px; padding: 6px 9px; font-size: 11px; font-weight: 800; white-space: nowrap; }
+    .metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 16px; }
+    .metric { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 12px; min-width: 0; }
+    .metric strong { display: block; color: var(--navy); font-size: 22px; letter-spacing: -0.04em; }
+    .metric span { color: var(--muted); font-size: 11px; }
+    .ticket-list { display: grid; gap: 8px; }
+    .ticket {
+      display: grid;
+      grid-template-columns: 90px minmax(0, 1fr) 86px 82px;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 10px;
+      padding: 11px 12px;
+      font-size: 12px;
+    }
+    .ticket strong { color: var(--navy); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .ticket-id { color: var(--teal); font-family: "JetBrains Mono", monospace; font-weight: 700; }
+    .tag { display: inline-flex; justify-content: center; align-items: center; min-height: 24px; border-radius: 999px; padding: 3px 8px; font-size: 10px; font-weight: 800; }
+    .tag.blue { color: #0d4a8a; background: rgba(13,74,138,0.1); }
+    .tag.green { color: var(--green); background: rgba(22,138,82,0.1); }
+    .tag.gold { color: var(--gold); background: rgba(165,108,0,0.12); }
+    .tag.red { color: var(--red); background: rgba(183,55,55,0.1); }
+    .hero-strip {
+      margin-top: 42px;
+      border-top: 1px solid var(--line);
+      padding-top: 22px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+    .strip-item strong { display: block; color: var(--navy); font-size: 24px; letter-spacing: -0.04em; }
+    .strip-item span { color: var(--muted); font-size: 13px; }
+
+    section { padding: 88px 0; }
+    .section-head { display: flex; justify-content: space-between; gap: 32px; align-items: flex-end; margin-bottom: 34px; }
+    .section-head h2, .center-head h2 {
+      margin: 16px 0 0;
+      color: var(--navy);
+      font-size: clamp(32px, 4.4vw, 54px);
+      line-height: 1.02;
+      letter-spacing: -0.048em;
+    }
+    .section-head p, .center-head p { max-width: 560px; margin: 14px 0 0; color: var(--muted); font-size: 16px; }
+    .center-head { text-align: center; max-width: 790px; margin: 0 auto 36px; }
+    .capability-grid { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--line); border-radius: 22px; overflow: hidden; background: var(--line); gap: 1px; }
+    .capability {
+      background: #fff;
+      padding: 28px;
+      min-height: 230px;
+    }
+    .icon {
+      width: 42px; height: 42px; border-radius: 12px;
+      display: grid; place-items: center;
+      color: var(--teal);
+      background: rgba(0,143,149,0.1);
+      margin-bottom: 20px;
+    }
+    .icon i { width: 21px; height: 21px; }
+    .capability h3, .sector h3, .step h3, .security-card h3 { margin: 0 0 8px; color: var(--navy); font-size: 18px; letter-spacing: -0.02em; }
+    .capability p, .sector p, .step p, .security-card p { margin: 0; color: var(--muted); font-size: 14px; }
+    .screens { background: #ffffff; border-block: 1px solid var(--line); }
+    .screen-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 18px; }
+    .screen-card { border: 1px solid var(--line); border-radius: 18px; overflow: hidden; background: #fff; }
+    .screen-card img { width: 100%; aspect-ratio: 16 / 11; object-fit: cover; }
+    .screen-card.large img { aspect-ratio: 16 / 10; }
+    .screen-caption { padding: 16px 18px; display: flex; align-items: center; justify-content: space-between; gap: 12px; border-top: 1px solid var(--line); }
+    .screen-caption strong { color: var(--navy); }
+    .screen-caption span { color: var(--muted); font-size: 13px; }
+    .screen-side { display: grid; gap: 18px; }
+    .workflow {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      counter-reset: steps;
+    }
+    .step {
+      position: relative;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 24px;
+      min-height: 244px;
+    }
+    .step::before {
+      counter-increment: steps;
+      content: "0" counter(steps);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: var(--navy);
+      color: #fff;
+      font: 700 13px "JetBrains Mono", monospace;
+      margin-bottom: 34px;
+    }
+    .sectors { background: var(--soft); border-block: 1px solid var(--line); }
+    .sector-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .sector {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 22px;
+      min-height: 216px;
+    }
+    .sector-top { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+    .sector-icon { width: 38px; height: 38px; border-radius: 11px; display: grid; place-items: center; color: var(--navy); background: #eef5ff; flex: none; }
+    .sector-icon i { width: 19px; height: 19px; }
+    .target {
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+      color: rgba(11,16,32,0.68);
+      font-size: 12px;
+    }
+    .target b { color: var(--navy); }
+    .buyers {
+      margin-top: 22px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .buyer-pill { background: rgba(6,32,79,0.07); color: var(--navy); border: 1px solid var(--line); border-radius: 999px; padding: 7px 10px; font-size: 12px; font-weight: 700; }
+    .split { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 40px; align-items: start; }
+    .security-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .security-card { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 22px; }
+    .stack-list { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 24px; }
+    .stack { background: #fff; border: 1px solid var(--line); color: var(--navy); border-radius: 9px; padding: 8px 11px; font-size: 13px; font-weight: 700; }
+    .pricing-band {
+      color: #fff;
+      background:
+        linear-gradient(135deg, rgba(0,143,149,0.32), transparent 42%),
+        linear-gradient(30deg, rgba(165,108,0,0.25), transparent 38%),
+        var(--navy);
+      border-radius: 28px;
+      padding: 56px;
+      display: grid;
+      grid-template-columns: 1fr 0.82fr;
+      gap: 38px;
+      align-items: center;
+      overflow: hidden;
+    }
+    .pricing-band h2 { margin: 12px 0 0; font-size: clamp(32px, 4vw, 52px); line-height: 1; letter-spacing: -0.048em; }
+    .pricing-band p { color: rgba(255,255,255,0.75); max-width: 610px; }
+    .package-list { display: grid; gap: 10px; }
+    .package {
+      display: grid;
+      grid-template-columns: 32px 1fr;
+      gap: 12px;
+      padding: 14px;
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.07);
+    }
+    .package i { width: 20px; height: 20px; color: #8de1df; margin-top: 2px; }
+    .package strong { display: block; color: #fff; }
+    .package span { color: rgba(255,255,255,0.68); font-size: 13px; }
+    .contact {
+      display: grid;
+      grid-template-columns: 0.86fr 1.14fr;
+      gap: 40px;
+      align-items: start;
+    }
+    .contact-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 28px;
+    }
+    .form { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    input, textarea, select {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 13px 14px;
+      font: 500 14px Inter, sans-serif;
+      color: var(--ink);
+      background: #fbfcfd;
+      outline: none;
+    }
+    textarea, .full { grid-column: 1 / -1; }
+    input:focus, textarea:focus, select:focus { border-color: rgba(0,143,149,0.55); box-shadow: 0 0 0 4px rgba(0,143,149,0.1); }
+    .note { margin-top: 12px; min-height: 20px; color: var(--muted); font-size: 13px; }
+    footer { border-top: 1px solid var(--line); padding: 30px 0; color: var(--muted); font-size: 13px; }
+    .foot { display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+    .foot-links { display: flex; gap: 18px; flex-wrap: wrap; }
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 980px) {
+      .hero-grid, .split, .pricing-band, .contact, .screen-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .hero { min-height: auto; }
+      .capability-grid, .sector-grid { grid-template-columns: repeat(2, 1fr); }
+      .workflow { grid-template-columns: repeat(2, 1fr); }
+      .hero-strip { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 680px) {
+      .container, .wide { width: min(100% - 28px, 1180px); }
+      .nav-inner { height: 66px; }
+      .nav-actions .btn-ghost { display: none; }
+      .hero { padding-top: 96px; }
+      .visual-shell { border-radius: 20px; padding: 8px; }
+      .dashboard { grid-template-columns: 1fr; min-height: auto; }
+      .sidebar { display: none; }
+      .dash-main { padding: 16px; }
+      .metric-grid, .capability-grid, .workflow, .sector-grid, .security-grid, .form { grid-template-columns: 1fr; }
+      .ticket { grid-template-columns: 72px minmax(0, 1fr); }
+      .ticket .tag { justify-content: flex-start; }
+      .hero-strip { grid-template-columns: 1fr 1fr; }
+      section { padding: 64px 0; }
+      .section-head { display: block; }
+      .pricing-band { padding: 30px 22px; border-radius: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav" id="nav">
+    <div class="wide nav-inner">
+      <a href="/index.html" class="brand" aria-label="BuildDreams home">
+        <img src="/assets/images/builddreams.png" alt="BuildDreams logo" class="brand-logo" loading="eager" />
+        <span class="brand-kicker">/ Nivaran</span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#capabilities">Capabilities</a>
+        <a href="#sectors">Sectors</a>
+        <a href="#workflow">Workflow</a>
+        <a href="#security">Security</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="btn btn-ghost" href="README.md">Docs</a>
+        <a class="btn btn-primary" href="#contact">Get a demo</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wide">
+        <div class="hero-grid">
+          <div>
+            <div class="chip reveal"><span class="chip-dot"></span>B2B service intake platform</div>
+            <h1 class="reveal">One ticket system, <span>customized for every sector.</span></h1>
+            <p class="hero-copy reveal">Sell the same proven product to hospitals, campuses, factories, real estate groups, utilities, hospitality chains, enterprise teams, and public-service departments. Configure the labels, roles, workflows, documents, and escalation rules for each buyer.</p>
+            <div class="hero-actions reveal">
+              <a class="btn btn-primary" href="#contact">Book sector demo <i data-lucide="arrow-right"></i></a>
+              <a class="btn btn-ghost" href="#sectors">View target customers</a>
+            </div>
+            <div class="hero-proof reveal">
+              <span><i data-lucide="scan-face"></i> Face-based identification</span>
+              <span><i data-lucide="mic"></i> Voice or form intake</span>
+              <span><i data-lucide="qr-code"></i> QR document upload</span>
+              <span><i data-lucide="shield-check"></i> Audit-ready workflows</span>
+            </div>
+          </div>
+
+          <div class="visual-shell reveal" aria-label="Product dashboard preview">
+            <div class="browser">
+              <div class="browser-bar">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+                <span class="url font-mono">tenant.yourdomain.com/admin/cases</span>
+              </div>
+              <div class="dashboard">
+                <aside class="sidebar">
+                  <div class="side-title">
+                    <i data-lucide="building-2"></i>
+                    <div><strong>Acme Care</strong><small>Operations Desk</small></div>
+                  </div>
+                  <div class="side-item active"><i data-lucide="layout-dashboard"></i> Dashboard</div>
+                  <div class="side-item"><i data-lucide="inbox"></i> Incoming cases</div>
+                  <div class="side-item"><i data-lucide="route"></i> Escalations</div>
+                  <div class="side-item"><i data-lucide="file-check"></i> Documents</div>
+                  <div class="side-item"><i data-lucide="bar-chart-3"></i> Reports</div>
+                  <div class="side-item"><i data-lucide="settings-2"></i> Workflow setup</div>
+                </aside>
+                <div class="dash-main">
+                  <div class="dash-top">
+                    <div>
+                      <h2>Service Resolution Board</h2>
+                      <p>Multi-location, multi-role case handling with live status history.</p>
+                    </div>
+                    <span class="live-badge">LIVE SLA TRACKING</span>
+                  </div>
+                  <div class="metric-grid">
+                    <div class="metric"><strong>1,284</strong><span>Total cases</span></div>
+                    <div class="metric"><strong>214</strong><span>New today</span></div>
+                    <div class="metric"><strong>97</strong><span>Escalated</span></div>
+                    <div class="metric"><strong>82%</strong><span>Closed on SLA</span></div>
+                  </div>
+                  <div class="ticket-list">
+                    <div class="ticket"><span class="ticket-id">#CS-9042</span><strong>Patient billing document missing</strong><span class="tag gold">Pending</span><span class="tag red">Urgent</span></div>
+                    <div class="ticket"><span class="ticket-id">#CS-9041</span><strong>Campus maintenance request</strong><span class="tag blue">In review</span><span class="tag gold">High</span></div>
+                    <div class="ticket"><span class="ticket-id">#CS-9040</span><strong>Factory safety observation</strong><span class="tag green">Resolved</span><span class="tag blue">Medium</span></div>
+                    <div class="ticket"><span class="ticket-id">#CS-9039</span><strong>Resident service complaint</strong><span class="tag blue">Forwarded</span><span class="tag red">Urgent</span></div>
+                    <div class="ticket"><span class="ticket-id">#CS-9038</span><strong>Insurance claim support query</strong><span class="tag gold">Pending</span><span class="tag blue">Medium</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-strip reveal">
+          <div class="strip-item"><strong>12+</strong><span>high-fit B2B sectors</span></div>
+          <div class="strip-item"><strong>3</strong><span>ready role interfaces</span></div>
+          <div class="strip-item"><strong>30 min</strong><span>secure upload expiry</span></div>
+          <div class="strip-item"><strong>100%</strong><span>status history trail</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="capabilities">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="chip reveal">Core product</div>
+            <h2 class="reveal">A reusable service desk for physical and digital operations.</h2>
+          </div>
+          <p class="reveal">The product is not limited to a government office. It is a configurable intake-to-resolution engine for any organization receiving complaints, requests, documents, visits, or escalations.</p>
+        </div>
+        <div class="capability-grid reveal">
+          <article class="capability">
+            <div class="icon"><i data-lucide="scan-face"></i></div>
+            <h3>Kiosk and identity intake</h3>
+            <p>Use face recognition for returning visitors, walk-in counters, secure premises, member services, or assisted self-service desks.</p>
+          </article>
+          <article class="capability">
+            <div class="icon"><i data-lucide="mic-2"></i></div>
+            <h3>Voice and form tickets</h3>
+            <p>Capture complaints, service requests, maintenance issues, claims, and feedback through live speech transcription or structured forms.</p>
+          </article>
+          <article class="capability">
+            <div class="icon"><i data-lucide="qr-code"></i></div>
+            <h3>QR document collection</h3>
+            <p>Let users upload ID proofs, invoices, photos, prescriptions, warranties, claim files, or evidence from their own phone.</p>
+          </article>
+          <article class="capability">
+            <div class="icon"><i data-lucide="users-round"></i></div>
+            <h3>Role-based dashboards</h3>
+            <p>Configure first-line operators, supervisors, department heads, branch managers, auditors, or executive approvers.</p>
+          </article>
+          <article class="capability">
+            <div class="icon"><i data-lucide="route"></i></div>
+            <h3>Escalation workflows</h3>
+            <p>Route cases by department, location, category, priority, SLA, approval level, or exception handling rules.</p>
+          </article>
+          <article class="capability">
+            <div class="icon"><i data-lucide="history"></i></div>
+            <h3>Audit and reporting</h3>
+            <p>Every status change, document upload, remark, and decision is captured for compliance, accountability, and management review.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="screens" id="screenshots">
+      <div class="wide">
+        <div class="section-head">
+          <div>
+            <div class="chip reveal">Product screens</div>
+            <h2 class="reveal">Already built across intake, review, upload, and oversight.</h2>
+          </div>
+          <a class="btn btn-ghost reveal" href="#contact">Request walkthrough</a>
+        </div>
+        <div class="screen-grid">
+          <article class="screen-card large reveal">
+            <img src="public/pa_dashboard.png" alt="Operations dashboard screenshot" />
+            <div class="screen-caption"><strong>Operator dashboard</strong><span>Prioritize, assign, resolve, or escalate cases.</span></div>
+          </article>
+          <div class="screen-side">
+            <article class="screen-card reveal">
+              <img src="public/kiosk_face_scan.png" alt="Face scan kiosk screenshot" />
+              <div class="screen-caption"><strong>Kiosk intake</strong><span>Recognize returning users.</span></div>
+            </article>
+            <article class="screen-card reveal">
+              <img src="public/document_upload.png" alt="Mobile document upload screenshot" />
+              <div class="screen-caption"><strong>Mobile upload</strong><span>Collect files through secure QR links.</span></div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="workflow">
+      <div class="container">
+        <div class="center-head">
+          <div class="chip reveal">Reusable workflow</div>
+          <h2 class="reveal">Rename the actors, keep the engine.</h2>
+          <p class="reveal">For one sector the first-line role may be a PA. For another it may be a helpdesk agent, nurse desk, facility manager, claims handler, branch officer, or front-office executive.</p>
+        </div>
+        <div class="workflow reveal">
+          <article class="step">
+            <h3>Identify or register</h3>
+            <p>Recognize a returning person, member, customer, employee, vendor, resident, or patient. New users can be registered quickly.</p>
+          </article>
+          <article class="step">
+            <h3>Create the case</h3>
+            <p>Capture issue category, subject, description, voice transcript, location, priority, and supporting fields customized to the buyer.</p>
+          </article>
+          <article class="step">
+            <h3>Attach proof</h3>
+            <p>Generate a QR code so the user can upload files from a mobile phone without sharing storage paths or admin access.</p>
+          </article>
+          <article class="step">
+            <h3>Resolve with audit</h3>
+            <p>Operators act, supervisors review, decision-makers approve or reopen, and the full trail remains visible for accountability.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="sectors" id="sectors">
+      <div class="wide">
+        <div class="section-head">
+          <div>
+            <div class="chip reveal">B2B target sectors</div>
+            <h2 class="reveal">Where this product can be sold.</h2>
+          </div>
+          <p class="reveal">The strongest buyers are organizations with high request volume, physical visitors, document-heavy processes, multi-level approvals, SLA pressure, or compliance needs.</p>
+        </div>
+
+        <div class="sector-grid">
+          <article class="sector reveal">
+            <div class="sector-top"><span class="sector-icon"><i data-lucide="hospital"></i></span><h3>Healthcare and hospitals</h3></div>
+            <p>Patient helpdesks, billing queries, complaint cells, insurance support, document collection, and department escalation.</p>
+            <div class="target"><b>Sell to:</b> hospital chains, clinics, diagnostics networks, nursing homes.</div>
+          </article>
+          <article class="sector reveal">
+            <div class="sector-top"><span class="sector-icon"><i data-lucide="graduation-cap"></i></span><h3>Education and campuses</h3></div>
+            <p>Student grievances, admissions support, hostel maintenance, fee queries, parent requests, and admin approvals.</p>
+            <div class="target"><b>Sell to:</b> universities, schools, coaching chains, residential campuses.</div>
+          </article>
+          <article class="sector reveal">
+            <div class="sector-top"><span class="sector-icon"><i data-lucide="building"></i></span><h3>Real estate and property</h3></div>
+            <p>Resident complaints, maintenance tickets, visitor requests, society approvals, tenant documents, and facility SLAs.</p>
+            <div class="target"><b>Sell to:</b> builders, property managers, gated communities, coworking operators.</div>
+          </article>
+          <article class="sector reveal">
+            <div class="sector-top"><span class="sector-icon"><i data-lucide="factory"></i></span><h3>Manufacturing and plants</h3></div>
+            <p>Safety observations, machine maintenance, worker grievances, vendor entry, compliance files, and supervisor sign-offs.</p>
+            <div class="target"><b>Sell to:</b> factories, industrial parks, warehouses, EPC companies.</div>
+          </article>
+          <article class="sector reveal">
+            <div class="sector-top"><span class="sector-icon"><i data-lucide="truck"></i></span><h3>Logistics and transport</h3></div>
+            <p>Shipment issues, driver support, warehouse exceptions, POD uploads, damage claims, and operations escalation.</p>
+            <div class="target"><b>Sell to:</b> 3PLs, courier networks, fleet operators, transport hubs.</div>
+          </article>
+          <article class="sector reveal">
+            <div class="sector-top"><span class="sector-icon"><i data-lucide="plug-zap"></i></span><h3>Utilities and telecom</h3></div>
+            <p>Service outage reports, connection requests, meter issues, field-team routing, ID proof collection, and closure audits.</p>
+            <div class="target"><b>Sell to:</b> power, water, gas, broadband, cable, and telecom service providers.</div>
+          </article>
+          <article class="sector reveal">
+            <div class="sector-top"><span class="sector-icon"><i data-lucide="landmark"></i></span><h3>Banking, NBFC and insurance</h3></div>
+            <p>Branch service requests, claim documents, KYC support, dispute escalation, complaint handling, and approval trails.</p>
+            <div class="target"><b>Sell to:</b> banks, NBFCs, insurers, microfinance, credit societies.</div>
+          </article>
+          <article class="sector reveal">
+            <div class="sector-top"><span class="sector-icon"><i data-lucide="hotel"></i></span><h3>Hospitality and travel</h3></div>
+            <p>Guest service tickets, housekeeping escalation, lost-and-found, event requests, travel support, and manager review.</p>
+            <div class="target"><b>Sell to:</b> hotels, resorts, restaurants, airports, travel desks, event venues.</div>
+          </article>
+          <article class="sector reveal">
+            <div class="sector-top"><span class="sector-icon"><i data-lucide="shopping-bag"></i></span><h3>Retail chains and malls</h3></div>
+            <p>Customer complaints, warranty support, store operations tickets, vendor issues, mall facility requests, and feedback loops.</p>
+            <div class="target"><b>Sell to:</b> retail brands, malls, supermarkets, electronics chains, service centers.</div>
+          </article>
+          <article class="sector reveal">
+            <div class="sector-top"><span class="sector-icon"><i data-lucide="monitor-cog"></i></span><h3>Enterprise IT, HR and admin</h3></div>
+            <p>Employee helpdesk, asset requests, HR cases, access approvals, facility issues, and cross-office service reporting.</p>
+            <div class="target"><b>Sell to:</b> corporate offices, BPOs, IT companies, shared service centers.</div>
+          </article>
+          <article class="sector reveal">
+            <div class="sector-top"><span class="sector-icon"><i data-lucide="shield"></i></span><h3>Security and access operations</h3></div>
+            <p>Visitor registration, incident reports, gate issues, shift handovers, investigation notes, and evidence uploads.</p>
+            <div class="target"><b>Sell to:</b> security agencies, business parks, data centers, gated premises.</div>
+          </article>
+          <article class="sector reveal">
+            <div class="sector-top"><span class="sector-icon"><i data-lucide="badge-help"></i></span><h3>Public services and NGOs</h3></div>
+            <p>Beneficiary grievances, field reports, scheme documents, case follow-ups, and multi-level review with transparency.</p>
+            <div class="target"><b>Sell to:</b> municipal bodies, NGOs, foundations, service delivery agencies.</div>
+          </article>
+        </div>
+
+        <div class="buyers reveal">
+          <span class="buyer-pill">COO / Operations Head</span>
+          <span class="buyer-pill">CX Head</span>
+          <span class="buyer-pill">Facility Manager</span>
+          <span class="buyer-pill">IT Head</span>
+          <span class="buyer-pill">Compliance Officer</span>
+          <span class="buyer-pill">Branch Manager</span>
+          <span class="buyer-pill">Campus Administrator</span>
+          <span class="buyer-pill">Hospital Administrator</span>
+          <span class="buyer-pill">Plant Head</span>
+          <span class="buyer-pill">Property Manager</span>
+          <span class="buyer-pill">Service Delivery Head</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="security">
+      <div class="container split">
+        <div>
+          <div class="chip reveal">Security and deployment</div>
+          <h2 class="reveal" style="margin:16px 0 0;color:var(--navy);font-size:clamp(32px,4.4vw,54px);line-height:1.02;letter-spacing:-0.048em;">Enterprise-ready controls for regulated buyers.</h2>
+          <p class="reveal" style="color:var(--muted);font-size:16px;">The architecture supports privacy-conscious biometric matching, private storage, role-based access, upload expiry, and full case histories.</p>
+          <div class="stack-list reveal">
+            <span class="stack">Next.js 14</span>
+            <span class="stack">React</span>
+            <span class="stack">Supabase PostgreSQL</span>
+            <span class="stack">RLS policies</span>
+            <span class="stack">Supabase Storage</span>
+            <span class="stack">face-api.js</span>
+            <span class="stack">Web Speech API</span>
+            <span class="stack">QR sessions</span>
+          </div>
+        </div>
+        <div class="security-grid reveal">
+          <article class="security-card">
+            <h3>Embedding-only face data</h3>
+            <p>Store mathematical face descriptors instead of raw face photos for privacy-sensitive deployments.</p>
+          </article>
+          <article class="security-card">
+            <h3>One-time upload links</h3>
+            <p>Document sessions are random, single-use, and expire automatically after a configured time window.</p>
+          </article>
+          <article class="security-card">
+            <h3>Role-based access</h3>
+            <p>Operators, supervisors, approvers, and admins see only the cases their role and location allow.</p>
+          </article>
+          <article class="security-card">
+            <h3>Status history and remarks</h3>
+            <p>Each action is timestamped so management can audit delays, escalations, approvals, and final decisions.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="pricing-band reveal">
+          <div>
+            <div class="chip" style="background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.16);color:#bdf5f4;">How to package it</div>
+            <h2>Sell it as a customized operational platform.</h2>
+            <p>For each B2B prospect, keep the same engine but tailor the vocabulary, departments, forms, ticket statuses, reports, and escalation hierarchy. This makes the product feel made for their sector without rebuilding from scratch.</p>
+            <div class="hero-actions">
+              <a class="btn btn-light" href="#contact">Plan a sector pitch <i data-lucide="arrow-right"></i></a>
+              <a class="btn btn-teal" href="#screenshots">Show product screens</a>
+            </div>
+          </div>
+          <div class="package-list">
+            <div class="package"><i data-lucide="badge-check"></i><div><strong>Starter deployment</strong><span>Single location, fixed workflows, kiosk plus operator dashboard.</span></div></div>
+            <div class="package"><i data-lucide="network"></i><div><strong>Multi-branch deployment</strong><span>Multiple locations, department routing, supervisor approvals, SLA reports.</span></div></div>
+            <div class="package"><i data-lucide="fingerprint"></i><div><strong>Compliance deployment</strong><span>Stronger audit controls, private storage, custom roles, document-heavy case files.</span></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container contact">
+        <div>
+          <div class="chip reveal">Demo request</div>
+          <h2 class="reveal" style="margin:16px 0 0;color:var(--navy);font-size:clamp(32px,4.4vw,54px);line-height:1.02;letter-spacing:-0.048em;">Turn this into a sector-specific sales demo.</h2>
+          <p class="reveal" style="color:var(--muted);font-size:16px;">Share the sector and buyer type. The demo can be framed around their vocabulary, workflow, documents, dashboards, and approval chain.</p>
+        </div>
+        <div class="contact-card reveal">
+          <form class="form" id="contactForm">
+            <input name="name" required placeholder="Your name" />
+            <input name="email" type="email" required placeholder="Work email" />
+            <input name="company" placeholder="Company" />
+            <select name="sector" aria-label="Target sector">
+              <option value="">Target sector</option>
+              <option>Healthcare / Hospital</option>
+              <option>Education / Campus</option>
+              <option>Real Estate / Property</option>
+              <option>Manufacturing / Plant</option>
+              <option>Logistics / Transport</option>
+              <option>Utilities / Telecom</option>
+              <option>Banking / Insurance</option>
+              <option>Hospitality / Retail</option>
+              <option>Enterprise IT / HR / Admin</option>
+              <option>Public Services / NGO</option>
+            </select>
+            <textarea name="message" rows="5" placeholder="Tell us the target customer, expected ticket volume, required roles, and workflow you want to pitch."></textarea>
+            <button class="btn btn-primary full" type="submit">Send demo request <i data-lucide="send"></i></button>
+          </form>
+          <div class="note" id="note"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wide foot">
+      <div class="brand">
+        <img src="/assets/images/builddreams.png" alt="BuildDreams logo" class="brand-logo" style="height:32px;" loading="lazy" />
+        <span><strong style="color:var(--navy);">BuildDreams</strong> · Nivaran</span>
+      </div>
+      <div class="foot-links">
+        <a href="/index.html">Back to home</a>
+        <a href="README.md">Documentation</a>
+        <a href="QUICKSTART.md">Quickstart</a>
+        <a href="#sectors">Sectors</a>
+        <a href="#security">Security</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 16);
+    }, { passive: true });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+    const form = document.getElementById('contactForm');
+    const note = document.getElementById('note');
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const data = new FormData(form);
+      const name = String(data.get('name') || '').trim();
+      const email = String(data.get('email') || '').trim();
+      const company = String(data.get('company') || '').trim();
+      const sector = String(data.get('sector') || '').trim();
+      const message = String(data.get('message') || '').trim();
+
+      if (!name || !email) {
+        note.textContent = 'Please add your name and work email.';
+        return;
+      }
+
+      const subject = encodeURIComponent(`Nivaran demo request${sector ? ` - ${sector}` : ''}`);
+      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nCompany: ${company}\nSector: ${sector}\n\n${message}`);
+      note.textContent = 'Opening your email client...';
+      window.location.href = `mailto:hello@builddreams.com?subject=${subject}&body=${body}`;
+    });
+  </script>
+</body>
+</html>

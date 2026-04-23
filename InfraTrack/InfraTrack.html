@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>InfraTrack - B2B Infrastructure, Asset, Fleet & Inventory Operations Platform</title>
+    <meta name="description"
+        content="InfraTrack by BuildDreams is a configurable B2B operations platform for infrastructure assets, inventory, fleet, maintenance, approvals, tickets, revenue tracking, and command dashboards." />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+
+    <style>
+        :root {
+            --ink: #111827;
+            --navy: #021346;
+            --teal: #009599;
+            --blue: #009599;
+            --green: #059669;
+            --amber: #d97706;
+            --red: #dc2626;
+            --cyan: #0891b2;
+            --paper: #f8fafc;
+            --line: rgba(15, 23, 42, 0.1);
+            --muted: #64748b;
+        }
+
+        * {
+            -webkit-font-smoothing: antialiased;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            background: var(--paper);
+            color: var(--ink);
+            font-family: 'Inter', system-ui, sans-serif;
+            letter-spacing: 0;
+        }
+
+        .font-display {
+            font-family: 'Instrument Serif', serif;
+        }
+
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .text-navy {
+            color: var(--navy);
+        }
+
+        .bg-navy {
+            background: var(--navy);
+        }
+
+        .border-line {
+            border-color: var(--line);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: .55rem;
+            min-height: 46px;
+            padding: .78rem 1.2rem;
+            border-radius: 999px;
+            font-size: .92rem;
+            font-weight: 600;
+            transition: transform .25s ease, background-color .25s ease, color .25s ease, border-color .25s ease;
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background: var(--blue);
+            color: #fff;
+            box-shadow: 0 18px 40px -22px rgba(0, 149, 153, .78);
+        }
+
+        .btn-primary:hover {
+            background: #00a7ab;
+            transform: translateY(-1px);
+        }
+
+        .btn-dark {
+            background: var(--navy);
+            color: #fff;
+        }
+
+        .btn-dark:hover {
+            background: #041a5c;
+            transform: translateY(-1px);
+        }
+
+        .btn-ghost {
+            color: var(--navy);
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, .72);
+        }
+
+        .btn-ghost:hover {
+            border-color: rgba(8, 47, 73, .35);
+            transform: translateY(-1px);
+        }
+
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            padding: .36rem .72rem;
+            border: 1px solid rgba(8, 47, 73, .13);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, .72);
+            color: rgba(8, 47, 73, .74);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .72rem;
+            font-weight: 600;
+        }
+
+        .nav-solid {
+            background: rgba(248, 250, 252, .86);
+            border-bottom: 1px solid var(--line);
+            backdrop-filter: saturate(170%) blur(16px);
+        }
+
+        .hero {
+            min-height: calc(100vh - 30px);
+            background:
+                linear-gradient(90deg, rgba(248, 250, 252, .96) 0%, rgba(248, 250, 252, .88) 43%, rgba(248, 250, 252, .24) 100%),
+                url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2200&auto=format&fit=crop') center right / cover;
+        }
+
+        .dashboard-shell {
+            border: 1px solid rgba(255, 255, 255, .68);
+            background: rgba(255, 255, 255, .76);
+            box-shadow: 0 34px 90px -45px rgba(15, 23, 42, .45);
+            backdrop-filter: blur(18px);
+        }
+
+        .metric {
+            border: 1px solid rgba(15, 23, 42, .08);
+            background: rgba(255, 255, 255, .86);
+        }
+
+        .bar {
+            height: 7px;
+            border-radius: 999px;
+            background: #e2e8f0;
+            overflow: hidden;
+        }
+
+        .bar span {
+            display: block;
+            height: 100%;
+            border-radius: 999px;
+        }
+
+        .simulation-panel {
+            position: relative;
+            border: 1px solid rgba(125, 211, 252, .16);
+            background:
+                radial-gradient(circle at top left, rgba(34, 211, 238, .12), transparent 42%),
+                linear-gradient(180deg, rgba(15, 23, 42, .92), rgba(15, 23, 42, .76));
+            overflow: hidden;
+        }
+
+        .simulation-panel::after {
+            content: "";
+            position: absolute;
+            inset: -35% auto auto -15%;
+            width: 180px;
+            height: 180px;
+            background: radial-gradient(circle, rgba(34, 211, 238, .16), transparent 68%);
+            pointer-events: none;
+        }
+
+        .simulation-track {
+            position: absolute;
+            top: -15px;
+            left: 16.666%;
+            right: 16.666%;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(255, 255, 255, .14), rgba(255, 255, 255, .08));
+            transform: translateY(-50%);
+        }
+
+        .simulation-progress {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 0%;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #22d3ee, #34d399);
+            box-shadow: 0 0 18px rgba(45, 212, 191, .55);
+            transition: width .7s ease;
+        }
+
+        .simulation-step {
+            position: relative;
+            z-index: 1;
+            border: 1px solid rgba(255, 255, 255, .08);
+            background: rgba(255, 255, 255, .03);
+            transition: transform .45s ease, border-color .45s ease, background-color .45s ease, box-shadow .45s ease, opacity .45s ease;
+            opacity: .58;
+        }
+
+        .simulation-step::before {
+            content: "";
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            width: 11px;
+            height: 11px;
+            border-radius: 999px;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, .2);
+            border: 2px solid rgba(15, 23, 42, .95);
+            transition: background-color .45s ease, box-shadow .45s ease, transform .45s ease;
+        }
+
+        .simulation-step.is-active {
+            opacity: 1;
+            transform: translateY(-4px);
+            border-color: rgba(45, 212, 191, .34);
+            background: rgba(15, 118, 110, .18);
+            box-shadow: 0 18px 34px -24px rgba(34, 211, 238, .45);
+        }
+
+        .simulation-step.is-active::before {
+            background: #5eead4;
+            box-shadow: 0 0 0 7px rgba(45, 212, 191, .12);
+            transform: translateX(-50%) scale(1.08);
+        }
+
+        .simulation-chip {
+            border: 1px solid rgba(255, 255, 255, .08);
+            background: rgba(255, 255, 255, .04);
+        }
+
+        .simulation-badge {
+            border: 1px solid rgba(52, 211, 153, .26);
+            background: rgba(52, 211, 153, .1);
+            transition: color .35s ease, border-color .35s ease, background-color .35s ease;
+        }
+
+        .simulation-pulse {
+            animation: simulationPulse 2.4s ease-in-out infinite;
+        }
+
+        @keyframes simulationPulse {
+            0%, 100% {
+                opacity: .7;
+                transform: scale(.96);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.08);
+            }
+        }
+
+        .feature-card,
+        .sector-card,
+        .module-row {
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, .84);
+            transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+        }
+
+        .feature-card:hover,
+        .sector-card:hover,
+        .module-row:hover {
+            transform: translateY(-3px);
+            border-color: rgba(0, 149, 153, .28);
+            box-shadow: 0 24px 60px -36px rgba(15, 23, 42, .34);
+        }
+
+        .section-band {
+            background: #ffffff;
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+        }
+
+        .cursor-dot {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 9px;
+            height: 9px;
+            border-radius: 999px;
+            background: var(--blue);
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: multiply;
+            transform: translate(-50%, -50%);
+        }
+
+        .cursor-ring {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 38px;
+            height: 38px;
+            border-radius: 999px;
+            border: 1px solid rgba(8, 47, 73, .34);
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: width .22s ease, height .22s ease, border-color .22s ease;
+        }
+
+        html.lenis {
+            height: auto;
+        }
+
+        html.lenis body {
+            overflow: hidden;
+        }
+
+        .lenis.lenis-smooth [data-lenis-prevent] {
+            overscroll-behavior: contain;
+        }
+
+        @media (max-width: 900px) {
+            .cursor-dot,
+            .cursor-ring {
+                display: none;
+            }
+
+            .hero {
+                min-height: auto;
+                background:
+                    linear-gradient(180deg, rgba(248, 250, 252, .98) 0%, rgba(248, 250, 252, .9) 58%, rgba(248, 250, 252, .58) 100%),
+                    url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1400&auto=format&fit=crop') center / cover;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body class="relative">
+    <div class="cursor-ring" id="cursorRing"></div>
+    <div class="cursor-dot" id="cursorDot"></div>
+
+    <header id="nav" class="fixed top-0 inset-x-0 z-50 transition-all">
+        <div class="max-w-[1320px] mx-auto px-5 lg:px-10 h-[74px] flex items-center justify-between">
+            <a href="#top" class="flex items-center" aria-label="BuildDreams InfraTrack home" data-testid="nav-logo">
+                <img src="assets/images/builddreams.png" alt="BuildDreams logo" class="h-10 w-auto" loading="eager" />
+                <span class="hidden sm:inline-flex ml-3 font-mono text-[11px] text-navy/50">/ INFRATRACK</span>
+            </a>
+
+            <nav class="hidden lg:flex items-center gap-7 text-[14px] font-medium text-slate-600">
+                <a href="#platform" class="hover:text-navy transition">Platform</a>
+                <a href="#sectors" class="hover:text-navy transition">Sectors</a>
+                <a href="#modules" class="hover:text-navy transition">Modules</a>
+                <a href="#implementation" class="hover:text-navy transition">Implementation</a>
+                <a href="#contact" class="hover:text-navy transition">Contact</a>
+            </nav>
+
+            <a href="#contact" class="btn btn-dark hidden sm:inline-flex">Book B2B demo</a>
+        </div>
+    </header>
+
+    <main id="top">
+        <section class="hero pt-[104px] pb-10 lg:pb-14">
+            <div class="max-w-[1320px] mx-auto px-5 lg:px-10 grid lg:grid-cols-[1fr_560px] gap-10 items-center">
+                <div class="max-w-3xl">
+                    <div class="chip reveal">
+                        <i data-lucide="radio-tower" class="w-3.5 h-3.5"></i>
+                        INFRATRACK · CONFIGURABLE B2B OPERATIONS PLATFORM
+                    </div>
+                    <h1 class="reveal mt-6 text-[42px] sm:text-[56px] lg:text-[74px] leading-[1.02] font-semibold text-navy">
+                        InfraTrack is one command layer for assets, fleets, inventory, service tickets, and approvals.
+                    </h1>
+                    <p class="reveal mt-6 max-w-2xl text-[16px] sm:text-[18px] leading-relaxed text-slate-600">
+                        Turn the current logistics suite into a sector-ready B2B product for any organization that owns,
+                        issues, moves, maintains, rents, or monetizes high-value physical assets.
+                    </p>
+
+                    <div class="reveal mt-8 flex flex-col sm:flex-row gap-3">
+                        <a href="#contact" class="btn btn-primary">Package this for my market <i data-lucide="arrow-right"
+                                class="w-4 h-4"></i></a>
+                        <a href="#sectors" class="btn btn-ghost">Explore target sectors</a>
+                    </div>
+
+                    <div class="reveal mt-9 grid grid-cols-2 md:grid-cols-4 gap-3 max-w-2xl">
+                        <div>
+                            <p class="font-mono text-[24px] font-semibold text-navy">360</p>
+                            <p class="text-[12px] text-slate-500">Asset visibility</p>
+                        </div>
+                        <div>
+                            <p class="font-mono text-[24px] font-semibold text-navy">QR</p>
+                            <p class="text-[12px] text-slate-500">Scan-ready records</p>
+                        </div>
+                        <div>
+                            <p class="font-mono text-[24px] font-semibold text-navy">SLA</p>
+                            <p class="text-[12px] text-slate-500">Ticket workflows</p>
+                        </div>
+                        <div>
+                            <p class="font-mono text-[24px] font-semibold text-navy">B2B</p>
+                            <p class="text-[12px] text-slate-500">Multi-unit control</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-shell reveal rounded-[28px] p-4 lg:p-5">
+                    <div class="rounded-[20px] bg-slate-950 text-white overflow-hidden">
+                        <div class="h-12 border-b border-white/10 flex items-center justify-between px-4">
+                            <div class="flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-red-400"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-green-400"></span>
+                            </div>
+                            <span class="font-mono text-[11px] text-white/50">operations/control-center</span>
+                        </div>
+
+                        <div class="p-4 sm:p-5 grid gap-4">
+                            <div class="flex items-start justify-between gap-4">
+                                <div>
+                                    <p class="font-mono text-[11px] text-cyan-300">LIVE OPERATIONS</p>
+                                    <h2 class="mt-1 text-[21px] font-semibold">InfraTrack Operations Dashboard</h2>
+                                </div>
+                                <span class="px-3 py-1 rounded-full bg-green-400/12 text-green-300 text-[12px]">94% healthy</span>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-3">
+                                <div class="metric rounded-2xl p-4 text-slate-900">
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-[12px] text-slate-500">Total assets</span>
+                                        <i data-lucide="package" class="w-4 h-4 text-teal-600"></i>
+                                    </div>
+                                    <p class="mt-2 font-mono text-[26px] font-semibold">12,840</p>
+                                    <p class="text-[12px] text-green-600">+11.8% this quarter</p>
+                                </div>
+                                <div class="metric rounded-2xl p-4 text-slate-900">
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-[12px] text-slate-500">Fleet uptime</span>
+                                        <i data-lucide="truck" class="w-4 h-4 text-green-600"></i>
+                                    </div>
+                                    <p class="mt-2 font-mono text-[26px] font-semibold">97.2%</p>
+                                    <p class="text-[12px] text-green-600">service risk down</p>
+                                </div>
+                            </div>
+
+                            <div class="simulation-panel rounded-2xl p-4" id="workflowSimulation">
+                                <div class="flex items-start justify-between gap-4">
+                                    <div>
+                                        <p class="font-mono text-[11px] text-cyan-200">PRODUCT FLOW SIMULATION</p>
+                                        <p class="mt-1 text-[15px] font-semibold">Scan to approval to field-ready action</p>
+                                    </div>
+                                    <span id="simulationBadge"
+                                        class="simulation-badge rounded-full px-3 py-1 text-[11px] font-medium text-emerald-200">Live routing</span>
+                                </div>
+
+                                <div class="relative mt-5">
+                                    <div class="simulation-track hidden sm:block">
+                                        <div class="simulation-progress" id="simulationProgress"></div>
+                                    </div>
+
+                                    <div class="grid gap-3 sm:grid-cols-3">
+                                        <div class="simulation-step is-active rounded-2xl p-3" data-step="0">
+                                            <div class="flex items-center justify-between gap-3">
+                                                <span class="simulation-chip w-9 h-9 rounded-xl text-cyan-200 grid place-items-center">
+                                                    <i data-lucide="scan-search" class="w-4 h-4"></i>
+                                                </span>
+                                                <span class="text-[10px] font-mono text-white/40">STEP 01</span>
+                                            </div>
+                                            <p class="mt-3 text-[13px] font-medium">Asset scanned at site gate</p>
+                                            <p class="mt-1 text-[11px] leading-relaxed text-white/58">InfraTrack identifies the unit, branch, owner, and due workflow instantly.</p>
+                                        </div>
+
+                                        <div class="simulation-step rounded-2xl p-3" data-step="1">
+                                            <div class="flex items-center justify-between gap-3">
+                                                <span class="simulation-chip w-9 h-9 rounded-xl text-amber-200 grid place-items-center">
+                                                    <i data-lucide="clipboard-check" class="w-4 h-4"></i>
+                                                </span>
+                                                <span class="text-[10px] font-mono text-white/40">STEP 02</span>
+                                            </div>
+                                            <p class="mt-3 text-[13px] font-medium">Approval and risk check triggered</p>
+                                            <p class="mt-1 text-[11px] leading-relaxed text-white/58">The request lands with priority, cost context, and the right approver queue.</p>
+                                        </div>
+
+                                        <div class="simulation-step rounded-2xl p-3" data-step="2">
+                                            <div class="flex items-center justify-between gap-3">
+                                                <span class="simulation-chip w-9 h-9 rounded-xl text-emerald-200 grid place-items-center">
+                                                    <i data-lucide="truck" class="w-4 h-4"></i>
+                                                </span>
+                                                <span class="text-[10px] font-mono text-white/40">STEP 03</span>
+                                            </div>
+                                            <p class="mt-3 text-[13px] font-medium">Ops team dispatches asset safely</p>
+                                            <p class="mt-1 text-[11px] leading-relaxed text-white/58">Dashboards update live so logistics, maintenance, and finance stay aligned.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                                    <div>
+                                        <p class="text-[11px] uppercase tracking-[0.18em] text-white/35">Current system event</p>
+                                        <p id="simulationMessage" class="mt-1 text-[13px] text-white/82">QR matched to Vehicle V-118, service file loaded in 0.8s.</p>
+                                    </div>
+                                    <div class="flex items-center gap-2 text-[11px] text-white/55">
+                                        <span class="simulation-pulse inline-flex h-2.5 w-2.5 rounded-full bg-emerald-300"></span>
+                                        Auto-updating workflow
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="rounded-2xl border border-white/10 bg-white/[.04] p-4">
+                                <div class="flex items-center justify-between gap-3">
+                                    <p class="text-[14px] font-semibold">Maintenance and approval queue</p>
+                                    <span class="font-mono text-[11px] text-white/45">TODAY</span>
+                                </div>
+                                <div class="mt-4 space-y-3">
+                                    <div class="flex items-center gap-3">
+                                        <span class="w-8 h-8 rounded-lg bg-amber-400/15 text-amber-300 grid place-items-center"><i
+                                                data-lucide="wrench" class="w-4 h-4"></i></span>
+                                        <div class="min-w-0 flex-1">
+                                            <p class="text-[13px] truncate">Generator Unit G-204 requires parts approval</p>
+                                            <div class="bar mt-2"><span style="width:72%; background:var(--amber);"></span></div>
+                                        </div>
+                                        <span class="text-[12px] text-amber-300">High</span>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <span class="w-8 h-8 rounded-lg bg-teal-400/15 text-teal-300 grid place-items-center"><i
+                                                data-lucide="scan-line" class="w-4 h-4"></i></span>
+                                        <div class="min-w-0 flex-1">
+                                            <p class="text-[13px] truncate">420 items scanned into warehouse zone B</p>
+                                            <div class="bar mt-2"><span style="width:91%; background:var(--blue);"></span></div>
+                                        </div>
+                                        <span class="text-[12px] text-teal-300">Stable</span>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <span class="w-8 h-8 rounded-lg bg-green-400/15 text-green-300 grid place-items-center"><i
+                                                data-lucide="check-check" class="w-4 h-4"></i></span>
+                                        <div class="min-w-0 flex-1">
+                                            <p class="text-[13px] truncate">Vehicle V-118 cleared fit-for-service test</p>
+                                            <div class="bar mt-2"><span style="width:64%; background:var(--green);"></span></div>
+                                        </div>
+                                        <span class="text-[12px] text-green-300">Ready</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-3 gap-3 text-center">
+                                <div class="rounded-2xl bg-white/[.05] border border-white/10 p-3">
+                                    <p class="font-mono text-[18px] font-semibold">23</p>
+                                    <p class="text-[11px] text-white/48">pending demands</p>
+                                </div>
+                                <div class="rounded-2xl bg-white/[.05] border border-white/10 p-3">
+                                    <p class="font-mono text-[18px] font-semibold">$4.2M</p>
+                                    <p class="text-[11px] text-white/48">tracked value</p>
+                                </div>
+                                <div class="rounded-2xl bg-white/[.05] border border-white/10 p-3">
+                                    <p class="font-mono text-[18px] font-semibold">7</p>
+                                    <p class="text-[11px] text-white/48">open tickets</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="platform" class="section-band py-16 lg:py-20">
+            <div class="max-w-[1320px] mx-auto px-5 lg:px-10">
+                <div class="max-w-3xl">
+                    <div class="chip reveal">PLATFORM POSITIONING</div>
+                    <h2 class="reveal mt-5 text-[34px] md:text-[50px] leading-tight font-semibold text-navy">
+                        Sell it as an operations OS for companies with distributed assets and approval-heavy workflows.
+                    </h2>
+                    <p class="reveal mt-4 text-[16px] leading-relaxed text-slate-600">
+                        The codebase already supports the core commercial modules: asset records, stock status, image
+                        scanning, issuing, demand requests, approval history, fleet diagnostics, service tickets,
+                        revenue tracking, role-based access, and dashboards.
+                    </p>
+                </div>
+
+                <div class="mt-10 grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+                    <div class="feature-card reveal rounded-2xl p-6">
+                        <span class="w-11 h-11 rounded-xl bg-teal-50 text-teal-600 grid place-items-center"><i
+                                data-lucide="package-check" class="w-5 h-5"></i></span>
+                        <h3 class="mt-5 text-[18px] font-semibold">Inventory Control</h3>
+                        <p class="mt-2 text-[14px] leading-relaxed text-slate-600">Create items, classify categories,
+                            track quantity, value, issue status, low stock, critical stock, and history.</p>
+                    </div>
+                    <div class="feature-card reveal rounded-2xl p-6">
+                        <span class="w-11 h-11 rounded-xl bg-green-50 text-green-600 grid place-items-center"><i
+                                data-lucide="truck" class="w-5 h-5"></i></span>
+                        <h3 class="mt-5 text-[18px] font-semibold">Fleet and Equipment Health</h3>
+                        <p class="mt-2 text-[14px] leading-relaxed text-slate-600">Track vehicles, machines, tools,
+                            service dates, fit/unfit state, diagnostic notes, location, and utilization.</p>
+                    </div>
+                    <div class="feature-card reveal rounded-2xl p-6">
+                        <span class="w-11 h-11 rounded-xl bg-amber-50 text-amber-600 grid place-items-center"><i
+                                data-lucide="clipboard-check" class="w-5 h-5"></i></span>
+                        <h3 class="mt-5 text-[18px] font-semibold">Approvals and Tickets</h3>
+                        <p class="mt-2 text-[14px] leading-relaxed text-slate-600">Handle demands, repairs, parts,
+                            estimates, approvals, rejections, completion status, and audit-ready notes.</p>
+                    </div>
+                    <div class="feature-card reveal rounded-2xl p-6">
+                        <span class="w-11 h-11 rounded-xl bg-cyan-50 text-cyan-700 grid place-items-center"><i
+                                data-lucide="scan-line" class="w-5 h-5"></i></span>
+                        <h3 class="mt-5 text-[18px] font-semibold">Scan and Identify</h3>
+                        <p class="mt-2 text-[14px] leading-relaxed text-slate-600">Use photo, barcode, QR, or future AI
+                            recognition flows to identify assets and open the right operational action.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="sectors" class="py-16 lg:py-20">
+            <div class="max-w-[1320px] mx-auto px-5 lg:px-10">
+                <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+                    <div class="max-w-3xl">
+                        <div class="chip reveal">B2B TARGET CUSTOMERS</div>
+                        <h2 class="reveal mt-5 text-[34px] md:text-[50px] leading-tight font-semibold text-navy">
+                            Sectors where this product can be sold.
+                        </h2>
+                        <p class="reveal mt-4 text-[16px] leading-relaxed text-slate-600">
+                            Best fit: asset-heavy, multi-location, approval-driven organizations where physical
+                            equipment downtime, stock leakage, repair delays, and manual reporting create measurable cost.
+                        </p>
+                    </div>
+                    <a href="#contact" class="btn btn-ghost reveal">Build a sector-specific pitch</a>
+                </div>
+
+                <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                    <article class="sector-card reveal rounded-2xl p-6">
+                        <div class="flex items-center gap-3 text-navy"><i data-lucide="shield" class="w-5 h-5 text-teal-600"></i>
+                            <h3 class="font-semibold">Defense, Police and Security</h3>
+                        </div>
+                        <p class="mt-3 text-[14px] text-slate-600">Equipment issue, unit inventory, vehicle readiness,
+                            inspection tickets, approvals, and audit trails.</p>
+                    </article>
+                    <article class="sector-card reveal rounded-2xl p-6">
+                        <div class="flex items-center gap-3 text-navy"><i data-lucide="hard-hat" class="w-5 h-5 text-amber-600"></i>
+                            <h3 class="font-semibold">Construction and Infrastructure</h3>
+                        </div>
+                        <p class="mt-3 text-[14px] text-slate-600">Heavy equipment allocation, tool rooms, site-wise
+                            demand, maintenance, diesel, utilization, and contractor accountability.</p>
+                    </article>
+                    <article class="sector-card reveal rounded-2xl p-6">
+                        <div class="flex items-center gap-3 text-navy"><i data-lucide="factory" class="w-5 h-5 text-slate-700"></i>
+                            <h3 class="font-semibold">Manufacturing and Warehousing</h3>
+                        </div>
+                        <p class="mt-3 text-[14px] text-slate-600">MRO inventory, spare parts, forklifts, production
+                            tools, issue registers, reorder alerts, and maintenance logs.</p>
+                    </article>
+                    <article class="sector-card reveal rounded-2xl p-6">
+                        <div class="flex items-center gap-3 text-navy"><i data-lucide="route" class="w-5 h-5 text-green-600"></i>
+                            <h3 class="font-semibold">Logistics, 3PL and Transport</h3>
+                        </div>
+                        <p class="mt-3 text-[14px] text-slate-600">Fleet status, depot inventory, trip-linked assets,
+                            driver issue workflows, repair tickets, and revenue by vehicle.</p>
+                    </article>
+                    <article class="sector-card reveal rounded-2xl p-6">
+                        <div class="flex items-center gap-3 text-navy"><i data-lucide="pickaxe" class="w-5 h-5 text-stone-700"></i>
+                            <h3 class="font-semibold">Mining, Oil, Gas and Energy</h3>
+                        </div>
+                        <p class="mt-3 text-[14px] text-slate-600">Remote asset visibility, safety equipment, plant
+                            machinery, parts approval, field tickets, and downtime control.</p>
+                    </article>
+                    <article class="sector-card reveal rounded-2xl p-6">
+                        <div class="flex items-center gap-3 text-navy"><i data-lucide="zap" class="w-5 h-5 text-yellow-600"></i>
+                            <h3 class="font-semibold">Utilities and Telecom Field Ops</h3>
+                        </div>
+                        <p class="mt-3 text-[14px] text-slate-600">Technician kits, towers, meters, generators, fault
+                            tickets, spare parts, regional stores, and SLA reporting.</p>
+                    </article>
+                    <article class="sector-card reveal rounded-2xl p-6">
+                        <div class="flex items-center gap-3 text-navy"><i data-lucide="hospital" class="w-5 h-5 text-red-600"></i>
+                            <h3 class="font-semibold">Hospitals and Healthcare Chains</h3>
+                        </div>
+                        <p class="mt-3 text-[14px] text-slate-600">Biomedical equipment, ambulances, oxygen assets,
+                            consumables, AMC tickets, compliance records, and department-wise stock.</p>
+                    </article>
+                    <article class="sector-card reveal rounded-2xl p-6">
+                        <div class="flex items-center gap-3 text-navy"><i data-lucide="plane" class="w-5 h-5 text-sky-600"></i>
+                            <h3 class="font-semibold">Airports, Ports and Rail</h3>
+                        </div>
+                        <p class="mt-3 text-[14px] text-slate-600">Ground support equipment, baggage assets, workshop
+                            parts, service windows, safety checks, and multi-terminal dashboards.</p>
+                    </article>
+                    <article class="sector-card reveal rounded-2xl p-6">
+                        <div class="flex items-center gap-3 text-navy"><i data-lucide="building-2" class="w-5 h-5 text-teal-700"></i>
+                            <h3 class="font-semibold">Government, Municipal and Smart City</h3>
+                        </div>
+                        <p class="mt-3 text-[14px] text-slate-600">Public works inventory, city fleets, sanitation
+                            vehicles, emergency assets, approvals, and ward-level reporting.</p>
+                    </article>
+                    <article class="sector-card reveal rounded-2xl p-6">
+                        <div class="flex items-center gap-3 text-navy"><i data-lucide="graduation-cap" class="w-5 h-5 text-indigo-600"></i>
+                            <h3 class="font-semibold">Education Campuses and Institutions</h3>
+                        </div>
+                        <p class="mt-3 text-[14px] text-slate-600">Lab equipment, buses, IT assets, hostel maintenance,
+                            department stores, issue history, and approval controls.</p>
+                    </article>
+                    <article class="sector-card reveal rounded-2xl p-6">
+                        <div class="flex items-center gap-3 text-navy"><i data-lucide="hotel" class="w-5 h-5 text-purple-600"></i>
+                            <h3 class="font-semibold">Hospitality, Retail and Facilities</h3>
+                        </div>
+                        <p class="mt-3 text-[14px] text-slate-600">Housekeeping assets, store inventory, kitchen
+                            equipment, maintenance requests, branch stock, and vendor repairs.</p>
+                    </article>
+                    <article class="sector-card reveal rounded-2xl p-6">
+                        <div class="flex items-center gap-3 text-navy"><i data-lucide="tractor" class="w-5 h-5 text-lime-700"></i>
+                            <h3 class="font-semibold">Agriculture and Food Supply Chains</h3>
+                        </div>
+                        <p class="mt-3 text-[14px] text-slate-600">Farm machinery, cold-chain assets, crates, warehouse
+                            stock, transport fleets, repairs, and seasonal demand planning.</p>
+                    </article>
+                    <article class="sector-card reveal rounded-2xl p-6">
+                        <div class="flex items-center gap-3 text-navy"><i data-lucide="badge-dollar-sign" class="w-5 h-5 text-emerald-600"></i>
+                            <h3 class="font-semibold">Rental, Leasing and Equipment-as-a-Service</h3>
+                        </div>
+                        <p class="mt-3 text-[14px] text-slate-600">Rental inventory, revenue per asset, return condition,
+                            damage tickets, utilization, billing inputs, and customer allocation.</p>
+                    </article>
+                    <article class="sector-card reveal rounded-2xl p-6">
+                        <div class="flex items-center gap-3 text-navy"><i data-lucide="heart-handshake" class="w-5 h-5 text-rose-600"></i>
+                            <h3 class="font-semibold">NGOs, Disaster Relief and Emergency Ops</h3>
+                        </div>
+                        <p class="mt-3 text-[14px] text-slate-600">Relief material stock, vehicles, field kits, regional
+                            demand, approvals, distribution history, and readiness reporting.</p>
+                    </article>
+                    <article class="sector-card reveal rounded-2xl p-6">
+                        <div class="flex items-center gap-3 text-navy"><i data-lucide="briefcase-business" class="w-5 h-5 text-cyan-700"></i>
+                            <h3 class="font-semibold">Large Enterprises and Multi-Branch Groups</h3>
+                        </div>
+                        <p class="mt-3 text-[14px] text-slate-600">Any company with regional stores, approvals, field
+                            assets, branch-level accountability, and a need for management visibility.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="modules" class="section-band py-16 lg:py-20">
+            <div class="max-w-[1320px] mx-auto px-5 lg:px-10">
+                <div class="grid lg:grid-cols-[.85fr_1.15fr] gap-10 lg:gap-14 items-start">
+                    <div>
+                        <div class="chip reveal">PRODUCT MODULES</div>
+                        <h2 class="reveal mt-5 text-[34px] md:text-[48px] leading-tight font-semibold text-navy">
+                            Rebrand by sector, keep the operational engine reusable.
+                        </h2>
+                        <p class="reveal mt-4 text-[16px] leading-relaxed text-slate-600">
+                            Each market can get different terminology, forms, roles, reports, and dashboards while the
+                            same base system powers asset lifecycle, stock movement, health checks, and approvals.
+                        </p>
+                    </div>
+
+                    <div class="space-y-3">
+                        <div class="module-row reveal rounded-2xl p-5 flex gap-4">
+                            <span class="w-10 h-10 rounded-xl bg-teal-50 text-teal-600 grid place-items-center shrink-0"><i
+                                    data-lucide="layout-dashboard" class="w-5 h-5"></i></span>
+                            <div>
+                                <h3 class="font-semibold text-navy">Command Dashboard</h3>
+                                <p class="mt-1 text-[14px] text-slate-600">Executive KPIs for stock, fleet, tickets,
+                                    revenue, risk, active branches, and delayed approvals.</p>
+                            </div>
+                        </div>
+                        <div class="module-row reveal rounded-2xl p-5 flex gap-4">
+                            <span class="w-10 h-10 rounded-xl bg-green-50 text-green-600 grid place-items-center shrink-0"><i
+                                    data-lucide="archive" class="w-5 h-5"></i></span>
+                            <div>
+                                <h3 class="font-semibold text-navy">Inventory and Asset Registry</h3>
+                                <p class="mt-1 text-[14px] text-slate-600">Master records for items, serials, categories,
+                                    cost, quantity, attachments, location, owners, and availability.</p>
+                            </div>
+                        </div>
+                        <div class="module-row reveal rounded-2xl p-5 flex gap-4">
+                            <span class="w-10 h-10 rounded-xl bg-cyan-50 text-cyan-700 grid place-items-center shrink-0"><i
+                                    data-lucide="scan-search" class="w-5 h-5"></i></span>
+                            <div>
+                                <h3 class="font-semibold text-navy">Scan, Issue and Return</h3>
+                                <p class="mt-1 text-[14px] text-slate-600">Photo or code-based lookup, issue flow,
+                                    department allocation, return records, and transaction history.</p>
+                            </div>
+                        </div>
+                        <div class="module-row reveal rounded-2xl p-5 flex gap-4">
+                            <span class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 grid place-items-center shrink-0"><i
+                                    data-lucide="file-check-2" class="w-5 h-5"></i></span>
+                            <div>
+                                <h3 class="font-semibold text-navy">Demand and Approval Workflow</h3>
+                                <p class="mt-1 text-[14px] text-slate-600">Requests, approval hierarchy, reject notes,
+                                    status visibility, spend thresholds, and audit history.</p>
+                            </div>
+                        </div>
+                        <div class="module-row reveal rounded-2xl p-5 flex gap-4">
+                            <span class="w-10 h-10 rounded-xl bg-red-50 text-red-600 grid place-items-center shrink-0"><i
+                                    data-lucide="wrench" class="w-5 h-5"></i></span>
+                            <div>
+                                <h3 class="font-semibold text-navy">Maintenance and Ticketing</h3>
+                                <p class="mt-1 text-[14px] text-slate-600">Fit/unfit diagnostics, parts required, cost
+                                    estimate, priority, approval, completion, and service record.</p>
+                            </div>
+                        </div>
+                        <div class="module-row reveal rounded-2xl p-5 flex gap-4">
+                            <span class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 grid place-items-center shrink-0"><i
+                                    data-lucide="circle-dollar-sign" class="w-5 h-5"></i></span>
+                            <div>
+                                <h3 class="font-semibold text-navy">Utilization and Revenue Tracking</h3>
+                                <p class="mt-1 text-[14px] text-slate-600">Track vehicle revenue, asset yield, idle
+                                    inventory, rental usage, and unit economics where the business model needs it.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="implementation" class="py-16 lg:py-20">
+            <div class="max-w-[1320px] mx-auto px-5 lg:px-10">
+                <div class="max-w-3xl">
+                    <div class="chip reveal">GO-TO-MARKET PACKAGING</div>
+                    <h2 class="reveal mt-5 text-[34px] md:text-[50px] leading-tight font-semibold text-navy">
+                        Three ways to sell the same product to different B2B buyers.
+                    </h2>
+                </div>
+
+                <div class="mt-10 grid lg:grid-cols-3 gap-5">
+                    <div class="feature-card reveal rounded-2xl p-7">
+                        <div class="font-mono text-[12px] font-semibold text-teal-600">01 / VERTICALIZED</div>
+                        <h3 class="mt-3 text-[22px] font-semibold text-navy">Industry editions</h3>
+                        <p class="mt-3 text-[14px] leading-relaxed text-slate-600">Create editions like ConstructionOps,
+                            FleetTrack, HospitalTrack, CampusTrack, and UtilitiesTrack with tailored labels, reports, and
+                            demo data.</p>
+                    </div>
+                    <div class="feature-card reveal rounded-2xl p-7">
+                        <div class="font-mono text-[12px] font-semibold text-green-600">02 / ENTERPRISE</div>
+                        <h3 class="mt-3 text-[22px] font-semibold text-navy">Multi-branch control tower</h3>
+                        <p class="mt-3 text-[14px] leading-relaxed text-slate-600">Sell to head offices that need one
+                            system for regional units, stores, yards, sites, depots, hospitals, campuses, or city zones.</p>
+                    </div>
+                    <div class="feature-card reveal rounded-2xl p-7">
+                        <div class="font-mono text-[12px] font-semibold text-amber-600">03 / MANAGED</div>
+                        <h3 class="mt-3 text-[22px] font-semibold text-navy">Custom deployment service</h3>
+                        <p class="mt-3 text-[14px] leading-relaxed text-slate-600">Position it as a configurable
+                            implementation with onboarding, custom fields, role setup, import templates, and reporting.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-navy text-white py-16 lg:py-20">
+            <div class="max-w-[1120px] mx-auto px-5 lg:px-10 text-center">
+                <div class="chip reveal"
+                    style="background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.12); color:#bae6fd;">
+                    SALES MESSAGE</div>
+                <h2 class="reveal mt-6 text-[34px] md:text-[54px] leading-tight font-semibold">
+                    Stop selling it as a single-sector system. Sell it as operational visibility for high-value assets.
+                </h2>
+                <p class="reveal mt-4 text-[16px] leading-relaxed text-white/68 max-w-3xl mx-auto">
+                    The buyer is not just "logistics." The buyer is any CFO, COO, operations head, fleet manager,
+                    maintenance head, facility director, store manager, or procurement team that needs fewer lost assets,
+                    faster approvals, lower downtime, and cleaner accountability.
+                </p>
+                <div class="reveal mt-8 flex flex-col sm:flex-row justify-center gap-3">
+                    <a href="#contact" class="btn btn-primary">Request sector demo</a>
+                    <a href="#modules" class="btn"
+                        style="background:rgba(255,255,255,.08); color:#fff; border:1px solid rgba(255,255,255,.14);">View modules</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-16 lg:py-20 bg-white">
+            <div class="max-w-[980px] mx-auto px-5 lg:px-10">
+                <div class="chip reveal">CONTACT</div>
+                <h2 class="reveal mt-5 text-[34px] md:text-[48px] leading-tight font-semibold text-navy">
+                    Tell us the sector. We will shape the pitch, terminology, modules, and demo workflow.
+                </h2>
+                <p class="reveal mt-3 text-[15px] text-slate-600">
+                    Use this for B2B sales discovery, partner outreach, or a custom product demo request.
+                </p>
+
+                <form id="contactForm" class="reveal mt-8 grid grid-cols-1 md:grid-cols-2 gap-4" onsubmit="return false;">
+                    <input name="name" required placeholder="Your name"
+                        class="min-h-[48px] px-4 border border-line rounded-lg outline-none focus:border-teal-500" />
+                    <input name="email" type="email" required placeholder="Work email"
+                        class="min-h-[48px] px-4 border border-line rounded-lg outline-none focus:border-teal-500" />
+                    <input name="company" placeholder="Company or client name"
+                        class="min-h-[48px] px-4 border border-line rounded-lg outline-none focus:border-teal-500" />
+                    <input name="sector" placeholder="Target sector"
+                        class="min-h-[48px] px-4 border border-line rounded-lg outline-none focus:border-teal-500" />
+                    <textarea name="message" rows="5" placeholder="What assets, vehicles, inventory, sites, or approval workflows do they manage?"
+                        class="md:col-span-2 p-4 border border-line rounded-lg outline-none focus:border-teal-500"></textarea>
+                    <div class="md:col-span-2 flex flex-col sm:flex-row sm:items-center gap-3">
+                        <button id="contactSubmit" class="btn btn-dark" type="submit">Send demo request</button>
+                        <span id="contactNote" class="text-[13px] text-slate-500"></span>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-navy text-white pt-14 pb-10 border-t border-white/10">
+        <div class="max-w-[1320px] mx-auto px-5 lg:px-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+            <div class="flex items-center gap-3 text-white">
+                <img src="assets/images/builddreams.png" alt="BuildDreams logo" class="h-8 w-auto" loading="lazy" />
+                <span class="font-medium">BuildDreams · InfraTrack</span>
+            </div>
+            <div class="flex flex-wrap gap-5 text-[13px] text-white/55">
+                <a href="#platform" class="hover:text-white">Platform</a>
+                <a href="#sectors" class="hover:text-white">Sectors</a>
+                <a href="#modules" class="hover:text-white">Modules</a>
+                <a href="#contact" class="hover:text-white">Contact</a>
+            </div>
+            <p class="text-[12px] text-white/40">© 2026 BuildDreams Technologies</p>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        const lenis = new Lenis({
+            duration: 1.05,
+            easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        gsap.registerPlugin(ScrollTrigger);
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add(t => lenis.raf(t * 1000));
+        gsap.ticker.lagSmoothing(0);
+
+        const dot = document.getElementById('cursorDot');
+        const ring = document.getElementById('cursorRing');
+        let mx = -100;
+        let my = -100;
+        let rx = -100;
+        let ry = -100;
+
+        window.addEventListener('mousemove', event => {
+            mx = event.clientX;
+            my = event.clientY;
+            dot.style.transform = `translate(${mx}px, ${my}px)`;
+        });
+
+        (function tick() {
+            rx += (mx - rx) * 0.16;
+            ry += (my - ry) * 0.16;
+            ring.style.transform = `translate(${rx}px, ${ry}px)`;
+            requestAnimationFrame(tick);
+        })();
+
+        document.querySelectorAll('a, button, .feature-card, .sector-card, .module-row').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                ring.style.width = '56px';
+                ring.style.height = '56px';
+                ring.style.borderColor = 'rgba(0,149,153,.7)';
+            });
+            el.addEventListener('mouseleave', () => {
+                ring.style.width = '38px';
+                ring.style.height = '38px';
+                ring.style.borderColor = 'rgba(8,47,73,.34)';
+            });
+        });
+
+        ScrollTrigger.create({
+            start: 'top -40',
+            onUpdate: self => {
+                const nav = document.getElementById('nav');
+                self.scroll() > 40 ? nav.classList.add('nav-solid') : nav.classList.remove('nav-solid');
+            }
+        });
+
+        gsap.utils.toArray('.reveal').forEach(el => {
+            gsap.to(el, {
+                opacity: 1,
+                y: 0,
+                duration: .9,
+                ease: 'expo.out',
+                scrollTrigger: {
+                    trigger: el,
+                    start: 'top 92%'
+                }
+            });
+        });
+
+        const contactForm = document.getElementById('contactForm');
+        const contactNote = document.getElementById('contactNote');
+
+        if (contactForm) {
+            contactForm.addEventListener('submit', event => {
+                event.preventDefault();
+                const form = event.target;
+                const name = (form.name.value || '').trim();
+                const email = (form.email.value || '').trim();
+                const company = (form.company.value || '').trim();
+                const sector = (form.sector.value || '').trim();
+                const message = (form.message.value || '').trim();
+
+                if (!name || !email) {
+                    contactNote.textContent = 'Please provide name and work email.';
+                    return;
+                }
+
+                const subject = encodeURIComponent('InfraTrack B2B demo request' + (sector ? ' - ' + sector : ''));
+                const body = encodeURIComponent(
+                    `Name: ${name}\nEmail: ${email}\nCompany: ${company}\nTarget sector: ${sector}\n\n${message}`
+                );
+                window.location.href = `mailto:hello@builddreams.com?subject=${subject}&body=${body}`;
+                contactNote.textContent = 'Opening your email client...';
+            });
+        }
+
+        const simulation = document.getElementById('workflowSimulation');
+
+        if (simulation) {
+            const steps = Array.from(simulation.querySelectorAll('.simulation-step'));
+            const progress = document.getElementById('simulationProgress');
+            const message = document.getElementById('simulationMessage');
+            const badge = document.getElementById('simulationBadge');
+            const simulationStates = [
+                {
+                    index: 0,
+                    progress: '18%',
+                    badge: 'Asset identified',
+                    badgeClass: 'text-cyan-200',
+                    message: 'QR matched to Vehicle V-118, service file loaded in 0.8s.'
+                },
+                {
+                    index: 1,
+                    progress: '56%',
+                    badge: 'Approval in motion',
+                    badgeClass: 'text-amber-200',
+                    message: 'Demand packet routed to regional manager with priority and cost estimate.'
+                },
+                {
+                    index: 2,
+                    progress: '100%',
+                    badge: 'Field team ready',
+                    badgeClass: 'text-emerald-200',
+                    message: 'Approved request synced to dispatch, stock counts and uptime KPIs refreshed.'
+                }
+            ];
+
+            let activeSimulationIndex = 0;
+
+            const renderSimulation = state => {
+                steps.forEach((step, stepIndex) => {
+                    step.classList.toggle('is-active', stepIndex === state.index);
+                });
+
+                if (progress) {
+                    progress.style.width = state.progress;
+                }
+
+                if (message) {
+                    message.textContent = state.message;
+                }
+
+                if (badge) {
+                    badge.textContent = state.badge;
+                    badge.classList.remove('text-cyan-200', 'text-amber-200', 'text-emerald-200');
+                    badge.classList.add(state.badgeClass);
+                }
+            };
+
+            renderSimulation(simulationStates[0]);
+
+            window.setInterval(() => {
+                activeSimulationIndex = (activeSimulationIndex + 1) % simulationStates.length;
+                renderSimulation(simulationStates[activeSimulationIndex]);
+            }, 2200);
+        }
+    </script>
+</body>
+
+</html>
