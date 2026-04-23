@@ -1,0 +1,1555 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BuildDreams Vision AI | Multi-Sector Visual Detection Platform</title>
+    <meta name="description"
+        content="BuildDreams Vision AI is a customizable visual detection platform for image upload, camera capture, live monitoring, and sector-specific AI workflows across B2B and B2C use cases." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=Instrument+Serif:ital@0;1&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --navy: #021346;
+            --teal: #009599;
+            --teal-soft: #e7fbfb;
+            --ink: #0b1020;
+            --muted: #5a6472;
+            --line: rgba(2, 19, 70, 0.08);
+            --paper: #fbfcfc;
+            --white: #ffffff;
+            --shadow: 0 30px 60px -24px rgba(2, 19, 70, 0.18);
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: 'Inter', system-ui, sans-serif;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .font-display {
+            font-family: 'Instrument Serif', serif;
+        }
+
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .page-shell {
+            overflow: hidden;
+        }
+
+        .container {
+            width: min(1320px, calc(100% - 40px));
+            margin: 0 auto;
+        }
+
+        .section {
+            padding: 92px 0;
+        }
+
+        .section-tight {
+            padding: 72px 0;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 14px;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            color: rgba(2, 19, 70, 0.72);
+            font-size: 12px;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            background: rgba(255, 255, 255, 0.74);
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background: var(--teal);
+            box-shadow: 0 0 0 6px rgba(0, 149, 153, 0.14);
+        }
+
+        .title-xl {
+            margin: 20px 0 0;
+            font-size: clamp(42px, 7vw, 74px);
+            line-height: 1.02;
+            font-weight: 600;
+            letter-spacing: -0.04em;
+            color: var(--navy);
+        }
+
+        .title-lg {
+            margin: 18px 0 0;
+            font-size: clamp(32px, 4.5vw, 50px);
+            line-height: 1.06;
+            font-weight: 600;
+            letter-spacing: -0.03em;
+            color: var(--navy);
+        }
+
+        .subtitle-script {
+            margin: 12px 0 0;
+            font-size: clamp(26px, 3vw, 38px);
+            line-height: 1.08;
+            color: var(--teal);
+        }
+
+        .lead {
+            margin: 18px 0 0;
+            max-width: 700px;
+            color: var(--muted);
+            font-size: 17px;
+            line-height: 1.78;
+        }
+
+        .muted {
+            color: var(--muted);
+        }
+
+        .btn-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 15px 22px;
+            border-radius: 999px;
+            border: 1px solid transparent;
+            font-weight: 600;
+            font-size: 15px;
+            transition: transform .25s ease, border-color .25s ease, background-color .25s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .btn-primary {
+            background: var(--navy);
+            color: var(--white);
+        }
+
+        .btn-secondary {
+            background: var(--white);
+            color: var(--navy);
+            border-color: var(--line);
+        }
+
+        .btn-teal {
+            background: var(--teal);
+            color: var(--white);
+        }
+
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            backdrop-filter: saturate(180%) blur(14px);
+            background: rgba(251, 252, 252, 0.84);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .topbar-inner {
+            min-height: 76px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 22px;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .brand img {
+            height: 42px;
+            width: auto;
+        }
+
+        .brand-copy {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .brand-copy strong {
+            color: var(--navy);
+            font-size: 15px;
+        }
+
+        .brand-copy span {
+            color: rgba(2, 19, 70, 0.52);
+            font-size: 11px;
+            letter-spacing: .12em;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            color: rgba(2, 19, 70, 0.72);
+            font-size: 14px;
+        }
+
+        .hero {
+            position: relative;
+            padding: 72px 0 36px;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 14% 16%, rgba(0, 149, 153, 0.12), transparent 22%),
+                radial-gradient(circle at 84% 12%, rgba(2, 19, 70, 0.08), transparent 20%);
+            pointer-events: none;
+        }
+
+        .hero-grid {
+            position: relative;
+            display: grid;
+            grid-template-columns: 1.12fr .88fr;
+            gap: 36px;
+            align-items: center;
+        }
+
+        .hero-points {
+            list-style: none;
+            padding: 0;
+            margin: 28px 0 0;
+            display: grid;
+            gap: 14px;
+        }
+
+        .hero-points li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            color: rgba(2, 19, 70, 0.84);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .hero-points li::before {
+            content: "";
+            width: 10px;
+            height: 10px;
+            margin-top: 8px;
+            flex: 0 0 auto;
+            border-radius: 999px;
+            background: var(--teal);
+            box-shadow: 0 0 0 7px rgba(0, 149, 153, 0.12);
+        }
+
+        .hero-note {
+            margin-top: 18px;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .stage-card {
+            position: relative;
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            background: var(--white);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .stage-top {
+            position: relative;
+            min-height: 350px;
+            padding: 24px;
+            background:
+                radial-gradient(circle at 18% 22%, rgba(0, 149, 153, .16), transparent 26%),
+                linear-gradient(135deg, #071a50 0%, #112867 56%, #03213f 100%);
+        }
+
+        .stage-top::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, .08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, .08) 1px, transparent 1px);
+            background-size: 34px 34px;
+            opacity: .46;
+        }
+
+        .stage-badges {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .stage-badge {
+            padding: 8px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, .12);
+            background: rgba(255, 255, 255, .06);
+            color: rgba(255, 255, 255, .78);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+
+        .stage-badge.active {
+            border-color: rgba(79, 255, 246, .38);
+            background: rgba(79, 255, 246, .14);
+            color: var(--white);
+        }
+
+        .scan-box {
+            position: absolute;
+            inset: 86px 64px 78px;
+            border: 2px solid #4ffff6;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(79, 255, 246, .28);
+        }
+
+        .scan-line {
+            position: absolute;
+            left: 64px;
+            right: 64px;
+            top: 32%;
+            height: 2px;
+            background: #4ffff6;
+            box-shadow: 0 0 20px rgba(79, 255, 246, .8);
+            animation: scanSweep 2.8s ease-in-out infinite;
+        }
+
+        .scan-subject {
+            position: absolute;
+            left: 50%;
+            top: 53%;
+            width: 244px;
+            height: 166px;
+            transform: translate(-50%, -50%) rotate(-8deg);
+            border-radius: 28px;
+            background:
+                linear-gradient(145deg, rgba(255, 255, 255, .82), rgba(194, 207, 210, .84)),
+                linear-gradient(180deg, #edf4f4, #94a4a7);
+            box-shadow:
+                inset 0 -18px 0 rgba(2, 19, 70, .12),
+                inset 0 1px 0 rgba(255, 255, 255, .6),
+                0 32px 50px rgba(0, 0, 0, .28);
+            clip-path: polygon(10% 24%, 27% 8%, 74% 8%, 90% 26%, 90% 77%, 73% 92%, 24% 92%, 10% 74%);
+            animation: floatObject 5.6s ease-in-out infinite;
+        }
+
+        .scan-subject::before,
+        .scan-subject::after {
+            content: "";
+            position: absolute;
+            background: linear-gradient(180deg, #fafdfe, #d4dee1);
+        }
+
+        .scan-subject::before {
+            left: 28px;
+            right: 28px;
+            top: 28px;
+            height: 34px;
+            border-radius: 12px;
+            box-shadow:
+                inset 0 0 0 8px #647a83,
+                0 8px 18px rgba(2, 19, 70, .12);
+        }
+
+        .scan-subject::after {
+            width: 120px;
+            height: 48px;
+            left: 62px;
+            bottom: 30px;
+            border-radius: 999px;
+            box-shadow:
+                inset 0 0 0 10px #617781,
+                0 10px 20px rgba(2, 19, 70, .14);
+        }
+
+        .scan-subject-core {
+            position: absolute;
+            left: 50%;
+            top: 54%;
+            width: 82px;
+            height: 82px;
+            transform: translate(-50%, -50%);
+            border-radius: 22px;
+            background: linear-gradient(180deg, #edf5f5, #c8d6d8);
+            box-shadow:
+                inset 0 0 0 12px #5f747d,
+                0 12px 24px rgba(2, 19, 70, .16);
+            z-index: 1;
+        }
+
+        .scan-subject-core::before,
+        .scan-subject-core::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            width: 54px;
+            height: 12px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #6b8088, #ccd8da);
+            transform: translateY(-50%);
+        }
+
+        .scan-subject-core::before {
+            right: calc(100% - 6px);
+        }
+
+        .scan-subject-core::after {
+            left: calc(100% - 6px);
+        }
+
+        .hud-pill,
+        .hud-panel {
+            position: absolute;
+            z-index: 1;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, .94);
+            box-shadow: 0 18px 36px rgba(2, 19, 70, .2);
+        }
+
+        .hud-pill {
+            left: 24px;
+            bottom: 24px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--navy);
+        }
+
+        .hud-pill::before {
+            content: "";
+            width: 9px;
+            height: 9px;
+            border-radius: 999px;
+            background: var(--teal);
+            box-shadow: 0 0 0 6px rgba(0, 149, 153, 0.13);
+        }
+
+        .hud-panel {
+            right: 24px;
+            bottom: 24px;
+            min-width: 210px;
+            padding: 12px 14px;
+            background: rgba(3, 16, 54, .76);
+            color: rgba(255, 255, 255, .9);
+            border: 1px solid rgba(79, 255, 246, .16);
+        }
+
+        .hud-panel .mini-label {
+            color: rgba(159, 242, 245, .9);
+            font-size: 10px;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+        }
+
+        .hud-panel .mini-text {
+            margin-top: 7px;
+            font-size: 14px;
+            line-height: 1.45;
+            font-weight: 600;
+        }
+
+        .stage-bottom {
+            padding: 20px;
+            display: grid;
+            gap: 14px;
+        }
+
+        .mock-row {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 10px;
+            align-items: center;
+            padding: 14px;
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            background: var(--white);
+        }
+
+        .mock-label {
+            color: rgba(2, 19, 70, 0.48);
+            font-size: 11px;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+        }
+
+        .mock-value {
+            margin-top: 4px;
+            font-size: 17px;
+            color: var(--navy);
+            font-weight: 700;
+        }
+
+        .mock-status {
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: var(--teal-soft);
+            color: var(--teal);
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .mini-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .mini-card,
+        .feature-card,
+        .sector-card,
+        .buyer-card,
+        .pricing-card {
+            border: 1px solid var(--line);
+            border-radius: 22px;
+            background: var(--white);
+            transition: transform .26s ease, box-shadow .26s ease, border-color .26s ease;
+        }
+
+        .mini-card:hover,
+        .feature-card:hover,
+        .sector-card:hover,
+        .buyer-card:hover,
+        .pricing-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(0, 149, 153, 0.24);
+            box-shadow: 0 24px 52px -34px rgba(2, 19, 70, 0.55);
+        }
+
+        .mini-card {
+            padding: 16px;
+        }
+
+        .mini-card strong {
+            display: block;
+            margin-top: 6px;
+            color: var(--navy);
+        }
+
+        .grid-3,
+        .grid-4,
+        .sector-grid,
+        .buyer-grid,
+        .pricing-grid,
+        .proof-grid {
+            display: grid;
+            gap: 18px;
+        }
+
+        .grid-4 {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+
+        .grid-3,
+        .buyer-grid,
+        .pricing-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .sector-grid {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+
+        .proof-grid {
+            grid-template-columns: 1.1fr .9fr;
+        }
+
+        .feature-card,
+        .sector-card,
+        .buyer-card,
+        .pricing-card {
+            padding: 24px;
+        }
+
+        .icon-box {
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 149, 153, 0.12);
+            color: var(--teal);
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .feature-card h3,
+        .sector-card h3,
+        .buyer-card h3,
+        .pricing-card h3 {
+            margin: 16px 0 0;
+            font-size: 20px;
+            color: var(--navy);
+        }
+
+        .feature-card p,
+        .sector-card p,
+        .buyer-card p,
+        .pricing-card p {
+            margin: 10px 0 0;
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .feature-card ul,
+        .buyer-card ul,
+        .pricing-card ul {
+            margin: 16px 0 0;
+            padding: 0;
+            list-style: none;
+            display: grid;
+            gap: 10px;
+        }
+
+        .feature-card li,
+        .buyer-card li,
+        .pricing-card li {
+            color: rgba(2, 19, 70, 0.82);
+            font-size: 14px;
+            line-height: 1.55;
+            display: flex;
+            gap: 10px;
+        }
+
+        .feature-card li::before,
+        .buyer-card li::before,
+        .pricing-card li::before {
+            content: "•";
+            color: var(--teal);
+            font-weight: 900;
+        }
+
+        .band {
+            background: var(--white);
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .pill-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .pill {
+            padding: 10px 14px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.8);
+            color: rgba(2, 19, 70, 0.76);
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 18px;
+            margin-top: 38px;
+        }
+
+        .stat-card {
+            padding: 22px;
+            border-radius: 20px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.86);
+        }
+
+        .stat-card strong {
+            display: block;
+            color: var(--navy);
+            font-size: 28px;
+            line-height: 1;
+        }
+
+        .stat-card span {
+            display: block;
+            margin-top: 8px;
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .journey {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 16px;
+            margin-top: 34px;
+        }
+
+        .journey-step {
+            padding: 22px;
+            border-radius: 22px;
+            border: 1px solid var(--line);
+            background: var(--white);
+        }
+
+        .journey-step .step-no {
+            color: var(--teal);
+            font-size: 12px;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .journey-step h4 {
+            margin: 14px 0 0;
+            font-size: 19px;
+            color: var(--navy);
+        }
+
+        .journey-step p {
+            margin: 10px 0 0;
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .proof-card {
+            border: 1px solid var(--line);
+            border-radius: 26px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(231, 251, 251, 0.72));
+            padding: 28px;
+            box-shadow: var(--shadow);
+        }
+
+        .proof-card h3 {
+            margin: 0;
+            color: var(--navy);
+            font-size: 28px;
+        }
+
+        .proof-card p {
+            margin: 12px 0 0;
+            color: var(--muted);
+            line-height: 1.8;
+            font-size: 15px;
+        }
+
+        .proof-list {
+            margin: 18px 0 0;
+            padding: 0;
+            list-style: none;
+            display: grid;
+            gap: 12px;
+        }
+
+        .proof-list li {
+            padding: 14px 16px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.82);
+            border: 1px solid rgba(2, 19, 70, 0.06);
+            color: rgba(2, 19, 70, 0.84);
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .contact-wrap {
+            display: grid;
+            grid-template-columns: .9fr 1.1fr;
+            gap: 18px;
+            margin-top: 34px;
+        }
+
+        .contact-card,
+        .brief-card {
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            background: var(--white);
+            padding: 28px;
+        }
+
+        .contact-card h3,
+        .brief-card h3 {
+            margin: 0;
+            font-size: 24px;
+            color: var(--navy);
+        }
+
+        .contact-card p,
+        .brief-card p {
+            margin: 12px 0 0;
+            color: var(--muted);
+            line-height: 1.75;
+        }
+
+        .brief-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+            margin-top: 22px;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .field label {
+            color: rgba(2, 19, 70, 0.74);
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .field input,
+        .field select,
+        .field textarea {
+            width: 100%;
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            background: #fff;
+            color: var(--ink);
+            padding: 14px 16px;
+            font: inherit;
+            outline: none;
+        }
+
+        .field textarea {
+            min-height: 126px;
+            resize: vertical;
+        }
+
+        .field.full {
+            grid-column: 1 / -1;
+        }
+
+        .output-box {
+            margin-top: 18px;
+            padding: 18px;
+            border-radius: 18px;
+            background: #071a50;
+            color: rgba(255, 255, 255, 0.92);
+            min-height: 180px;
+            white-space: pre-wrap;
+            line-height: 1.72;
+            font-size: 14px;
+        }
+
+        footer {
+            padding: 26px 0 44px;
+            border-top: 1px solid var(--line);
+            color: rgba(2, 19, 70, 0.58);
+            font-size: 13px;
+        }
+
+        .footer-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(22px);
+            transition: opacity .65s ease, transform .65s ease;
+        }
+
+        .reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes scanSweep {
+            0%, 12% {
+                top: 28%;
+                opacity: 0;
+            }
+
+            20%, 72% {
+                opacity: 1;
+            }
+
+            88%, 100% {
+                top: 74%;
+                opacity: 0;
+            }
+        }
+
+        @keyframes floatObject {
+            0%, 100% {
+                transform: translate(-50%, -50%) rotate(-8deg);
+            }
+
+            50% {
+                transform: translate(-50%, -52%) rotate(-4deg);
+            }
+        }
+
+        @media (max-width: 1180px) {
+            .hero-grid,
+            .proof-grid,
+            .contact-wrap {
+                grid-template-columns: 1fr;
+            }
+
+            .grid-4,
+            .sector-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .journey {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 900px) {
+            .nav {
+                display: none;
+            }
+
+            .grid-3,
+            .buyer-grid,
+            .pricing-grid,
+            .stats-bar,
+            .mini-grid,
+            .brief-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding-top: 44px;
+            }
+
+            .section {
+                padding: 76px 0;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                width: min(1320px, calc(100% - 28px));
+            }
+
+            .grid-4,
+            .sector-grid,
+            .journey {
+                grid-template-columns: 1fr;
+            }
+
+            .stage-top {
+                min-height: 300px;
+            }
+
+            .scan-box {
+                inset: 86px 26px 78px;
+            }
+
+            .scan-line {
+                left: 26px;
+                right: 26px;
+            }
+
+            .scan-subject {
+                width: 198px;
+                height: 136px;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-shell">
+        <header class="topbar">
+            <div class="container topbar-inner">
+                <a class="brand" href="#top">
+                    <img src="./assets/images/builddreams.png" alt="BuildDreams logo">
+                    <div class="brand-copy">
+                        <strong>BuildDreams Vision AI</strong>
+                        <span class="font-mono">CUSTOMIZABLE DETECTION PLATFORM</span>
+                    </div>
+                </a>
+                <nav class="nav">
+                    <a href="#capabilities">Capabilities</a>
+                    <a href="#sectors">Sectors</a>
+                    <a href="#buyers">Buyers</a>
+                    <a href="#models">Commercial Models</a>
+                    <a href="#contact">Pilot Brief</a>
+                </nav>
+                <a class="btn btn-primary" href="#contact">Plan A Pilot</a>
+            </div>
+        </header>
+
+        <main id="top">
+            <section class="hero">
+                <div class="container hero-grid">
+                    <div>
+                        <div class="eyebrow reveal">BuildDreams Product Narrative</div>
+                        <h1 class="title-xl reveal">A generalized visual AI platform you can sell across industries.</h1>
+                        <p class="subtitle-script font-display reveal">Train it for assets, defects, products, events, equipment, safety checks, or consumer workflows.</p>
+                        <p class="lead reveal">The current codebase already supports image upload, camera capture, live stream monitoring, mobile access, web access, server-side inference, health checks, and live detection status. That makes it bigger than a single defense demo. It can be positioned as a configurable computer vision product for both enterprise operations and simplified end-user experiences.</p>
+
+                        <ul class="hero-points reveal">
+                            <li>Custom models for sector-specific object detection, recognition, classification, and visual verification.</li>
+                            <li>One platform story for B2B operations teams, field services, monitoring centers, and selective B2C mobile flows.</li>
+                            <li>Deployable as web, mobile, kiosk, control-room, or camera-connected workflows with retraining per customer vertical.</li>
+                        </ul>
+
+                        <div class="btn-row reveal">
+                            <a class="btn btn-primary" href="#sectors">See sellable sectors</a>
+                            <a class="btn btn-secondary" href="#buyers">View target customers</a>
+                            <a class="btn btn-teal" href="#contact">Build a pilot brief</a>
+                        </div>
+
+                        <p class="hero-note reveal">Best positioning: “Vision AI customized for your industry, camera setup, and decision workflow.”</p>
+                    </div>
+
+                    <div class="stage-card reveal">
+                        <div class="stage-top">
+                            <div class="stage-badges">
+                                <div class="stage-badge active">Upload</div>
+                                <div class="stage-badge active">Camera</div>
+                                <div class="stage-badge active">Live Stream</div>
+                                <div class="stage-badge active">Alerts</div>
+                            </div>
+                            <div class="scan-subject">
+                                <div class="scan-subject-core"></div>
+                            </div>
+                            <div class="scan-box"></div>
+                            <div class="scan-line"></div>
+                            <div class="hud-pill">Custom model analyzing live visual input</div>
+                            <div class="hud-panel">
+                                <div class="mini-label">Detected workflow</div>
+                                <div class="mini-text">Identify object, return decision, log event, and trigger the next operational step.</div>
+                            </div>
+                        </div>
+                        <div class="stage-bottom">
+                            <div class="mock-row">
+                                <div>
+                                    <div class="mock-label font-mono">Platform Summary</div>
+                                    <div class="mock-value">Multi-sector visual operations</div>
+                                </div>
+                                <div class="mock-status">Pilot-ready</div>
+                            </div>
+                            <div class="mini-grid">
+                                <div class="mini-card">
+                                    <div class="mock-label font-mono">Input Modes</div>
+                                    <strong>Upload, photo, or stream</strong>
+                                </div>
+                                <div class="mini-card">
+                                    <div class="mock-label font-mono">Delivery</div>
+                                    <strong>Web, mobile, API</strong>
+                                </div>
+                                <div class="mini-card">
+                                    <div class="mock-label font-mono">Decision Layer</div>
+                                    <strong>Detection + confidence + logs</strong>
+                                </div>
+                                <div class="mini-card">
+                                    <div class="mock-label font-mono">Commercial Fit</div>
+                                    <strong>B2B first, B2C adaptable</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container stats-bar reveal">
+                    <div class="stat-card">
+                        <strong>12+</strong>
+                        <span>high-potential sectors where the same platform can be customized and sold.</span>
+                    </div>
+                    <div class="stat-card">
+                        <strong>3</strong>
+                        <span>native input flows already reflected in the product: upload, capture, and live stream.</span>
+                    </div>
+                    <div class="stat-card">
+                        <strong>2</strong>
+                        <span>buyer motions: operational B2B deployments and simplified prosumer or B2C variants.</span>
+                    </div>
+                    <div class="stat-card">
+                        <strong>1</strong>
+                        <span>core message: visual AI customized to the customer’s exact environment and decision logic.</span>
+                    </div>
+                </div>
+            </section>
+
+            <section id="capabilities" class="section band">
+                <div class="container">
+                    <div class="eyebrow reveal">Capabilities</div>
+                    <h2 class="title-lg reveal">What this platform already proves</h2>
+                    <p class="lead reveal">The landing page positioning below is grounded in current product behavior from the codebase. The model and labels change by customer, but the workflow foundation is already there.</p>
+
+                    <div class="grid-4" style="margin-top:34px;">
+                        <article class="feature-card reveal">
+                            <div class="icon-box">01</div>
+                            <h3>Image Upload Detection</h3>
+                            <p>Users can submit a file and get a model decision with confidence and annotated output. This maps cleanly to inspection, verification, identification, and evidence workflows.</p>
+                            <ul>
+                                <li>Works for catalog lookups, damage checks, product recognition, and object validation.</li>
+                                <li>Useful for customer self-service as well as operator-assisted review.</li>
+                            </ul>
+                        </article>
+
+                        <article class="feature-card reveal">
+                            <div class="icon-box">02</div>
+                            <h3>Camera Capture Workflow</h3>
+                            <p>The mobile and browser experiences already support camera-based capture. That creates a strong story for field operations, store-floor teams, service centers, and prosumer apps.</p>
+                            <ul>
+                                <li>Ideal for on-site checks where users need instant visual confirmation.</li>
+                                <li>Good fit for technician, inspector, and end-customer moments.</li>
+                            </ul>
+                        </article>
+
+                        <article class="feature-card reveal">
+                            <div class="icon-box">03</div>
+                            <h3>Live Monitoring</h3>
+                            <p>The platform includes live stream status, polling, and detection logs. That opens the door to surveillance, process monitoring, line-side analytics, and continuous watch applications.</p>
+                            <ul>
+                                <li>Supports camera-based alerting and event review use cases.</li>
+                                <li>Can be adapted to fixed CCTV, drone, gate, or line-camera feeds.</li>
+                            </ul>
+                        </article>
+
+                        <article class="feature-card reveal">
+                            <div class="icon-box">04</div>
+                            <h3>Cross-Platform Delivery</h3>
+                            <p>The codebase spans web frontend, React Native, Flutter, and API endpoints. That is a strong sales angle because customers can start from one workflow and expand into others.</p>
+                            <ul>
+                                <li>Enterprise teams can deploy to operators, managers, and mobile crews.</li>
+                                <li>B2C versions can be simplified into guided mobile experiences.</li>
+                            </ul>
+                        </article>
+                    </div>
+
+                    <div class="pill-row reveal">
+                        <div class="pill">Custom class training</div>
+                        <div class="pill">Sector-specific UI branding</div>
+                        <div class="pill">On-prem or hosted deployment</div>
+                        <div class="pill">Role-based workflows</div>
+                        <div class="pill">Alert logging</div>
+                        <div class="pill">Health and API endpoints</div>
+                        <div class="pill">Phone camera compatibility</div>
+                        <div class="pill">Web dashboard compatibility</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="sectors" class="section">
+                <div class="container">
+                    <div class="eyebrow reveal">Sellable Sectors</div>
+                    <h2 class="title-lg reveal">Industries where this product can be sold</h2>
+                    <p class="lead reveal">The strongest commercial framing is not “one model for one object.” It is “a customizable visual intelligence layer for businesses and users who need image-based decisions.” These are the sectors with the clearest fit.</p>
+
+                    <div class="sector-grid" style="margin-top:34px;">
+                        <article class="sector-card reveal">
+                            <h3>Defense &amp; Homeland Security</h3>
+                            <p>Target detection, perimeter watch, equipment recognition, field surveillance, and mission-support monitoring.</p>
+                        </article>
+                        <article class="sector-card reveal">
+                            <h3>Manufacturing &amp; Quality Control</h3>
+                            <p>Defect detection, component verification, assembly confirmation, packaging checks, and line-side exception alerts.</p>
+                        </article>
+                        <article class="sector-card reveal">
+                            <h3>Warehousing &amp; Logistics</h3>
+                            <p>Parcel recognition, pallet verification, dock monitoring, loading errors, and item mismatch detection.</p>
+                        </article>
+                        <article class="sector-card reveal">
+                            <h3>Retail &amp; Smart Stores</h3>
+                            <p>Shelf monitoring, planogram audits, theft-risk spotting, product identification, and self-service lookup tools.</p>
+                        </article>
+                        <article class="sector-card reveal">
+                            <h3>Automotive &amp; Aftermarket</h3>
+                            <p>Spare part recognition, workshop inspection, dent or damage review, inventory checks, and used-vehicle evaluation.</p>
+                        </article>
+                        <article class="sector-card reveal">
+                            <h3>Agriculture &amp; Farm Equipment</h3>
+                            <p>Crop observation, livestock watch, machine condition checks, irrigation monitoring, and farm security flows.</p>
+                        </article>
+                        <article class="sector-card reveal">
+                            <h3>Construction &amp; Heavy Equipment</h3>
+                            <p>Site safety monitoring, machinery identification, PPE checks, progress validation, and equipment misuse alerts.</p>
+                        </article>
+                        <article class="sector-card reveal">
+                            <h3>Mining, Oil &amp; Utilities</h3>
+                            <p>Remote asset watch, safety zone monitoring, leak-risk observation, field equipment identification, and inspection support.</p>
+                        </article>
+                        <article class="sector-card reveal">
+                            <h3>Rail, Marine &amp; Aviation Maintenance</h3>
+                            <p>Part recognition, maintenance visual checks, fleet condition workflows, and hangar or yard-side monitoring.</p>
+                        </article>
+                        <article class="sector-card reveal">
+                            <h3>Healthcare Equipment &amp; Labs</h3>
+                            <p>Device verification, consumable identification, tray checks, inventory support, and compliance-oriented visual audits.</p>
+                        </article>
+                        <article class="sector-card reveal">
+                            <h3>Waste Management &amp; Recycling</h3>
+                            <p>Sorting assistance, contamination detection, material classification, and conveyor-camera monitoring.</p>
+                        </article>
+                        <article class="sector-card reveal">
+                            <h3>Consumer Apps &amp; Prosumer Tools</h3>
+                            <p>Home inventory, hobbyist identification, collector verification, DIY diagnostics, pet or property watch, and resale assistance.</p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section id="buyers" class="section band">
+                <div class="container">
+                    <div class="eyebrow reveal">Target Customers</div>
+                    <h2 class="title-lg reveal">Who can buy it: B2B and B2C paths</h2>
+                    <p class="lead reveal">This should be sold B2B first because the current architecture naturally fits operational workflows, controlled deployments, and custom training engagements. But a lighter B2C or prosumer layer is still commercially possible.</p>
+
+                    <div class="buyer-grid" style="margin-top:34px;">
+                        <article class="buyer-card reveal">
+                            <div class="icon-box">B2B</div>
+                            <h3>Enterprise Operations Teams</h3>
+                            <p>Factories, logistics firms, defense integrators, utilities, retailers, and infrastructure operators that need visual monitoring or recognition inside existing workflows.</p>
+                            <ul>
+                                <li>Best for custom pilots, recurring contracts, and multi-camera deployments.</li>
+                                <li>Decision-makers: COO, plant head, security lead, operations head, innovation team, CTO.</li>
+                            </ul>
+                        </article>
+
+                        <article class="buyer-card reveal">
+                            <div class="icon-box">SMB</div>
+                            <h3>Service Businesses &amp; Small Operators</h3>
+                            <p>Workshops, resellers, repair centers, farms, distributors, site-security firms, and small fleet operators that need guided detection without building AI in-house.</p>
+                            <ul>
+                                <li>Can buy a simpler hosted package with fixed workflows.</li>
+                                <li>Decision-makers: owner, operations manager, workshop manager, regional supervisor.</li>
+                            </ul>
+                        </article>
+
+                        <article class="buyer-card reveal">
+                            <div class="icon-box">B2C</div>
+                            <h3>Consumers, Hobbyists &amp; Prosumers</h3>
+                            <p>Collectors, DIY users, vehicle owners, home users, field enthusiasts, and resale users who want a mobile-first identification or monitoring experience.</p>
+                            <ul>
+                                <li>Best sold as guided niche apps, not as a raw enterprise dashboard.</li>
+                                <li>Strongest angle: instant camera-based identification or personal monitoring assistant.</li>
+                            </ul>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="container">
+                    <div class="eyebrow reveal">Commercial Models</div>
+                    <h2 id="models" class="title-lg reveal">How to package and price the product story</h2>
+                    <p class="lead reveal">The same engine can be sold in multiple commercial shapes depending on customer maturity, data quality, and deployment sensitivity.</p>
+
+                    <div class="pricing-grid" style="margin-top:34px;">
+                        <article class="pricing-card reveal">
+                            <h3>Custom Pilot</h3>
+                            <p>Best first offer for enterprises. Train the model on customer classes, deploy one workflow, prove accuracy, then expand.</p>
+                            <ul>
+                                <li>Paid discovery + pilot setup + model customization.</li>
+                                <li>Strong fit for manufacturing, defense, utilities, and logistics.</li>
+                            </ul>
+                        </article>
+
+                        <article class="pricing-card reveal">
+                            <h3>Platform Subscription</h3>
+                            <p>Hosted dashboard, mobile access, API usage, and periodic retraining for sectors with repeatable workflows.</p>
+                            <ul>
+                                <li>Monthly or annual recurring revenue model.</li>
+                                <li>Strong fit for store audits, workshops, monitoring centers, and service networks.</li>
+                            </ul>
+                        </article>
+
+                        <article class="pricing-card reveal">
+                            <h3>White-Label Sector Product</h3>
+                            <p>Rebrand the UI and model for a niche market, then sell it as a focused industry solution or prosumer app.</p>
+                            <ul>
+                                <li>Useful for B2C, resellers, dealers, and channel partners.</li>
+                                <li>Strong fit for aftermarket, collectors, agriculture, and consumer monitoring niches.</li>
+                            </ul>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section band">
+                <div class="container">
+                    <div class="eyebrow reveal">Workflow</div>
+                    <h2 class="title-lg reveal">Generalized product journey</h2>
+                    <p class="lead reveal">This is the high-level flow you can repeat in every proposal, regardless of sector.</p>
+
+                    <div class="journey reveal">
+                        <article class="journey-step">
+                            <div class="step-no">01 · Capture</div>
+                            <h4>Collect images or live feeds</h4>
+                            <p>Use uploads, mobile capture, CCTV streams, drone views, or production-line cameras.</p>
+                        </article>
+                        <article class="journey-step">
+                            <div class="step-no">02 · Train</div>
+                            <h4>Customize the model</h4>
+                            <p>Train the system on the customer’s objects, defects, patterns, conditions, or event classes.</p>
+                        </article>
+                        <article class="journey-step">
+                            <div class="step-no">03 · Detect</div>
+                            <h4>Run AI inference</h4>
+                            <p>Return labels, confidence, visual annotations, and workflow-ready outputs through web, mobile, or API.</p>
+                        </article>
+                        <article class="journey-step">
+                            <div class="step-no">04 · Act</div>
+                            <h4>Trigger business action</h4>
+                            <p>Notify staff, log evidence, escalate exceptions, verify compliance, or assist self-service decisions.</p>
+                        </article>
+                        <article class="journey-step">
+                            <div class="step-no">05 · Expand</div>
+                            <h4>Roll out by site or use case</h4>
+                            <p>Start with one pilot and scale to more cameras, classes, departments, geographies, or customer tiers.</p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="container proof-grid">
+                    <article class="proof-card reveal">
+                        <div class="eyebrow">Best Messaging</div>
+                        <h3 style="margin-top:18px;">Recommended sales framing</h3>
+                        <p>Do not lead with a narrow detector name. Lead with the platform promise: visual AI tailored to a customer’s real environment. Then show sector-specific examples.</p>
+                        <ul class="proof-list">
+                            <li><strong>Category:</strong> Customizable Vision AI Platform</li>
+                            <li><strong>Core promise:</strong> Turn images and live video into instant, usable decisions</li>
+                            <li><strong>Buyer promise:</strong> Faster inspection, fewer misses, lower manual effort, and scalable monitoring</li>
+                            <li><strong>Expansion promise:</strong> One core engine, many vertical products</li>
+                        </ul>
+                    </article>
+
+                    <article class="proof-card reveal">
+                        <div class="eyebrow">Primary Angles</div>
+                        <h3 style="margin-top:18px;">How to position by customer type</h3>
+                        <ul class="proof-list">
+                            <li><strong>For enterprises:</strong> “Deploy custom computer vision in weeks, not quarters.”</li>
+                            <li><strong>For operational teams:</strong> “Use camera feeds, uploaded images, or mobile capture to reduce manual review.”</li>
+                            <li><strong>For SMBs:</strong> “Get industry-specific visual AI without building an in-house ML team.”</li>
+                            <li><strong>For B2C niches:</strong> “Point your phone, identify instantly, and get guided next steps.”</li>
+                        </ul>
+                    </article>
+                </div>
+            </section>
+
+            <section id="contact" class="section band">
+                <div class="container">
+                    <div class="eyebrow reveal">Pilot Brief</div>
+                    <h2 class="title-lg reveal">Create a sector-ready sales brief</h2>
+                    <p class="lead reveal">Use this page as a standalone sales asset. The brief generator below helps tailor the same platform to each target customer conversation.</p>
+
+                    <div class="contact-wrap">
+                        <div class="contact-card reveal">
+                            <h3>What to ask every prospect</h3>
+                            <p>Keep discovery simple. Learn what they need to see, what they need to detect, what action should happen next, and where the cameras or images come from.</p>
+                            <ul class="proof-list">
+                                <li>What objects, defects, or events should the model recognize?</li>
+                                <li>Will users upload images, use mobile cameras, or connect live streams?</li>
+                                <li>Who acts on the result: operator, manager, customer, or control room?</li>
+                                <li>Do they need hosted deployment, private cloud, or on-premise control?</li>
+                                <li>Is this an enterprise workflow, an SMB product, or a consumer-facing app?</li>
+                            </ul>
+                        </div>
+
+                        <div class="brief-card reveal">
+                            <h3>Generate a custom pitch</h3>
+                            <p>Fill the fields and this page will draft a reusable proposal summary for that industry.</p>
+
+                            <div class="brief-grid">
+                                <div class="field">
+                                    <label for="sector">Sector</label>
+                                    <select id="sector">
+                                        <option>Manufacturing &amp; Quality</option>
+                                        <option>Defense &amp; Security</option>
+                                        <option>Warehousing &amp; Logistics</option>
+                                        <option>Retail &amp; Smart Stores</option>
+                                        <option>Automotive &amp; Aftermarket</option>
+                                        <option>Agriculture</option>
+                                        <option>Construction</option>
+                                        <option>Utilities &amp; Energy</option>
+                                        <option>Healthcare Equipment</option>
+                                        <option>Consumer / B2C</option>
+                                    </select>
+                                </div>
+                                <div class="field">
+                                    <label for="buyerType">Buyer Type</label>
+                                    <select id="buyerType">
+                                        <option>B2B Enterprise</option>
+                                        <option>SMB / Operator</option>
+                                        <option>B2C / Prosumer</option>
+                                    </select>
+                                </div>
+                                <div class="field">
+                                    <label for="inputMode">Primary Input</label>
+                                    <select id="inputMode">
+                                        <option>Image uploads</option>
+                                        <option>Mobile camera capture</option>
+                                        <option>Live stream monitoring</option>
+                                        <option>Mixed workflow</option>
+                                    </select>
+                                </div>
+                                <div class="field">
+                                    <label for="deployment">Deployment</label>
+                                    <select id="deployment">
+                                        <option>Hosted SaaS</option>
+                                        <option>Private cloud</option>
+                                        <option>On-premise</option>
+                                        <option>Hybrid</option>
+                                    </select>
+                                </div>
+                                <div class="field full">
+                                    <label for="problem">What problem are we solving?</label>
+                                    <textarea id="problem" placeholder="Example: reduce manual inspection misses, identify equipment parts faster, monitor live camera feeds for risky events..."></textarea>
+                                </div>
+                            </div>
+
+                            <div class="btn-row" style="margin-top:18px;">
+                                <button class="btn btn-primary" id="generateBrief" type="button">Generate Brief</button>
+                                <button class="btn btn-secondary" id="copyBrief" type="button">Copy Brief</button>
+                            </div>
+
+                            <div class="output-box font-mono" id="briefOutput">BuildDreams Vision AI can be positioned as a customizable visual intelligence product for this customer. Select the sector, buyer type, input mode, and deployment model to generate a focused pitch.</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="container footer-inner">
+                <div class="brand">
+                    <img src="./assets/images/builddreams.png" alt="BuildDreams logo">
+                    <div class="brand-copy">
+                        <strong>BuildDreams Vision AI</strong>
+                        <span class="font-mono">MULTI-SECTOR LANDING PAGE</span>
+                    </div>
+                </div>
+                <div>© 2026 BuildDreams Technologies · Generalized positioning page for customizable visual AI deployments</div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        const revealItems = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.14 });
+
+        revealItems.forEach((item, index) => {
+            item.style.transitionDelay = `${Math.min(index * 40, 280)}ms`;
+            observer.observe(item);
+        });
+
+        const sectorEl = document.getElementById('sector');
+        const buyerTypeEl = document.getElementById('buyerType');
+        const inputModeEl = document.getElementById('inputMode');
+        const deploymentEl = document.getElementById('deployment');
+        const problemEl = document.getElementById('problem');
+        const briefOutputEl = document.getElementById('briefOutput');
+        const generateBtn = document.getElementById('generateBrief');
+        const copyBtn = document.getElementById('copyBrief');
+
+        function buildBrief() {
+            const sector = sectorEl.value;
+            const buyerType = buyerTypeEl.value;
+            const inputMode = inputModeEl.value;
+            const deployment = deploymentEl.value;
+            const problem = problemEl.value.trim() || 'improve image-based decisions and reduce manual visual review time';
+
+            const brief = `BuildDreams Vision AI | Custom Pitch
+
+Sector: ${sector}
+Buyer type: ${buyerType}
+Primary input: ${inputMode}
+Deployment model: ${deployment}
+
+Positioning:
+BuildDreams Vision AI is a customizable computer vision platform for ${sector.toLowerCase()} teams. It converts ${inputMode.toLowerCase()} into real-time detection, confidence-based decisions, and workflow-ready outputs.
+
+Business problem:
+${problem}
+
+Why this fits:
+- The platform already supports uploads, camera capture, live monitoring, and API-based inference.
+- It can be trained for the customer's own objects, defects, assets, events, or verification rules.
+- It is suitable for ${buyerType.toLowerCase()} delivery and can be deployed through ${deployment.toLowerCase()} infrastructure.
+
+Recommended pilot:
+Start with one narrow workflow in ${sector.toLowerCase()}, measure accuracy and time saved, then scale to more classes, users, and locations.`;
+
+            briefOutputEl.textContent = brief;
+        }
+
+        generateBtn.addEventListener('click', buildBrief);
+        copyBtn.addEventListener('click', async () => {
+            try {
+                await navigator.clipboard.writeText(briefOutputEl.textContent);
+                copyBtn.textContent = 'Copied';
+                setTimeout(() => {
+                    copyBtn.textContent = 'Copy Brief';
+                }, 1400);
+            } catch (error) {
+                copyBtn.textContent = 'Copy Failed';
+                setTimeout(() => {
+                    copyBtn.textContent = 'Copy Brief';
+                }, 1400);
+            }
+        });
+    </script>
+</body>
+
+</html>
