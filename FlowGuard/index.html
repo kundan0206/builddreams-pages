@@ -686,7 +686,8 @@
                     websites, event detection rules, dashboard labels, and deployment model.
                 </p>
 
-                <form id="contactForm" class="reveal mt-8 grid grid-cols-1 md:grid-cols-2 gap-4" onsubmit="return false;">
+                <form id="contactForm" class="reveal mt-8 grid grid-cols-1 md:grid-cols-2 gap-4" onsubmit="return false;"
+                    data-product="FlowGuard" data-page="FlowGuard Landing Page">
                     <input name="name" required placeholder="Your name" class="p-3 border border-line rounded-lg" />
                     <input name="email" type="email" required placeholder="Work email"
                         class="p-3 border border-line rounded-lg" />
@@ -833,31 +834,55 @@
             });
         }
 
+        const CRM_ENQUIRY_ENDPOINT = 'https://linearis.vercel.app/api/enquiries';
         const contactForm = document.getElementById('contactForm');
         const contactNote = document.getElementById('contactNote');
 
         if (contactForm) {
-            contactForm.addEventListener('submit', e => {
+            contactForm.addEventListener('submit', async e => {
                 e.preventDefault();
-                const form = e.target;
-                const name = (form.name.value || '').trim();
-                const email = (form.email.value || '').trim();
-                const company = (form.company.value || '').trim();
-                const sector = (form.sector.value || '').trim();
-                const message = (form.message.value || '').trim();
+                const form = e.currentTarget;
+                const formData = new FormData(form);
+                const details = [...formData.entries()]
+                    .filter(([key, value]) => !['name', 'email', 'company', 'phone', 'message'].includes(key) && String(value).trim())
+                    .map(([key, value]) => `${key}: ${value}`)
+                    .join('\n');
 
-                if (!name || !email) {
+                const payload = {
+                    name: String(formData.get('name') || '').trim(),
+                    email: String(formData.get('email') || '').trim(),
+                    company: String(formData.get('company') || '').trim(),
+                    phone: String(formData.get('phone') || '').trim(),
+                    message: String(formData.get('message') || '').trim(),
+                    product: form.dataset.product,
+                    page: form.dataset.page,
+                    sourceUrl: window.location.href,
+                    details
+                };
+
+                if (!payload.name || !payload.email) {
                     contactNote.textContent = 'Please provide name and work email.';
                     return;
                 }
 
-                const salesEmail = 'hello@builddreams.com';
-                const subject = encodeURIComponent('FlowGuard demo request');
-                const body = encodeURIComponent(
-                    `Name: ${name}\nEmail: ${email}\nCompany: ${company}\nSector: ${sector}\n\nWorkflow:\n${message}`
-                );
+                contactNote.textContent = 'Sending your request...';
 
-                window.location.href = `mailto:${salesEmail}?subject=${subject}&body=${body}`;
+                try {
+                    const response = await fetch(CRM_ENQUIRY_ENDPOINT, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('Request failed');
+                    }
+
+                    form.reset();
+                    contactNote.textContent = 'Request received. It has been added to BuildDreams CRM.';
+                } catch (error) {
+                    contactNote.textContent = 'Submission failed. Please try again in a moment.';
+                }
             });
         }
     </script>

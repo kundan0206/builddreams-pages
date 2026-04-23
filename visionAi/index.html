@@ -1458,6 +1458,33 @@
                             </div>
 
                             <div class="output-box font-mono" id="briefOutput">BuildDreams Vision AI can be positioned as a customizable visual intelligence product for this customer. Select the sector, buyer type, input mode, and deployment model to generate a focused pitch.</div>
+
+                            <div style="margin-top:22px;padding-top:22px;border-top:1px solid rgba(9,27,55,0.12);">
+                                <h3 style="margin-top:0;">Request a pilot discussion</h3>
+                                <p>Send this interest directly into BuildDreams CRM so the team can follow up.</p>
+                                <form id="contactForm" class="brief-grid" data-product="Vision AI" data-page="Vision AI Landing Page">
+                                    <div class="field">
+                                        <label for="contactName">Name</label>
+                                        <input id="contactName" name="name" type="text" placeholder="Your name" required>
+                                    </div>
+                                    <div class="field">
+                                        <label for="contactEmail">Email</label>
+                                        <input id="contactEmail" name="email" type="email" placeholder="Work email" required>
+                                    </div>
+                                    <div class="field full">
+                                        <label for="contactCompany">Company</label>
+                                        <input id="contactCompany" name="company" type="text" placeholder="Company or team">
+                                    </div>
+                                    <div class="field full">
+                                        <label for="contactMessage">What should we discuss?</label>
+                                        <textarea id="contactMessage" name="message" placeholder="Tell us the customer type, sector, and the pilot you want to explore."></textarea>
+                                    </div>
+                                    <div class="field full" style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+                                        <button class="btn btn-primary" type="submit">Request Pilot Discussion</button>
+                                        <span id="contactNote" class="font-mono" style="font-size:12px;color:var(--muted);"></span>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1494,6 +1521,7 @@
             observer.observe(item);
         });
 
+        const CRM_ENQUIRY_ENDPOINT = 'https://linearis.vercel.app/api/enquiries';
         const sectorEl = document.getElementById('sector');
         const buyerTypeEl = document.getElementById('buyerType');
         const inputModeEl = document.getElementById('inputMode');
@@ -1502,6 +1530,8 @@
         const briefOutputEl = document.getElementById('briefOutput');
         const generateBtn = document.getElementById('generateBrief');
         const copyBtn = document.getElementById('copyBrief');
+        const contactForm = document.getElementById('contactForm');
+        const contactNote = document.getElementById('contactNote');
 
         function buildBrief() {
             const sector = sectorEl.value;
@@ -1549,6 +1579,55 @@ Start with one narrow workflow in ${sector.toLowerCase()}, measure accuracy and 
                 }, 1400);
             }
         });
+
+        if (contactForm) {
+            contactForm.addEventListener('submit', async (event) => {
+                event.preventDefault();
+                const formData = new FormData(contactForm);
+                const details = [
+                    `sector: ${sectorEl.value}`,
+                    `buyerType: ${buyerTypeEl.value}`,
+                    `inputMode: ${inputModeEl.value}`,
+                    `deployment: ${deploymentEl.value}`,
+                    `problem: ${problemEl.value.trim()}`
+                ].filter((entry) => !entry.endsWith(': ')).join('\n');
+
+                const payload = {
+                    name: String(formData.get('name') || '').trim(),
+                    email: String(formData.get('email') || '').trim(),
+                    company: String(formData.get('company') || '').trim(),
+                    message: String(formData.get('message') || '').trim(),
+                    product: contactForm.dataset.product,
+                    page: contactForm.dataset.page,
+                    sourceUrl: window.location.href,
+                    details,
+                };
+
+                if (!payload.name || !payload.email) {
+                    contactNote.textContent = 'Please add your name and work email.';
+                    return;
+                }
+
+                contactNote.textContent = 'Sending your request...';
+
+                try {
+                    const response = await fetch(CRM_ENQUIRY_ENDPOINT, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload),
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('Request failed');
+                    }
+
+                    contactForm.reset();
+                    contactNote.textContent = 'Request received. It has been added to BuildDreams CRM.';
+                } catch (error) {
+                    contactNote.textContent = 'Submission failed. Please try again in a moment.';
+                }
+            });
+        }
     </script>
 </body>
 

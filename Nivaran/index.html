@@ -774,7 +774,7 @@
           <p class="reveal" style="color:var(--muted);font-size:16px;">Share the sector and buyer type. The demo can be framed around their vocabulary, workflow, documents, dashboards, and approval chain.</p>
         </div>
         <div class="contact-card reveal">
-          <form class="form" id="contactForm">
+          <form class="form" id="contactForm" data-product="Nivaran" data-page="Nivaran Landing Page">
             <input name="name" required placeholder="Your name" />
             <input name="email" type="email" required placeholder="Work email" />
             <input name="company" placeholder="Company" />
@@ -834,26 +834,52 @@
     }, { threshold: 0.08 });
     document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
 
+    const CRM_ENQUIRY_ENDPOINT = 'https://linearis.vercel.app/api/enquiries';
     const form = document.getElementById('contactForm');
     const note = document.getElementById('note');
-    form.addEventListener('submit', (event) => {
+    form.addEventListener('submit', async (event) => {
       event.preventDefault();
       const data = new FormData(form);
-      const name = String(data.get('name') || '').trim();
-      const email = String(data.get('email') || '').trim();
-      const company = String(data.get('company') || '').trim();
-      const sector = String(data.get('sector') || '').trim();
-      const message = String(data.get('message') || '').trim();
+      const details = [...data.entries()]
+        .filter(([key, value]) => !['name', 'email', 'company', 'phone', 'message'].includes(key) && String(value).trim())
+        .map(([key, value]) => `${key}: ${value}`)
+        .join('\n');
 
-      if (!name || !email) {
+      const payload = {
+        name: String(data.get('name') || '').trim(),
+        email: String(data.get('email') || '').trim(),
+        company: String(data.get('company') || '').trim(),
+        phone: String(data.get('phone') || '').trim(),
+        message: String(data.get('message') || '').trim(),
+        product: form.dataset.product,
+        page: form.dataset.page,
+        sourceUrl: window.location.href,
+        details,
+      };
+
+      if (!payload.name || !payload.email) {
         note.textContent = 'Please add your name and work email.';
         return;
       }
 
-      const subject = encodeURIComponent(`Nivaran demo request${sector ? ` - ${sector}` : ''}`);
-      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nCompany: ${company}\nSector: ${sector}\n\n${message}`);
-      note.textContent = 'Opening your email client...';
-      window.location.href = `mailto:hello@builddreams.com?subject=${subject}&body=${body}`;
+      note.textContent = 'Sending your request...';
+
+      try {
+        const response = await fetch(CRM_ENQUIRY_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+
+        if (!response.ok) {
+          throw new Error('Request failed');
+        }
+
+        form.reset();
+        note.textContent = 'Request received. It has been added to BuildDreams CRM.';
+      } catch (error) {
+        note.textContent = 'Submission failed. Please try again in a moment.';
+      }
     });
   </script>
 </body>

@@ -618,9 +618,18 @@
         <div class="chip inline-flex" style="background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.18);color:#b8fcff;">BuildDreams × Sutra</div>
         <h2 class="mt-6 text-[34px] md:text-[54px] leading-[0.97] tracking-[-0.04em] font-medium">Start building your digital clone today</h2>
         <p class="mt-3 text-white/75 text-[15px]">Sutra is made for individual users who want a personal AI companion that truly understands them.</p>
-        <div class="mt-8 flex flex-wrap gap-3 justify-center">
-          <a href="mailto:hello@builddreams.com?subject=I%20Want%20My%20Sutra%20Digital%20Clone" class="btn btn-teal">Get my Sutra access</a>
-          <a href="#use-cases" class="btn btn-ghost" style="color:#fff;border-color:rgba(255,255,255,.32)">See use cases</a>
+        <div class="mt-10 max-w-[760px] mx-auto surface p-6 text-left" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.14);">
+          <form id="contactForm" class="grid md:grid-cols-2 gap-4" data-product="Sutra" data-page="Sutra Landing Page">
+            <input name="name" required placeholder="Your name" class="p-3 rounded-xl border border-white/20 bg-white/10 text-white placeholder:text-white/45 outline-none" />
+            <input name="email" type="email" required placeholder="Email" class="p-3 rounded-xl border border-white/20 bg-white/10 text-white placeholder:text-white/45 outline-none" />
+            <input name="company" placeholder="Company or role" class="p-3 rounded-xl border border-white/20 bg-white/10 text-white placeholder:text-white/45 outline-none md:col-span-2" />
+            <textarea name="message" rows="4" placeholder="How would you like to use your digital clone?" class="p-3 rounded-xl border border-white/20 bg-white/10 text-white placeholder:text-white/45 outline-none resize-none md:col-span-2"></textarea>
+            <div class="md:col-span-2 flex flex-wrap gap-3 items-center justify-center md:justify-start">
+              <button type="submit" class="btn btn-teal">Get my Sutra access</button>
+              <a href="#use-cases" class="btn btn-ghost" style="color:#fff;border-color:rgba(255,255,255,.32)">See use cases</a>
+              <span id="contactNote" class="text-[13px] text-white/75"></span>
+            </div>
+          </form>
         </div>
       </div>
     </section>
@@ -634,6 +643,7 @@
   </footer>
 
   <script>
+    const CRM_ENQUIRY_ENDPOINT = 'https://linearis.vercel.app/api/enquiries';
     lucide.createIcons();
 
     const lenis = new Lenis({ duration: 1.08, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
@@ -666,6 +676,50 @@
         }
       });
     });
+
+    const contactForm = document.getElementById('contactForm');
+    const contactNote = document.getElementById('contactNote');
+
+    if (contactForm) {
+      contactForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const form = event.currentTarget;
+        const formData = new FormData(form);
+        const payload = {
+          name: String(formData.get('name') || '').trim(),
+          email: String(formData.get('email') || '').trim(),
+          company: String(formData.get('company') || '').trim(),
+          message: String(formData.get('message') || '').trim(),
+          product: form.dataset.product,
+          page: form.dataset.page,
+          sourceUrl: window.location.href
+        };
+
+        if (!payload.name || !payload.email) {
+          contactNote.textContent = 'Please add your name and email.';
+          return;
+        }
+
+        contactNote.textContent = 'Sending your request...';
+
+        try {
+          const response = await fetch(CRM_ENQUIRY_ENDPOINT, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+
+          if (!response.ok) {
+            throw new Error('Request failed');
+          }
+
+          form.reset();
+          contactNote.textContent = 'Request received. It has been added to BuildDreams CRM.';
+        } catch (error) {
+          contactNote.textContent = 'Submission failed. Please try again in a moment.';
+        }
+      });
+    }
   </script>
 </body>
 

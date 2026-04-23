@@ -6,7 +6,7 @@
     },
     {
       "source": "/product",
-      "destination": "/product.html"
+      "destination": "/products/"
     }
   ]
 }
