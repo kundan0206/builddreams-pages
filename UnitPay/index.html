@@ -183,6 +183,48 @@
                 display: none;
             }
         }
+
+        html,
+        body {
+            overflow-x: hidden;
+        }
+
+        @media (max-width: 768px) {
+            #nav>div,
+            footer>div {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+
+            #nav>div {
+                min-height: 72px;
+                height: auto;
+                padding-top: .75rem;
+                padding-bottom: .75rem;
+                gap: .75rem;
+            }
+
+            #nav a[data-testid="nav-logo"] {
+                min-width: 0;
+                flex: 1 1 auto;
+            }
+
+            #nav .btn {
+                padding: .8rem 1rem;
+                font-size: .88rem;
+                justify-content: center;
+                white-space: normal;
+                text-align: center;
+            }
+
+            main {
+                overflow: hidden;
+            }
+
+            .hero-image {
+                min-height: 240px;
+            }
+        }
     </style>
 </head>
 

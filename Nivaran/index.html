@@ -419,6 +419,23 @@
       .section-head { display: block; }
       .pricing-band { padding: 30px 22px; border-radius: 20px; }
     }
+
+    html,
+    body {
+      overflow-x: hidden;
+    }
+
+    @media (max-width: 520px) {
+      .btn {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .hero-strip {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>

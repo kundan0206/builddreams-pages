@@ -313,6 +313,27 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        html,
+        body {
+            overflow-x: hidden;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                min-height: auto;
+            }
+
+            .btn {
+                white-space: normal;
+                text-align: center;
+                justify-content: center;
+            }
+
+            .shell {
+                width: min(100% - 28px, 1240px);
+            }
+        }
     </style>
 </head>
 

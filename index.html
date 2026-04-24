@@ -370,6 +370,42 @@
                 transform: rotate(360deg);
             }
         }
+
+        html,
+        body {
+            overflow-x: hidden;
+        }
+
+        @media (max-width: 768px) {
+            #nav>div,
+            footer>div {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+
+            #nav>div {
+                min-height: 72px;
+                height: auto;
+                padding-top: .75rem;
+                padding-bottom: .75rem;
+                gap: .75rem;
+            }
+
+            #nav a[data-testid="nav-logo"] {
+                min-width: 0;
+                flex: 1 1 auto;
+            }
+
+            .btn {
+                white-space: normal;
+                text-align: center;
+                justify-content: center;
+            }
+
+            .grid-bg {
+                background-size: 36px 36px;
+            }
+        }
     </style>
 </head>
 

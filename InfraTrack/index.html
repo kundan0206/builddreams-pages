@@ -355,6 +355,23 @@
                 width: 100%;
             }
         }
+
+        html,
+        body {
+            overflow-x: hidden;
+        }
+
+        @media (max-width: 768px) {
+            .btn {
+                white-space: normal;
+                text-align: center;
+                justify-content: center;
+            }
+
+            .shell {
+                width: min(100% - 28px, 1240px);
+            }
+        }
     </style>
 </head>
 
