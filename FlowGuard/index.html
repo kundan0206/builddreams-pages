@@ -687,7 +687,7 @@
                 </p>
 
                 <form id="contactForm" class="reveal mt-8 grid grid-cols-1 md:grid-cols-2 gap-4" onsubmit="return false;"
-                    data-product="FlowGuard" data-page="FlowGuard Landing Page">
+                    data-product="FlowGuard" data-page="FlowGuard Landing Page" data-project-key="flowguard">
                     <input name="name" required placeholder="Your name" class="p-3 border border-line rounded-lg" />
                     <input name="email" type="email" required placeholder="Work email"
                         class="p-3 border border-line rounded-lg" />
@@ -849,6 +849,7 @@
                     .join('\n');
 
                 const payload = {
+                    projectKey: form.dataset.projectKey,
                     name: String(formData.get('name') || '').trim(),
                     email: String(formData.get('email') || '').trim(),
                     company: String(formData.get('company') || '').trim(),

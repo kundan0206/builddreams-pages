@@ -1182,7 +1182,7 @@
                     </div>
                     <div class="lg:col-span-5 reveal">
                         <form class="bg-white rounded-2xl p-6 text-navy" id="contactForm"
-                            data-product="BuildDreams Website" data-page="Main Landing Page"
+                            data-product="BuildDreams Website" data-page="Main Landing Page" data-project-key="builddreams-crm"
                             data-testid="contact-form">
                             <div class="grid grid-cols-2 gap-3">
                                 <input required placeholder="Full name" name="name"
@@ -1393,6 +1393,7 @@
                 const form = event.currentTarget;
                 const formData = new FormData(form);
                 const payload = {
+                    projectKey: form.dataset.projectKey,
                     name: String(formData.get('name') || '').trim(),
                     email: String(formData.get('email') || '').trim(),
                     company: String(formData.get('company') || '').trim(),

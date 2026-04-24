@@ -774,7 +774,7 @@
           <p class="reveal" style="color:var(--muted);font-size:16px;">Share the sector and buyer type. The demo can be framed around their vocabulary, workflow, documents, dashboards, and approval chain.</p>
         </div>
         <div class="contact-card reveal">
-          <form class="form" id="contactForm" data-product="Nivaran" data-page="Nivaran Landing Page">
+          <form class="form" id="contactForm" data-product="Nivaran" data-page="Nivaran Landing Page" data-project-key="nivaran">
             <input name="name" required placeholder="Your name" />
             <input name="email" type="email" required placeholder="Work email" />
             <input name="company" placeholder="Company" />
@@ -846,6 +846,7 @@
         .join('\n');
 
       const payload = {
+        projectKey: form.dataset.projectKey,
         name: String(data.get('name') || '').trim(),
         email: String(data.get('email') || '').trim(),
         company: String(data.get('company') || '').trim(),

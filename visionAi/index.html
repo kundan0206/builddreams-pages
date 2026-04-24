@@ -1462,7 +1462,7 @@
                             <div style="margin-top:22px;padding-top:22px;border-top:1px solid rgba(9,27,55,0.12);">
                                 <h3 style="margin-top:0;">Request a pilot discussion</h3>
                                 <p>Send this interest directly into BuildDreams CRM so the team can follow up.</p>
-                                <form id="contactForm" class="brief-grid" data-product="Vision AI" data-page="Vision AI Landing Page">
+                                <form id="contactForm" class="brief-grid" data-product="Vision AI" data-page="Vision AI Landing Page" data-project-key="vision-ai">
                                     <div class="field">
                                         <label for="contactName">Name</label>
                                         <input id="contactName" name="name" type="text" placeholder="Your name" required>
@@ -1593,6 +1593,7 @@ Start with one narrow workflow in ${sector.toLowerCase()}, measure accuracy and 
                 ].filter((entry) => !entry.endsWith(': ')).join('\n');
 
                 const payload = {
+                    projectKey: contactForm.dataset.projectKey,
                     name: String(formData.get('name') || '').trim(),
                     email: String(formData.get('email') || '').trim(),
                     company: String(formData.get('company') || '').trim(),
