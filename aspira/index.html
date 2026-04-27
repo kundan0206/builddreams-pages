@@ -1026,8 +1026,8 @@
                     will share a practical rollout and white-label plan.</p>
 
                 <form id="contactForm" class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4" onsubmit="return false;"
-                    data-product="Aspira White-Label Platform" data-page="Aspira Landing Page"
-                    data-project-key="aspira-whitelabel">
+                    data-product="aspira" data-page="Landing Page"
+                    data-project-key="aspira">
                     <input name="name" required placeholder="Your name" class="p-3 border border-line rounded-md" />
                     <input name="email" type="email" required placeholder="Work email"
                         class="p-3 border border-line rounded-md" />
@@ -1138,22 +1138,15 @@
                 e.preventDefault();
                 const form = e.currentTarget;
                 const formData = new FormData(form);
-                const details = [...formData.entries()]
-                    .filter(([key, value]) => !['name', 'email', 'company', 'phone', 'message'].includes(key) && String(value).trim())
-                    .map(([key, value]) => `${key}: ${value}`)
-                    .join('\n');
-
                 const payload = {
                     projectKey: form.dataset.projectKey,
                     name: String(formData.get('name') || '').trim(),
                     email: String(formData.get('email') || '').trim(),
                     company: String(formData.get('company') || '').trim(),
-                    phone: String(formData.get('phone') || '').trim(),
                     message: String(formData.get('message') || '').trim(),
                     product: form.dataset.product,
                     page: form.dataset.page,
-                    sourceUrl: window.location.href,
-                    details
+                    sourceUrl: window.location.href
                 };
 
                 if (!payload.email || !payload.name) {
