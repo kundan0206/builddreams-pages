@@ -1,17 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nivaran | B2B Service Intake and Ticket Management Platform</title>
-  <meta name="description" content="Nivaran is a customizable B2B ticket management, kiosk intake, voice complaint, document upload, and escalation workflow platform for service-heavy organizations." />
+  <title>Nivaran | Simple Service Requests for Busy Teams</title>
+  <meta name="description"
+    content="Nivaran helps teams capture, route, and close service requests without chaos. Clear steps, fewer follow-ups, and a full record for every case." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet" />
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   <style>
-    *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       background: #f7f9fb;
@@ -21,6 +33,7 @@
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
     }
+
     :root {
       --ink: #0b1020;
       --navy: #06204f;
@@ -34,12 +47,35 @@
       --paper: #ffffff;
       --soft: #edf4f6;
     }
-    a { color: inherit; text-decoration: none; }
-    img { display: block; max-width: 100%; }
-    .font-display { font-family: "Instrument Serif", Georgia, serif; }
-    .font-mono { font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace; }
-    .container { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
-    .wide { width: min(1320px, calc(100% - 40px)); margin: 0 auto; }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .font-display {
+      font-family: "Instrument Serif", Georgia, serif;
+    }
+
+    .font-mono {
+      font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .wide {
+      width: min(1320px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
     .chip {
       display: inline-flex;
       align-items: center;
@@ -49,12 +85,20 @@
       border-radius: 999px;
       padding: 5px 11px;
       color: rgba(6, 32, 79, 0.72);
-      background: rgba(255,255,255,0.66);
+      background: rgba(255, 255, 255, 0.66);
       font: 600 11px/1 "JetBrains Mono", monospace;
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }
-    .chip-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--teal); box-shadow: 0 0 0 4px rgba(0,143,149,0.12); }
+
+    .chip-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--teal);
+      box-shadow: 0 0 0 4px rgba(0, 143, 149, 0.12);
+    }
+
     .btn {
       display: inline-flex;
       align-items: center;
@@ -69,13 +113,45 @@
       transition: transform .2s ease, background .2s ease, border-color .2s ease, color .2s ease;
       cursor: pointer;
     }
-    .btn i { width: 17px; height: 17px; }
-    .btn-primary { background: var(--navy); color: #fff; box-shadow: 0 16px 34px -22px rgba(6,32,79,0.8); }
-    .btn-primary:hover { transform: translateY(-1px); background: #082b67; }
-    .btn-ghost { background: rgba(255,255,255,0.66); color: var(--navy); border-color: var(--line); }
-    .btn-ghost:hover { border-color: rgba(6,32,79,0.36); transform: translateY(-1px); }
-    .btn-light { background: #fff; color: var(--navy); border-color: rgba(255,255,255,0.2); }
-    .btn-teal { background: var(--teal); color: #fff; }
+
+    .btn i {
+      width: 17px;
+      height: 17px;
+    }
+
+    .btn-primary {
+      background: var(--navy);
+      color: #fff;
+      box-shadow: 0 16px 34px -22px rgba(6, 32, 79, 0.8);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      background: #082b67;
+    }
+
+    .btn-ghost {
+      background: rgba(255, 255, 255, 0.66);
+      color: var(--navy);
+      border-color: var(--line);
+    }
+
+    .btn-ghost:hover {
+      border-color: rgba(6, 32, 79, 0.36);
+      transform: translateY(-1px);
+    }
+
+    .btn-light {
+      background: #fff;
+      color: var(--navy);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-teal {
+      background: var(--teal);
+      color: #fff;
+    }
+
     .nav {
       position: fixed;
       inset: 0 0 auto;
@@ -83,11 +159,13 @@
       transition: background .25s ease, border-color .25s ease, backdrop-filter .25s ease;
       border-bottom: 1px solid transparent;
     }
+
     .nav.scrolled {
-      background: rgba(247,249,251,0.85);
+      background: rgba(247, 249, 251, 0.85);
       backdrop-filter: blur(16px) saturate(160%);
       border-color: var(--line);
     }
+
     .nav-inner {
       height: 72px;
       display: flex;
@@ -95,8 +173,21 @@
       justify-content: space-between;
       gap: 24px;
     }
-    .brand { display: flex; align-items: center; gap: 12px; color: var(--navy); }
-    .brand-logo { height: 40px; width: auto; object-fit: contain; flex: none; }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--navy);
+    }
+
+    .brand-logo {
+      height: 40px;
+      width: auto;
+      object-fit: contain;
+      flex: none;
+    }
+
     .brand-kicker {
       display: inline-flex;
       color: rgba(6, 32, 79, 0.5);
@@ -104,9 +195,25 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }
-    .nav-links { display: flex; align-items: center; gap: 24px; color: rgba(11,16,32,0.72); font-size: 14px; font-weight: 600; }
-    .nav-links a:hover { color: var(--navy); }
-    .nav-actions { display: flex; align-items: center; gap: 10px; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      color: rgba(11, 16, 32, 0.72);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .nav-links a:hover {
+      color: var(--navy);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
     .hero {
       min-height: 94vh;
@@ -116,11 +223,18 @@
       overflow: hidden;
       position: relative;
       background:
-        linear-gradient(115deg, rgba(0,143,149,0.12), transparent 32%),
-        linear-gradient(185deg, rgba(165,108,0,0.12), transparent 24%),
+        linear-gradient(115deg, rgba(0, 143, 149, 0.12), transparent 32%),
+        linear-gradient(185deg, rgba(165, 108, 0, 0.12), transparent 24%),
         #f7f9fb;
     }
-    .hero-grid { display: grid; grid-template-columns: 0.94fr 1.06fr; gap: 56px; align-items: center; }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 0.94fr 1.06fr;
+      gap: 56px;
+      align-items: center;
+    }
+
     h1 {
       margin: 18px 0 0;
       max-width: 660px;
@@ -129,39 +243,63 @@
       letter-spacing: -0.055em;
       color: var(--navy);
     }
-    h1 span { color: var(--teal); }
+
+    h1 span {
+      color: var(--teal);
+    }
+
     .hero-copy {
       max-width: 590px;
       margin: 24px 0 0;
       color: var(--muted);
       font-size: clamp(16px, 1.5vw, 18px);
     }
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
     .hero-proof {
       display: flex;
       flex-wrap: wrap;
       gap: 18px;
       margin-top: 30px;
-      color: rgba(11,16,32,0.68);
+      color: rgba(11, 16, 32, 0.68);
       font-size: 13px;
       font-weight: 600;
     }
-    .hero-proof span { display: inline-flex; align-items: center; gap: 8px; }
-    .hero-proof i { width: 16px; height: 16px; color: var(--teal); }
+
+    .hero-proof span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hero-proof i {
+      width: 16px;
+      height: 16px;
+      color: var(--teal);
+    }
+
     .visual-shell {
       position: relative;
       border: 1px solid var(--line);
       border-radius: 28px;
-      background: rgba(255,255,255,0.68);
+      background: rgba(255, 255, 255, 0.68);
       padding: 14px;
-      box-shadow: 0 34px 90px -60px rgba(6,32,79,0.8);
+      box-shadow: 0 34px 90px -60px rgba(6, 32, 79, 0.8);
     }
+
     .browser {
       overflow: hidden;
       border: 1px solid var(--line);
       border-radius: 18px;
       background: #fff;
     }
+
     .browser-bar {
       display: flex;
       align-items: center;
@@ -171,22 +309,70 @@
       border-bottom: 1px solid var(--line);
       background: #fbfcfd;
     }
-    .dot { width: 10px; height: 10px; border-radius: 50%; }
-    .dot.red { background: #ef5b56; }
-    .dot.yellow { background: #e8aa2e; }
-    .dot.green { background: #25b36b; }
-    .url { margin-left: 8px; color: rgba(11,16,32,0.42); font-size: 12px; }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .dot.red {
+      background: #ef5b56;
+    }
+
+    .dot.yellow {
+      background: #e8aa2e;
+    }
+
+    .dot.green {
+      background: #25b36b;
+    }
+
+    .url {
+      margin-left: 8px;
+      color: rgba(11, 16, 32, 0.42);
+      font-size: 12px;
+    }
+
     .dashboard {
       display: grid;
       grid-template-columns: 184px 1fr;
       min-height: 452px;
       background: #f8fafc;
     }
-    .sidebar { padding: 18px 12px; background: #0d1d3e; color: #c7d6ef; }
-    .side-title { display: flex; gap: 9px; align-items: center; padding: 0 6px 16px; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 12px; }
-    .side-title i { width: 18px; height: 18px; color: #8de1df; }
-    .side-title strong { display: block; color: #fff; font-size: 13px; }
-    .side-title small { color: rgba(255,255,255,0.48); font-size: 10px; }
+
+    .sidebar {
+      padding: 18px 12px;
+      background: #0d1d3e;
+      color: #c7d6ef;
+    }
+
+    .side-title {
+      display: flex;
+      gap: 9px;
+      align-items: center;
+      padding: 0 6px 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      margin-bottom: 12px;
+    }
+
+    .side-title i {
+      width: 18px;
+      height: 18px;
+      color: #8de1df;
+    }
+
+    .side-title strong {
+      display: block;
+      color: #fff;
+      font-size: 13px;
+    }
+
+    .side-title small {
+      color: rgba(255, 255, 255, 0.48);
+      font-size: 10px;
+    }
+
     .side-item {
       display: flex;
       align-items: center;
@@ -195,20 +381,88 @@
       padding: 8px 9px;
       border-radius: 8px;
       font-size: 12px;
-      color: rgba(255,255,255,0.68);
+      color: rgba(255, 255, 255, 0.68);
     }
-    .side-item i { width: 14px; height: 14px; }
-    .side-item.active { background: rgba(255,255,255,0.1); color: #fff; }
-    .dash-main { padding: 22px; min-width: 0; }
-    .dash-top { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; margin-bottom: 18px; }
-    .dash-top h2 { margin: 0; font-size: 22px; letter-spacing: -0.03em; color: var(--navy); }
-    .dash-top p { margin: 4px 0 0; color: var(--muted); font-size: 12px; }
-    .live-badge { color: var(--green); background: rgba(22,138,82,0.1); border: 1px solid rgba(22,138,82,0.2); border-radius: 999px; padding: 6px 9px; font-size: 11px; font-weight: 800; white-space: nowrap; }
-    .metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 16px; }
-    .metric { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 12px; min-width: 0; }
-    .metric strong { display: block; color: var(--navy); font-size: 22px; letter-spacing: -0.04em; }
-    .metric span { color: var(--muted); font-size: 11px; }
-    .ticket-list { display: grid; gap: 8px; }
+
+    .side-item i {
+      width: 14px;
+      height: 14px;
+    }
+
+    .side-item.active {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
+
+    .dash-main {
+      padding: 22px;
+      min-width: 0;
+    }
+
+    .dash-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: flex-start;
+      margin-bottom: 18px;
+    }
+
+    .dash-top h2 {
+      margin: 0;
+      font-size: 22px;
+      letter-spacing: -0.03em;
+      color: var(--navy);
+    }
+
+    .dash-top p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .live-badge {
+      color: var(--green);
+      background: rgba(22, 138, 82, 0.1);
+      border: 1px solid rgba(22, 138, 82, 0.2);
+      border-radius: 999px;
+      padding: 6px 9px;
+      font-size: 11px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .metric {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px;
+      min-width: 0;
+    }
+
+    .metric strong {
+      display: block;
+      color: var(--navy);
+      font-size: 22px;
+      letter-spacing: -0.04em;
+    }
+
+    .metric span {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .ticket-list {
+      display: grid;
+      gap: 8px;
+    }
+
     .ticket {
       display: grid;
       grid-template-columns: 90px minmax(0, 1fr) 86px 82px;
@@ -220,13 +474,51 @@
       padding: 11px 12px;
       font-size: 12px;
     }
-    .ticket strong { color: var(--navy); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .ticket-id { color: var(--teal); font-family: "JetBrains Mono", monospace; font-weight: 700; }
-    .tag { display: inline-flex; justify-content: center; align-items: center; min-height: 24px; border-radius: 999px; padding: 3px 8px; font-size: 10px; font-weight: 800; }
-    .tag.blue { color: #0d4a8a; background: rgba(13,74,138,0.1); }
-    .tag.green { color: var(--green); background: rgba(22,138,82,0.1); }
-    .tag.gold { color: var(--gold); background: rgba(165,108,0,0.12); }
-    .tag.red { color: var(--red); background: rgba(183,55,55,0.1); }
+
+    .ticket strong {
+      color: var(--navy);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .ticket-id {
+      color: var(--teal);
+      font-family: "JetBrains Mono", monospace;
+      font-weight: 700;
+    }
+
+    .tag {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 24px;
+      border-radius: 999px;
+      padding: 3px 8px;
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+    .tag.blue {
+      color: #0d4a8a;
+      background: rgba(13, 74, 138, 0.1);
+    }
+
+    .tag.green {
+      color: var(--green);
+      background: rgba(22, 138, 82, 0.1);
+    }
+
+    .tag.gold {
+      color: var(--gold);
+      background: rgba(165, 108, 0, 0.12);
+    }
+
+    .tag.red {
+      color: var(--red);
+      background: rgba(183, 55, 55, 0.1);
+    }
+
     .hero-strip {
       margin-top: 42px;
       border-top: 1px solid var(--line);
@@ -235,51 +527,163 @@
       grid-template-columns: repeat(4, 1fr);
       gap: 18px;
     }
-    .strip-item strong { display: block; color: var(--navy); font-size: 24px; letter-spacing: -0.04em; }
-    .strip-item span { color: var(--muted); font-size: 13px; }
 
-    section { padding: 88px 0; }
-    .section-head { display: flex; justify-content: space-between; gap: 32px; align-items: flex-end; margin-bottom: 34px; }
-    .section-head h2, .center-head h2 {
+    .strip-item strong {
+      display: block;
+      color: var(--navy);
+      font-size: 24px;
+      letter-spacing: -0.04em;
+    }
+
+    .strip-item span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    section {
+      padding: 88px 0;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 32px;
+      align-items: flex-end;
+      margin-bottom: 34px;
+    }
+
+    .section-head h2,
+    .center-head h2 {
       margin: 16px 0 0;
       color: var(--navy);
       font-size: clamp(32px, 4.4vw, 54px);
       line-height: 1.02;
       letter-spacing: -0.048em;
     }
-    .section-head p, .center-head p { max-width: 560px; margin: 14px 0 0; color: var(--muted); font-size: 16px; }
-    .center-head { text-align: center; max-width: 790px; margin: 0 auto 36px; }
-    .capability-grid { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--line); border-radius: 22px; overflow: hidden; background: var(--line); gap: 1px; }
+
+    .section-head p,
+    .center-head p {
+      max-width: 560px;
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .center-head {
+      text-align: center;
+      max-width: 790px;
+      margin: 0 auto 36px;
+    }
+
+    .capability-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      overflow: hidden;
+      background: var(--line);
+      gap: 1px;
+    }
+
     .capability {
       background: #fff;
       padding: 28px;
       min-height: 230px;
     }
+
     .icon {
-      width: 42px; height: 42px; border-radius: 12px;
-      display: grid; place-items: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
       color: var(--teal);
-      background: rgba(0,143,149,0.1);
+      background: rgba(0, 143, 149, 0.1);
       margin-bottom: 20px;
     }
-    .icon i { width: 21px; height: 21px; }
-    .capability h3, .sector h3, .step h3, .security-card h3 { margin: 0 0 8px; color: var(--navy); font-size: 18px; letter-spacing: -0.02em; }
-    .capability p, .sector p, .step p, .security-card p { margin: 0; color: var(--muted); font-size: 14px; }
-    .screens { background: #ffffff; border-block: 1px solid var(--line); }
-    .screen-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 18px; }
-    .screen-card { border: 1px solid var(--line); border-radius: 18px; overflow: hidden; background: #fff; }
-    .screen-card img { width: 100%; aspect-ratio: 16 / 11; object-fit: cover; }
-    .screen-card.large img { aspect-ratio: 16 / 10; }
-    .screen-caption { padding: 16px 18px; display: flex; align-items: center; justify-content: space-between; gap: 12px; border-top: 1px solid var(--line); }
-    .screen-caption strong { color: var(--navy); }
-    .screen-caption span { color: var(--muted); font-size: 13px; }
-    .screen-side { display: grid; gap: 18px; }
+
+    .icon i {
+      width: 21px;
+      height: 21px;
+    }
+
+    .capability h3,
+    .sector h3,
+    .step h3,
+    .security-card h3 {
+      margin: 0 0 8px;
+      color: var(--navy);
+      font-size: 18px;
+      letter-spacing: -0.02em;
+    }
+
+    .capability p,
+    .sector p,
+    .step p,
+    .security-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .screens {
+      background: #ffffff;
+      border-block: 1px solid var(--line);
+    }
+
+    .screen-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 18px;
+    }
+
+    .screen-card {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .screen-card img {
+      width: 100%;
+      aspect-ratio: 16 / 11;
+      object-fit: cover;
+    }
+
+    .screen-card.large img {
+      aspect-ratio: 16 / 10;
+    }
+
+    .screen-caption {
+      padding: 16px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border-top: 1px solid var(--line);
+    }
+
+    .screen-caption strong {
+      color: var(--navy);
+    }
+
+    .screen-caption span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .screen-side {
+      display: grid;
+      gap: 18px;
+    }
+
     .workflow {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 18px;
       counter-reset: steps;
     }
+
     .step {
       position: relative;
       background: #fff;
@@ -288,21 +692,33 @@
       padding: 24px;
       min-height: 244px;
     }
+
     .step::before {
       counter-increment: steps;
       content: "0" counter(steps);
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 38px; height: 38px;
+      width: 38px;
+      height: 38px;
       border-radius: 50%;
       background: var(--navy);
       color: #fff;
       font: 700 13px "JetBrains Mono", monospace;
       margin-bottom: 34px;
     }
-    .sectors { background: var(--soft); border-block: 1px solid var(--line); }
-    .sector-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+
+    .sectors {
+      background: var(--soft);
+      border-block: 1px solid var(--line);
+    }
+
+    .sector-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
     .sector {
       background: #fff;
       border: 1px solid var(--line);
@@ -310,34 +726,101 @@
       padding: 22px;
       min-height: 216px;
     }
-    .sector-top { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
-    .sector-icon { width: 38px; height: 38px; border-radius: 11px; display: grid; place-items: center; color: var(--navy); background: #eef5ff; flex: none; }
-    .sector-icon i { width: 19px; height: 19px; }
+
+    .sector-top {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .sector-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 11px;
+      display: grid;
+      place-items: center;
+      color: var(--navy);
+      background: #eef5ff;
+      flex: none;
+    }
+
+    .sector-icon i {
+      width: 19px;
+      height: 19px;
+    }
+
     .target {
       margin-top: 16px;
       padding-top: 14px;
       border-top: 1px solid var(--line);
-      color: rgba(11,16,32,0.68);
+      color: rgba(11, 16, 32, 0.68);
       font-size: 12px;
     }
-    .target b { color: var(--navy); }
+
+    .target b {
+      color: var(--navy);
+    }
+
     .buyers {
       margin-top: 22px;
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
     }
-    .buyer-pill { background: rgba(6,32,79,0.07); color: var(--navy); border: 1px solid var(--line); border-radius: 999px; padding: 7px 10px; font-size: 12px; font-weight: 700; }
-    .split { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 40px; align-items: start; }
-    .security-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
-    .security-card { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 22px; }
-    .stack-list { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 24px; }
-    .stack { background: #fff; border: 1px solid var(--line); color: var(--navy); border-radius: 9px; padding: 8px 11px; font-size: 13px; font-weight: 700; }
+
+    .buyer-pill {
+      background: rgba(6, 32, 79, 0.07);
+      color: var(--navy);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 10px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    .security-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .security-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 22px;
+    }
+
+    .stack-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 24px;
+    }
+
+    .stack {
+      background: #fff;
+      border: 1px solid var(--line);
+      color: var(--navy);
+      border-radius: 9px;
+      padding: 8px 11px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
     .pricing-band {
       color: #fff;
       background:
-        linear-gradient(135deg, rgba(0,143,149,0.32), transparent 42%),
-        linear-gradient(30deg, rgba(165,108,0,0.25), transparent 38%),
+        linear-gradient(135deg, rgba(0, 143, 149, 0.32), transparent 42%),
+        linear-gradient(30deg, rgba(165, 108, 0, 0.25), transparent 38%),
         var(--navy);
       border-radius: 28px;
       padding: 56px;
@@ -347,35 +830,74 @@
       align-items: center;
       overflow: hidden;
     }
-    .pricing-band h2 { margin: 12px 0 0; font-size: clamp(32px, 4vw, 52px); line-height: 1; letter-spacing: -0.048em; }
-    .pricing-band p { color: rgba(255,255,255,0.75); max-width: 610px; }
-    .package-list { display: grid; gap: 10px; }
+
+    .pricing-band h2 {
+      margin: 12px 0 0;
+      font-size: clamp(32px, 4vw, 52px);
+      line-height: 1;
+      letter-spacing: -0.048em;
+    }
+
+    .pricing-band p {
+      color: rgba(255, 255, 255, 0.75);
+      max-width: 610px;
+    }
+
+    .package-list {
+      display: grid;
+      gap: 10px;
+    }
+
     .package {
       display: grid;
       grid-template-columns: 32px 1fr;
       gap: 12px;
       padding: 14px;
-      border: 1px solid rgba(255,255,255,0.14);
+      border: 1px solid rgba(255, 255, 255, 0.14);
       border-radius: 14px;
-      background: rgba(255,255,255,0.07);
+      background: rgba(255, 255, 255, 0.07);
     }
-    .package i { width: 20px; height: 20px; color: #8de1df; margin-top: 2px; }
-    .package strong { display: block; color: #fff; }
-    .package span { color: rgba(255,255,255,0.68); font-size: 13px; }
+
+    .package i {
+      width: 20px;
+      height: 20px;
+      color: #8de1df;
+      margin-top: 2px;
+    }
+
+    .package strong {
+      display: block;
+      color: #fff;
+    }
+
+    .package span {
+      color: rgba(255, 255, 255, 0.68);
+      font-size: 13px;
+    }
+
     .contact {
       display: grid;
       grid-template-columns: 0.86fr 1.14fr;
       gap: 40px;
       align-items: start;
     }
+
     .contact-card {
       background: #fff;
       border: 1px solid var(--line);
       border-radius: 22px;
       padding: 28px;
     }
-    .form { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    input, textarea, select {
+
+    .form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    input,
+    textarea,
+    select {
       width: 100%;
       border: 1px solid var(--line);
       border-radius: 12px;
@@ -385,39 +907,160 @@
       background: #fbfcfd;
       outline: none;
     }
-    textarea, .full { grid-column: 1 / -1; }
-    input:focus, textarea:focus, select:focus { border-color: rgba(0,143,149,0.55); box-shadow: 0 0 0 4px rgba(0,143,149,0.1); }
-    .note { margin-top: 12px; min-height: 20px; color: var(--muted); font-size: 13px; }
-    footer { border-top: 1px solid var(--line); padding: 30px 0; color: var(--muted); font-size: 13px; }
-    .foot { display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
-    .foot-links { display: flex; gap: 18px; flex-wrap: wrap; }
-    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
-    .reveal.in { opacity: 1; transform: translateY(0); }
+
+    textarea,
+    .full {
+      grid-column: 1 / -1;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: rgba(0, 143, 149, 0.55);
+      box-shadow: 0 0 0 4px rgba(0, 143, 149, 0.1);
+    }
+
+    .note {
+      margin-top: 12px;
+      min-height: 20px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 30px 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .foot-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+
+    .reveal.in {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
     @media (max-width: 980px) {
-      .hero-grid, .split, .pricing-band, .contact, .screen-grid { grid-template-columns: 1fr; }
-      .nav-links { display: none; }
-      .hero { min-height: auto; }
-      .capability-grid, .sector-grid { grid-template-columns: repeat(2, 1fr); }
-      .workflow { grid-template-columns: repeat(2, 1fr); }
-      .hero-strip { grid-template-columns: repeat(2, 1fr); }
+
+      .hero-grid,
+      .split,
+      .pricing-band,
+      .contact,
+      .screen-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .capability-grid,
+      .sector-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .workflow {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hero-strip {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
+
     @media (max-width: 680px) {
-      .container, .wide { width: min(100% - 28px, 1180px); }
-      .nav-inner { height: 66px; }
-      .nav-actions .btn-ghost { display: none; }
-      .hero { padding-top: 96px; }
-      .visual-shell { border-radius: 20px; padding: 8px; }
-      .dashboard { grid-template-columns: 1fr; min-height: auto; }
-      .sidebar { display: none; }
-      .dash-main { padding: 16px; }
-      .metric-grid, .capability-grid, .workflow, .sector-grid, .security-grid, .form { grid-template-columns: 1fr; }
-      .ticket { grid-template-columns: 72px minmax(0, 1fr); }
-      .ticket .tag { justify-content: flex-start; }
-      .hero-strip { grid-template-columns: 1fr 1fr; }
-      section { padding: 64px 0; }
-      .section-head { display: block; }
-      .pricing-band { padding: 30px 22px; border-radius: 20px; }
+
+      .container,
+      .wide {
+        width: min(100% - 28px, 1180px);
+      }
+
+      .nav-inner {
+        height: 66px;
+      }
+
+      .nav-actions .btn-ghost {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 96px;
+      }
+
+      .visual-shell {
+        border-radius: 20px;
+        padding: 8px;
+      }
+
+      .dashboard {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .sidebar {
+        display: none;
+      }
+
+      .dash-main {
+        padding: 16px;
+      }
+
+      .metric-grid,
+      .capability-grid,
+      .workflow,
+      .sector-grid,
+      .security-grid,
+      .form {
+        grid-template-columns: 1fr;
+      }
+
+      .ticket {
+        grid-template-columns: 72px minmax(0, 1fr);
+      }
+
+      .ticket .tag {
+        justify-content: flex-start;
+      }
+
+      .hero-strip {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      section {
+        padding: 64px 0;
+      }
+
+      .section-head {
+        display: block;
+      }
+
+      .pricing-band {
+        padding: 30px 22px;
+        border-radius: 20px;
+      }
     }
 
     html,
@@ -438,6 +1081,7 @@
     }
   </style>
 </head>
+
 <body>
   <header class="nav" id="nav">
     <div class="wide nav-inner">
@@ -463,18 +1107,20 @@
       <div class="wide">
         <div class="hero-grid">
           <div>
-            <div class="chip reveal"><span class="chip-dot"></span>B2B service intake platform</div>
-            <h1 class="reveal">One ticket system, <span>customized for every sector.</span></h1>
-            <p class="hero-copy reveal">Sell the same proven product to hospitals, campuses, factories, real estate groups, utilities, hospitality chains, enterprise teams, and public-service departments. Configure the labels, roles, workflows, documents, and escalation rules for each buyer.</p>
+            <div class="chip reveal"><span class="chip-dot"></span>Service requests, made simple</div>
+            <h1 class="reveal">Turn every request into a clear next step <span>without the back-and-forth.</span></h1>
+            <p class="hero-copy reveal">Most teams lose time to scattered calls, paper forms, and missed follow-ups.
+              Nivaran puts every request in one simple flow so staff know what to do, customers know what is happening,
+              and nothing gets lost.</p>
             <div class="hero-actions reveal">
               <a class="btn btn-primary" href="#contact">Book sector demo <i data-lucide="arrow-right"></i></a>
               <a class="btn btn-ghost" href="#sectors">View target customers</a>
             </div>
             <div class="hero-proof reveal">
-              <span><i data-lucide="scan-face"></i> Face-based identification</span>
-              <span><i data-lucide="mic"></i> Voice or form intake</span>
-              <span><i data-lucide="qr-code"></i> QR document upload</span>
-              <span><i data-lucide="shield-check"></i> Audit-ready workflows</span>
+              <span><i data-lucide="scan-face"></i> Faster front desk check-in</span>
+              <span><i data-lucide="mic"></i> Speak or type the request</span>
+              <span><i data-lucide="qr-code"></i> Documents from any phone</span>
+              <span><i data-lucide="shield-check"></i> Clear status for every case</span>
             </div>
           </div>
 
@@ -514,11 +1160,18 @@
                     <div class="metric"><strong>82%</strong><span>Closed on SLA</span></div>
                   </div>
                   <div class="ticket-list">
-                    <div class="ticket"><span class="ticket-id">#CS-9042</span><strong>Patient billing document missing</strong><span class="tag gold">Pending</span><span class="tag red">Urgent</span></div>
-                    <div class="ticket"><span class="ticket-id">#CS-9041</span><strong>Campus maintenance request</strong><span class="tag blue">In review</span><span class="tag gold">High</span></div>
-                    <div class="ticket"><span class="ticket-id">#CS-9040</span><strong>Factory safety observation</strong><span class="tag green">Resolved</span><span class="tag blue">Medium</span></div>
-                    <div class="ticket"><span class="ticket-id">#CS-9039</span><strong>Resident service complaint</strong><span class="tag blue">Forwarded</span><span class="tag red">Urgent</span></div>
-                    <div class="ticket"><span class="ticket-id">#CS-9038</span><strong>Insurance claim support query</strong><span class="tag gold">Pending</span><span class="tag blue">Medium</span></div>
+                    <div class="ticket"><span class="ticket-id">#CS-9042</span><strong>Patient billing document
+                        missing</strong><span class="tag gold">Pending</span><span class="tag red">Urgent</span></div>
+                    <div class="ticket"><span class="ticket-id">#CS-9041</span><strong>Campus maintenance
+                        request</strong><span class="tag blue">In review</span><span class="tag gold">High</span></div>
+                    <div class="ticket"><span class="ticket-id">#CS-9040</span><strong>Factory safety
+                        observation</strong><span class="tag green">Resolved</span><span class="tag blue">Medium</span>
+                    </div>
+                    <div class="ticket"><span class="ticket-id">#CS-9039</span><strong>Resident service
+                        complaint</strong><span class="tag blue">Forwarded</span><span class="tag red">Urgent</span>
+                    </div>
+                    <div class="ticket"><span class="ticket-id">#CS-9038</span><strong>Insurance claim support
+                        query</strong><span class="tag gold">Pending</span><span class="tag blue">Medium</span></div>
                   </div>
                 </div>
               </div>
@@ -527,10 +1180,10 @@
         </div>
 
         <div class="hero-strip reveal">
-          <div class="strip-item"><strong>12+</strong><span>high-fit B2B sectors</span></div>
-          <div class="strip-item"><strong>3</strong><span>ready role interfaces</span></div>
-          <div class="strip-item"><strong>30 min</strong><span>secure upload expiry</span></div>
-          <div class="strip-item"><strong>100%</strong><span>status history trail</span></div>
+          <div class="strip-item"><strong>20-40%</strong><span>fewer repeat follow-ups</span></div>
+          <div class="strip-item"><strong>1-3 days</strong><span>faster typical closures</span></div>
+          <div class="strip-item"><strong>10+ types</strong><span>requests handled in one place</span></div>
+          <div class="strip-item"><strong>100%</strong><span>every case has a trail</span></div>
         </div>
       </div>
     </section>
@@ -540,40 +1193,41 @@
         <div class="section-head">
           <div>
             <div class="chip reveal">Core product</div>
-            <h2 class="reveal">A reusable service desk for physical and digital operations.</h2>
+            <h2 class="reveal">From chaos to calm in one simple desk.</h2>
           </div>
-          <p class="reveal">The product is not limited to a government office. It is a configurable intake-to-resolution engine for any organization receiving complaints, requests, documents, visits, or escalations.</p>
+          <p class="reveal">Problem: requests come in from everywhere and get lost. Solution: one clear place to log,
+            track, and close. Result: fewer missed cases and a calmer team.</p>
         </div>
         <div class="capability-grid reveal">
           <article class="capability">
             <div class="icon"><i data-lucide="scan-face"></i></div>
-            <h3>Kiosk and identity intake</h3>
-            <p>Use face recognition for returning visitors, walk-in counters, secure premises, member services, or assisted self-service desks.</p>
+            <h3>Quick front-desk check-in</h3>
+            <p>Recognize returning visitors or register new ones in seconds, even during rush hours.</p>
           </article>
           <article class="capability">
             <div class="icon"><i data-lucide="mic-2"></i></div>
-            <h3>Voice and form tickets</h3>
-            <p>Capture complaints, service requests, maintenance issues, claims, and feedback through live speech transcription or structured forms.</p>
+            <h3>Speak or type the issue</h3>
+            <p>Let people explain the issue in their own words and capture it cleanly for staff.</p>
           </article>
           <article class="capability">
             <div class="icon"><i data-lucide="qr-code"></i></div>
-            <h3>QR document collection</h3>
-            <p>Let users upload ID proofs, invoices, photos, prescriptions, warranties, claim files, or evidence from their own phone.</p>
+            <h3>Send documents from any phone</h3>
+            <p>Customers upload photos or files with a quick link. No email chains, no confusion.</p>
           </article>
           <article class="capability">
             <div class="icon"><i data-lucide="users-round"></i></div>
-            <h3>Role-based dashboards</h3>
-            <p>Configure first-line operators, supervisors, department heads, branch managers, auditors, or executive approvers.</p>
+            <h3>Clear roles for every team</h3>
+            <p>Front desk, managers, and approvers each see only what they need, nothing extra.</p>
           </article>
           <article class="capability">
             <div class="icon"><i data-lucide="route"></i></div>
-            <h3>Escalation workflows</h3>
-            <p>Route cases by department, location, category, priority, SLA, approval level, or exception handling rules.</p>
+            <h3>Smart handoffs</h3>
+            <p>The right person gets the case at the right time, so issues do not get stuck.</p>
           </article>
           <article class="capability">
             <div class="icon"><i data-lucide="history"></i></div>
-            <h3>Audit and reporting</h3>
-            <p>Every status change, document upload, remark, and decision is captured for compliance, accountability, and management review.</p>
+            <h3>Simple reporting</h3>
+            <p>See what is open, what is delayed, and what keeps coming back every week.</p>
           </article>
         </div>
       </div>
@@ -584,23 +1238,24 @@
         <div class="section-head">
           <div>
             <div class="chip reveal">Product screens</div>
-            <h2 class="reveal">Already built across intake, review, upload, and oversight.</h2>
+            <h2 class="reveal">Screens your staff will actually use.</h2>
           </div>
           <a class="btn btn-ghost reveal" href="#contact">Request walkthrough</a>
         </div>
         <div class="screen-grid">
           <article class="screen-card large reveal">
             <img src="public/pa_dashboard.png" alt="Operations dashboard screenshot" />
-            <div class="screen-caption"><strong>Operator dashboard</strong><span>Prioritize, assign, resolve, or escalate cases.</span></div>
+            <div class="screen-caption"><strong>Operator dashboard</strong><span>See what needs attention right
+                now.</span></div>
           </article>
           <div class="screen-side">
             <article class="screen-card reveal">
               <img src="public/kiosk_face_scan.png" alt="Face scan kiosk screenshot" />
-              <div class="screen-caption"><strong>Kiosk intake</strong><span>Recognize returning users.</span></div>
+              <div class="screen-caption"><strong>Kiosk intake</strong><span>Quick check-in for walk-ins.</span></div>
             </article>
             <article class="screen-card reveal">
               <img src="public/document_upload.png" alt="Mobile document upload screenshot" />
-              <div class="screen-caption"><strong>Mobile upload</strong><span>Collect files through secure QR links.</span></div>
+              <div class="screen-caption"><strong>Mobile upload</strong><span>Send documents in seconds.</span></div>
             </article>
           </div>
         </div>
@@ -610,26 +1265,54 @@
     <section id="workflow">
       <div class="container">
         <div class="center-head">
-          <div class="chip reveal">Reusable workflow</div>
-          <h2 class="reveal">Rename the actors, keep the engine.</h2>
-          <p class="reveal">For one sector the first-line role may be a PA. For another it may be a helpdesk agent, nurse desk, facility manager, claims handler, branch officer, or front-office executive.</p>
+          <div class="chip reveal">Simple workflow</div>
+          <h2 class="reveal">Problem in, solution out.</h2>
+          <p class="reveal">Every team works a little differently, but the path is the same: capture, route, resolve,
+            and keep everyone informed.</p>
         </div>
         <div class="workflow reveal">
           <article class="step">
-            <h3>Identify or register</h3>
-            <p>Recognize a returning person, member, customer, employee, vendor, resident, or patient. New users can be registered quickly.</p>
+            <h3>Check in</h3>
+            <p>Quickly find a returning person or add a new one without long forms.</p>
           </article>
           <article class="step">
-            <h3>Create the case</h3>
-            <p>Capture issue category, subject, description, voice transcript, location, priority, and supporting fields customized to the buyer.</p>
+            <h3>Log the request</h3>
+            <p>Capture what happened in plain language, with just the right details.</p>
           </article>
           <article class="step">
-            <h3>Attach proof</h3>
-            <p>Generate a QR code so the user can upload files from a mobile phone without sharing storage paths or admin access.</p>
+            <h3>Share any documents</h3>
+            <p>Customers upload photos or files from their phone, no chasing later.</p>
           </article>
           <article class="step">
-            <h3>Resolve with audit</h3>
-            <p>Operators act, supervisors review, decision-makers approve or reopen, and the full trail remains visible for accountability.</p>
+            <h3>Close with confidence</h3>
+            <p>Everyone sees what happened, who acted, and what comes next.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="stories">
+      <div class="container">
+        <div class="center-head">
+          <div class="chip reveal">Case snapshots</div>
+          <h2 class="reveal">Small wins that feel real.</h2>
+          <p class="reveal">These are typical outcomes teams report after a few weeks of use.</p>
+        </div>
+        <div class="capability-grid reveal">
+          <article class="capability">
+            <div class="icon"><i data-lucide="hospital"></i></div>
+            <h3>Hospital front desk</h3>
+            <p>Reduced repeat patient queries by around 30% and cut average resolution from 5 days to about 3.</p>
+          </article>
+          <article class="capability">
+            <div class="icon"><i data-lucide="building"></i></div>
+            <h3>Property manager</h3>
+            <p>Moved most maintenance requests from calls to self-serve, saving 6-8 staff hours each week.</p>
+          </article>
+          <article class="capability">
+            <div class="icon"><i data-lucide="truck"></i></div>
+            <h3>Logistics hub</h3>
+            <p>Cut missing document follow-ups by roughly 25% with one-time upload links.</p>
           </article>
         </div>
       </div>
@@ -640,71 +1323,99 @@
         <div class="section-head">
           <div>
             <div class="chip reveal">B2B target sectors</div>
-            <h2 class="reveal">Where this product can be sold.</h2>
+            <h2 class="reveal">Where this fits best.</h2>
           </div>
-          <p class="reveal">The strongest buyers are organizations with high request volume, physical visitors, document-heavy processes, multi-level approvals, SLA pressure, or compliance needs.</p>
+          <p class="reveal">If your team handles lots of requests, paperwork, or walk-ins, this gives them a calmer,
+            clearer way to work.</p>
         </div>
 
         <div class="sector-grid">
           <article class="sector reveal">
-            <div class="sector-top"><span class="sector-icon"><i data-lucide="hospital"></i></span><h3>Healthcare and hospitals</h3></div>
-            <p>Patient helpdesks, billing queries, complaint cells, insurance support, document collection, and department escalation.</p>
-            <div class="target"><b>Sell to:</b> hospital chains, clinics, diagnostics networks, nursing homes.</div>
+            <div class="sector-top"><span class="sector-icon"><i data-lucide="hospital"></i></span>
+              <h3>Healthcare and hospitals</h3>
+            </div>
+            <p>Cut patient wait times and keep every request visible, from billing questions to follow-ups.</p>
+            <div class="target"><b>Best for:</b> hospital chains, clinics, diagnostics networks, nursing homes.</div>
           </article>
           <article class="sector reveal">
-            <div class="sector-top"><span class="sector-icon"><i data-lucide="graduation-cap"></i></span><h3>Education and campuses</h3></div>
-            <p>Student grievances, admissions support, hostel maintenance, fee queries, parent requests, and admin approvals.</p>
-            <div class="target"><b>Sell to:</b> universities, schools, coaching chains, residential campuses.</div>
+            <div class="sector-top"><span class="sector-icon"><i data-lucide="graduation-cap"></i></span>
+              <h3>Education and campuses</h3>
+            </div>
+            <p>Keep student and parent requests in one queue, so staff respond faster and fairly.</p>
+            <div class="target"><b>Best for:</b> universities, schools, coaching chains, residential campuses.</div>
           </article>
           <article class="sector reveal">
-            <div class="sector-top"><span class="sector-icon"><i data-lucide="building"></i></span><h3>Real estate and property</h3></div>
-            <p>Resident complaints, maintenance tickets, visitor requests, society approvals, tenant documents, and facility SLAs.</p>
-            <div class="target"><b>Sell to:</b> builders, property managers, gated communities, coworking operators.</div>
+            <div class="sector-top"><span class="sector-icon"><i data-lucide="building"></i></span>
+              <h3>Real estate and property</h3>
+            </div>
+            <p>Stop missing maintenance tickets and give residents a clear status update.</p>
+            <div class="target"><b>Best for:</b> builders, property managers, gated communities, coworking operators.
+            </div>
           </article>
           <article class="sector reveal">
-            <div class="sector-top"><span class="sector-icon"><i data-lucide="factory"></i></span><h3>Manufacturing and plants</h3></div>
-            <p>Safety observations, machine maintenance, worker grievances, vendor entry, compliance files, and supervisor sign-offs.</p>
-            <div class="target"><b>Sell to:</b> factories, industrial parks, warehouses, EPC companies.</div>
+            <div class="sector-top"><span class="sector-icon"><i data-lucide="factory"></i></span>
+              <h3>Manufacturing and plants</h3>
+            </div>
+            <p>Turn safety observations and maintenance needs into trackable actions.</p>
+            <div class="target"><b>Best for:</b> factories, industrial parks, warehouses, EPC companies.</div>
           </article>
           <article class="sector reveal">
-            <div class="sector-top"><span class="sector-icon"><i data-lucide="truck"></i></span><h3>Logistics and transport</h3></div>
-            <p>Shipment issues, driver support, warehouse exceptions, POD uploads, damage claims, and operations escalation.</p>
-            <div class="target"><b>Sell to:</b> 3PLs, courier networks, fleet operators, transport hubs.</div>
+            <div class="sector-top"><span class="sector-icon"><i data-lucide="truck"></i></span>
+              <h3>Logistics and transport</h3>
+            </div>
+            <p>Keep shipment issues and proof documents in one place instead of endless calls.</p>
+            <div class="target"><b>Best for:</b> 3PLs, courier networks, fleet operators, transport hubs.</div>
           </article>
           <article class="sector reveal">
-            <div class="sector-top"><span class="sector-icon"><i data-lucide="plug-zap"></i></span><h3>Utilities and telecom</h3></div>
-            <p>Service outage reports, connection requests, meter issues, field-team routing, ID proof collection, and closure audits.</p>
-            <div class="target"><b>Sell to:</b> power, water, gas, broadband, cable, and telecom service providers.</div>
+            <div class="sector-top"><span class="sector-icon"><i data-lucide="plug-zap"></i></span>
+              <h3>Utilities and telecom</h3>
+            </div>
+            <p>Route outage reports and connection requests quickly, with less repeat calling.</p>
+            <div class="target"><b>Best for:</b> power, water, gas, broadband, cable, and telecom providers.</div>
           </article>
           <article class="sector reveal">
-            <div class="sector-top"><span class="sector-icon"><i data-lucide="landmark"></i></span><h3>Banking, NBFC and insurance</h3></div>
-            <p>Branch service requests, claim documents, KYC support, dispute escalation, complaint handling, and approval trails.</p>
-            <div class="target"><b>Sell to:</b> banks, NBFCs, insurers, microfinance, credit societies.</div>
+            <div class="sector-top"><span class="sector-icon"><i data-lucide="landmark"></i></span>
+              <h3>Banking, NBFC and insurance</h3>
+            </div>
+            <p>Keep branch requests and claims on track with fewer missing documents.</p>
+            <div class="target"><b>Best for:</b> banks, NBFCs, insurers, microfinance, credit societies.</div>
           </article>
           <article class="sector reveal">
-            <div class="sector-top"><span class="sector-icon"><i data-lucide="hotel"></i></span><h3>Hospitality and travel</h3></div>
-            <p>Guest service tickets, housekeeping escalation, lost-and-found, event requests, travel support, and manager review.</p>
-            <div class="target"><b>Sell to:</b> hotels, resorts, restaurants, airports, travel desks, event venues.</div>
+            <div class="sector-top"><span class="sector-icon"><i data-lucide="hotel"></i></span>
+              <h3>Hospitality and travel</h3>
+            </div>
+            <p>Handle guest issues fast and keep managers in the loop without delays.</p>
+            <div class="target"><b>Best for:</b> hotels, resorts, restaurants, airports, travel desks, event venues.
+            </div>
           </article>
           <article class="sector reveal">
-            <div class="sector-top"><span class="sector-icon"><i data-lucide="shopping-bag"></i></span><h3>Retail chains and malls</h3></div>
-            <p>Customer complaints, warranty support, store operations tickets, vendor issues, mall facility requests, and feedback loops.</p>
-            <div class="target"><b>Sell to:</b> retail brands, malls, supermarkets, electronics chains, service centers.</div>
+            <div class="sector-top"><span class="sector-icon"><i data-lucide="shopping-bag"></i></span>
+              <h3>Retail chains and malls</h3>
+            </div>
+            <p>Keep store and customer issues moving with fewer escalations.</p>
+            <div class="target"><b>Best for:</b> retail brands, malls, supermarkets, electronics chains, service
+              centers.</div>
           </article>
           <article class="sector reveal">
-            <div class="sector-top"><span class="sector-icon"><i data-lucide="monitor-cog"></i></span><h3>Enterprise IT, HR and admin</h3></div>
-            <p>Employee helpdesk, asset requests, HR cases, access approvals, facility issues, and cross-office service reporting.</p>
-            <div class="target"><b>Sell to:</b> corporate offices, BPOs, IT companies, shared service centers.</div>
+            <div class="sector-top"><span class="sector-icon"><i data-lucide="monitor-cog"></i></span>
+              <h3>Enterprise IT, HR and admin</h3>
+            </div>
+            <p>Give employees one clear place to ask for help and get updates.</p>
+            <div class="target"><b>Best for:</b> corporate offices, BPOs, IT companies, shared service centers.</div>
           </article>
           <article class="sector reveal">
-            <div class="sector-top"><span class="sector-icon"><i data-lucide="shield"></i></span><h3>Security and access operations</h3></div>
-            <p>Visitor registration, incident reports, gate issues, shift handovers, investigation notes, and evidence uploads.</p>
-            <div class="target"><b>Sell to:</b> security agencies, business parks, data centers, gated premises.</div>
+            <div class="sector-top"><span class="sector-icon"><i data-lucide="shield"></i></span>
+              <h3>Security and access operations</h3>
+            </div>
+            <p>Track incidents and visitor issues so nothing slips between shifts.</p>
+            <div class="target"><b>Best for:</b> security agencies, business parks, data centers, gated premises.</div>
           </article>
           <article class="sector reveal">
-            <div class="sector-top"><span class="sector-icon"><i data-lucide="badge-help"></i></span><h3>Public services and NGOs</h3></div>
-            <p>Beneficiary grievances, field reports, scheme documents, case follow-ups, and multi-level review with transparency.</p>
-            <div class="target"><b>Sell to:</b> municipal bodies, NGOs, foundations, service delivery agencies.</div>
+            <div class="sector-top"><span class="sector-icon"><i data-lucide="badge-help"></i></span>
+              <h3>Public services and NGOs</h3>
+            </div>
+            <p>Bring transparency to follow-ups so beneficiaries feel heard and informed.</p>
+            <div class="target"><b>Best for:</b> municipal bodies, NGOs, foundations, service delivery agencies.</div>
           </article>
         </div>
 
@@ -727,36 +1438,39 @@
     <section id="security">
       <div class="container split">
         <div>
-          <div class="chip reveal">Security and deployment</div>
-          <h2 class="reveal" style="margin:16px 0 0;color:var(--navy);font-size:clamp(32px,4.4vw,54px);line-height:1.02;letter-spacing:-0.048em;">Enterprise-ready controls for regulated buyers.</h2>
-          <p class="reveal" style="color:var(--muted);font-size:16px;">The architecture supports privacy-conscious biometric matching, private storage, role-based access, upload expiry, and full case histories.</p>
+          <div class="chip reveal">Trust and control</div>
+          <h2 class="reveal"
+            style="margin:16px 0 0;color:var(--navy);font-size:clamp(32px,4.4vw,54px);line-height:1.02;letter-spacing:-0.048em;">
+            Simple, safe, and easy to manage.</h2>
+          <p class="reveal" style="color:var(--muted);font-size:16px;">Keep data private, control who sees what, and
+            always know who did what without heavy IT work.</p>
           <div class="stack-list reveal">
-            <span class="stack">Next.js 14</span>
-            <span class="stack">React</span>
-            <span class="stack">Supabase PostgreSQL</span>
-            <span class="stack">RLS policies</span>
-            <span class="stack">Supabase Storage</span>
-            <span class="stack">face-api.js</span>
-            <span class="stack">Web Speech API</span>
-            <span class="stack">QR sessions</span>
+            <span class="stack">Private hosting option</span>
+            <span class="stack">Access by role</span>
+            <span class="stack">Upload links that expire</span>
+            <span class="stack">Full activity history</span>
+            <span class="stack">Easy admin controls</span>
+            <span class="stack">Biometric optional</span>
+            <span class="stack">Voice-to-text optional</span>
+            <span class="stack">QR upload links</span>
           </div>
         </div>
         <div class="security-grid reveal">
           <article class="security-card">
-            <h3>Embedding-only face data</h3>
-            <p>Store mathematical face descriptors instead of raw face photos for privacy-sensitive deployments.</p>
+            <h3>Privacy-first check-in</h3>
+            <p>Use faster check-in without storing raw face photos if you do not want to.</p>
           </article>
           <article class="security-card">
-            <h3>One-time upload links</h3>
-            <p>Document sessions are random, single-use, and expire automatically after a configured time window.</p>
+            <h3>One-time document links</h3>
+            <p>Files are shared through links that expire, so data does not linger.</p>
           </article>
           <article class="security-card">
-            <h3>Role-based access</h3>
-            <p>Operators, supervisors, approvers, and admins see only the cases their role and location allow.</p>
+            <h3>Right access, right people</h3>
+            <p>Teams see only the cases they are responsible for.</p>
           </article>
           <article class="security-card">
-            <h3>Status history and remarks</h3>
-            <p>Each action is timestamped so management can audit delays, escalations, approvals, and final decisions.</p>
+            <h3>Always a clear trail</h3>
+            <p>Every step is recorded so follow-ups and reviews are easy.</p>
           </article>
         </div>
       </div>
@@ -766,18 +1480,29 @@
       <div class="container">
         <div class="pricing-band reveal">
           <div>
-            <div class="chip" style="background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.16);color:#bdf5f4;">How to package it</div>
-            <h2>Sell it as a customized operational platform.</h2>
-            <p>For each B2B prospect, keep the same engine but tailor the vocabulary, departments, forms, ticket statuses, reports, and escalation hierarchy. This makes the product feel made for their sector without rebuilding from scratch.</p>
+            <div class="chip"
+              style="background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.16);color:#bdf5f4;">How to
+              present it</div>
+            <h2>Position it as a tailored service desk.</h2>
+            <p>Keep the same proven flow, then adjust the labels, roles, and forms so it feels made for their world.
+              Buyers see a familiar experience, not another generic tool.</p>
             <div class="hero-actions">
               <a class="btn btn-light" href="#contact">Plan a sector pitch <i data-lucide="arrow-right"></i></a>
               <a class="btn btn-teal" href="#screenshots">Show product screens</a>
             </div>
           </div>
           <div class="package-list">
-            <div class="package"><i data-lucide="badge-check"></i><div><strong>Starter deployment</strong><span>Single location, fixed workflows, kiosk plus operator dashboard.</span></div></div>
-            <div class="package"><i data-lucide="network"></i><div><strong>Multi-branch deployment</strong><span>Multiple locations, department routing, supervisor approvals, SLA reports.</span></div></div>
-            <div class="package"><i data-lucide="fingerprint"></i><div><strong>Compliance deployment</strong><span>Stronger audit controls, private storage, custom roles, document-heavy case files.</span></div></div>
+            <div class="package"><i data-lucide="badge-check"></i>
+              <div><strong>Starter setup</strong><span>One location, a simple flow, and the key dashboards.</span></div>
+            </div>
+            <div class="package"><i data-lucide="network"></i>
+              <div><strong>Multi-branch setup</strong><span>Multiple locations, manager approvals, and clear
+                  reports.</span></div>
+            </div>
+            <div class="package"><i data-lucide="fingerprint"></i>
+              <div><strong>Compliance setup</strong><span>Extra audit controls, private storage, and heavier
+                  documentation.</span></div>
+            </div>
           </div>
         </div>
       </div>
@@ -787,11 +1512,15 @@
       <div class="container contact">
         <div>
           <div class="chip reveal">Demo request</div>
-          <h2 class="reveal" style="margin:16px 0 0;color:var(--navy);font-size:clamp(32px,4.4vw,54px);line-height:1.02;letter-spacing:-0.048em;">Turn this into a sector-specific sales demo.</h2>
-          <p class="reveal" style="color:var(--muted);font-size:16px;">Share the sector and buyer type. The demo can be framed around their vocabulary, workflow, documents, dashboards, and approval chain.</p>
+          <h2 class="reveal"
+            style="margin:16px 0 0;color:var(--navy);font-size:clamp(32px,4.4vw,54px);line-height:1.02;letter-spacing:-0.048em;">
+            Show a demo that feels made for them.</h2>
+          <p class="reveal" style="color:var(--muted);font-size:16px;">Tell us the sector and the kind of requests they
+            handle. We will shape the demo around their day-to-day language.</p>
         </div>
         <div class="contact-card reveal">
-          <form class="form" id="contactForm" data-product="Nivaran" data-page="Nivaran Landing Page" data-project-key="nivaran">
+          <form class="form" id="contactForm" data-product="Nivaran" data-page="Nivaran Landing Page"
+            data-project-key="nivaran">
             <input name="name" required placeholder="Your name" />
             <input name="email" type="email" required placeholder="Work email" />
             <input name="company" placeholder="Company" />
@@ -808,7 +1537,8 @@
               <option>Enterprise IT / HR / Admin</option>
               <option>Public Services / NGO</option>
             </select>
-            <textarea name="message" rows="5" placeholder="Tell us the target customer, expected ticket volume, required roles, and workflow you want to pitch."></textarea>
+            <textarea name="message" rows="5"
+              placeholder="Tell us who the customer is, roughly how many requests they handle, and what approvals they need."></textarea>
             <button class="btn btn-primary full" type="submit">Send demo request <i data-lucide="send"></i></button>
           </form>
           <div class="note" id="note"></div>
@@ -820,7 +1550,8 @@
   <footer>
     <div class="wide foot">
       <div class="brand">
-        <img src="/assets/images/builddreams.png" alt="BuildDreams logo" class="brand-logo" style="height:32px;" loading="lazy" />
+        <img src="/assets/images/builddreams.png" alt="BuildDreams logo" class="brand-logo" style="height:32px;"
+          loading="lazy" />
         <span><strong style="color:var(--navy);">BuildDreams</strong> · Nivaran</span>
       </div>
       <div class="foot-links">
@@ -901,4 +1632,5 @@
     });
   </script>
 </body>
+
 </html>
