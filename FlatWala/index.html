@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FlatWala — BuildDreams</title>
+    <meta name="description"
+        content="FlatWala by BuildDreams is a ready-to-deploy, white-label real estate platform with Buyer, Seller, and Admin portals that can be branded and sold as your own property marketplace." />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+
+    <style>
+        :root {
+            --navy: #021346;
+            --teal: #009599;
+            --ink: #0b1020;
+            --line: rgba(2, 19, 70, 0.08);
+            --muted: #5a6472;
+            --paper: #fbfcfc;
+        }
+
+        * {
+            -webkit-font-smoothing: antialiased;
+        }
+
+        html,
+        body {
+            background: var(--paper);
+            color: var(--ink);
+            font-family: 'Inter', system-ui, sans-serif;
+        }
+
+        .font-display {
+            font-family: 'Instrument Serif', serif;
+        }
+
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .bg-navy {
+            background: var(--navy);
+        }
+
+        .text-navy {
+            color: var(--navy);
+        }
+
+        .text-teal {
+            color: var(--teal);
+        }
+
+        .border-line {
+            border-color: var(--line);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: .55rem;
+            padding: .85rem 1.4rem;
+            border-radius: 999px;
+            font-weight: 500;
+            font-size: .925rem;
+            transition: transform .3s ease, background-color .3s ease, color .3s ease, border-color .3s ease;
+        }
+
+        .btn-primary {
+            background: var(--navy);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: #041a5c;
+            transform: translateY(-1px);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--navy);
+            border: 1px solid var(--line);
+        }
+
+        .btn-ghost:hover {
+            border-color: var(--navy);
+        }
+
+        .btn-teal {
+            background: var(--teal);
+            color: #fff;
+        }
+
+        .btn-teal:hover {
+            background: #00a7ab;
+            transform: translateY(-1px);
+        }
+
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            padding: .35rem .7rem;
+            border-radius: 999px;
+            font-size: .72rem;
+            border: 1px solid var(--line);
+            color: rgba(2, 19, 70, .72);
+            letter-spacing: .04em;
+        }
+
+        .hero-card {
+            border-radius: 18px;
+            border: 1px solid var(--line);
+            box-shadow: 0 30px 60px -24px rgba(2, 19, 70, .18);
+            background: #fff;
+            overflow: hidden;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+        }
+
+        .cursor-dot {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 10px;
+            height: 10px;
+            border-radius: 999px;
+            background: var(--teal);
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transition: transform .15s ease, width .2s ease, height .2s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        .cursor-ring {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 38px;
+            height: 38px;
+            border-radius: 999px;
+            border: 1px solid rgba(2, 19, 70, .35);
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: width .25s ease, height .25s ease, border-color .25s ease;
+        }
+
+        .nav-solid {
+            background: rgba(255, 255, 255, .82);
+            backdrop-filter: saturate(160%) blur(14px);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .scan-stage {
+            position: relative;
+            min-height: 320px;
+            background:
+                radial-gradient(circle at 18% 18%, rgba(0, 149, 153, .18), transparent 30%),
+                linear-gradient(135deg, #071a50 0%, #112867 54%, #03213f 100%);
+            overflow: hidden;
+        }
+
+        .scan-stage::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent 0%, rgba(79, 255, 246, .06) 48%, rgba(79, 255, 246, .18) 50%, rgba(79, 255, 246, .06) 52%, transparent 100%);
+            transform: translateX(-100%);
+            animation: scanSweepX 5.6s linear infinite;
+            opacity: .5;
+        }
+
+        .scan-stage::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, .08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, .08) 1px, transparent 1px);
+            background-size: 34px 34px;
+            opacity: .45;
+        }
+
+        .part-object {
+            position: absolute;
+            left: 50%;
+            top: 53%;
+            width: 220px;
+            height: 138px;
+            border-radius: 22px 22px 42px 42px;
+            transform: translate(-50%, -50%) rotate(-6deg);
+            background: linear-gradient(180deg, #e7eceb, #98a7a7);
+            box-shadow: inset 0 -20px 0 rgba(2, 19, 70, .16), 0 32px 50px rgba(0, 0, 0, .28);
+            animation: objectFloat 5.6s ease-in-out infinite;
+        }
+
+        .part-object::before,
+        .part-object::after {
+            content: "";
+            position: absolute;
+            border-radius: 999px;
+            background: #f9fbfb;
+            box-shadow: inset 0 0 0 11px #617782;
+        }
+
+        .part-object::before {
+            width: 62px;
+            height: 62px;
+            left: 34px;
+            top: 38px;
+        }
+
+        .part-object::after {
+            width: 44px;
+            height: 44px;
+            right: 38px;
+            top: 48px;
+        }
+
+        .scan-box {
+            position: absolute;
+            inset: 58px 72px 58px 72px;
+            border: 2px solid #4ffff6;
+            border-radius: 16px;
+            box-shadow: 0 0 28px rgba(79, 255, 246, .28);
+            animation: boxPulse 2.8s ease-in-out infinite;
+        }
+
+        .scan-line {
+            position: absolute;
+            left: 72px;
+            right: 72px;
+            top: 24%;
+            height: 2px;
+            background: #4ffff6;
+            box-shadow: 0 0 20px rgba(79, 255, 246, .8);
+            animation: scanSweepY 2.8s ease-in-out infinite;
+        }
+
+        .data-pill {
+            position: absolute;
+            left: 24px;
+            bottom: 24px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, .94);
+            color: var(--navy);
+            padding: 9px 13px;
+            font-size: 12px;
+            font-weight: 700;
+            z-index: 2;
+            box-shadow: 0 18px 36px rgba(2, 19, 70, .2);
+        }
+
+        .data-pill .pill-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background: var(--teal);
+            flex: 0 0 auto;
+        }
+
+        .sim-badges {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 8px;
+            z-index: 2;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            max-width: calc(100% - 40px);
+        }
+
+        .sim-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 8px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, .12);
+            color: rgba(255, 255, 255, .72);
+            background: rgba(255, 255, 255, .06);
+            backdrop-filter: blur(8px);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .04em;
+            transition: background-color .35s ease, color .35s ease, border-color .35s ease, transform .35s ease;
+        }
+
+        .sim-badge::before {
+            content: "";
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, .32);
+            transition: background-color .35s ease, box-shadow .35s ease;
+        }
+
+        .sim-badge.active {
+            color: #fff;
+            background: rgba(79, 255, 246, .14);
+            border-color: rgba(79, 255, 246, .38);
+            transform: translateY(-1px);
+        }
+
+        .sim-badge.active::before {
+            background: #4ffff6;
+            box-shadow: 0 0 0 6px rgba(79, 255, 246, .14);
+        }
+
+        .detect-point {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-radius: 999px;
+            background: #4ffff6;
+            box-shadow: 0 0 0 8px rgba(79, 255, 246, .14), 0 0 20px rgba(79, 255, 246, .5);
+            opacity: 0;
+            z-index: 2;
+            transition: opacity .4s ease;
+        }
+
+        .detect-point.one {
+            left: 34%;
+            top: 54%;
+        }
+
+        .detect-point.two {
+            left: 57%;
+            top: 46%;
+        }
+
+        .detect-point.three {
+            left: 63%;
+            top: 59%;
+        }
+
+        .detect-point.four {
+            left: 43%;
+            top: 39%;
+        }
+
+        .scan-stage.phase-detect .detect-point,
+        .scan-stage.phase-match .detect-point {
+            opacity: 1;
+            animation: pointBlink 1.4s ease-in-out infinite;
+        }
+
+        .trace-line {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, rgba(79, 255, 246, 0), rgba(79, 255, 246, .88), rgba(79, 255, 246, 0));
+            transform-origin: left center;
+            opacity: 0;
+            z-index: 1;
+            transition: opacity .35s ease;
+        }
+
+        .trace-line.a {
+            left: 35%;
+            top: 56%;
+            width: 112px;
+            transform: rotate(-18deg);
+        }
+
+        .trace-line.b {
+            left: 43%;
+            top: 42%;
+            width: 132px;
+            transform: rotate(11deg);
+        }
+
+        .scan-stage.phase-match .trace-line {
+            opacity: 1;
+            animation: tracePulse 1.8s ease-in-out infinite;
+        }
+
+        .sim-caption {
+            position: absolute;
+            right: 24px;
+            bottom: 24px;
+            z-index: 2;
+            min-width: 200px;
+            padding: 12px 14px;
+            border-radius: 14px;
+            background: rgba(3, 16, 54, .72);
+            border: 1px solid rgba(79, 255, 246, .16);
+            color: rgba(255, 255, 255, .88);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, .22);
+        }
+
+        .sim-caption-label {
+            font-size: 10px;
+            letter-spacing: .1em;
+            color: rgba(159, 242, 245, .9);
+        }
+
+        .sim-caption-text {
+            margin-top: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 1.35;
+        }
+
+        .sim-live {
+            transition: opacity 0.3s ease, transform .25s ease;
+
+        }
+
+        .sim-live.is-updating {
+            opacity: .45;
+            transform: translateY(3px);
+        }
+
+        .mock-row {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 12px;
+            align-items: center;
+            padding: 14px;
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            background: #fff;
+        }
+
+        .sector-card,
+        .feature-card,
+        .screen-card {
+            transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+        }
+
+        .sector-card:hover,
+        .feature-card:hover,
+        .screen-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(0, 149, 153, .24);
+            box-shadow: 0 24px 52px -34px rgba(2, 19, 70, .55);
+        }
+
+        @keyframes scanSweepY {
+
+            0%,
+            12% {
+                top: 22%;
+                opacity: 0;
+            }
+
+            20%,
+            72% {
+                opacity: 1;
+            }
+
+            88%,
+            100% {
+                top: 76%;
+                opacity: 0;
+            }
+        }
+
+        @keyframes scanSweepX {
+
+            0%,
+            18% {
+                transform: translateX(-100%);
+            }
+
+            42%,
+            78% {
+                transform: translateX(0%);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        @keyframes objectFloat {
+
+            0%,
+            100% {
+                transform: translate(-50%, -50%) rotate(-6deg);
+            }
+
+            50% {
+                transform: translate(-50%, -52%) rotate(-3deg);
+            }
+        }
+
+        @keyframes boxPulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 28px rgba(79, 255, 246, .22);
+            }
+
+            50% {
+                box-shadow: 0 0 36px rgba(79, 255, 246, .4);
+            }
+        }
+
+        @keyframes pointBlink {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: .72;
+            }
+
+            50% {
+                transform: scale(1.12);
+                opacity: 1;
+            }
+        }
+
+        @keyframes tracePulse {
+
+            0%,
+            100% {
+                opacity: .28;
+            }
+
+            50% {
+                opacity: .88;
+            }
+        }
+
+        html.lenis {
+            height: auto;
+        }
+
+        html.lenis body {
+            overflow: hidden;
+        }
+
+        .lenis.lenis-smooth [data-lenis-prevent] {
+            overscroll-behavior: contain;
+        }
+
+        @media (max-width: 900px) {
+
+            .cursor-dot,
+            .cursor-ring {
+                display: none;
+            }
+        }
+
+        html,
+        body {
+            overflow-x: hidden;
+        }
+
+        @media (max-width: 768px) {
+            .btn {
+                white-space: normal;
+                text-align: center;
+                justify-content: center;
+            }
+
+            .hero-card {
+                border-radius: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body class="relative">
+
+    <div class="cursor-ring" id="cursorRing"></div>
+    <div class="cursor-dot" id="cursorDot"></div>
+
+    <!-- NAV -->
+    <header id="nav" class="fixed top-0 inset-x-0 z-50 transition-all bg-transparent">
+        <div class="max-w-[1320px] mx-auto px-6 lg:px-10 h-[75px] flex items-center justify-between">
+            <a href="/FlatWala/index.html" class="flex items-center" data-testid="nav-logo">
+                <img src="./assets/flat-wala-logo.png" alt="BuildDreams logo" class="h-10 w-auto" loading="eager" />
+                <span class="hidden sm:inline-flex ml-3 font-mono text-[11px] text-navy/50">/ FLATWALA
+                    Platform</span>
+            </a>
+            <nav class="hidden lg:flex items-center gap-7 text-[14px] text-navy/80">
+                <a href="#features" class="hover:text-navy transition">Why FlatWala</a>
+                <a href="#suite" class="hover:text-navy transition">Platform Suite</a>
+                <a href="#workflow" class="hover:text-navy transition">Go-live Plan</a>
+                <a href="#customization" class="hover:text-navy transition">White-label</a>
+                <a href="#contact" class="hover:text-navy transition">Contact</a>
+            </nav>
+            <div class="flex items-center gap-3">
+                <a href="#demo" class="btn btn-primary">Book a demo</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-[88px]">
+        <!-- HERO -->
+        <section class="relative py-20">
+            <div class="max-w-[1320px] mx-auto px-6 lg:px-10 grid md:grid-cols-2 gap-10 items-center">
+                <div class="order-2 md:order-1">
+                    <div class="hero-card reveal">
+                        <div class="bg-gradient-to-br from-[#1E3A8A] via-[#3B82F6] to-[#8B5CF6] p-6 relative"
+                            id="simStage">
+
+                            <!-- Top Label -->
+                            <div class="flex justify-between items-center text-white/80 text-[12px] font-mono">
+                                <span>FLATWALA PLATFORM</span>
+                                <span class="px-2 py-1 rounded-full bg-white/10">LIVE</span>
+                            </div>
+
+                            <!-- Main Content -->
+                            <div class="mt-6 grid grid-cols-3 gap-4">
+
+                                <!-- Buyer -->
+                                <div class="bg-white/10 backdrop-blur rounded-xl p-4 text-white">
+                                    <div class="text-[11px] opacity-70">BUYER</div>
+                                    <div class="mt-1 font-semibold">Discover Homes</div>
+                                    <div class="mt-3 text-[12px] opacity-80">• Map Search</div>
+                                    <div class="text-[12px] opacity-80">• Smart Filters</div>
+                                    <div class="text-[12px] opacity-80">• Save Properties</div>
+                                </div>
+
+                                <!-- Seller -->
+                                <div class="bg-white/10 backdrop-blur rounded-xl p-4 text-white">
+                                    <div class="text-[11px] opacity-70">SELLER</div>
+                                    <div class="mt-1 font-semibold">List & Manage</div>
+                                    <div class="mt-3 text-[12px] opacity-80">• Add Listings</div>
+                                    <div class="text-[12px] opacity-80">• Manage Enquiries</div>
+                                    <div class="text-[12px] opacity-80">• Track Performance</div>
+                                </div>
+
+                                <!-- Admin -->
+                                <div class="bg-white/10 backdrop-blur rounded-xl p-4 text-white">
+                                    <div class="text-[11px] opacity-70">ADMIN</div>
+                                    <div class="mt-1 font-semibold">Platform Control</div>
+                                    <div class="mt-3 text-[12px] opacity-80">• Approvals</div>
+                                    <div class="text-[12px] opacity-80">• User Management</div>
+                                    <div class="text-[12px] opacity-80">• Analytics</div>
+                                </div>
+                            </div>
+
+                            <div class="mt-6 bg-white text-[#1F2937] rounded-xl p-4 shadow-sm">
+                                <div class="text-[11px] text-gray-500">PLATFORM INSIGHT</div>
+                                <div class="mt-1 font-semibold sim-live" id="simInsight">
+                                    Unified real estate ecosystem connecting buyers, sellers & admins
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="p-5 bg-white grid gap-3">
+                            <div class="mock-row">
+                                <div>
+                                    <div class="font-mono text-[11px] text-navy/45">CURRENT MILESTONE</div>
+                                    <div class="mt-1 text-[16px] font-semibold text-navy sim-live" id="simRecordName">
+                                        Go-to-market blueprint</div>
+                                </div>
+                                <div class="px-3 py-1 rounded-full bg-teal/10 text-teal text-[12px] font-semibold sim-live"
+                                    id="simRecordStatus">Planning</div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-3">
+                                <div class="p-4 rounded-xl border border-line">
+                                    <div class="font-mono text-[11px] text-navy/45">ROLL-OUT SCOPE</div>
+                                    <div class="mt-1 font-semibold text-navy sim-live" id="simPartNo">Scope: defined
+                                    </div>
+                                </div>
+                                <div class="p-4 rounded-xl border border-line">
+                                    <div class="font-mono text-[11px] text-navy/45">ENABLED MODULES</div>
+                                    <div class="mt-1 font-semibold text-navy sim-live" id="simLinkedItems">Modules
+                                        shortlisted</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="order-1 md:order-2 max-w-xl">
+                    <div class="chip reveal">READY PRODUCT · REAL ESTATE PLATFORM</div>
+                    <h1 class="reveal mt-6 text-[40px] md:text-[56px] leading-tight font-medium text-navy">FlatWala Real
+                        Estate Platform</h1>
+                    <p class="reveal mt-3 font-display italic text-[28px] md:text-[34px] leading-tight text-teal">
+                        Launch your own property marketplace in weeks, not months.
+                    </p>
+                    <p class="reveal mt-5 text-[16px] text-[color:var(--muted)] leading-relaxed">FlatWala combines
+                        Buyer, Seller, and Admin workflows into one powerful platform you can deploy, brand, and scale
+                        for real estate businesses, brokers, and marketplaces.</p>
+
+                    <ul class="mt-6 space-y-3 text-[14px] text-navy/80 reveal">
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-teal mt-1"></i>
+                            Three integrated platforms: Buyer, Seller, and Admin with role-based dashboards</li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-teal mt-1"></i>
+                            Map-based property discovery with filters, search, and saved listings</li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-teal mt-1"></i>
+                            Complete admin control with analytics, approvals, and user management</li>
+                    </ul>
+
+                    <div class="mt-8 flex flex-wrap gap-3 reveal">
+                        <a href="#demo" class="btn btn-primary">Request launch plan <i data-lucide="arrow-right"
+                                class="w-4 h-4"></i></a>
+                        <a href="#suite" class="btn btn-ghost">Explore platform suite</a>
+                    </div>
+
+                    <p class="mt-5 text-[13px] text-[color:var(--muted)] reveal">Marketplace-ready product ·
+                        Configurable
+                        deployment · Scalable infrastructure</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURES -->
+        <section id="features" class="py-16 bg-white border-t border-line">
+            <div class="max-w-[1320px] mx-auto px-6 lg:px-10">
+                <div class="max-w-3xl">
+                    <div class="chip reveal">WHY FLATWALA</div>
+                    <h2 class="reveal mt-6 text-[32px] md:text-[44px] font-medium text-navy">Everything needed to run a
+                        real estate platform</h2>
+                    <p class="mt-3 text-[15px] text-[color:var(--muted)] reveal">FlatWala is not a prototype. It is a
+                        production-ready system designed for real estate businesses that want fast deployment and
+                        scalable growth.</p>
+                </div>
+
+                <div class="mt-10 grid md:grid-cols-4 gap-6">
+                    <div class="feature-card reveal p-6 rounded-2xl border border-line bg-white">
+                        <div class="w-10 h-10 rounded-lg bg-teal/15 flex items-center justify-center text-teal"><i
+                                data-lucide="scan-search" class="w-5 h-5"></i></div>
+                        <h3 class="mt-4 text-[18px] font-medium">End-to-End Journey</h3>
+                        <p class="mt-2 text-[14px] text-[color:var(--muted)]">From property listing to buyer discovery
+                            and enquiry handling, the full flow is connected.</p>
+                    </div>
+                    <div class="feature-card reveal p-6 rounded-2xl border border-line bg-white">
+                        <div class="w-10 h-10 rounded-lg bg-navy/10 flex items-center justify-center text-navy"><i
+                                data-lucide="database" class="w-5 h-5"></i></div>
+                        <h3 class="mt-4 text-[18px] font-medium">Operationally Mature</h3>
+                        <p class="mt-2 text-[14px] text-[color:var(--muted)]">Includes dashboards, listing systems,
+                            enquiry flows, and real-time updates.</p>
+                    </div>
+                    <div class="feature-card reveal p-6 rounded-2xl border border-line bg-white">
+                        <div class="w-10 h-10 rounded-lg bg-navy/10 flex items-center justify-center text-navy"><i
+                                data-lucide="layers-3" class="w-5 h-5"></i></div>
+                        <h3 class="mt-4 text-[18px] font-medium">White-Label Friendly</h3>
+                        <p class="mt-2 text-[14px] text-[color:var(--muted)]">Customize branding, domain, workflows, and
+                            experience for your business.</p>
+                    </div>
+                    <div class="feature-card reveal p-6 rounded-2xl border border-line bg-white">
+                        <div class="w-10 h-10 rounded-lg bg-navy/10 flex items-center justify-center text-navy"><i
+                                data-lucide="shield-check" class="w-5 h-5"></i></div>
+                        <h3 class="mt-4 text-[18px] font-medium">Revenue-Ready</h3>
+                        <p class="mt-2 text-[14px] text-[color:var(--muted)]">Built for marketplace monetization,
+                            subscriptions, or broker networks.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SUITE -->
+        <section id="suite" class="py-16">
+            <div class="max-w-[1320px] mx-auto px-6 lg:px-10">
+                <div class="max-w-3xl">
+                    <div class="chip reveal">PLATFORM SUITE</div>
+                    <h3 class="reveal mt-6 text-[28px] md:text-[40px] font-medium text-navy">Three platforms in one
+                        ecosystem</h3>
+                    <p class="mt-3 text-[15px] text-[color:var(--muted)] reveal">Each user gets a dedicated experience
+                        while you manage everything from one unified system.</p>
+                </div>
+
+                <div class="mt-10 grid md:grid-cols-3 gap-6">
+                    <div class="screen-card reveal p-6 rounded-2xl border border-line bg-white">
+                        <img src="assets/buyer-view-map.png" alt="FlatWala buyer portal"
+                            class="h-32 w-auto object-contain" loading="lazy" />
+                        <h4 class="mt-5 text-[20px] font-medium text-navy">Buyer Platform</h4>
+                        <p class="mt-2 text-[14px] text-[color:var(--muted)]">Map-based property discovery with filters,
+                            saved listings, and enquiry system.</p>
+                    </div>
+                    <div class="screen-card reveal p-6 rounded-2xl border border-line bg-white">
+                        <img src="assets/seller-add-property.png" alt="FlatWala seller portal"
+                            class="h-32 w-auto object-contain" loading="lazy" />
+                        <h4 class="mt-5 text-[20px] font-medium text-navy">Seller Platform</h4>
+                        <p class="mt-2 text-[14px] text-[color:var(--muted)]">Add and manage properties, track
+                            enquiries, and monitor listing performance.</p>
+                    </div>
+                    <div class="screen-card reveal p-6 rounded-2xl border border-line bg-white">
+                        <img src="assets/admin-dashboard.png" alt="FlatWala admin portal"
+                            class="h-32 w-auto object-contain" loading="lazy" />
+                        <h4 class="mt-5 text-[20px] font-medium text-navy">Admin Panel</h4>
+                        <p class="mt-2 text-[14px] text-[color:var(--muted)]">Control users, approve listings, manage
+                            data, and monitor platform activity.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WORKFLOW -->
+        <section id="workflow" class="py-16">
+            <div class="max-w-[1320px] mx-auto px-6 lg:px-10">
+                <div class="flex items-end justify-between gap-6 mb-8">
+                    <div class="max-w-3xl">
+                        <div class="chip reveal">GO-LIVE PLAN</div>
+                        <h3 class="reveal mt-3 text-[28px] md:text-[36px] font-medium text-navy">From idea to live real
+                            estate platform</h3>
+                    </div>
+                    <a href="#contact" class="btn btn-ghost hidden md:inline-flex reveal">Request walkthrough</a>
+                </div>
+
+                <div class="reveal grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div class="screen-card p-6 rounded-2xl border border-line bg-white">
+                        <div class="font-mono text-[12px] text-teal">01 · DISCOVER</div>
+                        <h4 class="mt-3 text-[20px] font-medium text-navy">Define your market</h4>
+                        <p class="mt-2 text-[14px] text-[color:var(--muted)]">Define your market, users, and platform
+                            strategy.</p>
+                    </div>
+                    <div class="screen-card p-6 rounded-2xl border border-line bg-white">
+                        <div class="font-mono text-[12px] text-teal">02 · BRAND</div>
+                        <h4 class="mt-3 text-[20px] font-medium text-navy">Apply your logo</h4>
+                        <p class="mt-2 text-[14px] text-[color:var(--muted)]">Apply your logo, colors, domain, and
+                            identity.</p>
+                    </div>
+                    <div class="screen-card p-6 rounded-2xl border border-line bg-white">
+                        <div class="font-mono text-[12px] text-teal">03 · CONFIGURE</div>
+                        <h4 class="mt-3 text-[20px] font-medium text-navy">Enable features</h4>
+                        <p class="mt-2 text-[14px] text-[color:var(--muted)]">Enable features, workflows, and roles.</p>
+                    </div>
+                    <div class="screen-card p-6 rounded-2xl border border-line bg-white">
+                        <div class="font-mono text-[12px] text-teal">04 · LAUNCH</div>
+                        <h4 class="mt-3 text-[20px] font-medium text-navy">Go live</h4>
+                        <p class="mt-2 text-[14px] text-[color:var(--muted)]">Go live with your first users and scale.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MARKET FIT -->
+        <section id="sectors" class="py-16 bg-white border-t border-line">
+            <div class="max-w-[1320px] mx-auto px-6 lg:px-10">
+                <div class="chip reveal">MARKET FIT</div>
+                <h3 class="reveal mt-6 text-[28px] md:text-[42px] font-medium text-navy">Who should use FlatWala</h3>
+                <p class="mt-3 max-w-3xl text-[15px] text-[color:var(--muted)] reveal">FlatWala fits organizations that
+                    want to launch property platforms fast without building from scratch.</p>
+
+                <div class="mt-8 grid md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    <div class="sector-card p-6 rounded-xl border border-line bg-white reveal">
+                        <div class="font-mono text-[12px] text-navy/60">REAL ESTATE STARTUPS</div>
+                        <h4 class="mt-2 text-[19px] font-medium">Launch property platforms fast</h4>
+                        <p class="mt-3 text-[14px] text-navy/70">Get a complete system with Buyer, Seller, and Admin
+                            panels ready to deploy.</p>
+                    </div>
+                    <div class="sector-card p-6 rounded-xl border border-line bg-white reveal">
+                        <div class="font-mono text-[12px] text-navy/60">BROKERS & AGENCIES</div>
+                        <h4 class="mt-2 text-[19px] font-medium">Manage listings and clients digitally</h4>
+                        <p class="mt-3 text-[14px] text-navy/70">Digitally manage properties, track enquiries, and
+                            monitor performance.</p>
+                    </div>
+                    <div class="sector-card p-6 rounded-xl border border-line bg-white reveal">
+                        <div class="font-mono text-[12px] text-navy/60">BUILDERS & DEVELOPERS</div>
+                        <h4 class="mt-2 text-[19px] font-medium">Showcase projects and capture leads</h4>
+                        <p class="mt-3 text-[14px] text-navy/70">Showcase new projects, capture buyer interest, and
+                            convert leads.</p>
+                    </div>
+                    <div class="sector-card p-6 rounded-xl border border-line bg-white reveal">
+                        <div class="font-mono text-[12px] text-navy/60">PROPERTY MARKETPLACES</div>
+                        <h4 class="mt-2 text-[19px] font-medium">Scale multi-city platforms</h4>
+                        <p class="mt-3 text-[14px] text-navy/70">Scale across cities with consistent branding and
+                            centralized management.</p>
+                    </div>
+                    <div class="sector-card p-6 rounded-xl border border-line bg-white reveal">
+                        <div class="font-mono text-[12px] text-navy/60">INVESTORS</div>
+                        <h4 class="mt-2 text-[19px] font-medium">Build real estate SaaS products</h4>
+                        <p class="mt-3 text-[14px] text-navy/70">Build and monetize real estate SaaS products with
+                            proven infrastructure.</p>
+                    </div>
+                    <div class="sector-card p-6 rounded-xl border border-line bg-white reveal">
+                        <div class="font-mono text-[12px] text-navy/60">PROPERT PLATFORMS</div>
+                        <h4 class="mt-2 text-[19px] font-medium">Modernize legacy systems</h4>
+                        <p class="mt-3 text-[14px] text-navy/70">Replace outdated property listing systems with modern,
+                            scalable infrastructure.</p>
+                    </div>
+                    <div class="sector-card p-6 rounded-xl border border-line bg-white reveal">
+                        <div class="font-mono text-[12px] text-navy/60">REAL ESTATE TECH FIRMS</div>
+                        <h4 class="mt-2 text-[19px] font-medium">Accelerate product development</h4>
+                        <p class="mt-3 text-[14px] text-navy/70">Accelerate development of real estate tech products
+                            with proven components.</p>
+                    </div>
+                    <div class="sector-card p-6 rounded-xl border border-line bg-white reveal">
+                        <div class="font-mono text-[12px] text-navy/60">PROPERTY PORTALS</div>
+                        <h4 class="mt-2 text-[19px] font-medium">Enhance existing portals</h4>
+                        <p class="mt-3 text-[14px] text-navy/70">Enhance existing property portals with advanced
+                            features and capabilities.</p>
+                    </div>
+                </div>
+
+                <div class="mt-8 text-center reveal">
+                    <a href="#demo" class="btn btn-teal">Design your go-to-market bundle</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CUSTOMIZATION -->
+        <section id="customization" class="py-16">
+            <div class="max-w-[1320px] mx-auto px-6 lg:px-10 grid lg:grid-cols-[.9fr_1.1fr] gap-8 items-start">
+                <div>
+                    <div class="chip reveal">WHITE-LABEL CONFIGURATION</div>
+                    <h3 class="reveal mt-6 text-[28px] md:text-[42px] font-medium text-navy">Make FlatWala your own
+                        product</h3>
+                    <p class="mt-3 text-[15px] text-[color:var(--muted)] reveal">Use a proven system while customizing
+                        branding, workflows, and monetization for your business.</p>
+                    <ul class="mt-6 space-y-3 text-[14px] text-navy/80 reveal">
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-teal mt-1"></i>
+                            Custom branding (logo, colors, domain)</li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-teal mt-1"></i>
+                            Role-based access (admin, seller, buyer)</li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-teal mt-1"></i>
+                            Flexible pricing and business models</li>
+                    </ul>
+                </div>
+
+                <div class="reveal hero-card p-5">
+                    <div class="grid gap-3">
+                        <div class="mock-row">
+                            <div>
+                                <div class="font-mono text-[11px] text-navy/45">CUSTOM FIELD SET</div>
+                                <div class="mt-1 text-[16px] font-semibold text-navy">Brand kit · Portal names ·
+                                    Property
+                                    modules · Customer workflows</div>
+                            </div>
+                            <i data-lucide="settings-2" class="w-5 h-5 text-teal"></i>
+                        </div>
+                        <div class="mock-row">
+                            <div>
+                                <div class="font-mono text-[11px] text-navy/45">DEPLOYMENT</div>
+                                <div class="mt-1 text-[16px] font-semibold text-navy">Cloud setup · Production hardening
+                                    · Guided onboarding · Launch support</div>
+                            </div>
+                            <i data-lucide="server-cog" class="w-5 h-5 text-teal"></i>
+                        </div>
+                        <div class="mock-row">
+                            <div>
+                                <div class="font-mono text-[11px] text-navy/45">STARTING PILOT</div>
+                                <div class="mt-1 text-[16px] font-semibold text-navy">One customer segment, one launch
+                                    cohort, one measurable success metric</div>
+                            </div>
+                            <i data-lucide="rocket" class="w-5 h-5 text-teal"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SNAPSHOTS -->
+        <section class="py-16 bg-white border-t border-line">
+            <div class="max-w-[1320px] mx-auto px-6 lg:px-10">
+                <div class="chip reveal">PRODUCT SNAPSHOTS</div>
+                <h3 class="reveal mt-6 text-[28px] md:text-[40px] font-medium text-navy">Real product assets from the
+                    current FlatWala stack</h3>
+                <p class="mt-3 max-w-3xl text-[15px] text-[color:var(--muted)] reveal">Use these ready modules as your
+                    commercial foundation, then tailor them per customer without rewriting the product from zero.</p>
+
+                <div class="mt-10 grid md:grid-cols-3 gap-6">
+                    <div class="screen-card reveal rounded-2xl overflow-hidden border border-line bg-white">
+                        <img src="assets/buyer-view-map.png" alt="FlatWala buyer experience visual"
+                            class="w-full h-96 object-contain" loading="lazy" />
+                        <div class="p-5">
+                            <h4 class="text-[18px] font-medium text-navy">Buyer Experience</h4>
+                            <p class="mt-2 text-[14px] text-[color:var(--muted)]">Explore properties visually with
+                                map-based navigation and filters.</p>
+                        </div>
+                    </div>
+                    <div class="screen-card reveal rounded-2xl overflow-hidden border border-line bg-white">
+                        <img src="assets/seller-add-property.png" alt="FlatWala seller dashboard visual"
+                            class="w-full h-96 object-contain" loading="lazy" />
+                        <div class="p-5">
+                            <h4 class="text-[18px] font-medium text-navy">Seller Dashboard</h4>
+                            <p class="mt-2 text-[14px] text-[color:var(--muted)]">Manage listings, track enquiries, and
+                                optimize performance.</p>
+                        </div>
+                    </div>
+                    <div class="screen-card reveal rounded-2xl overflow-hidden border border-line bg-white">
+                        <img src="assets/admin-dashboard.png" alt="FlatWala admin control visual"
+                            class="w-full h-96 object-contain" loading="lazy" />
+                        <div class="p-5">
+                            <h4 class="text-[18px] font-medium text-navy">Admin Control</h4>
+                            <p class="mt-2 text-[14px] text-[color:var(--muted)]">Monitor platform activity and manage
+                                users from a central dashboard.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DEMO CTA -->
+        <section id="demo" class="py-16 bg-navy text-white">
+            <div class="max-w-[1020px] mx-auto px-6 lg:px-10 text-center">
+                <div class="chip inline-flex"
+                    style="background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.08); color:#9ff2f5;">GET A
+                    DEMO</div>
+                <h2 class="mt-6 text-[34px] md:text-[48px] font-medium">Launch your real estate platform with FlatWala
+                </h2>
+                <p class="mt-3 text-[15px] text-white/70">Get a complete system with Buyer, Seller, and Admin panels
+                    ready to deploy.</p>
+                <div class="mt-8">
+                    <a href="#contact" class="btn btn-teal">Request deployment plan</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact" class="py-16 bg-white border-t border-line">
+            <div class="max-w-[900px] mx-auto px-6 lg:px-10">
+                <div class="chip reveal">CONTACT</div>
+                <h3 class="reveal mt-6 text-[28px] font-medium text-navy">Book a demo or ask a question</h3>
+                <p class="mt-2 text-[14px] text-[color:var(--muted)] reveal">Tell us about your real estate idea and
+                    we'll help you plan your platform.</p>
+
+                <form id="contactForm" class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4" onsubmit="return false;"
+                    data-product="flatwala" data-page="Landing Page" data-project-key="flatwala">
+                    <input name="name" required placeholder="Your name" class="p-3 border border-line rounded-md" />
+                    <input name="email" type="email" required placeholder="Work email"
+                        class="p-3 border border-line rounded-md" />
+                    <input name="company" placeholder="Organization" class="p-3 border border-line rounded-md" />
+                    <input name="sector" placeholder="Target market" class="p-3 border border-line rounded-md" />
+                    <textarea name="message" rows="4" placeholder="Tell us how you want to package and sell FlatWala"
+                        class="p-3 border border-line rounded-md md:col-span-2"></textarea>
+                    <div class="md:col-span-2">
+                        <button id="contactSubmit" class="btn btn-primary">Send request</button>
+                        <span id="contactNote" class="ml-3 text-[13px] text-[color:var(--muted)]"></span>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-white border-t border-line py-8 mt-8">
+        <div
+            class="max-w-[1320px] mx-auto px-6 lg:px-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 text-[13px] text-[color:var(--muted)]">
+            <div class="flex items-center gap-3 text-navy">
+                <span class="w-9 h-9 rounded-lg bg-white text-white flex items-center justify-center">
+                    <img src="./assets/flat-wala-favicon.png" alt="BuildDreams logo" class="h-5 w-auto"
+                        loading="lazy" />
+                </span>
+                <span class="font-semibold">FlatWala · Real Estate Platform</span>
+            </div>
+            <div class="flex items-center gap-5">
+                <a href="#features" class="hover:text-teal">Features</a>
+                <a href="#suite" class="hover:text-teal">Suite</a>
+                <a href="#customization" class="hover:text-teal">White-label</a>
+                <a href="#contact" class="hover:text-teal">Contact</a>
+            </div>
+            <div>© 2026 FlatWala</div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        const lenis = new Lenis({ duration: 1.1, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+        function raf(t) {
+            lenis.raf(t);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        gsap.registerPlugin(ScrollTrigger);
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add(t => lenis.raf(t * 1000));
+        gsap.ticker.lagSmoothing(0);
+
+        const dot = document.getElementById('cursorDot');
+        const ring = document.getElementById('cursorRing');
+        let mx = -100, my = -100, rx = -100, ry = -100;
+
+        window.addEventListener('mousemove', e => {
+            mx = e.clientX;
+            my = e.clientY;
+            dot.style.transform = `translate(${mx}px, ${my}px)`;
+        });
+
+        (function tick() {
+            rx += (mx - rx) * 0.16;
+            ry += (my - ry) * 0.16;
+            ring.style.transform = `translate(${rx}px, ${ry}px)`;
+            requestAnimationFrame(tick);
+        })();
+
+        document.querySelectorAll('a,button,summary,.feature-card,.sector-card,.screen-card').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                ring.style.width = '56px';
+                ring.style.height = '56px';
+                ring.style.borderColor = 'rgba(0,149,153,.7)';
+            });
+            el.addEventListener('mouseleave', () => {
+                ring.style.width = '38px';
+                ring.style.height = '38px';
+                ring.style.borderColor = 'rgba(2,19,70,.35)';
+            });
+        });
+
+        ScrollTrigger.create({
+            start: 'top -40',
+            onUpdate: self => {
+                const n = document.getElementById('nav');
+                self.scroll() > 40 ? n.classList.add('nav-solid') : n.classList.remove('nav-solid');
+            }
+        });
+
+        gsap.utils.toArray('.reveal').forEach(el => {
+            gsap.to(el, {
+                opacity: 1,
+                y: 0,
+                duration: .9,
+                ease: 'expo.out',
+                scrollTrigger: { trigger: el, start: 'top 92%' }
+            });
+        });
+
+        const CRM_ENQUIRY_ENDPOINT = 'https://linearis.vercel.app/api/enquiries';
+        const contactForm = document.getElementById('contactForm');
+        const contactNote = document.getElementById('contactNote');
+
+        if (contactForm) {
+            contactForm.addEventListener('submit', async e => {
+                e.preventDefault();
+                const form = e.currentTarget;
+                const formData = new FormData(form);
+                const payload = {
+                    projectKey: form.dataset.projectKey,
+                    name: String(formData.get('name') || '').trim(),
+                    email: String(formData.get('email') || '').trim(),
+                    company: String(formData.get('company') || '').trim(),
+                    message: String(formData.get('message') || '').trim(),
+                    product: form.dataset.product,
+                    page: form.dataset.page,
+                    sourceUrl: window.location.href
+                };
+
+                if (!payload.email || !payload.name) {
+                    contactNote.textContent = 'Please provide name and email.';
+                    return;
+                }
+
+                contactNote.textContent = 'Sending your request...';
+
+                try {
+                    const response = await fetch(CRM_ENQUIRY_ENDPOINT, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('Request failed');
+                    }
+
+                    form.reset();
+                    contactNote.textContent = 'Request received. Your FlatWala launch discussion is now queued.';
+                } catch (error) {
+                    contactNote.textContent = 'Submission failed. Please try again in a moment.';
+                }
+            });
+        }
+
+        const simStage = document.getElementById('simStage');
+        const simConfidence = document.getElementById('simConfidence');
+        const simPhaseLabel = document.getElementById('simPhaseLabel');
+        const simPhaseText = document.getElementById('simPhaseText');
+        const simRecordName = document.getElementById('simRecordName');
+        const simRecordStatus = document.getElementById('simRecordStatus');
+        const simPartNo = document.getElementById('simPartNo');
+        const simLinkedItems = document.getElementById('simLinkedItems');
+        const simBadges = Array.from(document.querySelectorAll('[data-step-badge]'));
+
+        const simSteps = [
+            {
+                phase: 'capture',
+                label: 'DISCOVER',
+                text: 'Define your market, users, and platform strategy.',
+                confidence: 'Discovery workshop active',
+                name: 'Go-to-market blueprint',
+                status: 'Planning',
+                partNo: 'Scope: defined',
+                linked: 'Modules shortlisted',
+                insight: 'Understanding your users, value proposition, and business model'
+            },
+            {
+                phase: 'detect',
+                label: 'CONFIGURE',
+                text: 'Apply your logo, colors, domain, and identity.',
+                confidence: 'Configuration progress 91.8%',
+                name: 'White-label environment',
+                status: 'Configuring',
+                partNo: 'Brand kit active',
+                linked: 'Roles and modules mapped',
+                insight: 'Customizing workflows, branding, and platform experience'
+            },
+            {
+                phase: 'match',
+                label: 'LAUNCH',
+                text: 'Go live with your first users and scale.',
+                confidence: 'Launch readiness 96.4%',
+                name: 'FlatWala live instance',
+                status: 'Live-ready',
+                partNo: 'Tenant: production',
+                linked: 'Buyer, Seller, Admin',
+                insight: 'Live ecosystem connecting buyers, sellers, and admins'
+            }
+        ];
+
+
+        const simInsight = document.getElementById('simInsight');
+
+        const simTargets = [
+            simConfidence,
+            simPhaseLabel,
+            simPhaseText,
+            simRecordName,
+            simRecordStatus,
+            simPartNo,
+            simLinkedItems,
+            simInsight
+        ];
+        function pulseLiveFields() {
+            simTargets.forEach(el => el && el.classList.add('is-updating'));
+            window.setTimeout(() => {
+                simTargets.forEach(el => el && el.classList.remove('is-updating'));
+            }, 220);
+        }
+
+        function applySimStep(step) {
+
+            if (simStage) {
+                simStage.classList.remove('phase-capture', 'phase-detect', 'phase-match');
+                simStage.classList.add(`phase-${step.phase}`);
+            }
+
+            simBadges.forEach(badge => {
+                badge.classList.toggle('active', badge.dataset.stepBadge === step.phase);
+            });
+
+            pulseLiveFields();
+
+            if (simConfidence) simConfidence.textContent = step.confidence;
+            if (simPhaseLabel) simPhaseLabel.textContent = step.label;
+            if (simPhaseText) simPhaseText.textContent = step.text;
+            if (simRecordName) simRecordName.textContent = step.name;
+            if (simRecordStatus) simRecordStatus.textContent = step.status;
+            if (simPartNo) simPartNo.textContent = step.partNo;
+            if (simLinkedItems) simLinkedItems.textContent = step.linked;
+            if (simInsight) simInsight.textContent = step.insight;
+        }
+
+        if (simStage) {
+            let simIndex = 0;
+            applySimStep(simSteps[simIndex]);
+            window.setInterval(() => {
+                simIndex = (simIndex + 1) % simSteps.length;
+                applySimStep(simSteps[simIndex]);
+            }, 2200);
+        }
+    </script>
+</body>
+
+</html>
