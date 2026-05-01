@@ -2,7 +2,7 @@
 
 Static landing pages for BuildDreams and its product portfolio.
 
-## Main Site.
+## Main Site...
 
 - `index.html` is the main BuildDreams homepage.
 - Product pages live in their own folders, for example `Sutra/`, `FlowGuard/`, `InfraTrack/`, `Nivaran/`, `UnitPay/`, `VocalNode/`, `PartSight AI/`, `aspira/`, `FlatWala/`, and `visionAi/`.
