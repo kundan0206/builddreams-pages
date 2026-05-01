@@ -234,6 +234,37 @@
             animation: marq 28s linear infinite;
         }
 
+        .product-marquee {
+            display: flex;
+            width: max-content;
+            animation: productMarquee 38s linear infinite;
+        }
+
+        .product-marquee:hover {
+            animation-play-state: paused;
+        }
+
+        .product-marquee.reverse {
+            animation-direction: reverse;
+            animation-duration: 44s;
+        }
+
+        .product-strip {
+            display: flex;
+            gap: 1rem;
+            padding-right: 1rem;
+        }
+
+        @keyframes productMarquee {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
         @keyframes marq {
             from {
                 transform: translateX(0);
@@ -705,215 +736,130 @@
                     all products <i data-lucide="arrow-up-right" class="w-4 h-4"></i></a>
             </div>
 
-            <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
-                <a href="/Sutra/"
-                    class="tilt reveal group relative p-7 rounded-[20px] bg-white/[0.04] border border-white/10 hover:border-teal/50 transition-colors block"
-                    data-testid="product-sutra">
-                    <div class="flex items-start justify-between">
-                        <div class="w-11 h-11 rounded-xl gradient-brand flex items-center justify-center">
-                            <i data-lucide="brain-circuit" class="w-5 h-5 text-white"></i>
-                        </div>
-                        <span class="font-mono text-[11px] text-white/50">PERSONAL AI</span>
+            <div class="reveal -mx-6 lg:-mx-10 overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_8%,black_92%,transparent)]">
+                <div class="product-marquee">
+                    <div class="product-strip">
+                        <a href="https://sutra.builddreams.co.in/" class="group w-[300px] shrink-0 rounded-[18px] border border-white/10 bg-white/[0.05] p-5 hover:border-[#009599]/50 transition-colors">
+                            <div class="flex items-center justify-between text-white/50"><i data-lucide="brain-circuit" class="w-5 h-5 text-teal"></i><span class="font-mono text-[10px]">PERSONAL AI</span></div>
+                            <h3 class="mt-5 text-[24px] font-medium">Sutra</h3>
+                            <p class="mt-2 text-[13px] leading-[1.6] text-white/60">Organizes notes, tasks, and mental load for busy professionals.</p>
+                        </a>
+                        <a href="https://flowguard.builddreams.co.in/" class="group w-[300px] shrink-0 rounded-[18px] border border-white/10 bg-white/[0.05] p-5 hover:border-[#009599]/50 transition-colors">
+                            <div class="flex items-center justify-between text-white/50"><i data-lucide="shield" class="w-5 h-5 text-teal"></i><span class="font-mono text-[10px]">WORKFORCE OPS</span></div>
+                            <h3 class="mt-5 text-[24px] font-medium">FlowGuard</h3>
+                            <p class="mt-2 text-[13px] leading-[1.6] text-white/60">Locks desks, blocks distractions, and logs every task.</p>
+                        </a>
+                        <a href="https://infratrack.builddreams.co.in/" class="group w-[300px] shrink-0 rounded-[18px] border border-white/10 bg-white/[0.05] p-5 hover:border-[#009599]/50 transition-colors">
+                            <div class="flex items-center justify-between text-white/50"><i data-lucide="truck" class="w-5 h-5 text-teal"></i><span class="font-mono text-[10px]">B2B OPS</span></div>
+                            <h3 class="mt-5 text-[24px] font-medium">InfraTrack</h3>
+                            <p class="mt-2 text-[13px] leading-[1.6] text-white/60">Tracks fleets, warehouses, inventory, and maintenance work.</p>
+                        </a>
+                        <a href="https://nivaran.builddreams.co.in/" class="group w-[300px] shrink-0 rounded-[18px] border border-white/10 bg-white/[0.05] p-5 hover:border-[#009599]/50 transition-colors">
+                            <div class="flex items-center justify-between text-white/50"><i data-lucide="clipboard-list" class="w-5 h-5 text-teal"></i><span class="font-mono text-[10px]">HELPDESK</span></div>
+                            <h3 class="mt-5 text-[24px] font-medium">Nivaran</h3>
+                            <p class="mt-2 text-[13px] leading-[1.6] text-white/60">Routes complaints, tickets, escalations, and SLAs by sector.</p>
+                        </a>
+                        <a href="https://partsightai.builddreams.co.in/" class="group w-[300px] shrink-0 rounded-[18px] border border-white/10 bg-white/[0.05] p-5 hover:border-[#009599]/50 transition-colors">
+                            <div class="flex items-center justify-between text-white/50"><i data-lucide="scan-search" class="w-5 h-5 text-teal"></i><span class="font-mono text-[10px]">VISION AI</span></div>
+                            <h3 class="mt-5 text-[24px] font-medium">PartSight AI</h3>
+                            <p class="mt-2 text-[13px] leading-[1.6] text-white/60">Cuts part lookup time with visual detection and matching.</p>
+                        </a>
+                        <a href="https://unitpay.builddreams.co.in/" class="group w-[300px] shrink-0 rounded-[18px] border border-white/10 bg-white/[0.05] p-5 hover:border-[#009599]/50 transition-colors">
+                            <div class="flex items-center justify-between text-white/50"><i data-lucide="wallet" class="w-5 h-5 text-teal"></i><span class="font-mono text-[10px]">FINTECH</span></div>
+                            <h3 class="mt-5 text-[24px] font-medium">UnitPay</h3>
+                            <p class="mt-2 text-[13px] leading-[1.6] text-white/60">Instant QR rewards, payouts, and disbursement workflows.</p>
+                        </a>
                     </div>
-                    <h3 class="mt-6 text-[26px] font-medium">Sutra</h3>
-                    <p class="mt-2 text-[14px] text-white/60 leading-[1.7]">A personal digital clone concept focused on
-                        memory, personalization, and execution support.</p>
-                    <div class="mt-6 flex items-center justify-between text-[12px] text-white/60">
-                        <span>View product page</span>
-                        <i data-lucide="arrow-up-right" class="w-4 h-4 group-hover:text-teal transition-colors"></i>
+                    <div class="product-strip" aria-hidden="true">
+                        <a href="https://sutra.builddreams.co.in/" class="group w-[300px] shrink-0 rounded-[18px] border border-white/10 bg-white/[0.05] p-5 hover:border-[#009599]/50 transition-colors">
+                            <div class="flex items-center justify-between text-white/50"><i data-lucide="brain-circuit" class="w-5 h-5 text-teal"></i><span class="font-mono text-[10px]">PERSONAL AI</span></div>
+                            <h3 class="mt-5 text-[24px] font-medium">Sutra</h3>
+                            <p class="mt-2 text-[13px] leading-[1.6] text-white/60">Organizes notes, tasks, and mental load for busy professionals.</p>
+                        </a>
+                        <a href="https://flowguard.builddreams.co.in/" class="group w-[300px] shrink-0 rounded-[18px] border border-white/10 bg-white/[0.05] p-5 hover:border-[#009599]/50 transition-colors">
+                            <div class="flex items-center justify-between text-white/50"><i data-lucide="shield" class="w-5 h-5 text-teal"></i><span class="font-mono text-[10px]">WORKFORCE OPS</span></div>
+                            <h3 class="mt-5 text-[24px] font-medium">FlowGuard</h3>
+                            <p class="mt-2 text-[13px] leading-[1.6] text-white/60">Locks desks, blocks distractions, and logs every task.</p>
+                        </a>
+                        <a href="https://infratrack.builddreams.co.in/" class="group w-[300px] shrink-0 rounded-[18px] border border-white/10 bg-white/[0.05] p-5 hover:border-[#009599]/50 transition-colors">
+                            <div class="flex items-center justify-between text-white/50"><i data-lucide="truck" class="w-5 h-5 text-teal"></i><span class="font-mono text-[10px]">B2B OPS</span></div>
+                            <h3 class="mt-5 text-[24px] font-medium">InfraTrack</h3>
+                            <p class="mt-2 text-[13px] leading-[1.6] text-white/60">Tracks fleets, warehouses, inventory, and maintenance work.</p>
+                        </a>
+                        <a href="https://nivaran.builddreams.co.in/" class="group w-[300px] shrink-0 rounded-[18px] border border-white/10 bg-white/[0.05] p-5 hover:border-[#009599]/50 transition-colors">
+                            <div class="flex items-center justify-between text-white/50"><i data-lucide="clipboard-list" class="w-5 h-5 text-teal"></i><span class="font-mono text-[10px]">HELPDESK</span></div>
+                            <h3 class="mt-5 text-[24px] font-medium">Nivaran</h3>
+                            <p class="mt-2 text-[13px] leading-[1.6] text-white/60">Routes complaints, tickets, escalations, and SLAs by sector.</p>
+                        </a>
+                        <a href="https://partsightai.builddreams.co.in/" class="group w-[300px] shrink-0 rounded-[18px] border border-white/10 bg-white/[0.05] p-5 hover:border-[#009599]/50 transition-colors">
+                            <div class="flex items-center justify-between text-white/50"><i data-lucide="scan-search" class="w-5 h-5 text-teal"></i><span class="font-mono text-[10px]">VISION AI</span></div>
+                            <h3 class="mt-5 text-[24px] font-medium">PartSight AI</h3>
+                            <p class="mt-2 text-[13px] leading-[1.6] text-white/60">Cuts part lookup time with visual detection and matching.</p>
+                        </a>
+                        <a href="https://unitpay.builddreams.co.in/" class="group w-[300px] shrink-0 rounded-[18px] border border-white/10 bg-white/[0.05] p-5 hover:border-[#009599]/50 transition-colors">
+                            <div class="flex items-center justify-between text-white/50"><i data-lucide="wallet" class="w-5 h-5 text-teal"></i><span class="font-mono text-[10px]">FINTECH</span></div>
+                            <h3 class="mt-5 text-[24px] font-medium">UnitPay</h3>
+                            <p class="mt-2 text-[13px] leading-[1.6] text-white/60">Instant QR rewards, payouts, and disbursement workflows.</p>
+                        </a>
                     </div>
-                </a>
+                </div>
 
-                <a href="/FlowGuard/"
-                    class="tilt reveal group relative p-7 rounded-[20px] bg-white/[0.04] border border-white/10 hover:border-teal/50 transition-colors block"
-                    data-testid="product-flowguard">
-                    <div class="flex items-start justify-between">
-                        <div
-                            class="w-11 h-11 rounded-xl bg-teal/20 border border-teal/40 flex items-center justify-center">
-                            <i data-lucide="shield" class="w-5 h-5 text-teal"></i>
-                        </div>
-                        <span class="font-mono text-[11px] text-white/50">WORKFORCE OPS</span>
+                <div class="product-marquee reverse mt-4">
+                    <div class="product-strip">
+                        <a href="https://vocalnode.builddreams.co.in/" class="group w-[300px] shrink-0 rounded-[18px] border border-white/10 bg-white/[0.05] p-5 hover:border-[#009599]/50 transition-colors">
+                            <div class="flex items-center justify-between text-white/50"><i data-lucide="mic" class="w-5 h-5 text-teal"></i><span class="font-mono text-[10px]">VOICE AI</span></div>
+                            <h3 class="mt-5 text-[24px] font-medium">VocalNode</h3>
+                            <p class="mt-2 text-[13px] leading-[1.6] text-white/60">Answers calls, captures context, and routes follow-ups.</p>
+                        </a>
+                        <a href="https://visionai.builddreams.co.in/" class="group w-[300px] shrink-0 rounded-[18px] border border-white/10 bg-white/[0.05] p-5 hover:border-[#009599]/50 transition-colors">
+                            <div class="flex items-center justify-between text-white/50"><i data-lucide="camera" class="w-5 h-5 text-teal"></i><span class="font-mono text-[10px]">PLATFORM</span></div>
+                            <h3 class="mt-5 text-[24px] font-medium">Vision AI</h3>
+                            <p class="mt-2 text-[13px] leading-[1.6] text-white/60">Tailored visual detection flows for operational teams.</p>
+                        </a>
+                        <a href="/products/flexi-rag/" class="group w-[300px] shrink-0 rounded-[18px] border border-white/10 bg-white/[0.05] p-5 hover:border-[#009599]/50 transition-colors">
+                            <div class="flex items-center justify-between text-white/50"><i data-lucide="book-open-text" class="w-5 h-5 text-teal"></i><span class="font-mono text-[10px]">RAG</span></div>
+                            <h3 class="mt-5 text-[24px] font-medium">FlexiRAG</h3>
+                            <p class="mt-2 text-[13px] leading-[1.6] text-white/60">Turns documents into searchable, API-ready knowledge systems.</p>
+                        </a>
+                        <a href="/FlatWala/" class="group w-[300px] shrink-0 rounded-[18px] border border-white/10 bg-white/[0.05] p-5 hover:border-[#009599]/50 transition-colors">
+                            <div class="flex items-center justify-between text-white/50"><i data-lucide="home" class="w-5 h-5 text-teal"></i><span class="font-mono text-[10px]">REAL ESTATE</span></div>
+                            <h3 class="mt-5 text-[24px] font-medium">FlatWala</h3>
+                            <p class="mt-2 text-[13px] leading-[1.6] text-white/60">Buyer, seller, and admin portals for property marketplaces.</p>
+                        </a>
+                        <a href="https://aspira.builddreams.co.in/" class="group w-[300px] shrink-0 rounded-[18px] border border-white/10 bg-white/[0.05] p-5 hover:border-[#009599]/50 transition-colors">
+                            <div class="flex items-center justify-between text-white/50"><i data-lucide="graduation-cap" class="w-5 h-5 text-teal"></i><span class="font-mono text-[10px]">EDTECH</span></div>
+                            <h3 class="mt-5 text-[24px] font-medium">Aspira</h3>
+                            <p class="mt-2 text-[13px] leading-[1.6] text-white/60">Student, mentor, and company portals for career programs.</p>
+                        </a>
                     </div>
-                    <h3 class="mt-6 text-[26px] font-medium">FlowGuard</h3>
-                    <p class="mt-2 text-[14px] text-white/60 leading-[1.7]">A configurable monitoring and compliance
-                        platform for managed work environments and operational workflows.</p>
-                    <div class="mt-6 flex items-center justify-between text-[12px] text-white/60">
-                        <span>View product page</span>
-                        <i data-lucide="arrow-up-right" class="w-4 h-4 group-hover:text-teal transition-colors"></i>
+                    <div class="product-strip" aria-hidden="true">
+                        <a href="https://vocalnode.builddreams.co.in/" class="group w-[300px] shrink-0 rounded-[18px] border border-white/10 bg-white/[0.05] p-5 hover:border-[#009599]/50 transition-colors">
+                            <div class="flex items-center justify-between text-white/50"><i data-lucide="mic" class="w-5 h-5 text-teal"></i><span class="font-mono text-[10px]">VOICE AI</span></div>
+                            <h3 class="mt-5 text-[24px] font-medium">VocalNode</h3>
+                            <p class="mt-2 text-[13px] leading-[1.6] text-white/60">Answers calls, captures context, and routes follow-ups.</p>
+                        </a>
+                        <a href="https://visionai.builddreams.co.in/" class="group w-[300px] shrink-0 rounded-[18px] border border-white/10 bg-white/[0.05] p-5 hover:border-[#009599]/50 transition-colors">
+                            <div class="flex items-center justify-between text-white/50"><i data-lucide="camera" class="w-5 h-5 text-teal"></i><span class="font-mono text-[10px]">PLATFORM</span></div>
+                            <h3 class="mt-5 text-[24px] font-medium">Vision AI</h3>
+                            <p class="mt-2 text-[13px] leading-[1.6] text-white/60">Tailored visual detection flows for operational teams.</p>
+                        </a>
+                        <a href="/products/flexi-rag/" class="group w-[300px] shrink-0 rounded-[18px] border border-white/10 bg-white/[0.05] p-5 hover:border-[#009599]/50 transition-colors">
+                            <div class="flex items-center justify-between text-white/50"><i data-lucide="book-open-text" class="w-5 h-5 text-teal"></i><span class="font-mono text-[10px]">RAG</span></div>
+                            <h3 class="mt-5 text-[24px] font-medium">FlexiRAG</h3>
+                            <p class="mt-2 text-[13px] leading-[1.6] text-white/60">Turns documents into searchable, API-ready knowledge systems.</p>
+                        </a>
+                        <a href="/FlatWala/" class="group w-[300px] shrink-0 rounded-[18px] border border-white/10 bg-white/[0.05] p-5 hover:border-[#009599]/50 transition-colors">
+                            <div class="flex items-center justify-between text-white/50"><i data-lucide="home" class="w-5 h-5 text-teal"></i><span class="font-mono text-[10px]">REAL ESTATE</span></div>
+                            <h3 class="mt-5 text-[24px] font-medium">FlatWala</h3>
+                            <p class="mt-2 text-[13px] leading-[1.6] text-white/60">Buyer, seller, and admin portals for property marketplaces.</p>
+                        </a>
+                        <a href="https://aspira.builddreams.co.in/" class="group w-[300px] shrink-0 rounded-[18px] border border-white/10 bg-white/[0.05] p-5 hover:border-[#009599]/50 transition-colors">
+                            <div class="flex items-center justify-between text-white/50"><i data-lucide="graduation-cap" class="w-5 h-5 text-teal"></i><span class="font-mono text-[10px]">EDTECH</span></div>
+                            <h3 class="mt-5 text-[24px] font-medium">Aspira</h3>
+                            <p class="mt-2 text-[13px] leading-[1.6] text-white/60">Student, mentor, and company portals for career programs.</p>
+                        </a>
                     </div>
-                </a>
-
-                <a href="/InfraTrack/"
-                    class="tilt reveal group relative p-7 rounded-[20px] bg-white/[0.04] border border-white/10 hover:border-teal/50 transition-colors block"
-                    data-testid="product-infratrack">
-                    <div class="flex items-start justify-between">
-                        <div
-                            class="w-11 h-11 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center">
-                            <i data-lucide="truck" class="w-5 h-5 text-white"></i>
-                        </div>
-                        <span class="font-mono text-[11px] text-white/50">B2B OPS</span>
-                    </div>
-                    <h3 class="mt-6 text-[26px] font-medium">InfraTrack</h3>
-                    <p class="mt-2 text-[14px] text-white/60 leading-[1.7]">An infrastructure, fleet, inventory, and
-                        maintenance operations platform for asset-heavy businesses.</p>
-                    <div class="mt-6 flex items-center justify-between text-[12px] text-white/60">
-                        <span>View product page</span>
-                        <i data-lucide="arrow-up-right" class="w-4 h-4 group-hover:text-teal transition-colors"></i>
-                    </div>
-                </a>
-
-                <a href="/Nivaran/"
-                    class="tilt reveal group relative p-7 rounded-[20px] bg-white/[0.04] border border-white/10 hover:border-teal/50 transition-colors block"
-                    data-testid="product-nivaran">
-                    <div class="flex items-start justify-between">
-                        <div
-                            class="w-11 h-11 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center">
-                            <i data-lucide="clipboard-list" class="w-5 h-5 text-white"></i>
-                        </div>
-                        <span class="font-mono text-[11px] text-white/50">WORKFLOW</span>
-                    </div>
-                    <h3 class="mt-6 text-[26px] font-medium">Nivaran</h3>
-                    <p class="mt-2 text-[14px] text-white/60 leading-[1.7]">A ticketing, grievance, and escalation
-                        workflow platform adaptable to different sectors and operating teams.</p>
-                    <div class="mt-6 flex items-center justify-between text-[12px] text-white/60">
-                        <span>View product page</span>
-                        <i data-lucide="arrow-up-right" class="w-4 h-4 group-hover:text-teal transition-colors"></i>
-                    </div>
-                </a>
-
-                <a href="/PartSight%20AI/"
-                    class="tilt reveal group relative p-7 rounded-[20px] bg-white/[0.04] border border-white/10 hover:border-teal/50 transition-colors block"
-                    data-testid="product-partsight">
-                    <div class="flex items-start justify-between">
-                        <div
-                            class="w-11 h-11 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center">
-                            <i data-lucide="scan-search" class="w-5 h-5 text-white"></i>
-                        </div>
-                        <span class="font-mono text-[11px] text-white/50">VISION AI</span>
-                    </div>
-                    <h3 class="mt-6 text-[26px] font-medium">PartSight AI</h3>
-                    <p class="mt-2 text-[14px] text-white/60 leading-[1.7]">A configurable visual inventory and part
-                        identification experience for asset-heavy maintenance workflows.</p>
-                    <div class="mt-6 flex items-center justify-between text-[12px] text-white/60">
-                        <span>View product page</span>
-                        <i data-lucide="arrow-up-right" class="w-4 h-4 group-hover:text-teal transition-colors"></i>
-                    </div>
-                </a>
-
-                <a href="/UnitPay/"
-                    class="tilt reveal group relative p-7 rounded-[20px] bg-white/[0.04] border border-white/10 hover:border-teal/50 transition-colors block"
-                    data-testid="product-unitpay">
-                    <div class="flex items-start justify-between">
-                        <div
-                            class="w-11 h-11 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center">
-                            <i data-lucide="wallet" class="w-5 h-5 text-white"></i>
-                        </div>
-                        <span class="font-mono text-[11px] text-white/50">FINTECH</span>
-                    </div>
-                    <h3 class="mt-6 text-[26px] font-medium">UnitPay</h3>
-                    <p class="mt-2 text-[14px] text-white/60 leading-[1.7]">A payment and collection flow concept for
-                        structured onboarding, lead capture, and customer transactions.</p>
-                    <div class="mt-6 flex items-center justify-between text-[12px] text-white/60">
-                        <span>View product page</span>
-                        <i data-lucide="arrow-up-right" class="w-4 h-4 group-hover:text-teal transition-colors"></i>
-                    </div>
-                </a>
-
-                <a href="/VocalNode/"
-                    class="tilt reveal group relative p-7 rounded-[20px] bg-white/[0.04] border border-white/10 hover:border-teal/50 transition-colors block"
-                    data-testid="product-vocalnode">
-                    <div class="flex items-start justify-between">
-                        <div
-                            class="w-11 h-11 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center">
-                            <i data-lucide="mic" class="w-5 h-5 text-white"></i>
-                        </div>
-                        <span class="font-mono text-[11px] text-white/50">VOICE AI</span>
-                    </div>
-                    <h3 class="mt-6 text-[26px] font-medium">VocalNode</h3>
-                    <p class="mt-2 text-[14px] text-white/60 leading-[1.7]">A voice-first workflow concept focused on
-                        conversational capture, routing, and structured follow-up.</p>
-                    <div class="mt-6 flex items-center justify-between text-[12px] text-white/60">
-                        <span>View product page</span>
-                        <i data-lucide="arrow-up-right" class="w-4 h-4 group-hover:text-teal transition-colors"></i>
-                    </div>
-                </a>
-
-                <a href="/visionAi/"
-                    class="tilt reveal group relative p-7 rounded-[20px] bg-white/[0.04] border border-white/10 hover:border-teal/50 transition-colors block"
-                    data-testid="product-visionai">
-                    <div class="flex items-start justify-between">
-                        <div
-                            class="w-11 h-11 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center">
-                            <i data-lucide="camera" class="w-5 h-5 text-white"></i>
-                        </div>
-                        <span class="font-mono text-[11px] text-white/50">PLATFORM</span>
-                    </div>
-                    <h3 class="mt-6 text-[26px] font-medium">Vision AI</h3>
-                    <p class="mt-2 text-[14px] text-white/60 leading-[1.7]">A generalized visual detection platform that
-                        can be tailored across multiple vertical use cases.</p>
-                    <div class="mt-6 flex items-center justify-between text-[12px] text-white/60">
-                        <span>View product page</span>
-                        <i data-lucide="arrow-up-right" class="w-4 h-4 group-hover:text-teal transition-colors"></i>
-                    </div>
-                </a>
-
-                <a href="/products/flexi-rag/"
-                    class="tilt reveal group relative p-7 rounded-[20px] bg-white/[0.04] border border-white/10 hover:border-teal/50 transition-colors block"
-                    data-testid="product-flexirag">
-                    <div class="flex items-start justify-between">
-                        <div
-                            class="w-11 h-11 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center">
-                            <i data-lucide="book-open-text" class="w-5 h-5 text-white"></i>
-                        </div>
-                        <span class="font-mono text-[11px] text-white/50">RAG</span>
-                    </div>
-                    <h3 class="mt-6 text-[26px] font-medium">FlexiRAG</h3>
-                    <p class="mt-2 text-[14px] text-white/60 leading-[1.7]">A document intelligence and document-to-API
-                        chatbot experience for knowledge-heavy teams.</p>
-                    <div class="mt-6 flex items-center justify-between text-[12px] text-white/60">
-                        <span>View product page</span>
-                        <i data-lucide="arrow-up-right" class="w-4 h-4 group-hover:text-teal transition-colors"></i>
-                    </div>
-                </a>
-
-                <a href="/products/"
-                    class="tilt reveal group relative p-7 rounded-[20px] bg-white/[0.04] border border-white/10 hover:border-teal/50 transition-colors block"
-                    data-testid="product-catalog">
-                    <div class="flex items-start justify-between">
-                        <div
-                            class="w-11 h-11 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center">
-                            <i data-lucide="layout-grid" class="w-5 h-5 text-white"></i>
-                        </div>
-                        <span class="font-mono text-[11px] text-white/50">CATALOG</span>
-                    </div>
-                    <h3 class="mt-6 text-[26px] font-medium">Products Overview</h3>
-                    <p class="mt-2 text-[14px] text-white/60 leading-[1.7]">A compact catalog page for routing buyers to
-                        the right BuildDreams product experience.</p>
-                    <div class="mt-6 flex items-center justify-between text-[12px] text-white/60">
-                        <span>View product page</span>
-                        <i data-lucide="arrow-up-right" class="w-4 h-4 group-hover:text-teal transition-colors"></i>
-                    </div>
-                </a>
-
-                <a href="/FlatWala/"
-                    class="tilt reveal group relative p-7 rounded-[20px] bg-white/[0.04] border border-white/10 hover:border-teal/50 transition-colors block"
-                    data-testid="product-flatwala">
-                    <div class="flex items-start justify-between">
-                        <div
-                            class="w-11 h-11 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center">
-                            <i data-lucide="home" class="w-5 h-5 text-white"></i>
-                        </div>
-                        <span class="font-mono text-[11px] text-white/50">REAL ESTATE</span>
-                    </div>
-                    <h3 class="mt-6 text-[26px] font-medium">FlatWala</h3>
-                    <p class="mt-2 text-[14px] text-white/60 leading-[1.7]">A complete real estate platform with Buyer,
-                        Seller, and Admin portals for property marketplaces.</p>
-                    <div class="mt-6 flex items-center justify-between text-[12px] text-white/60">
-                        <span>View product page</span>
-                        <i data-lucide="arrow-up-right" class="w-4 h-4 group-hover:text-teal transition-colors"></i>
-                    </div>
-                </a>
-                
+                </div>
             </div>
         </div>
     </section>
@@ -1310,8 +1256,8 @@
                     <div class="font-mono text-[11px] text-white/40">PRODUCT</div>
                     <ul class="mt-5 space-y-3 text-[14px] text-white/75">
                         <li><a href="/products/" class="hover:text-teal">Products Overview</a></li>
-                        <li><a href="/Sutra/" class="hover:text-teal">Sutra</a></li>
-                        <li><a href="/visionAi/" class="hover:text-teal">Vision AI</a></li>
+                        <li><a href="https://sutra.builddreams.co.in/" class="hover:text-teal">Sutra</a></li>
+                        <li><a href="https://visionai.builddreams.co.in/" class="hover:text-teal">Vision AI</a></li>
                         <li><a href="#pricing" class="hover:text-teal">Pricing</a></li>
                     </ul>
                 </div>
