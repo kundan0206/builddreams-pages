@@ -411,7 +411,7 @@
                     </div>
                     <h1
                         class="reveal mt-6 text-[42px] sm:text-[56px] lg:text-[74px] leading-[1.02] font-semibold text-navy">
-                        Your entire operations, in one place. No more chaos.
+                        You have 50 vehicles, 3 warehouses, and zero clarity on where things are. InfraTrack fixes that.
                     </h1>
                     <p class="reveal mt-6 max-w-2xl text-[16px] sm:text-[18px] leading-relaxed text-slate-600">
                         Stop losing track of equipment, approvals, and service tickets. InfraTrack gives you complete
@@ -422,7 +422,18 @@
                     <div class="reveal mt-8 flex flex-col sm:flex-row gap-3">
                         <a href="#contact" class="btn btn-primary">See how it works <i data-lucide="arrow-right"
                                 class="w-4 h-4"></i></a>
+                        <a href="https://wa.me/919356873562?text=InfraTrack%20demo%20request" target="_blank" class="btn btn-ghost">WhatsApp us</a>
                         <a href="#sectors" class="btn btn-ghost">Who uses InfraTrack</a>
+                    </div>
+
+                    <div class="reveal mt-6 rounded-2xl border border-line bg-white/80 p-4 max-w-2xl">
+                        <div class="font-mono text-[11px] text-slate-500">PICK YOUR INDUSTRY</div>
+                        <div class="mt-3 flex flex-wrap gap-2">
+                            <button class="industry-tab px-3 py-2 rounded-full bg-navy text-white text-[13px]" data-copy="Construction fleet: stop losing machines between sites, yards, and vendors. Outcome: live asset movement, maintenance, and approval history.">Construction</button>
+                            <button class="industry-tab px-3 py-2 rounded-full border border-line bg-white text-navy text-[13px]" data-copy="Hospital admin: know which device, bed, kit, or biomedical asset is available, due for service, or missing. Outcome: faster audits and fewer replacement surprises.">Hospitals</button>
+                            <button class="industry-tab px-3 py-2 rounded-full border border-line bg-white text-navy text-[13px]" data-copy="Logistics team: track vehicles, pallets, warehouse stock, driver handovers, and pending service tickets from one command board.">Logistics</button>
+                        </div>
+                        <p id="industryCopy" class="mt-3 text-[14px] leading-relaxed text-slate-600">Construction fleet: stop losing machines between sites, yards, and vendors. Outcome: live asset movement, maintenance, and approval history.</p>
                     </div>
 
                     <div class="reveal mt-9 grid grid-cols-2 md:grid-cols-4 gap-3 max-w-2xl">
@@ -439,8 +450,8 @@
                             <p class="text-[12px] text-slate-500">Fewer lost items</p>
                         </div>
                         <div>
-                            <p class="font-mono text-[24px] font-semibold text-navy">3x</p>
-                            <p class="text-[12px] text-slate-500">Better visibility</p>
+                            <p class="font-mono text-[24px] font-semibold text-navy">₹14,999</p>
+                            <p class="text-[12px] text-slate-500">/month for 10 assets</p>
                         </div>
                     </div>
                 </div>
@@ -1213,6 +1224,20 @@
                 renderSimulation(simulationStates[activeSimulationIndex]);
             }, 2200);
         }
+
+        const industryTabs = Array.from(document.querySelectorAll('.industry-tab'));
+        const industryCopy = document.getElementById('industryCopy');
+        industryTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                industryTabs.forEach(item => {
+                    item.classList.remove('bg-navy', 'text-white');
+                    item.classList.add('bg-white', 'text-navy', 'border', 'border-line');
+                });
+                tab.classList.add('bg-navy', 'text-white');
+                tab.classList.remove('bg-white', 'text-navy', 'border', 'border-line');
+                if (industryCopy) industryCopy.textContent = tab.dataset.copy || '';
+            });
+        });
     </script>
 </body>
 
