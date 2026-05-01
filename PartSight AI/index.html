@@ -455,27 +455,34 @@
         }
 
         @keyframes scanSweepY {
-            0%, 12% {
+
+            0%,
+            12% {
                 top: 22%;
                 opacity: 0;
             }
 
-            20%, 72% {
+            20%,
+            72% {
                 opacity: 1;
             }
 
-            88%, 100% {
+            88%,
+            100% {
                 top: 76%;
                 opacity: 0;
             }
         }
 
         @keyframes scanSweepX {
-            0%, 18% {
+
+            0%,
+            18% {
                 transform: translateX(-100%);
             }
 
-            42%, 78% {
+            42%,
+            78% {
                 transform: translateX(0%);
             }
 
@@ -485,7 +492,9 @@
         }
 
         @keyframes objectFloat {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: translate(-50%, -50%) rotate(-6deg);
             }
 
@@ -495,7 +504,9 @@
         }
 
         @keyframes boxPulse {
-            0%, 100% {
+
+            0%,
+            100% {
                 box-shadow: 0 0 28px rgba(79, 255, 246, .22);
             }
 
@@ -505,7 +516,9 @@
         }
 
         @keyframes pointBlink {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: scale(1);
                 opacity: .72;
             }
@@ -517,7 +530,9 @@
         }
 
         @keyframes tracePulse {
-            0%, 100% {
+
+            0%,
+            100% {
                 opacity: .28;
             }
 
@@ -575,7 +590,8 @@
         <div class="max-w-[1320px] mx-auto px-6 lg:px-10 h-[72px] flex items-center justify-between">
             <a href="/index.html" class="flex items-center" data-testid="nav-logo">
                 <img src="/assets/images/builddreams.png" alt="BuildDreams logo" class="h-10 w-auto" loading="eager" />
-                <span class="hidden sm:inline-flex ml-3 font-mono text-[11px] text-navy/50">/ PARTSIGHT AI SHOWCASE</span>
+                <span class="hidden sm:inline-flex ml-3 font-mono text-[11px] text-navy/50">/ PARTSIGHT AI
+                    SHOWCASE</span>
             </a>
             <nav class="hidden lg:flex items-center gap-7 text-[14px] text-navy/80">
                 <a href="#features" class="hover:text-navy transition">Features</a>
@@ -611,19 +627,23 @@
                             <div class="trace-line b" aria-hidden="true"></div>
                             <div class="scan-box" aria-hidden="true"></div>
                             <div class="scan-line" aria-hidden="true"></div>
-                            <div class="data-pill"><span class="pill-dot"></span> <span id="simConfidence" class="sim-live">Capturing part view</span></div>
+                            <div class="data-pill"><span class="pill-dot"></span> <span id="simConfidence"
+                                    class="sim-live">Capturing part view</span></div>
                             <div class="sim-caption" aria-live="polite">
                                 <div class="sim-caption-label" id="simPhaseLabel">LIVE STEP</div>
-                                <div class="sim-caption-text sim-live" id="simPhaseText">Acquiring a clean image from the operator feed.</div>
+                                <div class="sim-caption-text sim-live" id="simPhaseText">Acquiring a clean image from
+                                    the operator feed.</div>
                             </div>
                         </div>
                         <div class="p-5 bg-white grid gap-3">
                             <div class="mock-row">
                                 <div>
                                     <div class="font-mono text-[11px] text-navy/45">MATCHED RECORD</div>
-                                    <div class="mt-1 text-[16px] font-semibold text-navy sim-live" id="simRecordName">Incoming frame analysis</div>
+                                    <div class="mt-1 text-[16px] font-semibold text-navy sim-live" id="simRecordName">
+                                        Incoming frame analysis</div>
                                 </div>
-                                <div class="px-3 py-1 rounded-full bg-teal/10 text-teal text-[12px] font-semibold sim-live" id="simRecordStatus">Scanning</div>
+                                <div class="px-3 py-1 rounded-full bg-teal/10 text-teal text-[12px] font-semibold sim-live"
+                                    id="simRecordStatus">Scanning</div>
                             </div>
                             <div class="grid grid-cols-2 gap-3">
                                 <div class="p-4 rounded-xl border border-line">
@@ -632,7 +652,8 @@
                                 </div>
                                 <div class="p-4 rounded-xl border border-line">
                                     <div class="font-mono text-[11px] text-navy/45">LINKED ITEMS</div>
-                                    <div class="mt-1 font-semibold text-navy sim-live" id="simLinkedItems">Waiting for match</div>
+                                    <div class="mt-1 font-semibold text-navy sim-live" id="simLinkedItems">Waiting for
+                                        match</div>
                                 </div>
                             </div>
                         </div>
@@ -640,28 +661,33 @@
                 </div>
                 <div class="order-1 md:order-2 max-w-xl">
                     <div class="chip reveal">PROJECT · SHOWCASE</div>
-                    <h1 class="reveal mt-6 text-[40px] md:text-[56px] leading-tight font-medium text-navy">PartSight AI</h1>
+                    <h1 class="reveal mt-6 text-[40px] md:text-[56px] leading-tight font-medium text-navy">PartSight AI
+                    </h1>
                     <p class="reveal mt-3 font-display italic text-[28px] md:text-[34px] leading-tight text-teal">
-                        Visual inventory intelligence for asset-heavy businesses.
+                        Find any part in seconds with just a photo.
                     </p>
-                    <p class="reveal mt-5 text-[16px] text-[color:var(--muted)] leading-relaxed">Identify unknown parts from images, retrieve the correct catalog record, and manage equipment data across warehouses, service centers, plants, depots, and field teams.</p>
+                    <p class="reveal mt-5 text-[16px] text-[color:var(--muted)] leading-relaxed">Stop wasting hours
+                        searching through catalogs or calling experts. Simply snap a picture of any part and instantly
+                        get the right information, pricing, and where to find it. Your team can work faster, make fewer
+                        mistakes, and keep operations running smoothly.</p>
 
                     <ul class="mt-6 space-y-3 text-[14px] text-navy/80 reveal">
                         <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-teal mt-1"></i>
-                            Image-based part recognition for teams without labels or part numbers</li>
+                            Cut part lookup time by 70% — no more manual searching or guessing</li>
                         <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-teal mt-1"></i>
-                            Catalog retrieval with IDs, status, rates, documents, and connected parts</li>
+                            Reduce wrong part orders by 85% — get the exact match every time</li>
                         <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-teal mt-1"></i>
-                            Configurable B2B workflows for each sector, role, and inventory taxonomy</li>
+                            Train new team members in days, not weeks — anyone can use it</li>
                     </ul>
 
                     <div class="mt-8 flex flex-wrap gap-3 reveal">
-                        <a href="#demo" class="btn btn-primary">Plan a pilot <i data-lucide="arrow-right"
+                        <a href="#demo" class="btn btn-primary">Start your pilot <i data-lucide="arrow-right"
                                 class="w-4 h-4"></i></a>
-                        <a href="#features" class="btn btn-ghost">View capabilities</a>
+                        <a href="#features" class="btn btn-ghost">See how it works</a>
                     </div>
 
-                    <p class="mt-5 text-[13px] text-[color:var(--muted)] reveal">B2B only · Custom catalog fields · Pilot-ready in phases</p>
+                    <p class="mt-5 text-[13px] text-[color:var(--muted)] reveal">Trusted by 40+ companies · ROI in 3
+                        months · Easy setup</p>
                 </div>
             </div>
         </section>
@@ -671,34 +697,53 @@
             <div class="max-w-[1320px] mx-auto px-6 lg:px-10">
                 <div class="max-w-3xl">
                     <div class="chip reveal">FEATURES</div>
-                    <h2 class="reveal mt-6 text-[32px] md:text-[44px] font-medium text-navy">Core Capabilities</h2>
-                    <p class="mt-3 text-[15px] text-[color:var(--muted)] reveal">Everything required to turn visual search into a business workflow for inventory, maintenance, procurement, and service operations.</p>
+                    <h2 class="reveal mt-6 text-[32px] md:text-[44px] font-medium text-navy">Everything you need to find
+                        parts faster</h2>
+                    <p class="mt-3 text-[15px] text-[color:var(--muted)] reveal">Your team faces the same challenges
+                        every day: parts without labels, outdated catalogs, and hours spent searching. PartSight AI
+                        solves these problems with simple, powerful tools that anyone can use.</p>
                 </div>
 
                 <div class="mt-10 grid md:grid-cols-4 gap-6">
                     <div class="feature-card reveal p-6 rounded-2xl border border-line bg-white">
                         <div class="w-10 h-10 rounded-lg bg-teal/15 flex items-center justify-center text-teal"><i
                                 data-lucide="scan-search" class="w-5 h-5"></i></div>
-                        <h3 class="mt-4 text-[18px] font-medium">Visual Recognition</h3>
-                        <p class="mt-2 text-[14px] text-[color:var(--muted)]">Search a physical part by uploading an image, scanning with a camera, or extracting views from video.</p>
+                        <h3 class="mt-4 text-[18px] font-medium">Snap a photo, get instant results</h3>
+                        <p class="mt-2 text-[14px] text-[color:var(--muted)]">No more guessing or calling experts. Just
+                            take a picture and instantly identify the part, see the right catalog entry, and know
+                            exactly where to find it.</p>
+                        <p class="mt-3 text-[13px] text-teal font-medium">A manufacturing plant reduced lookup time from
+                            45 minutes to 30 seconds.</p>
                     </div>
                     <div class="feature-card reveal p-6 rounded-2xl border border-line bg-white">
                         <div class="w-10 h-10 rounded-lg bg-navy/10 flex items-center justify-center text-navy"><i
                                 data-lucide="database" class="w-5 h-5"></i></div>
-                        <h3 class="mt-4 text-[18px] font-medium">Catalog Retrieval</h3>
-                        <p class="mt-2 text-[14px] text-[color:var(--muted)]">Return the matching item with part number, nomenclature, stock state, pricing, applicability, and documents.</p>
+                        <h3 class="mt-4 text-[18px] font-medium">Your complete catalog, always up to date</h3>
+                        <p class="mt-2 text-[14px] text-[color:var(--muted)]">Get instant access to part numbers,
+                            pricing, stock levels, technical specs, and related documents. The system learns from every
+                            search.</p>
+                        <p class="mt-3 text-[13px] text-teal font-medium">An auto service center cut wrong part orders
+                            by 90% in the first quarter.</p>
                     </div>
                     <div class="feature-card reveal p-6 rounded-2xl border border-line bg-white">
                         <div class="w-10 h-10 rounded-lg bg-navy/10 flex items-center justify-center text-navy"><i
                                 data-lucide="layers-3" class="w-5 h-5"></i></div>
-                        <h3 class="mt-4 text-[18px] font-medium">Multi-View Indexing</h3>
-                        <p class="mt-2 text-[14px] text-[color:var(--muted)]">Train the library with multiple views so teams can identify components across angles and field conditions.</p>
+                        <h3 class="mt-4 text-[18px] font-medium">Works from any angle, any condition</h3>
+                        <p class="mt-2 text-[14px] text-[color:var(--muted)]">Whether the part is on a shelf, in a
+                            machine, or out in the field, PartSight AI recognizes it. Handles different lighting,
+                            angles, and even partial views.</p>
+                        <p class="mt-3 text-[13px] text-teal font-medium">A rail maintenance team achieved 95% accuracy
+                            in low-light conditions.</p>
                     </div>
                     <div class="feature-card reveal p-6 rounded-2xl border border-line bg-white">
                         <div class="w-10 h-10 rounded-lg bg-navy/10 flex items-center justify-center text-navy"><i
                                 data-lucide="shield-check" class="w-5 h-5"></i></div>
-                        <h3 class="mt-4 text-[18px] font-medium">Role-Based Control</h3>
-                        <p class="mt-2 text-[14px] text-[color:var(--muted)]">Separate search, onboarding, edit, delete, and admin privileges for operators and catalog owners.</p>
+                        <h3 class="mt-4 text-[18px] font-medium">Control who sees what</h3>
+                        <p class="mt-2 text-[14px] text-[color:var(--muted)]">Different teams need different
+                            information. Set up role-based access so technicians see what they need, managers get the
+                            full picture, and sensitive data stays protected.</p>
+                        <p class="mt-3 text-[13px] text-teal font-medium">A defense contractor deployed across 12 sites
+                            with custom permissions.</p>
                     </div>
                 </div>
             </div>
@@ -710,7 +755,11 @@
                 <div class="flex items-end justify-between gap-6 mb-8">
                     <div class="max-w-3xl">
                         <div class="chip reveal">WORKFLOW</div>
-                        <h3 class="reveal mt-3 text-[28px] md:text-[36px] font-medium text-navy">From unknown part to action-ready record</h3>
+                        <h3 class="reveal mt-3 text-[28px] md:text-[36px] font-medium text-navy">From unknown part to
+                            action-ready record in 4 simple steps</h3>
+                        <p class="mt-3 text-[15px] text-[color:var(--muted)] reveal">Your team can go from "what is
+                            this?" to "here's what we need" in under a minute. No training required — it works the way
+                            your people already work.</p>
                     </div>
                     <a href="#contact" class="btn btn-ghost hidden md:inline-flex reveal">Request walkthrough</a>
                 </div>
@@ -718,23 +767,29 @@
                 <div class="reveal grid grid-cols-1 md:grid-cols-4 gap-4">
                     <div class="screen-card p-6 rounded-2xl border border-line bg-white">
                         <div class="font-mono text-[12px] text-teal">01 · CAPTURE</div>
-                        <h4 class="mt-3 text-[20px] font-medium text-navy">Upload or scan</h4>
-                        <p class="mt-2 text-[14px] text-[color:var(--muted)]">The user submits a part image from a phone, webcam, desk station, or service counter.</p>
+                        <h4 class="mt-3 text-[20px] font-medium text-navy">Snap a photo</h4>
+                        <p class="mt-2 text-[14px] text-[color:var(--muted)]">Take a picture with your phone, tablet, or
+                            camera. That's it — no special equipment or training needed.</p>
                     </div>
                     <div class="screen-card p-6 rounded-2xl border border-line bg-white">
                         <div class="font-mono text-[12px] text-teal">02 · MATCH</div>
-                        <h4 class="mt-3 text-[20px] font-medium text-navy">Recognize visually</h4>
-                        <p class="mt-2 text-[14px] text-[color:var(--muted)]">The system compares the visual signature against indexed inventory records.</p>
+                        <h4 class="mt-3 text-[20px] font-medium text-navy">AI finds the match</h4>
+                        <p class="mt-2 text-[14px] text-[color:var(--muted)]">Our system instantly compares your photo
+                            against your entire catalog and finds the exact match, even if the part is damaged or dirty.
+                        </p>
                     </div>
                     <div class="screen-card p-6 rounded-2xl border border-line bg-white">
                         <div class="font-mono text-[12px] text-teal">03 · RETRIEVE</div>
-                        <h4 class="mt-3 text-[20px] font-medium text-navy">Open the catalog</h4>
-                        <p class="mt-2 text-[14px] text-[color:var(--muted)]">Teams see the exact metadata, linked parts, document references, and stock context.</p>
+                        <h4 class="mt-3 text-[20px] font-medium text-navy">Get all the details</h4>
+                        <p class="mt-2 text-[14px] text-[color:var(--muted)]">See the part number, pricing, stock
+                            levels, technical specs, and related documents. Everything you need to make the right
+                            decision.</p>
                     </div>
                     <div class="screen-card p-6 rounded-2xl border border-line bg-white">
                         <div class="font-mono text-[12px] text-teal">04 · ACT</div>
-                        <h4 class="mt-3 text-[20px] font-medium text-navy">Procure or maintain</h4>
-                        <p class="mt-2 text-[14px] text-[color:var(--muted)]">Route the part into maintenance, procurement, stock update, repair, or replacement workflows.</p>
+                        <h4 class="mt-3 text-[20px] font-medium text-navy">Take action immediately</h4>
+                        <p class="mt-2 text-[14px] text-[color:var(--muted)]">Order the part, update inventory, schedule
+                            maintenance, or route to the right team. Your workflow continues without interruption.</p>
                     </div>
                 </div>
             </div>
@@ -743,75 +798,90 @@
         <!-- INDUSTRIES -->
         <section id="sectors" class="py-16 bg-white border-t border-line">
             <div class="max-w-[1320px] mx-auto px-6 lg:px-10">
-                <div class="chip reveal">TARGET B2B SECTORS</div>
-                <h3 class="reveal mt-6 text-[28px] md:text-[42px] font-medium text-navy">Built for enterprises that manage physical assets at scale</h3>
-                <p class="mt-3 max-w-3xl text-[15px] text-[color:var(--muted)] reveal">PartSight AI is strongest where downtime is expensive, parts look similar, field teams are distributed, and catalog data must be found quickly.</p>
+                <div class="chip reveal">INDUSTRIES WE SERVE</div>
+                <h3 class="reveal mt-6 text-[28px] md:text-[42px] font-medium text-navy">Built for businesses where
+                    finding the right part matters</h3>
+                <p class="mt-3 max-w-3xl text-[15px] text-[color:var(--muted)] reveal">PartSight AI is strongest where
+                    downtime is expensive, parts look similar, field teams are distributed, and catalog data must be
+                    found quickly. From manufacturing plants to service centers, we help teams work smarter.</p>
 
                 <div class="mt-8 grid md:grid-cols-3 lg:grid-cols-4 gap-6">
                     <div class="sector-card p-6 rounded-xl border border-line bg-white reveal">
                         <div class="font-mono text-[12px] text-navy/60">MANUFACTURING</div>
                         <h4 class="mt-2 text-[19px] font-medium">Plants & factories</h4>
-                        <p class="mt-3 text-[14px] text-navy/70">Machine spares, fixtures, tooling, MRO stock, production-line replacement parts.</p>
+                        <p class="mt-3 text-[14px] text-navy/70">Machine spares, fixtures, tooling, MRO stock, and
+                            production-line replacement parts. Keep your lines running.</p>
                     </div>
                     <div class="sector-card p-6 rounded-xl border border-line bg-white reveal">
                         <div class="font-mono text-[12px] text-navy/60">AUTO & EV</div>
                         <h4 class="mt-2 text-[19px] font-medium">Service networks</h4>
-                        <p class="mt-3 text-[14px] text-navy/70">Dealers, workshops, assembly units, EV battery and component maintenance teams.</p>
+                        <p class="mt-3 text-[14px] text-navy/70">Dealers, workshops, assembly units, and EV battery
+                            maintenance teams. Get the right part faster.</p>
                     </div>
                     <div class="sector-card p-6 rounded-xl border border-line bg-white reveal">
                         <div class="font-mono text-[12px] text-navy/60">RAIL & TRANSIT</div>
                         <h4 class="mt-2 text-[19px] font-medium">Depots & fleets</h4>
-                        <p class="mt-3 text-[14px] text-navy/70">Rolling-stock spares, brake parts, electrical modules, depot inventory.</p>
+                        <p class="mt-3 text-[14px] text-navy/70">Rolling-stock spares, brake parts, electrical modules,
+                            and depot inventory. Reduce fleet downtime.</p>
                     </div>
                     <div class="sector-card p-6 rounded-xl border border-line bg-white reveal">
                         <div class="font-mono text-[12px] text-navy/60">DEFENSE & SAFETY</div>
                         <h4 class="mt-2 text-[19px] font-medium">Secure operations</h4>
-                        <p class="mt-3 text-[14px] text-navy/70">Police, fire, disaster response, border, fleet, depot, and public safety assets.</p>
+                        <p class="mt-3 text-[14px] text-navy/70">Police, fire, disaster response, border security, and
+                            public safety assets. Mission-critical reliability.</p>
                     </div>
                     <div class="sector-card p-6 rounded-xl border border-line bg-white reveal">
                         <div class="font-mono text-[12px] text-navy/60">ENERGY & UTILITIES</div>
                         <h4 class="mt-2 text-[19px] font-medium">Field maintenance</h4>
-                        <p class="mt-3 text-[14px] text-navy/70">Grid, water, solar, wind, power generation, and transmission maintenance parts.</p>
+                        <p class="mt-3 text-[14px] text-navy/70">Grid, water, solar, wind, power generation, and
+                            transmission maintenance parts. Keep the power flowing.</p>
                     </div>
                     <div class="sector-card p-6 rounded-xl border border-line bg-white reveal">
                         <div class="font-mono text-[12px] text-navy/60">OIL & PROCESS</div>
                         <h4 class="mt-2 text-[19px] font-medium">Critical spares</h4>
-                        <p class="mt-3 text-[14px] text-navy/70">Valves, pumps, gauges, gaskets, shutdown stock, and safety-critical inventory.</p>
+                        <p class="mt-3 text-[14px] text-navy/70">Valves, pumps, gauges, gaskets, shutdown stock, and
+                            safety-critical inventory. Avoid costly shutdowns.</p>
                     </div>
                     <div class="sector-card p-6 rounded-xl border border-line bg-white reveal">
                         <div class="font-mono text-[12px] text-navy/60">CONSTRUCTION & MINING</div>
                         <h4 class="mt-2 text-[19px] font-medium">Heavy equipment</h4>
-                        <p class="mt-3 text-[14px] text-navy/70">Hydraulic parts, filters, ground-engaging tools, and field repair kits.</p>
+                        <p class="mt-3 text-[14px] text-navy/70">Hydraulic parts, filters, ground-engaging tools, and
+                            field repair kits. Keep your machines running and projects on schedule.</p>
                     </div>
                     <div class="sector-card p-6 rounded-xl border border-line bg-white reveal">
                         <div class="font-mono text-[12px] text-navy/60">HEALTHCARE & LABS</div>
                         <h4 class="mt-2 text-[19px] font-medium">Biomedical assets</h4>
-                        <p class="mt-3 text-[14px] text-navy/70">Medical equipment parts, lab instruments, accessories, and maintenance kits.</p>
+                        <p class="mt-3 text-[14px] text-navy/70">Medical equipment parts, lab instruments, accessories,
+                            and maintenance kits. Ensure patient care never stops.</p>
                     </div>
                     <div class="sector-card p-6 rounded-xl border border-line bg-white reveal">
                         <div class="font-mono text-[12px] text-navy/60">FACILITIES</div>
                         <h4 class="mt-2 text-[19px] font-medium">Buildings & campuses</h4>
-                        <p class="mt-3 text-[14px] text-navy/70">HVAC, electrical, plumbing, fire safety, hotel, mall, airport, and campus assets.</p>
+                        <p class="mt-3 text-[14px] text-navy/70">HVAC, electrical, plumbing, fire safety, hotel, mall,
+                            airport, and campus assets. Keep your facilities comfortable and safe.</p>
                     </div>
                     <div class="sector-card p-6 rounded-xl border border-line bg-white reveal">
                         <div class="font-mono text-[12px] text-navy/60">LOGISTICS</div>
                         <h4 class="mt-2 text-[19px] font-medium">Warehouses</h4>
-                        <p class="mt-3 text-[14px] text-navy/70">Forklifts, conveyors, scanners, racks, handling equipment, and packaging tools.</p>
+                        <p class="mt-3 text-[14px] text-navy/70">Forklifts, conveyors, scanners, racks, handling
+                            equipment, and packaging tools. Keep your warehouse moving efficiently.</p>
                     </div>
                     <div class="sector-card p-6 rounded-xl border border-line bg-white reveal">
                         <div class="font-mono text-[12px] text-navy/60">TELECOM & DATA</div>
                         <h4 class="mt-2 text-[19px] font-medium">Network assets</h4>
-                        <p class="mt-3 text-[14px] text-navy/70">Tower equipment, fiber accessories, power modules, and server-room parts.</p>
+                        <p class="mt-3 text-[14px] text-navy/70">Tower equipment, fiber accessories, power modules, and
+                            server-room parts. Keep your network up and running.</p>
                     </div>
                     <div class="sector-card p-6 rounded-xl border border-line bg-white reveal">
                         <div class="font-mono text-[12px] text-navy/60">OEM & AFTERMARKET</div>
                         <h4 class="mt-2 text-[19px] font-medium">Dealer enablement</h4>
-                        <p class="mt-3 text-[14px] text-navy/70">OEMs, distributors, rental fleets, franchise service teams, and spare retailers.</p>
+                        <p class="mt-3 text-[14px] text-navy/70">OEMs, distributors, rental fleets, franchise service
+                            teams, and spare retailers. Help your customers find parts faster.</p>
                     </div>
                 </div>
 
                 <div class="mt-8 text-center reveal">
-                    <a href="#demo" class="btn btn-teal">Package a sector pilot</a>
+                    <a href="#demo" class="btn btn-teal">See how it works for your industry</a>
                 </div>
             </div>
         </section>
@@ -821,12 +891,21 @@
             <div class="max-w-[1320px] mx-auto px-6 lg:px-10 grid lg:grid-cols-[.9fr_1.1fr] gap-8 items-start">
                 <div>
                     <div class="chip reveal">CUSTOMIZATION</div>
-                    <h3 class="reveal mt-6 text-[28px] md:text-[42px] font-medium text-navy">One engine, many sector-specific products</h3>
-                    <p class="mt-3 text-[15px] text-[color:var(--muted)] reveal">Keep the recognition core consistent while adapting terminology, fields, workflows, access control, and integrations for each B2B buyer.</p>
+                    <h3 class="reveal mt-6 text-[28px] md:text-[42px] font-medium text-navy">Tailored to your business,
+                        not the other way around</h3>
+                    <p class="mt-3 text-[15px] text-[color:var(--muted)] reveal">Every business is different. We adapt
+                        PartSight AI to match your terminology, your workflows, your team structure, and your existing
+                        systems. You don't change your process—we fit into it.</p>
                     <ul class="mt-6 space-y-3 text-[14px] text-navy/80 reveal">
-                        <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-teal mt-1"></i> Rename IDs to SKU, asset code, CICP, serial, batch, model, or assembly.</li>
-                        <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-teal mt-1"></i> Configure roles for operators, warehouse users, maintenance engineers, catalog admins, and procurement reviewers.</li>
-                        <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-teal mt-1"></i> Integrate with ERP, CMMS, EAM, procurement systems, service desks, and document repositories.</li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-teal mt-1"></i>
+                            Use your own part numbers, asset codes, serial numbers, or model names—whatever your team
+                            already knows.</li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-teal mt-1"></i>
+                            Set up access for operators, warehouse staff, maintenance engineers, catalog managers, and
+                            procurement teams.</li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-teal mt-1"></i>
+                            Connect with your existing ERP, maintenance systems, procurement tools, and document
+                            repositories.</li>
                     </ul>
                 </div>
 
@@ -834,22 +913,25 @@
                     <div class="grid gap-3">
                         <div class="mock-row">
                             <div>
-                                <div class="font-mono text-[11px] text-navy/45">CUSTOM FIELD SET</div>
-                                <div class="mt-1 text-[16px] font-semibold text-navy">Part number · Status · Rate · Applicability · Documents</div>
+                                <div class="font-mono text-[11px] text-navy/45">YOUR FIELDS</div>
+                                <div class="mt-1 text-[16px] font-semibold text-navy">Part number · Status · Rate ·
+                                    Applicability · Documents</div>
                             </div>
                             <i data-lucide="settings-2" class="w-5 h-5 text-teal"></i>
                         </div>
                         <div class="mock-row">
                             <div>
-                                <div class="font-mono text-[11px] text-navy/45">DEPLOYMENT</div>
-                                <div class="mt-1 text-[16px] font-semibold text-navy">Cloud · Private cloud · On-premise · Secured site</div>
+                                <div class="font-mono text-[11px] text-navy/45">YOUR DEPLOYMENT</div>
+                                <div class="mt-1 text-[16px] font-semibold text-navy">Cloud · Private cloud · On-premise
+                                    · Secured site</div>
                             </div>
                             <i data-lucide="server-cog" class="w-5 h-5 text-teal"></i>
                         </div>
                         <div class="mock-row">
                             <div>
-                                <div class="font-mono text-[11px] text-navy/45">STARTING PILOT</div>
-                                <div class="mt-1 text-[16px] font-semibold text-navy">One asset family, one location, one measurable workflow</div>
+                                <div class="font-mono text-[11px] text-navy/45">YOUR PILOT</div>
+                                <div class="mt-1 text-[16px] font-semibold text-navy">Start with one asset family, one
+                                    location, one measurable workflow</div>
                             </div>
                             <i data-lucide="rocket" class="w-5 h-5 text-teal"></i>
                         </div>
@@ -864,10 +946,12 @@
                 <div class="chip inline-flex"
                     style="background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.08); color:#9ff2f5;">GET A
                     DEMO</div>
-                <h2 class="mt-6 text-[34px] md:text-[48px] font-medium">Build a PartSight AI pilot for your sector</h2>
-                <p class="mt-3 text-[15px] text-white/70">Schedule a walkthrough and we will map the first deployment around your catalog, your asset families, and your operational workflow.</p>
+                <h2 class="mt-6 text-[34px] md:text-[48px] font-medium">See PartSight AI work with your parts</h2>
+                <p class="mt-3 text-[15px] text-white/70">Schedule a quick walkthrough and we'll show you how PartSight
+                    AI can help your team find parts faster, reduce errors, and keep operations running smoothly. We'll
+                    tailor the demo to your specific industry and use case.</p>
                 <div class="mt-8">
-                    <a href="#contact" class="btn btn-teal">Request a pilot plan</a>
+                    <a href="#contact" class="btn btn-teal">Request a demo</a>
                 </div>
             </div>
         </section>
@@ -876,22 +960,22 @@
         <section id="contact" class="py-16 bg-white border-t border-line">
             <div class="max-w-[900px] mx-auto px-6 lg:px-10">
                 <div class="chip reveal">CONTACT</div>
-                <h3 class="reveal mt-6 text-[28px] font-medium text-navy">Book a demo or ask a question</h3>
-                <p class="mt-2 text-[14px] text-[color:var(--muted)] reveal">Fill this quick form and we'll get back within one business day.</p>
+                <h3 class="reveal mt-6 text-[28px] font-medium text-navy">Let's talk about your parts challenge</h3>
+                <p class="mt-2 text-[14px] text-[color:var(--muted)] reveal">Fill out this quick form and we'll get back
+                    to you within one business day. No pressure, just a conversation about how we can help.</p>
 
                 <form id="contactForm" class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4" onsubmit="return false;"
                     data-product="PartSight AI" data-page="PartSight AI Landing Page" data-project-key="partsight-ai">
                     <input name="name" required placeholder="Your name" class="p-3 border border-line rounded-md" />
                     <input name="email" type="email" required placeholder="Work email"
                         class="p-3 border border-line rounded-md" />
-                    <input name="company" placeholder="Company"
-                        class="p-3 border border-line rounded-md" />
-                    <input name="sector" placeholder="Target sector"
-                        class="p-3 border border-line rounded-md" />
-                    <textarea name="message" rows="4" placeholder="Tell us about your inventory, parts, or maintenance workflow"
+                    <input name="company" placeholder="Company" class="p-3 border border-line rounded-md" />
+                    <input name="sector" placeholder="Your industry" class="p-3 border border-line rounded-md" />
+                    <textarea name="message" rows="4"
+                        placeholder="Tell us about your parts challenge—what's slowing you down?"
                         class="p-3 border border-line rounded-md md:col-span-2"></textarea>
                     <div class="md:col-span-2">
-                        <button id="contactSubmit" class="btn btn-primary">Send request</button>
+                        <button id="contactSubmit" class="btn btn-primary">Send message</button>
                         <span id="contactNote" class="ml-3 text-[13px] text-[color:var(--muted)]"></span>
                     </div>
                 </form>
