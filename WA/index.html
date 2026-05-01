@@ -140,9 +140,22 @@
                 linear-gradient(135deg, #021346, #061b54 55%, #021346);
         }
 
+        .dashboard-frame {
+            width: 100%;
+            min-height: 720px;
+            border: 0;
+            border-radius: 24px;
+            background: #06194c;
+            box-shadow: 0 28px 90px -50px rgba(2, 19, 70, .6);
+        }
+
         @media (max-width: 768px) {
             .grid-bg {
                 background-size: 42px 42px;
+            }
+
+            .dashboard-frame {
+                min-height: 940px;
             }
         }
     </style>
@@ -161,7 +174,7 @@
                 <a href="#compliance" class="hover:text-navy">Compliance</a>
                 <a href="#integrations" class="hover:text-navy">Integrations</a>
             </nav>
-            <a href="/contact.html" class="btn btn-primary">Start WhatsApp Integration <i data-lucide="arrow-up-right" class="h-4 w-4"></i></a>
+            <a href="/contact.html" class="btn btn-primary">Start WhatsApp Setup <i data-lucide="arrow-up-right" class="h-4 w-4"></i></a>
         </div>
     </header>
 
@@ -189,6 +202,11 @@
                         <div class="flex items-center gap-2"><i data-lucide="check-circle-2" class="h-4 w-4 text-teal"></i> Consent-first</div>
                         <div class="flex items-center gap-2"><i data-lucide="check-circle-2" class="h-4 w-4 text-teal"></i> Own WABA</div>
                         <div class="flex items-center gap-2"><i data-lucide="check-circle-2" class="h-4 w-4 text-teal"></i> Policy-aware</div>
+                    </div>
+                    <div class="mt-5 flex flex-wrap gap-3 text-[12px] text-white/72">
+                        <span class="rounded-full border border-white/15 bg-white/8 px-3 py-1.5">Built for Indian businesses</span>
+                        <span class="rounded-full border border-white/15 bg-white/8 px-3 py-1.5">Meta-compliant workflows</span>
+                        <span class="rounded-full border border-white/15 bg-white/8 px-3 py-1.5">API-first platform</span>
                     </div>
                 </div>
 
@@ -263,8 +281,44 @@
                     <div class="card rounded-[22px] p-6">
                         <div class="font-mono text-[11px] text-navy/45">CONTACT</div>
                         <div class="mt-3 text-[18px] font-semibold text-navy">+91 97658 58403</div>
-                        <p class="mt-2 text-[13px] leading-[1.65] text-[color:var(--muted)]">Email: iamkundan0206@gmail.com<br />Website: wa.builddreams.co.in</p>
+                        <p class="mt-2 text-[13px] leading-[1.65] text-[color:var(--muted)]">Email: support@builddreams.co.in<br />Website: https://builddreams.co.in</p>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-[#f3f8f8] py-20">
+            <div class="mx-auto max-w-[1240px] px-6 lg:px-8">
+                <div class="grid gap-8 lg:grid-cols-12 lg:items-end">
+                    <div class="lg:col-span-7">
+                        <div class="chip bg-white text-navy/55"><span class="font-mono text-[11px]">LIVE PRODUCT PROOF</span></div>
+                        <h2 class="mt-5 text-[40px] font-semibold leading-[1.08] tracking-[-0.03em] text-navy md:text-[58px]">
+                            Actual dashboard experience, embedded on the page.
+                        </h2>
+                        <p class="mt-5 max-w-2xl text-[16px] leading-[1.75] text-[color:var(--muted)]">
+                            This dashboard preview shows the product surface businesses use for conversations,
+                            workflow setup, opt-in checks, template review, analytics, and integrations.
+                        </p>
+                    </div>
+                    <div class="lg:col-span-5">
+                        <div class="grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
+                            <div class="card rounded-2xl p-4">
+                                <div class="font-mono text-[10px] text-navy/45">STATUS</div>
+                                <div class="mt-1 font-semibold text-navy">Operational dashboard</div>
+                            </div>
+                            <div class="card rounded-2xl p-4">
+                                <div class="font-mono text-[10px] text-navy/45">WORKFLOWS</div>
+                                <div class="mt-1 font-semibold text-navy">Template + opt-in controls</div>
+                            </div>
+                            <div class="card rounded-2xl p-4">
+                                <div class="font-mono text-[10px] text-navy/45">INTEGRATIONS</div>
+                                <div class="mt-1 font-semibold text-navy">Meta Cloud API / Twilio / MSG91</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-10 rounded-[28px] border border-line bg-white p-3">
+                    <iframe src="./dashboard.html" title="BuildDreams WhatsApp Automation Platform dashboard" class="dashboard-frame"></iframe>
                 </div>
             </div>
         </section>
@@ -413,8 +467,8 @@
             <div class="mx-auto max-w-[1240px] px-6 lg:px-8">
                 <div class="max-w-3xl">
                     <div class="chip text-navy/55"><span class="font-mono text-[11px]">PLATFORM PREVIEW</span></div>
-                    <h2 class="mt-5 text-[40px] font-semibold leading-[1.08] tracking-[-0.03em] text-navy md:text-[58px]">
-                        Clear dashboards, not hidden automation.
+                        <h2 class="mt-5 text-[40px] font-semibold leading-[1.08] tracking-[-0.03em] text-navy md:text-[58px]">
+                        Real dashboard surfaces, not hidden automation.
                     </h2>
                 </div>
                 <div class="mt-10 grid gap-5 lg:grid-cols-3">
@@ -479,8 +533,8 @@
                                 Customers must use their own approved WhatsApp Business account and comply with WhatsApp policies.
                             </p>
                             <p class="mt-5 rounded-2xl bg-[#f3f8f8] p-4 text-[15px] font-semibold leading-[1.7] text-navy">
-                                We are not a WhatsApp Business Solution Provider (BSP). We provide software tools that
-                                integrate with official APIs.
+                                BuildDreams is not a WhatsApp Business Solution Provider (BSP). We provide software
+                                tools that integrate with official WhatsApp APIs.
                             </p>
                             <div class="mt-6 grid gap-3 text-[13px] text-[color:var(--muted)] md:grid-cols-2">
                                 <div class="flex gap-2"><i data-lucide="check-circle-2" class="mt-0.5 h-4 w-4 shrink-0 text-teal"></i> No bulk messaging service</div>
@@ -597,7 +651,7 @@
                         </p>
                     </div>
                     <div class="flex md:justify-end">
-                        <a href="/contact.html" class="btn btn-teal">Start WhatsApp Integration <i data-lucide="arrow-up-right" class="h-4 w-4"></i></a>
+                        <a href="/contact.html" class="btn btn-teal">Start WhatsApp Setup <i data-lucide="arrow-up-right" class="h-4 w-4"></i></a>
                     </div>
                 </div>
             </div>
@@ -606,7 +660,11 @@
 
     <footer class="border-t border-line bg-white py-8">
         <div class="mx-auto flex max-w-[1240px] flex-col gap-4 px-6 text-[13px] text-[color:var(--muted)] md:flex-row md:items-center md:justify-between lg:px-8">
-            <div>© 2026 Builddreams Technologies · UDYAM-MH-20-0340233 · Nagpur, Maharashtra, India. Not affiliated with WhatsApp or Meta.</div>
+            <div class="max-w-3xl">
+                <strong class="text-navy">Builddreams Technologies</strong> · India · UDYAM-MH-20-0340233 ·
+                Nagpur, Maharashtra, India · Email: support@builddreams.co.in · Website:
+                https://builddreams.co.in · Phone: +91 97658 58403. Not affiliated with WhatsApp or Meta.
+            </div>
             <div class="flex flex-wrap gap-4">
                 <a href="/privacy.html" class="hover:text-teal">Privacy</a>
                 <a href="/terms.html" class="hover:text-teal">Terms</a>
