@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=Instrument+Serif:ital@0;1&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap"
+        href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;family=Sora:wght@300;400;500;600;700;800&amp;display=swap"
         rel="stylesheet">
 
     <style>
@@ -39,7 +39,7 @@
             margin: 0;
             background: var(--paper);
             color: var(--ink);
-            font-family: 'Inter', system-ui, sans-serif;
+            font-family: 'Sora', sans-serif;
         }
 
         img {
@@ -53,7 +53,7 @@
         }
 
         .font-display {
-            font-family: 'Instrument Serif', serif;
+            font-family: 'Fraunces', serif;
         }
 
         .font-mono {
@@ -904,23 +904,29 @@
         }
 
         @keyframes scanSweep {
-            0%, 12% {
+
+            0%,
+            12% {
                 top: 28%;
                 opacity: 0;
             }
 
-            20%, 72% {
+            20%,
+            72% {
                 opacity: 1;
             }
 
-            88%, 100% {
+            88%,
+            100% {
                 top: 74%;
                 opacity: 0;
             }
         }
 
         @keyframes floatObject {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: translate(-50%, -50%) rotate(-8deg);
             }
 
@@ -930,6 +936,7 @@
         }
 
         @media (max-width: 1180px) {
+
             .hero-grid,
             .proof-grid,
             .contact-wrap {
@@ -1010,6 +1017,7 @@
         }
 
         @media (max-width: 520px) {
+
             .btn,
             .button {
                 width: 100%;
@@ -1032,13 +1040,13 @@
                     </div>
                 </a>
                 <nav class="nav">
-                    <a href="#capabilities">Capabilities</a>
+                    <a href="#features">Features</a>
+                    <a href="#how-it-works">How it works</a>
                     <a href="#sectors">Sectors</a>
-                    <a href="#buyers">Buyers</a>
-                    <a href="#models">Commercial Models</a>
-                    <a href="#contact">Pilot Brief</a>
+                    <a href="#testimonials">Proof</a>
+                    <a href="#contact">Pilot brief</a>
                 </nav>
-                <a class="btn btn-primary" href="#contact">Plan A Pilot</a>
+                <a class="btn btn-primary" href="#contact">Start 14-day free trial</a>
             </div>
         </header>
 
@@ -1047,23 +1055,29 @@
                 <div class="container hero-grid">
                     <div>
                         <div class="eyebrow reveal">BuildDreams Vision AI</div>
-                        <h1 class="title-xl reveal">Turn cameras and photos into quick, reliable decisions.</h1>
-                        <p class="subtitle-script font-display reveal">Detect issues, verify parts, confirm safety, or guide customers in seconds.</p>
-                        <p class="lead reveal">Most teams still rely on manual checks and slow reviews. Vision AI helps you see problems early, reduce mistakes, and move faster with the people you already have. It works with uploads, phone cameras, and live streams, so it fits into real-world operations without a long rebuild.</p>
+                        <h1 class="title-xl reveal">Visual detection. Without the chaos.</h1>
+                        <p class="subtitle-script font-display reveal">Detect issues, verify parts, and guide teams in
+                            seconds.</p>
+                        <p class="lead reveal">Most teams still rely on manual checks and slow reviews. Vision AI helps
+                            you see problems early, reduce mistakes, and move faster with the people you already have.
+                            It works with uploads, phone cameras, and live streams, so it fits into real-world
+                            operations without a long rebuild.</p>
 
                         <ul class="hero-points reveal">
                             <li>Spot defects, missing items, or safety issues in seconds, not hours.</li>
-                            <li>Use one platform for factory floors, field teams, warehouses, and customer-facing apps.</li>
+                            <li>Use one platform for factory floors, field teams, warehouses, and customer-facing apps.
+                            </li>
                             <li>Launch a pilot in weeks and expand to new sites and use cases as results grow.</li>
                         </ul>
 
                         <div class="btn-row reveal">
                             <a class="btn btn-primary" href="#sectors">See where it fits</a>
-                            <a class="btn btn-secondary" href="#buyers">See who it serves</a>
+                            <a class="btn btn-secondary" href="#features">See core features</a>
                             <a class="btn btn-teal" href="#contact">Plan a pilot</a>
                         </div>
 
-                        <p class="hero-note reveal">Typical pilots reduce manual review time by 30-50% within the first month.</p>
+                        <p class="hero-note reveal">Typical pilots reduce manual review time by 30-50% within the first
+                            month.</p>
                     </div>
 
                     <div class="stage-card reveal">
@@ -1082,7 +1096,8 @@
                             <div class="hud-pill">Custom model analyzing live visual input</div>
                             <div class="hud-panel">
                                 <div class="mini-label">Detected workflow</div>
-                                <div class="mini-text">Detect the issue, confirm the result, log it, and trigger the next step automatically.</div>
+                                <div class="mini-text">Detect the issue, confirm the result, log it, and trigger the
+                                    next step automatically.</div>
                             </div>
                         </div>
                         <div class="stage-bottom">
@@ -1135,17 +1150,19 @@
                 </div>
             </section>
 
-            <section id="capabilities" class="section band">
+            <section id="features" class="section band">
                 <div class="container">
-                    <div class="eyebrow reveal">Capabilities</div>
-                    <h2 class="title-lg reveal">What you can do on day one</h2>
-                    <p class="lead reveal">This is ready for real-world use. You plug in your images or cameras, teach the model what matters, and start getting decisions immediately.</p>
+                    <div class="eyebrow reveal">Core platform</div>
+                    <h2 class="title-lg reveal">Everything you need to scale visual decisions</h2>
+                    <p class="lead reveal">Upload images, capture from phones, or run live streams. Train once, then
+                        reuse the same engine across teams and sites.</p>
 
                     <div class="grid-4" style="margin-top:34px;">
                         <article class="feature-card reveal">
                             <div class="icon-box">01</div>
                             <h3>Image upload checks</h3>
-                            <p>Teams upload a photo and get a clear decision with confidence. Great for inspections, approvals, and evidence-based reviews.</p>
+                            <p>Teams upload a photo and get a clear decision with confidence. Great for inspections,
+                                approvals, and evidence-based reviews.</p>
                             <ul>
                                 <li>Use it for damage checks, part matching, and compliance checks.</li>
                                 <li>Cut manual review time by roughly 30-45% in most pilots.</li>
@@ -1175,7 +1192,8 @@
                         <article class="feature-card reveal">
                             <div class="icon-box">04</div>
                             <h3>Works everywhere</h3>
-                            <p>Use the same engine on web, mobile, or via API, so teams can start small and expand fast.</p>
+                            <p>Use the same engine on web, mobile, or via API, so teams can start small and expand fast.
+                            </p>
                             <ul>
                                 <li>Roll out to operators, managers, and mobile crews.</li>
                                 <li>Create simpler customer apps when needed.</li>
@@ -1200,7 +1218,8 @@
                 <div class="container">
                     <div class="eyebrow reveal">Sellable Sectors</div>
                     <h2 class="title-lg reveal">Industries that feel the problem most</h2>
-                    <p class="lead reveal">If teams rely on photos or cameras to make decisions, Vision AI can shorten the time and reduce errors.</p>
+                    <p class="lead reveal">If teams rely on photos or cameras to make decisions, Vision AI can shorten
+                        the time and reduce errors.</p>
 
                     <div class="sector-grid" style="margin-top:34px;">
                         <article class="sector-card reveal">
@@ -1259,13 +1278,15 @@
                 <div class="container">
                     <div class="eyebrow reveal">Target Customers</div>
                     <h2 class="title-lg reveal">Who benefits most</h2>
-                    <p class="lead reveal">Start with operational teams who need fast decisions. Then extend to smaller operators and customer apps as the model matures.</p>
+                    <p class="lead reveal">Start with operational teams who need fast decisions. Then extend to smaller
+                        operators and customer apps as the model matures.</p>
 
                     <div class="buyer-grid" style="margin-top:34px;">
                         <article class="buyer-card reveal">
                             <div class="icon-box">B2B</div>
                             <h3>Enterprise operations teams</h3>
-                            <p>Factories, logistics firms, utilities, and infrastructure teams that need faster, more consistent visual checks.</p>
+                            <p>Factories, logistics firms, utilities, and infrastructure teams that need faster, more
+                                consistent visual checks.</p>
                             <ul>
                                 <li>Best for custom pilots, multi-site rollouts, and long-term contracts.</li>
                                 <li>Typical impact: 25-40% faster inspections.</li>
@@ -1275,7 +1296,8 @@
                         <article class="buyer-card reveal">
                             <div class="icon-box">SMB</div>
                             <h3>Service businesses &amp; small operators</h3>
-                            <p>Repair centers, farms, distributors, and site-security firms that want AI without hiring an ML team.</p>
+                            <p>Repair centers, farms, distributors, and site-security firms that want AI without hiring
+                                an ML team.</p>
                             <ul>
                                 <li>Simple hosted package with focused workflows.</li>
                                 <li>Typical impact: fewer repeat checks and faster approvals.</li>
@@ -1285,7 +1307,8 @@
                         <article class="buyer-card reveal">
                             <div class="icon-box">B2C</div>
                             <h3>Consumers &amp; prosumers</h3>
-                            <p>Collectors, DIY users, and vehicle owners who want instant camera-based identification.</p>
+                            <p>Collectors, DIY users, and vehicle owners who want instant camera-based identification.
+                            </p>
                             <ul>
                                 <li>Best delivered as a guided niche app.</li>
                                 <li>Strong angle: point, identify, and get next steps.</li>
@@ -1299,12 +1322,14 @@
                 <div class="container">
                     <div class="eyebrow reveal">Commercial Models</div>
                     <h2 id="models" class="title-lg reveal">Simple ways to package it</h2>
-                    <p class="lead reveal">Start small, prove results, then expand. Most teams prefer a pilot before a full rollout.</p>
+                    <p class="lead reveal">Start small, prove results, then expand. Most teams prefer a pilot before a
+                        full rollout.</p>
 
                     <div class="pricing-grid" style="margin-top:34px;">
                         <article class="pricing-card reveal">
                             <h3>Custom pilot</h3>
-                            <p>Best first step for enterprises. Train on customer data, test one workflow, and measure results.</p>
+                            <p>Best first step for enterprises. Train on customer data, test one workflow, and measure
+                                results.</p>
                             <ul>
                                 <li>Paid discovery + pilot setup + model tuning.</li>
                                 <li>Typical pilot runs 4-6 weeks.</li>
@@ -1322,7 +1347,8 @@
 
                         <article class="pricing-card reveal">
                             <h3>White-label sector product</h3>
-                            <p>Rebrand the UI and model for a niche market and sell it as a focused industry solution.</p>
+                            <p>Rebrand the UI and model for a niche market and sell it as a focused industry solution.
+                            </p>
                             <ul>
                                 <li>Useful for resellers, dealers, and channel partners.</li>
                                 <li>Strong fit for aftermarket and niche consumer apps.</li>
@@ -1332,37 +1358,27 @@
                 </div>
             </section>
 
-            <section class="section band">
+            <section class="section band" id="how-it-works">
                 <div class="container">
-                    <div class="eyebrow reveal">Workflow</div>
+                    <div class="eyebrow reveal">How it works</div>
                     <h2 class="title-lg reveal">A simple flow every team understands</h2>
-                    <p class="lead reveal">This is the same repeatable flow you can use in every proposal.</p>
+                    <p class="lead reveal">Three steps from capture to action, then scale to new sites.</p>
 
-                    <div class="journey reveal">
+                    <div class="journey reveal" style="grid-template-columns: repeat(3, minmax(0, 1fr));">
                         <article class="journey-step">
                             <div class="step-no">01 · Capture</div>
                             <h4>Collect images or live feeds</h4>
                             <p>Use uploads, phone capture, CCTV streams, or line cameras.</p>
                         </article>
                         <article class="journey-step">
-                            <div class="step-no">02 · Train</div>
-                            <h4>Customize the model</h4>
-                            <p>Train the system on the exact objects or issues that matter to the customer.</p>
-                        </article>
-                        <article class="journey-step">
-                            <div class="step-no">03 · Detect</div>
+                            <div class="step-no">02 · Detect</div>
                             <h4>Run AI detection</h4>
                             <p>Return clear results with confidence, logs, and actions through web, mobile, or API.</p>
                         </article>
                         <article class="journey-step">
-                            <div class="step-no">04 · Act</div>
+                            <div class="step-no">03 · Act</div>
                             <h4>Trigger action</h4>
                             <p>Notify staff, log evidence, and move the workflow forward automatically.</p>
-                        </article>
-                        <article class="journey-step">
-                            <div class="step-no">05 · Expand</div>
-                            <h4>Roll out by site or use case</h4>
-                            <p>Start with one pilot and scale to more cameras, sites, and teams.</p>
                         </article>
                     </div>
                 </div>
@@ -1373,11 +1389,14 @@
                     <article class="proof-card reveal">
                         <div class="eyebrow">Best Messaging</div>
                         <h3 style="margin-top:18px;">Recommended sales framing</h3>
-                        <p>Lead with the problem and the outcome: fewer misses, faster decisions, safer operations. Then show the sector-specific examples.</p>
+                        <p>Lead with the problem and the outcome: fewer misses, faster decisions, safer operations. Then
+                            show the sector-specific examples.</p>
                         <ul class="proof-list">
                             <li><strong>Category:</strong> Customizable Vision AI Platform</li>
-                            <li><strong>Core promise:</strong> Turn images and live video into quick, reliable decisions</li>
-                            <li><strong>Buyer promise:</strong> Faster inspections, fewer misses, less manual effort</li>
+                            <li><strong>Core promise:</strong> Turn images and live video into quick, reliable decisions
+                            </li>
+                            <li><strong>Buyer promise:</strong> Faster inspections, fewer misses, less manual effort
+                            </li>
                             <li><strong>Expansion promise:</strong> One core engine, many industry solutions</li>
                         </ul>
                     </article>
@@ -1387,38 +1406,38 @@
                         <h3 style="margin-top:18px;">How to position by customer type</h3>
                         <ul class="proof-list">
                             <li><strong>For enterprises:</strong> “Deploy custom vision in weeks, not quarters.”</li>
-                            <li><strong>For operational teams:</strong> “Cut manual review by 30-50% with reliable visual checks.”</li>
+                            <li><strong>For operational teams:</strong> “Cut manual review by 30-50% with reliable
+                                visual checks.”</li>
                             <li><strong>For SMBs:</strong> “Get industry-grade AI without hiring a data team.”</li>
-                            <li><strong>For B2C niches:</strong> “Point your phone, identify instantly, and get next steps.”</li>
+                            <li><strong>For B2C niches:</strong> “Point your phone, identify instantly, and get next
+                                steps.”</li>
                         </ul>
                     </article>
                 </div>
             </section>
 
-            <section class="section">
+            <section class="section" id="testimonials">
                 <div class="container">
-                    <div class="eyebrow reveal">Case snapshots</div>
-                    <h2 class="title-lg reveal">Small wins that feel real</h2>
-                    <p class="lead reveal">These are typical outcomes teams report after a few weeks of using Vision AI.</p>
+                    <div class="eyebrow reveal">Loved by operators</div>
+                    <h2 class="title-lg reveal">Teams stick with Vision AI</h2>
+                    <p class="lead reveal">Real outcomes from early deployments.</p>
 
                     <div class="grid-3" style="margin-top:34px;">
                         <article class="feature-card reveal">
                             <div class="icon-box">01</div>
                             <h3>Factory quality checks</h3>
-                            <p>Manual defect reviews dropped by ~40% and catch rates improved by about 18% once the model
-                                learned the top 6 issues.</p>
+                            <p>"Manual defect reviews dropped fast. Our inspectors now trust the alerts and move
+                                faster."</p>
                         </article>
                         <article class="feature-card reveal">
                             <div class="icon-box">02</div>
                             <h3>Warehouse verification</h3>
-                            <p>Mis-shipments fell by roughly 25% and audit time was cut by ~35% with quick image
-                                verification at the dock.</p>
+                            <p>"Dock teams verify shipments on the spot. We stopped redoing audits every week."</p>
                         </article>
                         <article class="feature-card reveal">
                             <div class="icon-box">03</div>
                             <h3>Utility field inspections</h3>
-                            <p>Remote asset checks reduced on-site visits by ~20% and sped up approvals for routine
-                                maintenance.</p>
+                            <p>"Remote checks reduced site visits and sped up approval loops across regions."</p>
                         </article>
                     </div>
                 </div>
@@ -1428,12 +1447,14 @@
                 <div class="container">
                     <div class="eyebrow reveal">Pilot Brief</div>
                     <h2 class="title-lg reveal">Create a simple, customer-ready brief</h2>
-                    <p class="lead reveal">Use this as a quick sales asset. It turns the same platform into a clear, sector-specific pitch.</p>
+                    <p class="lead reveal">Use this as a quick sales asset. It turns the same platform into a clear,
+                        sector-specific pitch.</p>
 
                     <div class="contact-wrap">
                         <div class="contact-card reveal">
                             <h3>What to ask every prospect</h3>
-                            <p>Keep discovery simple. Learn what they need to see, what decision they need, and what action should happen next.</p>
+                            <p>Keep discovery simple. Learn what they need to see, what decision they need, and what
+                                action should happen next.</p>
                             <ul class="proof-list">
                                 <li>What do they need to detect or verify?</li>
                                 <li>Where do images come from: uploads, phones, or live streams?</li>
@@ -1491,7 +1512,8 @@
                                 </div>
                                 <div class="field full">
                                     <label for="problem">What problem are we solving?</label>
-                                    <textarea id="problem" placeholder="Example: reduce inspection misses, verify parts faster, monitor live cameras for risky events..."></textarea>
+                                    <textarea id="problem"
+                                        placeholder="Example: reduce inspection misses, verify parts faster, monitor live cameras for risky events..."></textarea>
                                 </div>
                             </div>
 
@@ -1500,31 +1522,40 @@
                                 <button class="btn btn-secondary" id="copyBrief" type="button">Copy Brief</button>
                             </div>
 
-                            <div class="output-box font-mono" id="briefOutput">BuildDreams Vision AI can be positioned as a customizable visual intelligence product for this customer. Select the sector, buyer type, input mode, and deployment model to generate a focused pitch.</div>
+                            <div class="output-box font-mono" id="briefOutput">BuildDreams Vision AI can be positioned
+                                as a customizable visual intelligence product for this customer. Select the sector,
+                                buyer type, input mode, and deployment model to generate a focused pitch.</div>
 
                             <div style="margin-top:22px;padding-top:22px;border-top:1px solid rgba(9,27,55,0.12);">
                                 <h3 style="margin-top:0;">Request a pilot discussion</h3>
                                 <p>Send this request and we will follow up with a pilot plan.</p>
-                                <form id="contactForm" class="brief-grid" data-product="Vision AI" data-page="Vision AI Landing Page" data-project-key="vision-ai">
+                                <form id="contactForm" class="brief-grid" data-product="Vision AI"
+                                    data-page="Vision AI Landing Page" data-project-key="vision-ai">
                                     <div class="field">
                                         <label for="contactName">Name</label>
-                                        <input id="contactName" name="name" type="text" placeholder="Your name" required>
+                                        <input id="contactName" name="name" type="text" placeholder="Your name"
+                                            required>
                                     </div>
                                     <div class="field">
                                         <label for="contactEmail">Email</label>
-                                        <input id="contactEmail" name="email" type="email" placeholder="Work email" required>
+                                        <input id="contactEmail" name="email" type="email" placeholder="Work email"
+                                            required>
                                     </div>
                                     <div class="field full">
                                         <label for="contactCompany">Company</label>
-                                        <input id="contactCompany" name="company" type="text" placeholder="Company or team">
+                                        <input id="contactCompany" name="company" type="text"
+                                            placeholder="Company or team">
                                     </div>
                                     <div class="field full">
                                         <label for="contactMessage">What should we discuss?</label>
-                                        <textarea id="contactMessage" name="message" placeholder="Tell us the sector, the workflow, and the decision you want to improve."></textarea>
+                                        <textarea id="contactMessage" name="message"
+                                            placeholder="Tell us the sector, the workflow, and the decision you want to improve."></textarea>
                                     </div>
-                                    <div class="field full" style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+                                    <div class="field full"
+                                        style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
                                         <button class="btn btn-primary" type="submit">Request Pilot Discussion</button>
-                                        <span id="contactNote" class="font-mono" style="font-size:12px;color:var(--muted);"></span>
+                                        <span id="contactNote" class="font-mono"
+                                            style="font-size:12px;color:var(--muted);"></span>
                                     </div>
                                 </form>
                             </div>
@@ -1543,7 +1574,8 @@
                         <span class="font-mono">MULTI-SECTOR LANDING PAGE</span>
                     </div>
                 </div>
-                <div>© 2026 BuildDreams Technologies · Generalized positioning page for customizable visual AI deployments</div>
+                <div>© 2026 BuildDreams Technologies · Generalized positioning page for customizable visual AI
+                    deployments</div>
             </div>
         </footer>
     </div>

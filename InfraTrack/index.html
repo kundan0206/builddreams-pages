@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Sora:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -44,12 +44,12 @@
         body {
             background: var(--paper);
             color: var(--ink);
-            font-family: 'Inter', system-ui, sans-serif;
+            font-family: 'Sora', sans-serif;
             letter-spacing: 0;
         }
 
         .font-display {
-            font-family: 'Instrument Serif', serif;
+            font-family: 'Fraunces', serif;
         }
 
         .font-mono {
@@ -390,10 +390,10 @@
             </a>
 
             <nav class="hidden lg:flex items-center gap-7 text-[14px] font-medium text-slate-600">
-                <a href="#platform" class="hover:text-navy transition">Platform</a>
+                <a href="#features" class="hover:text-navy transition">Features</a>
+                <a href="#how-it-works" class="hover:text-navy transition">How it works</a>
                 <a href="#sectors" class="hover:text-navy transition">Sectors</a>
                 <a href="#modules" class="hover:text-navy transition">Modules</a>
-                <a href="#implementation" class="hover:text-navy transition">Implementation</a>
                 <a href="#contact" class="hover:text-navy transition">Contact</a>
             </nav>
 
@@ -407,11 +407,12 @@
                 <div class="max-w-3xl">
                     <div class="chip reveal">
                         <i data-lucide="radio-tower" class="w-3.5 h-3.5"></i>
-                        INFRATRACK · CONFIGURABLE B2B OPERATIONS PLATFORM
+                        INFRATRACK · B2B OPERATIONS COMMAND CENTER
                     </div>
                     <h1
                         class="reveal mt-6 text-[42px] sm:text-[56px] lg:text-[74px] leading-[1.02] font-semibold text-navy">
-                        You have 50 vehicles, 3 warehouses, and zero clarity on where things are. InfraTrack fixes that.
+                        Infrastructure visibility. Without the chaos.
+                        InfraTrack keeps everything in sync.
                     </h1>
                     <p class="reveal mt-6 max-w-2xl text-[16px] sm:text-[18px] leading-relaxed text-slate-600">
                         Stop losing track of equipment, approvals, and service tickets. InfraTrack gives you complete
@@ -420,20 +421,28 @@
                     </p>
 
                     <div class="reveal mt-8 flex flex-col sm:flex-row gap-3">
-                        <a href="#contact" class="btn btn-primary">See how it works <i data-lucide="arrow-right"
+                        <a href="#contact" class="btn btn-primary">Start 14-day free trial <i data-lucide="arrow-right"
                                 class="w-4 h-4"></i></a>
-                        <a href="https://wa.me/919356873562?text=InfraTrack%20demo%20request" target="_blank" class="btn btn-ghost">WhatsApp us</a>
+                        <a href="https://wa.me/919356873562?text=InfraTrack%20demo%20request" target="_blank"
+                            class="btn btn-ghost">WhatsApp us</a>
                         <a href="#sectors" class="btn btn-ghost">Who uses InfraTrack</a>
                     </div>
 
                     <div class="reveal mt-6 rounded-2xl border border-line bg-white/80 p-4 max-w-2xl">
                         <div class="font-mono text-[11px] text-slate-500">PICK YOUR INDUSTRY</div>
                         <div class="mt-3 flex flex-wrap gap-2">
-                            <button class="industry-tab px-3 py-2 rounded-full bg-navy text-white text-[13px]" data-copy="Construction fleet: stop losing machines between sites, yards, and vendors. Outcome: live asset movement, maintenance, and approval history.">Construction</button>
-                            <button class="industry-tab px-3 py-2 rounded-full border border-line bg-white text-navy text-[13px]" data-copy="Hospital admin: know which device, bed, kit, or biomedical asset is available, due for service, or missing. Outcome: faster audits and fewer replacement surprises.">Hospitals</button>
-                            <button class="industry-tab px-3 py-2 rounded-full border border-line bg-white text-navy text-[13px]" data-copy="Logistics team: track vehicles, pallets, warehouse stock, driver handovers, and pending service tickets from one command board.">Logistics</button>
+                            <button class="industry-tab px-3 py-2 rounded-full bg-navy text-white text-[13px]"
+                                data-copy="Construction fleet: stop losing machines between sites, yards, and vendors. Outcome: live asset movement, maintenance, and approval history.">Construction</button>
+                            <button
+                                class="industry-tab px-3 py-2 rounded-full border border-line bg-white text-navy text-[13px]"
+                                data-copy="Hospital admin: know which device, bed, kit, or biomedical asset is available, due for service, or missing. Outcome: faster audits and fewer replacement surprises.">Hospitals</button>
+                            <button
+                                class="industry-tab px-3 py-2 rounded-full border border-line bg-white text-navy text-[13px]"
+                                data-copy="Logistics team: track vehicles, pallets, warehouse stock, driver handovers, and pending service tickets from one command board.">Logistics</button>
                         </div>
-                        <p id="industryCopy" class="mt-3 text-[14px] leading-relaxed text-slate-600">Construction fleet: stop losing machines between sites, yards, and vendors. Outcome: live asset movement, maintenance, and approval history.</p>
+                        <p id="industryCopy" class="mt-3 text-[14px] leading-relaxed text-slate-600">Construction fleet:
+                            stop losing machines between sites, yards, and vendors. Outcome: live asset movement,
+                            maintenance, and approval history.</p>
                     </div>
 
                     <div class="reveal mt-9 grid grid-cols-2 md:grid-cols-4 gap-3 max-w-2xl">
@@ -635,7 +644,7 @@
             </div>
         </section>
 
-        <section id="platform" class="section-band py-16 lg:py-20">
+        <section id="features" class="section-band py-16 lg:py-20">
             <div class="max-w-[1320px] mx-auto px-5 lg:px-10">
                 <div class="max-w-3xl">
                     <div class="chip reveal">PLATFORM POSITIONING</div>
@@ -824,12 +833,12 @@
             </div>
         </section>
 
-        <section class="py-16 lg:py-20 section-band">
+        <section class="py-16 lg:py-20 section-band" id="testimonials">
             <div class="max-w-[1320px] mx-auto px-5 lg:px-10">
-                <div class="chip reveal">CASE SNAPSHOTS</div>
-                <h2 class="reveal mt-5 text-[30px] md:text-[42px] font-semibold text-navy">Small wins that feel real</h2>
-                <p class="reveal mt-3 text-[15px] text-slate-600">These are typical outcomes teams report after a few
-                    weeks of using InfraTrack.</p>
+                <div class="chip reveal">LOVED BY OPERATORS</div>
+                <h2 class="reveal mt-5 text-[30px] md:text-[42px] font-semibold text-navy">Teams stick with InfraTrack
+                </h2>
+                <p class="reveal mt-3 text-[15px] text-slate-600">Real outcomes from early deployments.</p>
 
                 <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
                     <article class="feature-card reveal rounded-2xl p-6">
@@ -934,7 +943,7 @@
             </div>
         </section>
 
-        <section id="implementation" class="py-16 lg:py-20">
+        <section id="how-it-works" class="py-16 lg:py-20">
             <div class="max-w-[1320px] mx-auto px-5 lg:px-10">
                 <div class="max-w-3xl">
                     <div class="chip reveal">HOW WE DEPLOY</div>
@@ -1029,7 +1038,7 @@
                 <span class="font-medium">BuildDreams · InfraTrack</span>
             </div>
             <div class="flex flex-wrap gap-5 text-[13px] text-white/55">
-                <a href="#platform" class="hover:text-white">Platform</a>
+                <a href="#features" class="hover:text-white">Features</a>
                 <a href="#sectors" class="hover:text-white">Sectors</a>
                 <a href="#modules" class="hover:text-white">Modules</a>
                 <a href="#contact" class="hover:text-white">Contact</a>

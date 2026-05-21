@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Sora:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet" />
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   <style>
@@ -28,7 +28,7 @@
       margin: 0;
       background: #f7f9fb;
       color: #0b1020;
-      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: "Sora", sans-serif;
       line-height: 1.55;
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
@@ -59,7 +59,7 @@
     }
 
     .font-display {
-      font-family: "Instrument Serif", Georgia, serif;
+      font-family: "Fraunces", Georgia, serif;
     }
 
     .font-mono {
@@ -679,7 +679,7 @@
 
     .workflow {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 18px;
       counter-reset: steps;
     }
@@ -902,7 +902,7 @@
       border: 1px solid var(--line);
       border-radius: 12px;
       padding: 13px 14px;
-      font: 500 14px Inter, sans-serif;
+      font: 500 14px "Sora", sans-serif;
       color: var(--ink);
       background: #fbfcfd;
       outline: none;
@@ -1090,10 +1090,10 @@
         <span class="brand-kicker">/ Nivaran</span>
       </a>
       <nav class="nav-links" aria-label="Main navigation">
-        <a href="#capabilities">Capabilities</a>
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How it works</a>
         <a href="#sectors">Sectors</a>
-        <a href="#workflow">Workflow</a>
-        <a href="#security">Security</a>
+        <a href="#testimonials">Proof</a>
       </nav>
       <div class="nav-actions">
         <a class="btn btn-primary" href="#contact">Get a demo</a>
@@ -1106,19 +1106,22 @@
       <div class="wide">
         <div class="hero-grid">
           <div>
-            <div class="chip reveal"><span class="chip-dot"></span>Complaint and helpdesk software for Indian operations</div>
-            <h1 class="reveal">Manage patient complaints, employee helpdesk requests, and customer cases <span>without losing follow-ups.</span></h1>
-            <p class="hero-copy reveal">Nivaran turns calls, forms, QR uploads, and front-desk conversations into trackable tickets with owners, SLA status, documents, and escalation history.</p>
+            <div class="chip reveal"><span class="chip-dot"></span>Service request management for high-volume teams
+            </div>
+            <h1 class="reveal">Service requests. <span>Without the chaos.</span></h1>
+            <p class="hero-copy reveal">Capture, route, and close requests from every channel in one clean workspace.
+              Nivaran keeps owners, SLAs, documents, and escalations clear from the moment a request comes in.</p>
             <div class="hero-actions reveal">
-              <a class="btn btn-primary" href="#contact">Show me how it works for a Hospital <i data-lucide="arrow-right"></i></a>
-              <a class="btn btn-ghost" href="https://wa.me/919356873562?text=Nivaran%20demo%20request" target="_blank">WhatsApp us</a>
-              <a class="btn btn-ghost" href="#sectors">View target customers</a>
+              <a class="btn btn-primary" href="#contact">Start 14-day free trial <i data-lucide="arrow-right"></i></a>
+              <a class="btn btn-ghost" href="https://wa.me/919356873562?text=Nivaran%20demo%20request"
+                target="_blank">WhatsApp us</a>
+              <a class="btn btn-ghost" href="#features">See core features</a>
             </div>
             <div class="hero-proof reveal">
-              <span><i data-lucide="scan-face"></i> Faster front desk check-in</span>
-              <span><i data-lucide="mic"></i> Speak or type the request</span>
-              <span><i data-lucide="qr-code"></i> Documents from any phone</span>
-              <span><i data-lucide="shield-check"></i> Clear status for every case</span>
+              <span><i data-lucide="badge-check"></i> Trusted by multi-location teams</span>
+              <span><i data-lucide="clock"></i> Faster closure with SLA clarity</span>
+              <span><i data-lucide="file-text"></i> Every request has a trail</span>
+              <span><i data-lucide="activity"></i> Live visibility for managers</span>
             </div>
           </div>
 
@@ -1186,46 +1189,31 @@
       </div>
     </section>
 
-    <section id="capabilities">
+    <section id="features">
       <div class="container">
         <div class="section-head">
           <div>
-            <div class="chip reveal">Core product</div>
-            <h2 class="reveal">From chaos to calm in one simple desk.</h2>
+            <div class="chip reveal">Core platform</div>
+            <h2 class="reveal">Everything you need to scale service requests.</h2>
           </div>
-          <p class="reveal">Problem: requests come in from everywhere and get lost. Solution: one clear place to log,
-            track, and close. Result: fewer missed cases and a calmer team.</p>
+          <p class="reveal">Three engines keep requests moving: capture, routing, and resolution. Every case is
+            visible, owned, and auditable.</p>
         </div>
         <div class="capability-grid reveal">
           <article class="capability">
-            <div class="icon"><i data-lucide="scan-face"></i></div>
-            <h3>Quick front-desk check-in</h3>
-            <p>Recognize returning visitors or register new ones in seconds, even during rush hours.</p>
-          </article>
-          <article class="capability">
-            <div class="icon"><i data-lucide="mic-2"></i></div>
-            <h3>Speak or type the issue</h3>
-            <p>Let people explain the issue in their own words and capture it cleanly for staff.</p>
-          </article>
-          <article class="capability">
-            <div class="icon"><i data-lucide="qr-code"></i></div>
-            <h3>Send documents from any phone</h3>
-            <p>Customers upload photos or files with a quick link. No email chains, no confusion.</p>
-          </article>
-          <article class="capability">
-            <div class="icon"><i data-lucide="users-round"></i></div>
-            <h3>Clear roles for every team</h3>
-            <p>Front desk, managers, and approvers each see only what they need, nothing extra.</p>
+            <div class="icon"><i data-lucide="inbox"></i></div>
+            <h3>Intake hub</h3>
+            <p>Bring calls, forms, QR uploads, and desk visits into a single queue with clean summaries.</p>
           </article>
           <article class="capability">
             <div class="icon"><i data-lucide="route"></i></div>
-            <h3>Smart handoffs</h3>
-            <p>The right person gets the case at the right time, so issues do not get stuck.</p>
+            <h3>Smart routing</h3>
+            <p>Auto-assign owners, set SLAs, and keep escalations visible before issues pile up.</p>
           </article>
           <article class="capability">
-            <div class="icon"><i data-lucide="history"></i></div>
-            <h3>Simple reporting</h3>
-            <p>See what is open, what is delayed, and what keeps coming back every week.</p>
+            <div class="icon"><i data-lucide="file-check"></i></div>
+            <h3>Resolution trail</h3>
+            <p>Every action, document, and decision is stored so audits and reviews are simple.</p>
           </article>
         </div>
       </div>
@@ -1260,57 +1248,52 @@
       </div>
     </section>
 
-    <section id="workflow">
+    <section id="how-it-works">
       <div class="container">
         <div class="center-head">
           <div class="chip reveal">Simple workflow</div>
-          <h2 class="reveal">Problem in, solution out.</h2>
-          <p class="reveal">Every team works a little differently, but the path is the same: capture, route, resolve,
-            and keep everyone informed.</p>
+          <h2 class="reveal">How Nivaran works</h2>
+          <p class="reveal">Three clear steps to keep every request moving without confusion.</p>
         </div>
         <div class="workflow reveal">
           <article class="step">
-            <h3>Check in</h3>
-            <p>Quickly find a returning person or add a new one without long forms.</p>
+            <h3>Capture</h3>
+            <p>Log the request instantly from desk, phone, or QR with the right details.</p>
           </article>
           <article class="step">
-            <h3>Log the request</h3>
-            <p>Capture what happened in plain language, with just the right details.</p>
+            <h3>Route</h3>
+            <p>Assign owners, SLAs, and escalations automatically so nothing stalls.</p>
           </article>
           <article class="step">
-            <h3>Share any documents</h3>
-            <p>Customers upload photos or files from their phone, no chasing later.</p>
-          </article>
-          <article class="step">
-            <h3>Close with confidence</h3>
-            <p>Everyone sees what happened, who acted, and what comes next.</p>
+            <h3>Resolve</h3>
+            <p>Track updates, close with proof, and keep every stakeholder informed.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section id="stories">
+    <section id="testimonials">
       <div class="container">
         <div class="center-head">
-          <div class="chip reveal">Case snapshots</div>
-          <h2 class="reveal">Small wins that feel real.</h2>
-          <p class="reveal">These are typical outcomes teams report after a few weeks of use.</p>
+          <div class="chip reveal">Loved by operators</div>
+          <h2 class="reveal">Teams stick with Nivaran.</h2>
+          <p class="reveal">Real outcomes from early deployments.</p>
         </div>
         <div class="capability-grid reveal">
           <article class="capability">
-            <div class="icon"><i data-lucide="hospital"></i></div>
-            <h3>Hospital front desk</h3>
-            <p>Reduced repeat patient queries by around 30% and cut average resolution from 5 days to about 3.</p>
+            <div class="icon"><i data-lucide="star"></i></div>
+            <h3>Hospital operations</h3>
+            <p>"Our front desk stopped chasing updates. Every patient request has a clear owner and SLA."</p>
           </article>
           <article class="capability">
-            <div class="icon"><i data-lucide="building"></i></div>
-            <h3>Property manager</h3>
-            <p>Moved most maintenance requests from calls to self-serve, saving 6-8 staff hours each week.</p>
+            <div class="icon"><i data-lucide="star"></i></div>
+            <h3>Property management</h3>
+            <p>"Maintenance requests are finally visible. We close faster and residents follow up less."</p>
           </article>
           <article class="capability">
-            <div class="icon"><i data-lucide="truck"></i></div>
+            <div class="icon"><i data-lucide="star"></i></div>
             <h3>Logistics hub</h3>
-            <p>Cut missing document follow-ups by roughly 25% with one-time upload links.</p>
+            <p>"Document collection went from days to hours. The audit trail is clear for every case."</p>
           </article>
         </div>
       </div>

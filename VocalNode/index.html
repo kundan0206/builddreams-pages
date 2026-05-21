@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Sora:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -37,11 +37,11 @@
         body {
             background: #fbfcfc;
             color: var(--ink);
-            font-family: 'Inter', system-ui, sans-serif;
+            font-family: 'Sora', sans-serif;
         }
 
         .font-display {
-            font-family: 'Instrument Serif', serif;
+            font-family: 'Fraunces', serif;
         }
 
         .font-mono {
@@ -190,6 +190,7 @@
         }
 
         @media (max-width: 768px) {
+
             #nav>div,
             footer>div {
                 padding-left: 1rem !important;
@@ -242,8 +243,9 @@
             </a>
             <nav class="hidden lg:flex items-center gap-7 text-[14px] text-navy/80">
                 <a href="#features" class="hover:text-navy transition">Features</a>
-                <a href="#screenshots" class="hover:text-navy transition">Screenshots</a>
-                <a href="#offerings" class="hover:text-navy transition">Use Cases</a>
+                <a href="#how-it-works" class="hover:text-navy transition">How it works</a>
+                <a href="#offerings" class="hover:text-navy transition">Use cases</a>
+                <a href="#testimonials" class="hover:text-navy transition">Proof</a>
                 <a href="#contact" class="hover:text-navy transition">Contact</a>
             </nav>
             <div class="flex items-center gap-3">
@@ -270,12 +272,16 @@
                                 </div>
                                 <div class="rounded-xl bg-white text-navy p-4">
                                     <div class="text-[12px] text-navy/45">VocalNode</div>
-                                    <p class="mt-1 text-[15px]">Yes, your 7 PM booking is confirmed at Table 4. I have also sent the location on WhatsApp.</p>
+                                    <p class="mt-1 text-[15px]">Yes, your 7 PM booking is confirmed at Table 4. I have
+                                        also sent the location on WhatsApp.</p>
                                 </div>
                                 <div class="grid grid-cols-3 gap-3 text-center">
-                                    <div class="rounded-xl bg-white/10 p-3"><strong>35%</strong><span class="block text-[11px] text-white/50">missed calls down</span></div>
-                                    <div class="rounded-xl bg-white/10 p-3"><strong>12</strong><span class="block text-[11px] text-white/50">branches</span></div>
-                                    <div class="rounded-xl bg-white/10 p-3"><strong>Pune</strong><span class="block text-[11px] text-white/50">clinic pilot</span></div>
+                                    <div class="rounded-xl bg-white/10 p-3"><strong>35%</strong><span
+                                            class="block text-[11px] text-white/50">missed calls down</span></div>
+                                    <div class="rounded-xl bg-white/10 p-3"><strong>12</strong><span
+                                            class="block text-[11px] text-white/50">branches</span></div>
+                                    <div class="rounded-xl bg-white/10 p-3"><strong>Pune</strong><span
+                                            class="block text-[11px] text-white/50">clinic pilot</span></div>
                                 </div>
                             </div>
                         </div>
@@ -283,9 +289,11 @@
                 </div>
                 <div class="order-1 md:order-2 max-w-xl">
                     <div class="chip reveal">VOICE AUTOMATION</div>
-                    <h1 class="reveal mt-6 text-[40px] md:text-[56px] leading-tight font-medium text-navy">Let calls run
-                        smoothly, even when your team is busy</h1>
-                    <p class="reveal mt-4 text-[16px] text-[color:var(--muted)] leading-relaxed">Missed calls mean missed
+                    <h1 class="reveal mt-6 text-[40px] md:text-[56px] leading-tight font-medium text-navy">Voice
+                        routing.
+                        Without the chaos.</h1>
+                    <p class="reveal mt-4 text-[16px] text-[color:var(--muted)] leading-relaxed">Missed calls mean
+                        missed
                         revenue. VocalNode answers instantly, handles common questions, qualifies leads, and books
                         appointments so your staff can focus on the highest-value conversations.</p>
 
@@ -299,14 +307,16 @@
                     </ul>
 
                     <div class="mt-8 flex flex-wrap gap-3 reveal">
-                        <a href="#demo" class="btn btn-primary">Hear a live demo <i data-lucide="arrow-right"
+                        <a href="#demo" class="btn btn-primary">Start 14-day free trial <i data-lucide="arrow-right"
                                 class="w-4 h-4"></i></a>
                         <a href="#demo" class="btn btn-ghost">Click to hear a sample call</a>
-                        <a href="https://wa.me/919356873562?text=VocalNode%20sample%20call%20request" target="_blank" class="btn btn-ghost">WhatsApp us</a>
-                        <a href="#features" class="btn btn-ghost">See how it works</a>
+                        <a href="https://wa.me/919356873562?text=VocalNode%20sample%20call%20request" target="_blank"
+                            class="btn btn-ghost">WhatsApp us</a>
+                        <a href="#how-it-works" class="btn btn-ghost">See how it works</a>
                     </div>
 
-                    <p class="mt-5 text-[13px] text-[color:var(--muted)] reveal">Pilot from ₹29,999 · Typical teams see 25-40% more answered calls · No long-term lock-in</p>
+                    <p class="mt-5 text-[13px] text-[color:var(--muted)] reveal">Pilot from ₹29,999 · Typical teams see
+                        25-40% more answered calls · No long-term lock-in</p>
                 </div>
             </div>
         </section>
@@ -318,7 +328,8 @@
                     <div class="chip reveal">FEATURES</div>
                     <h2 class="reveal mt-6 text-[32px] md:text-[44px] font-medium text-navy">Everything you need to keep
                         calls fast and consistent</h2>
-                    <p class="mt-3 text-[15px] text-[color:var(--muted)] reveal">VocalNode handles the repetitive work so
+                    <p class="mt-3 text-[15px] text-[color:var(--muted)] reveal">VocalNode handles the repetitive work
+                        so
                         your team can focus on high-value conversations.</p>
                 </div>
 
@@ -327,7 +338,8 @@
                         <div class="w-10 h-10 rounded-lg bg-teal/15 flex items-center justify-center text-teal"><i
                                 data-lucide="phone-call" class="w-5 h-5"></i></div>
                         <h3 class="mt-4 text-[18px] font-medium">Natural conversations</h3>
-                        <p class="mt-2 text-[14px] text-[color:var(--muted)]">Human-like voice that handles interruptions
+                        <p class="mt-2 text-[14px] text-[color:var(--muted)]">Human-like voice that handles
+                            interruptions
                             and stays on-topic, so customers feel heard.</p>
                     </div>
                     <div class="feature-card reveal p-6 rounded-2xl border border-line bg-white">
@@ -349,20 +361,35 @@
         </section>
 
         <!-- SCREENSHOTS -->
-        <section id="screenshots" class="py-16">
+        <section id="how-it-works" class="py-16">
             <div class="max-w-[1320px] mx-auto px-6 lg:px-10">
                 <div class="flex items-center justify-between mb-6">
                     <div>
-                        <div class="chip reveal">SCREENSHOTS</div>
-                        <h3 class="reveal mt-3 text-[24px] font-medium text-navy">A quick look at the experience</h3>
+                        <div class="chip reveal">HOW IT WORKS</div>
+                        <h3 class="reveal mt-3 text-[24px] font-medium text-navy">A quick look at the call flow</h3>
                     </div>
                     <a href="#contact" class="btn btn-ghost hidden md:inline-flex reveal">Request a walkthrough</a>
                 </div>
 
                 <div class="reveal grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div class="hero-image bg-white p-5"><div class="font-mono text-[11px] text-navy/45">RESTAURANT · PUNE</div><h4 class="mt-3 text-[22px] font-medium text-navy">Peak-hour bookings</h4><p class="mt-2 text-[14px] text-[color:var(--muted)]">A 60-seat restaurant answers reservation calls while staff handle service.</p></div>
-                    <div class="hero-image bg-white p-5"><div class="font-mono text-[11px] text-navy/45">CLINIC · 12 BRANCHES</div><h4 class="mt-3 text-[22px] font-medium text-navy">35% fewer missed calls</h4><p class="mt-2 text-[14px] text-[color:var(--muted)]">Routine appointment questions handled automatically.</p></div>
-                    <div class="hero-image bg-white p-5"><div class="font-mono text-[11px] text-navy/45">LOGISTICS · HYDERABAD</div><h4 class="mt-3 text-[22px] font-medium text-navy">Dispatch check-ins</h4><p class="mt-2 text-[14px] text-[color:var(--muted)]">Drivers confirm status without manual coordinator calls.</p></div>
+                    <div class="hero-image bg-white p-5">
+                        <div class="font-mono text-[11px] text-navy/45">RESTAURANT · PUNE</div>
+                        <h4 class="mt-3 text-[22px] font-medium text-navy">Peak-hour bookings</h4>
+                        <p class="mt-2 text-[14px] text-[color:var(--muted)]">A 60-seat restaurant answers reservation
+                            calls while staff handle service.</p>
+                    </div>
+                    <div class="hero-image bg-white p-5">
+                        <div class="font-mono text-[11px] text-navy/45">CLINIC · 12 BRANCHES</div>
+                        <h4 class="mt-3 text-[22px] font-medium text-navy">35% fewer missed calls</h4>
+                        <p class="mt-2 text-[14px] text-[color:var(--muted)]">Routine appointment questions handled
+                            automatically.</p>
+                    </div>
+                    <div class="hero-image bg-white p-5">
+                        <div class="font-mono text-[11px] text-navy/45">LOGISTICS · HYDERABAD</div>
+                        <h4 class="mt-3 text-[22px] font-medium text-navy">Dispatch check-ins</h4>
+                        <p class="mt-2 text-[14px] text-[color:var(--muted)]">Drivers confirm status without manual
+                            coordinator calls.</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -372,7 +399,8 @@
             <div class="max-w-[1320px] mx-auto px-6 lg:px-10">
                 <div class="chip reveal">INDUSTRY USE CASES</div>
                 <h3 class="reveal mt-6 text-[28px] font-medium text-navy">Where teams see results fast</h3>
-                <p class="mt-3 text-[15px] text-[color:var(--muted)] reveal">These are the most common ways customers use
+                <p class="mt-3 text-[15px] text-[color:var(--muted)] reveal">These are the most common ways customers
+                    use
                     VocalNode to cut missed calls and speed up response times.</p>
 
                 <div class="mt-8 grid md:grid-cols-3 gap-6">
@@ -412,12 +440,11 @@
         </section>
 
         <!-- CASE SNAPSHOTS -->
-        <section class="py-16">
+        <section class="py-16" id="testimonials">
             <div class="max-w-[1320px] mx-auto px-6 lg:px-10">
-                <div class="chip reveal">CASE SNAPSHOTS</div>
-                <h3 class="reveal mt-6 text-[28px] font-medium text-navy">Small wins that feel real</h3>
-                <p class="mt-3 text-[15px] text-[color:var(--muted)] reveal">Typical outcomes teams report after a few
-                    weeks of using VocalNode.</p>
+                <div class="chip reveal">LOVED BY OPERATORS</div>
+                <h3 class="reveal mt-6 text-[28px] font-medium text-navy">Teams stick with VocalNode</h3>
+                <p class="mt-3 text-[15px] text-[color:var(--muted)] reveal">Real outcomes from early deployments.</p>
 
                 <div class="mt-8 grid md:grid-cols-3 gap-6">
                     <div class="p-6 rounded-xl border border-line bg-white reveal">
@@ -472,7 +499,8 @@
                         class="p-3 border border-line rounded-md" />
                     <input name="company" placeholder="Company (optional)"
                         class="p-3 border border-line rounded-md md:col-span-2" />
-                    <textarea name="message" rows="4" placeholder="Tell us your call volume, peak hours, and the tasks you want automated"
+                    <textarea name="message" rows="4"
+                        placeholder="Tell us your call volume, peak hours, and the tasks you want automated"
                         class="p-3 border border-line rounded-md md:col-span-2"></textarea>
                     <div class="md:col-span-2">
                         <button id="contactSubmit" class="btn btn-primary">Send request</button>
@@ -494,9 +522,9 @@
             </div>
             <div class="flex items-center gap-5">
                 <a href="/index.html" class="hover:text-teal">← Back to home</a>
-                <a href="#privacy" class="hover:text-teal">Privacy</a>
-                <a href="#terms" class="hover:text-teal">Terms</a>
-                <a href="#security" class="hover:text-teal">Security</a>
+                <a href="#features" class="hover:text-teal">Features</a>
+                <a href="#how-it-works" class="hover:text-teal">How it works</a>
+                <a href="#contact" class="hover:text-teal">Contact</a>
             </div>
             <div>© 2026 BuildDreams Technologies</div>
         </div>
