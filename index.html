@@ -401,6 +401,42 @@
                 background-size: 36px 36px;
             }
         }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .noise::after,
+            .grid-bg,
+            .reveal,
+            .reveal-word,
+            .hero-line {
+                animation: none !important;
+                transition: none !important;
+            }
+
+            .noise::after {
+                display: none;
+            }
+        }
+
+        html.low-power .noise::after,
+        html.low-power .grid-bg,
+        html.low-power .reveal,
+        html.low-power .reveal-word,
+        html.low-power .hero-line {
+            animation: none !important;
+            transition: none !important;
+        }
+
+        html.low-power .noise::after {
+            display: none;
+        }
+
+        html.low-power .grid-bg,
+        html.low-power .noise,
+        html.low-power .hero,
+        html.low-power .gradient-brand {
+            background-image: none !important;
+        }
     </style>
 </head>
 
@@ -447,7 +483,7 @@
                         <span class="ping-dot"></span>
                         <span class="font-mono text-[11px] text-navy">Sales-ready SaaS + AI workflows for India</span>
                     </div>
-                    <h1 class="reveal text-[52px] md:text-[76px] lg:text-[92px] leading-[0.98] tracking-[-0.035em] font-medium text-navy"
+                    <h1 class="reveal text-[46px] md:text-[68px] lg:text-[84px] leading-[0.98] tracking-[-0.035em] font-medium text-navy"
                         data-testid="hero-title">
                         <span class="hero-line block">Custom SaaS</span>
                         <span class="hero-line block">
@@ -1398,75 +1434,112 @@
 
     <script>
         const CRM_ENQUIRY_ENDPOINT = 'https://linearis.vercel.app/api/enquiries';
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const lowPowerDevice = !reduceMotion && (
+            (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) ||
+            (navigator.deviceMemory && navigator.deviceMemory <= 4)
+        );
+
+        if (reduceMotion || lowPowerDevice) {
+            document.documentElement.classList.add('low-power');
+        }
 
         // Init icons
         lucide.createIcons();
 
         // ---------- Lenis smooth scroll ----------
-        const lenis = new Lenis({
-            duration: 1.15,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-            smoothWheel: true,
-        });
-        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
-        requestAnimationFrame(raf);
+        const useOptimizedMotion = !document.documentElement.classList.contains('low-power');
+        let lenis = null;
+
+        if (useOptimizedMotion) {
+            lenis = new Lenis({
+                duration: 1.15,
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                smoothWheel: true,
+            });
+            function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+            requestAnimationFrame(raf);
+        }
 
         // ---------- GSAP ----------
-        gsap.registerPlugin(ScrollTrigger);
-        lenis.on('scroll', ScrollTrigger.update);
-        gsap.ticker.add((time) => { lenis.raf(time * 1000); });
-        gsap.ticker.lagSmoothing(0);
+        if (useOptimizedMotion) {
+            gsap.registerPlugin(ScrollTrigger);
+            lenis.on('scroll', ScrollTrigger.update);
+            gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+            gsap.ticker.lagSmoothing(0);
+        } else {
+            document.querySelectorAll('.reveal, .reveal-word, .hero-line').forEach(el => {
+                el.style.opacity = '1';
+                el.style.transform = 'none';
+            });
+        }
 
         // ---------- Navbar scroll state ----------
-        ScrollTrigger.create({
-            start: 'top -40',
-            onUpdate: (self) => {
-                const nav = document.getElementById('nav');
-                if (self.scroll() > 40) nav.classList.add('nav-solid'); else nav.classList.remove('nav-solid');
-            }
-        });
+        if (useOptimizedMotion) {
+            ScrollTrigger.create({
+                start: 'top -40',
+                onUpdate: (self) => {
+                    const nav = document.getElementById('nav');
+                    if (self.scroll() > 40) nav.classList.add('nav-solid'); else nav.classList.remove('nav-solid');
+                }
+            });
+        } else {
+            const nav = document.getElementById('nav');
+            nav.classList.add('nav-solid');
+        }
 
         // ---------- Hero text line reveal ----------
         const heroLines = document.querySelectorAll('.hero-line');
-        gsap.set(heroLines, { yPercent: 110, opacity: 0 });
-        gsap.to(heroLines, {
-            yPercent: 0, opacity: 1, duration: 1.1, ease: 'expo.out', stagger: 0.12, delay: 0.2
-        });
+        if (useOptimizedMotion) {
+            gsap.set(heroLines, { yPercent: 110, opacity: 0 });
+            gsap.to(heroLines, {
+                yPercent: 0, opacity: 1, duration: 1.1, ease: 'expo.out', stagger: 0.12, delay: 0.2
+            });
+        }
 
         // ---------- Generic reveal-on-scroll ----------
-        gsap.utils.toArray('.reveal').forEach((el, i) => {
-            gsap.to(el, {
-                opacity: 1, y: 0, duration: 1, ease: 'expo.out',
-                scrollTrigger: { trigger: el, start: 'top 88%' }
+        if (useOptimizedMotion) {
+            gsap.utils.toArray('.reveal').forEach((el, i) => {
+                gsap.to(el, {
+                    opacity: 1, y: 0, duration: 1, ease: 'expo.out',
+                    scrollTrigger: { trigger: el, start: 'top 88%' }
+                });
             });
-        });
+        }
 
         // ---------- Word reveal (big statement) ----------
-        gsap.utils.toArray('.reveal-word').forEach((w, i) => {
-            gsap.from(w, {
-                yPercent: 110, opacity: 0, duration: 1, ease: 'expo.out',
-                scrollTrigger: { trigger: w, start: 'top 90%' },
-                delay: (i % 6) * 0.04
+        if (useOptimizedMotion) {
+            gsap.utils.toArray('.reveal-word').forEach((w, i) => {
+                gsap.from(w, {
+                    yPercent: 110, opacity: 0, duration: 1, ease: 'expo.out',
+                    scrollTrigger: { trigger: w, start: 'top 90%' },
+                    delay: (i % 6) * 0.04
+                });
             });
-        });
+        }
 
         // ---------- Counters ----------
         document.querySelectorAll('[data-counter]').forEach(el => {
             const target = parseFloat(el.dataset.counter);
             const suffix = el.dataset.suffix || '';
             const obj = { v: 0 };
-            ScrollTrigger.create({
-                trigger: el, start: 'top 90%',
-                onEnter: () => {
-                    gsap.to(obj, {
-                        v: target, duration: 2.2, ease: 'power3.out',
-                        onUpdate: () => {
-                            const n = target % 1 !== 0 ? obj.v.toFixed(2) : Math.floor(obj.v);
-                            el.textContent = n + suffix;
-                        }
-                    });
-                }, once: true
-            });
+            if (useOptimizedMotion) {
+                ScrollTrigger.create({
+                    trigger: el, start: 'top 90%',
+                    onEnter: () => {
+                        gsap.to(obj, {
+                            v: target, duration: 2.2, ease: 'power3.out',
+                            onUpdate: () => {
+                                const n = target % 1 !== 0 ? obj.v.toFixed(2) : Math.floor(obj.v);
+                                el.textContent = n + suffix;
+                            }
+                        });
+                    }, once: true
+                });
+            } else {
+                const n = target % 1 !== 0 ? target.toFixed(2) : Math.floor(target);
+                el.textContent = n + suffix;
+            }
         });
 
         // ---------- Process sticky stage switcher ----------
@@ -1481,15 +1554,17 @@
         });
 
         // ---------- Tilt on product cards ----------
-        document.querySelectorAll('.tilt').forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const r = card.getBoundingClientRect();
-                const x = (e.clientX - r.left) / r.width - 0.5;
-                const y = (e.clientY - r.top) / r.height - 0.5;
-                card.style.transform = `perspective(900px) rotateY(${x * 6}deg) rotateX(${-y * 6}deg) translateZ(0)`;
+        if (useOptimizedMotion) {
+            document.querySelectorAll('.tilt').forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const r = card.getBoundingClientRect();
+                    const x = (e.clientX - r.left) / r.width - 0.5;
+                    const y = (e.clientY - r.top) / r.height - 0.5;
+                    card.style.transform = `perspective(900px) rotateY(${x * 6}deg) rotateX(${-y * 6}deg) translateZ(0)`;
+                });
+                card.addEventListener('mouseleave', () => { card.style.transform = 'perspective(900px) rotateY(0) rotateX(0)'; });
             });
-            card.addEventListener('mouseleave', () => { card.style.transform = 'perspective(900px) rotateY(0) rotateX(0)'; });
-        });
+        }
 
         const contactForm = document.getElementById('contactForm');
         const contactNote = document.getElementById('contactNote');
@@ -1537,10 +1612,12 @@
         }
 
         // ---------- Parallax on hero blobs ----------
-        gsap.to('.grid-bg', {
-            yPercent: 20, ease: 'none',
-            scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom top', scrub: true }
-        });
+        if (useOptimizedMotion) {
+            gsap.to('.grid-bg', {
+                yPercent: 20, ease: 'none',
+                scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom top', scrub: true }
+            });
+        }
     </script>
     <script defer
         src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516"
