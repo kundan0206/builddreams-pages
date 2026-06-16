@@ -8,11 +8,10 @@
     <meta name="description"
         content="BuildDreams builds custom software and premium SaaS platforms for modern enterprises across India and the globe. Engineered to scale, designed to last." />
 
-    <!-- Fonts: Sora (body) + Fraunces (editorial display accent) + JetBrains Mono (micro-labels) -->
+    <!-- Fonts: JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Sora:wght@300;400;500;600;700;800&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
 
     <!-- Tailwind -->
@@ -33,9 +32,9 @@
             --teal: #009599;
             --teal-2: #00b8bc;
             --ink: #0b1020;
-            --mist: #f4f7f8;
-            --line: rgba(2, 19, 70, 0.08);
-            --muted: #5a6472;
+            --mist: #F8F8FF;
+            --line: rgba(2, 19, 70, 0.12);
+            --muted: #475166;
         }
 
         * {
@@ -45,9 +44,9 @@
 
         html,
         body {
-            background: #fbfcfc;
+            background: var(--mist);
             color: var(--ink);
-            font-family: 'Sora', sans-serif;
+            font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
         }
 
         body.dark-lock {
@@ -55,13 +54,15 @@
         }
 
         .font-display {
-            font-family: 'Fraunces', serif;
-            font-weight: 400;
-            letter-spacing: -0.01em;
+            font: inherit;
         }
 
         .font-mono {
-            font-family: 'JetBrains Mono', monospace;
+            font: inherit;
+        }
+
+        .surface-soft {
+            background: var(--mist);
         }
 
         /* Gradient & accents */
@@ -187,44 +188,6 @@
         ::-webkit-scrollbar-thumb {
             background: #cfd6d7;
             border-radius: 10px;
-        }
-
-        /* Cursor dot */
-        .cursor-dot {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 10px;
-            height: 10px;
-            border-radius: 999px;
-            background: var(--teal);
-            pointer-events: none;
-            z-index: 9999;
-            mix-blend-mode: difference;
-            transition: transform .15s ease, width .2s ease, height .2s ease;
-            transform: translate(-50%, -50%);
-        }
-
-        .cursor-ring {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 38px;
-            height: 38px;
-            border-radius: 999px;
-            border: 1px solid rgba(2, 19, 70, .35);
-            pointer-events: none;
-            z-index: 9998;
-            transform: translate(-50%, -50%);
-            transition: width .25s ease, height .25s ease, border-color .25s ease;
-        }
-
-        @media (max-width: 900px) {
-
-            .cursor-dot,
-            .cursor-ring {
-                display: none;
-            }
         }
 
         /* Marquee */
@@ -443,10 +406,6 @@
 
 <body class="relative">
 
-    <!-- Custom cursor -->
-    <div class="cursor-ring" id="cursorRing"></div>
-    <div class="cursor-dot" id="cursorDot"></div>
-
     <!-- ========= NAV ========= -->
     <header id="nav" class="fixed top-0 inset-x-0 z-50 transition-all duration-300">
         <div class="max-w-[1320px] mx-auto px-6 lg:px-10 h-[72px] flex items-center justify-between">
@@ -522,8 +481,8 @@
                             class="p-4 rounded-2xl border border-line bg-white hover:border-teal transition">
                             <div class="font-mono text-[11px] text-navy/50">I WANT</div>
                             <div class="mt-1 text-[18px] font-semibold text-navy">A proven product base</div>
-                            <p class="mt-1 text-[13px] text-[color:var(--muted)]">Start from FlowGuard, InfraTrack,
-                                Nivaran, UnitPay, or another live build.</p>
+                            <p class="mt-1 text-[13px] text-[color:var(--muted)]">Start from Desk Guardian, Smart inventory,
+                                AI Gate Keeper, UnitPay, or another live build.</p>
                         </a>
                     </div>
                 </div>
@@ -569,7 +528,7 @@
     </section>
 
     <!-- ========= CAPABILITIES ========= -->
-    <section class="py-10 border-y border-line bg-white overflow-hidden">
+    <section class="py-10 border-y border-line surface-soft overflow-hidden">
         <div class="max-w-[1320px] mx-auto px-6 lg:px-10">
             <div class="text-center text-[11px] font-mono tracking-[0.2em] text-navy/50 mb-6">WHAT WE ARE BUILDING</div>
             <div class="flex flex-wrap items-center justify-center gap-3 text-navy/70">
@@ -586,7 +545,7 @@
     </section>
 
     <!-- ========= WHATSAPP COMMUNICATION POLICY ========= -->
-    <section class="py-16 bg-[#f3f8f8] border-b border-line" data-testid="whatsapp-policy">
+    <section class="py-16 surface-soft border-b border-line" data-testid="whatsapp-policy">
         <div class="max-w-[1320px] mx-auto px-6 lg:px-10">
             <div class="grid lg:grid-cols-12 gap-8 items-start">
                 <div class="lg:col-span-4">
@@ -641,7 +600,7 @@
                     <div class="chip reveal"><span class="w-1.5 h-1.5 rounded-full bg-teal"></span><span
                             class="font-mono text-[11px]">01 · WHAT WE DO</span></div>
                     <h2
-                        class="reveal mt-6 text-[44px] md:text-[64px] leading-[1.02] tracking-[-0.02em] font-medium text-navy max-w-3xl">
+                        class="reveal mt-6 text-[36px] md:text-[52px] leading-[1.02] tracking-[-0.02em] font-medium text-navy max-w-3xl">
                         Two ways to win. <span class="font-display italic text-teal">One</span> partner.
                     </h2>
                 </div>
@@ -659,7 +618,7 @@
                     <div class="flex items-start justify-between">
                         <div>
                             <div class="svc-num font-mono text-[12px] text-navy/40">01 / CUSTOM BUILD</div>
-                            <h3 class="mt-6 font-display text-[40px] leading-[1.05]">Custom Software, <span
+                            <h3 class="mt-6 font-display text-[36px] leading-[1.05]">Custom Software, <span
                                     class="italic">engineered.</span></h3>
                         </div>
                         <i data-lucide="arrow-up-right" class="svc-arrow w-6 h-6"></i>
@@ -685,7 +644,7 @@
                     <div class="flex items-start justify-between">
                         <div>
                             <div class="svc-num font-mono text-[12px] text-navy/40">02 / SAAS SUITE</div>
-                            <h3 class="mt-6 font-display text-[40px] leading-[1.05]">Premium SaaS, <span
+                            <h3 class="mt-6 font-display text-[36px] leading-[1.05]">Premium SaaS, <span
                                     class="italic">subscribed.</span></h3>
                         </div>
                         <i data-lucide="arrow-up-right" class="svc-arrow w-6 h-6"></i>
@@ -734,11 +693,11 @@
     </section>
 
     <!-- ========= BIG STATEMENT (horizontal text reveal) ========= -->
-    <section class="relative py-[140px] bg-[#fbfcfc] overflow-hidden">
+    <section class="relative py-[140px] surface-soft overflow-hidden">
         <div class="max-w-[1320px] mx-auto px-6 lg:px-10">
             <div class="chip reveal"><span class="font-mono text-[11px]">THE PRINCIPLE</span></div>
             <h2
-                class="mt-8 text-[40px] md:text-[70px] leading-[1.05] tracking-[-0.02em] font-medium text-navy max-w-[16ch]">
+                class="mt-8 text-[36px] md:text-[60px] leading-[1.05] tracking-[-0.02em] font-medium text-navy max-w-[16ch]">
                 <span class="reveal-word inline-block">We</span>
                 <span class="reveal-word inline-block">don't</span>
                 <span class="reveal-word inline-block">ship</span>
@@ -783,7 +742,7 @@
                         <span class="w-1.5 h-1.5 rounded-full bg-teal"></span>
                         <span class="font-mono text-[11px]">02 · THE SUITE</span>
                     </div>
-                    <h2 class="reveal mt-6 text-[44px] md:text-[64px] leading-[1.02] tracking-[-0.02em] font-medium">
+                    <h2 class="reveal mt-6 text-[36px] md:text-[52px] leading-[1.02] tracking-[-0.02em] font-medium">
                         Current products, <span class="font-display italic text-teal">all in one place.</span>
                     </h2>
                 </div>
@@ -800,7 +759,7 @@
                             <div class="flex items-center justify-between text-white/50"><i data-lucide="brain-circuit"
                                     class="w-5 h-5 text-teal"></i><span class="font-mono text-[10px]">PERSONAL AI</span>
                             </div>
-                            <h3 class="mt-5 text-[24px] font-medium">Sutra</h3>
+                            <h3 class="mt-5 text-[24px] font-medium">AI Assistant</h3>
                             <p class="mt-2 text-[13px] leading-[1.6] text-white/60">Organizes notes, tasks, and mental
                                 load for busy professionals.</p>
                         </a>
@@ -809,7 +768,7 @@
                             <div class="flex items-center justify-between text-white/50"><i data-lucide="shield"
                                     class="w-5 h-5 text-teal"></i><span class="font-mono text-[10px]">WORKFORCE
                                     OPS</span></div>
-                            <h3 class="mt-5 text-[24px] font-medium">FlowGuard</h3>
+                            <h3 class="mt-5 text-[24px] font-medium">Desk Guardian</h3>
                             <p class="mt-2 text-[13px] leading-[1.6] text-white/60">Locks desks, blocks distractions,
                                 and logs every task.</p>
                         </a>
@@ -818,7 +777,7 @@
                             <div class="flex items-center justify-between text-white/50"><i data-lucide="truck"
                                     class="w-5 h-5 text-teal"></i><span class="font-mono text-[10px]">B2B OPS</span>
                             </div>
-                            <h3 class="mt-5 text-[24px] font-medium">InfraTrack</h3>
+                            <h3 class="mt-5 text-[24px] font-medium">Smart inventory</h3>
                             <p class="mt-2 text-[13px] leading-[1.6] text-white/60">Tracks fleets, warehouses,
                                 inventory, and maintenance work.</p>
                         </a>
@@ -827,7 +786,7 @@
                             <div class="flex items-center justify-between text-white/50"><i data-lucide="clipboard-list"
                                     class="w-5 h-5 text-teal"></i><span class="font-mono text-[10px]">HELPDESK</span>
                             </div>
-                            <h3 class="mt-5 text-[24px] font-medium">Nivaran</h3>
+                            <h3 class="mt-5 text-[24px] font-medium">AI Gate Keeper</h3>
                             <p class="mt-2 text-[13px] leading-[1.6] text-white/60">Routes complaints, tickets,
                                 escalations, and SLAs by sector.</p>
                         </a>
@@ -836,7 +795,7 @@
                             <div class="flex items-center justify-between text-white/50"><i data-lucide="scan-search"
                                     class="w-5 h-5 text-teal"></i><span class="font-mono text-[10px]">VISION AI</span>
                             </div>
-                            <h3 class="mt-5 text-[24px] font-medium">PartSight AI</h3>
+                            <h3 class="mt-5 text-[24px] font-medium">AI inventory HUB</h3>
                             <p class="mt-2 text-[13px] leading-[1.6] text-white/60">Cuts part lookup time with visual
                                 detection and matching.</p>
                         </a>
@@ -856,7 +815,7 @@
                             <div class="flex items-center justify-between text-white/50"><i data-lucide="brain-circuit"
                                     class="w-5 h-5 text-teal"></i><span class="font-mono text-[10px]">PERSONAL AI</span>
                             </div>
-                            <h3 class="mt-5 text-[24px] font-medium">Sutra</h3>
+                            <h3 class="mt-5 text-[24px] font-medium">AI Assistant</h3>
                             <p class="mt-2 text-[13px] leading-[1.6] text-white/60">Organizes notes, tasks, and mental
                                 load for busy professionals.</p>
                         </a>
@@ -865,7 +824,7 @@
                             <div class="flex items-center justify-between text-white/50"><i data-lucide="shield"
                                     class="w-5 h-5 text-teal"></i><span class="font-mono text-[10px]">WORKFORCE
                                     OPS</span></div>
-                            <h3 class="mt-5 text-[24px] font-medium">FlowGuard</h3>
+                            <h3 class="mt-5 text-[24px] font-medium">Desk Guardian</h3>
                             <p class="mt-2 text-[13px] leading-[1.6] text-white/60">Locks desks, blocks distractions,
                                 and logs every task.</p>
                         </a>
@@ -874,7 +833,7 @@
                             <div class="flex items-center justify-between text-white/50"><i data-lucide="truck"
                                     class="w-5 h-5 text-teal"></i><span class="font-mono text-[10px]">B2B OPS</span>
                             </div>
-                            <h3 class="mt-5 text-[24px] font-medium">InfraTrack</h3>
+                            <h3 class="mt-5 text-[24px] font-medium">Smart inventory</h3>
                             <p class="mt-2 text-[13px] leading-[1.6] text-white/60">Tracks fleets, warehouses,
                                 inventory, and maintenance work.</p>
                         </a>
@@ -883,16 +842,16 @@
                             <div class="flex items-center justify-between text-white/50"><i data-lucide="clipboard-list"
                                     class="w-5 h-5 text-teal"></i><span class="font-mono text-[10px]">HELPDESK</span>
                             </div>
-                            <h3 class="mt-5 text-[24px] font-medium">Nivaran</h3>
+                            <h3 class="mt-5 text-[24px] font-medium">AI Gate Keeper</h3>
                             <p class="mt-2 text-[13px] leading-[1.6] text-white/60">Routes complaints, tickets,
                                 escalations, and SLAs by sector.</p>
                         </a>
                         <a href="https://partsightai.builddreams.co.in/"
                             class="group w-[300px] shrink-0 rounded-[18px] border border-white/10 bg-white/[0.05] p-5 hover:border-[#009599]/50 transition-colors">
                             <div class="flex items-center justify-between text-white/50"><i data-lucide="scan-search"
-                                    class="w-5 h-5 text-teal"></i><span class="font-mono text-[10px]">VISION AI</span>
+                                    class="w-5 h-5 text-teal"></i><span class="font-mono text-[10px]">CUSTOMER LENS</span>
                             </div>
-                            <h3 class="mt-5 text-[24px] font-medium">PartSight AI</h3>
+                            <h3 class="mt-5 text-[24px] font-medium">AI inventory HUB</h3>
                             <p class="mt-2 text-[13px] leading-[1.6] text-white/60">Cuts part lookup time with visual
                                 detection and matching.</p>
                         </a>
@@ -924,7 +883,7 @@
                             <div class="flex items-center justify-between text-white/50"><i data-lucide="camera"
                                     class="w-5 h-5 text-teal"></i><span class="font-mono text-[10px]">PLATFORM</span>
                             </div>
-                            <h3 class="mt-5 text-[24px] font-medium">Vision AI</h3>
+                            <h3 class="mt-5 text-[24px] font-medium">Customer Lens</h3>
                             <p class="mt-2 text-[13px] leading-[1.6] text-white/60">Tailored visual detection flows for
                                 operational teams.</p>
                         </a>
@@ -941,7 +900,7 @@
                             <div class="flex items-center justify-between text-white/50"><i data-lucide="home"
                                     class="w-5 h-5 text-teal"></i><span class="font-mono text-[10px]">REAL ESTATE</span>
                             </div>
-                            <h3 class="mt-5 text-[24px] font-medium">FlatWala</h3>
+                            <h3 class="mt-5 text-[24px] font-medium">FLATWALA</h3>
                             <p class="mt-2 text-[13px] leading-[1.6] text-white/60">Buyer, seller, and admin portals for
                                 property marketplaces.</p>
                         </a>
@@ -950,7 +909,7 @@
                             <div class="flex items-center justify-between text-white/50"><i data-lucide="graduation-cap"
                                     class="w-5 h-5 text-teal"></i><span class="font-mono text-[10px]">EDTECH</span>
                             </div>
-                            <h3 class="mt-5 text-[24px] font-medium">Aspira</h3>
+                            <h3 class="mt-5 text-[24px] font-medium">Shape Careers</h3>
                             <p class="mt-2 text-[13px] leading-[1.6] text-white/60">Student, mentor, and company portals
                                 for career programs.</p>
                         </a>
@@ -970,7 +929,7 @@
                             <div class="flex items-center justify-between text-white/50"><i data-lucide="camera"
                                     class="w-5 h-5 text-teal"></i><span class="font-mono text-[10px]">PLATFORM</span>
                             </div>
-                            <h3 class="mt-5 text-[24px] font-medium">Vision AI</h3>
+                            <h3 class="mt-5 text-[24px] font-medium">Customer Lens</h3>
                             <p class="mt-2 text-[13px] leading-[1.6] text-white/60">Tailored visual detection flows for
                                 operational teams.</p>
                         </a>
@@ -996,7 +955,7 @@
                             <div class="flex items-center justify-between text-white/50"><i data-lucide="graduation-cap"
                                     class="w-5 h-5 text-teal"></i><span class="font-mono text-[10px]">EDTECH</span>
                             </div>
-                            <h3 class="mt-5 text-[24px] font-medium">Aspira</h3>
+                            <h3 class="mt-5 text-[24px] font-medium">Shape Careers</h3>
                             <p class="mt-2 text-[13px] leading-[1.6] text-white/60">Student, mentor, and company portals
                                 for career programs.</p>
                         </a>
@@ -1013,7 +972,7 @@
                 <div>
                     <div class="chip reveal"><span class="font-mono text-[11px]">03 · SOLUTIONS</span></div>
                     <h2
-                        class="reveal mt-6 text-[40px] md:text-[56px] leading-[1.05] tracking-[-0.02em] font-medium text-navy">
+                        class="reveal mt-6 text-[36px] md:text-[52px] leading-[1.05] tracking-[-0.02em] font-medium text-navy">
                         Built for industries that <span class="font-display italic text-teal">can't afford</span>
                         downtime.
                     </h2>
@@ -1084,7 +1043,7 @@
                 <div>
                     <div class="chip reveal"><span class="font-mono text-[11px]">04 · THE PROCESS</span></div>
                     <h2
-                        class="reveal mt-6 text-[40px] md:text-[56px] leading-[1.05] tracking-[-0.02em] font-medium text-navy">
+                        class="reveal mt-6 text-[36px] md:text-[52px] leading-[1.05] tracking-[-0.02em] font-medium text-navy">
                         How we <span class="font-display italic text-teal">build.</span>
                     </h2>
                 </div>
@@ -1096,7 +1055,7 @@
                         <div class="absolute inset-0 grid-bg opacity-30" style="--line: rgba(255,255,255,.25);"></div>
                         <div class="absolute bottom-8 left-8 right-8 text-white">
                             <div class="font-mono text-[11px] text-white/70">STAGE</div>
-                            <div class="font-display italic text-[56px] leading-none mt-2" id="stageNum">01</div>
+                            <div class="font-display italic text-[52px] leading-none mt-2" id="stageNum">01</div>
                             <div class="mt-2 text-[22px] font-medium" id="stageLabel">Discover</div>
                         </div>
                     </div>
@@ -1144,7 +1103,7 @@
         <div class="max-w-[1320px] mx-auto px-6 lg:px-10">
             <div class="chip reveal"><span class="font-mono text-[11px]">05 · HOW WE WORK</span></div>
             <h2
-                class="reveal mt-6 text-[40px] md:text-[56px] leading-[1.05] tracking-[-0.02em] font-medium text-navy max-w-3xl">
+                class="reveal mt-6 text-[36px] md:text-[52px] leading-[1.05] tracking-[-0.02em] font-medium text-navy max-w-3xl">
                 Built around clarity, <span class="font-display italic text-teal">not inflated claims.</span>
             </h2>
 
@@ -1180,12 +1139,12 @@
     </section>
 
     <!-- ========= ENGAGEMENTS ========= -->
-    <section id="pricing" class="py-[120px] bg-[#fbfcfc] relative" data-testid="pricing">
+    <section id="pricing" class="py-[120px] surface-soft relative" data-testid="pricing">
         <div class="max-w-[1320px] mx-auto px-6 lg:px-10">
             <div class="text-center max-w-2xl mx-auto">
                 <div class="chip reveal inline-flex"><span class="font-mono text-[11px]">06 · ENGAGEMENTS</span></div>
                 <h2
-                    class="reveal mt-6 text-[40px] md:text-[56px] leading-[1.05] tracking-[-0.02em] font-medium text-navy">
+                    class="reveal mt-6 text-[36px] md:text-[52px] leading-[1.05] tracking-[-0.02em] font-medium text-navy">
                     Flexible engagement, <span class="font-display italic text-teal">scoped with you.</span>
                 </h2>
                 <p class="reveal mt-4 text-[15px] text-[color:var(--muted)]">We scope these together after discovery
@@ -1195,7 +1154,7 @@
             <div class="mt-14 grid md:grid-cols-3 gap-6">
                 <div class="price-card reveal p-8" data-testid="plan-starter">
                     <div class="font-mono text-[11px] text-navy/50">DISCOVERY</div>
-                    <h3 class="mt-3 font-display text-[44px] leading-none text-navy">Workshop</h3>
+                    <h3 class="mt-3 font-display text-[36px] leading-none text-navy">Workshop</h3>
                     <p class="mt-3 text-[13.5px] text-[color:var(--muted)] muted">Define scope, architecture, user
                         journeys, and rollout assumptions.</p>
                     <ul class="mt-6 space-y-2 text-[13.5px] text-navy/80">
@@ -1216,7 +1175,7 @@
                             style="background:rgba(0,149,153,.2); border-color:rgba(0,149,153,.45); color:#9ff2f5;">Common
                             starting point</span>
                     </div>
-                    <h3 class="mt-3 font-display text-[44px] leading-none">Pilot</h3>
+                    <h3 class="mt-3 font-display text-[36px] leading-none">Pilot</h3>
                     <p class="mt-3 text-[13.5px] muted">Build the first production-ready version of the workflow,
                         portal, or AI-assisted experience.</p>
                     <ul class="mt-6 space-y-2 text-[13.5px] text-white/85">
@@ -1234,7 +1193,7 @@
 
                 <div class="price-card reveal p-8" data-testid="plan-enterprise">
                     <div class="font-mono text-[11px] text-navy/50">PARTNERSHIP</div>
-                    <h3 class="mt-3 font-display text-[44px] leading-none text-navy">Custom</h3>
+                    <h3 class="mt-3 font-display text-[36px] leading-none text-navy">Custom</h3>
                     <p class="mt-3 text-[13.5px] text-[color:var(--muted)] muted">For teams that want continuous
                         product evolution, support, and new feature delivery.</p>
                     <ul class="mt-6 space-y-2 text-[13.5px] text-navy/80">
@@ -1257,7 +1216,7 @@
     <section class="py-[120px] bg-white">
         <div class="max-w-[1020px] mx-auto px-6 lg:px-10">
             <div class="chip reveal"><span class="font-mono text-[11px]">07 · FAQ</span></div>
-            <h2 class="reveal mt-6 text-[40px] md:text-[56px] leading-[1.05] tracking-[-0.02em] font-medium text-navy">
+            <h2 class="reveal mt-6 text-[36px] md:text-[52px] leading-[1.05] tracking-[-0.02em] font-medium text-navy">
                 Frequently asked, <span class="font-display italic text-teal">honestly answered.</span>
             </h2>
             <div class="mt-12 divide-y divide-[color:var(--line)] border-y border-line">
@@ -1304,7 +1263,7 @@
     </section>
 
     <!-- ========= CTA / CONTACT ========= -->
-    <section id="contact" class="relative py-[120px] bg-[#fbfcfc]">
+    <section id="contact" class="relative py-[120px] surface-soft">
         <div class="max-w-[1320px] mx-auto px-6 lg:px-10">
             <div class="relative rounded-[28px] foot-grad text-white p-10 md:p-16 overflow-hidden noise">
                 <div class="absolute -top-20 -right-10 w-[420px] h-[420px] rounded-full blur-3xl opacity-30 bg-teal">
@@ -1314,7 +1273,7 @@
                         <defs>
                             <path id="circle" d="M60,60 m-48,0 a48,48 0 1,1 96,0 a48,48 0 1,1 -96,0" />
                         </defs>
-                        <text fill="#9ff2f5" font-size="10" font-family="JetBrains Mono" letter-spacing="3">
+                        <text fill="#9ff2f5" font-size="10" font-family="Sora" letter-spacing="3">
                             <textPath href="#circle">BUILD · DREAMS · BUILD · DREAMS · BUILD · DREAMS · </textPath>
                         </text>
                         <circle cx="60" cy="60" r="8" fill="#009599" />
@@ -1328,7 +1287,7 @@
                             <span class="w-1.5 h-1.5 rounded-full bg-teal"></span>
                             <span class="font-mono text-[11px]">LET'S BUILD</span>
                         </div>
-                        <h2 class="reveal mt-6 text-[44px] md:text-[72px] leading-[1] tracking-[-0.02em] font-medium">
+                        <h2 class="reveal mt-6 text-[36px] md:text-[60px] leading-[1] tracking-[-0.02em] font-medium">
                             Your next platform <br />
                             <span class="font-display italic text-teal">starts today.</span>
                         </h2>
@@ -1398,8 +1357,8 @@
                     <div class="font-mono text-[11px] text-white/40">PRODUCT</div>
                     <ul class="mt-5 space-y-3 text-[14px] text-white/75">
                         <li><a href="/products/" class="hover:text-teal">Products Overview</a></li>
-                        <li><a href="https://sutra.builddreams.co.in/" class="hover:text-teal">Sutra</a></li>
-                        <li><a href="https://visionai.builddreams.co.in/" class="hover:text-teal">Vision AI</a></li>
+                        <li><a href="https://sutra.builddreams.co.in/" class="hover:text-teal">AI Assistant</a></li>
+                        <li><a href="https://visionai.builddreams.co.in/" class="hover:text-teal">Customer Lens</a></li>
                         <li><a href="#pricing" class="hover:text-teal">Pricing</a></li>
                     </ul>
                 </div>
@@ -1455,18 +1414,6 @@
         lenis.on('scroll', ScrollTrigger.update);
         gsap.ticker.add((time) => { lenis.raf(time * 1000); });
         gsap.ticker.lagSmoothing(0);
-
-        // ---------- Custom cursor ----------
-        const dot = document.getElementById('cursorDot');
-        const ring = document.getElementById('cursorRing');
-        let mx = -100, my = -100, rx = -100, ry = -100;
-        window.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; dot.style.transform = `translate(${mx}px, ${my}px)`; });
-        const tickCursor = () => { rx += (mx - rx) * 0.16; ry += (my - ry) * 0.16; ring.style.transform = `translate(${rx}px, ${ry}px)`; requestAnimationFrame(tickCursor); };
-        tickCursor();
-        document.querySelectorAll('a,button,summary,.service-card,.price-card,.tilt').forEach(el => {
-            el.addEventListener('mouseenter', () => { ring.style.width = '56px'; ring.style.height = '56px'; ring.style.borderColor = 'rgba(0,149,153,.7)'; });
-            el.addEventListener('mouseleave', () => { ring.style.width = '38px'; ring.style.height = '38px'; ring.style.borderColor = 'rgba(2,19,70,.35)'; });
-        });
 
         // ---------- Navbar scroll state ----------
         ScrollTrigger.create({
