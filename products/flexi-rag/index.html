@@ -15,10 +15,6 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-
     <style>
         :root {
             --navy: #021346;
@@ -103,8 +99,8 @@
         }
 
         .reveal {
-            opacity: 0;
-            transform: translateY(24px);
+            opacity: 1;
+            transform: none;
         }
 
         html,
@@ -153,9 +149,6 @@
 </head>
 
 <body class="relative">
-
-    <div class="cursor-ring" id="cursorRing"></div>
-    <div class="cursor-dot" id="cursorDot"></div>
 
     <!-- NAV -->
     <header id="nav" class="fixed top-0 inset-x-0 z-50 transition-all bg-transparent">
@@ -414,17 +407,6 @@
 
     <script>
         lucide.createIcons();
-        const lenis = new Lenis({ duration: 1.1, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
-        function raf(t) { lenis.raf(t); requestAnimationFrame(raf); } requestAnimationFrame(raf);
-        gsap.registerPlugin(ScrollTrigger);
-        lenis.on('scroll', ScrollTrigger.update);
-        gsap.ticker.add(t => lenis.raf(t * 1000));
-        gsap.ticker.lagSmoothing(0);
-        const dot = document.getElementById('cursorDot'), ring = document.getElementById('cursorRing');
-        let mx = -100, my = -100, rx = -100, ry = -100; window.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; dot.style.transform = `translate(${mx}px, ${my}px)` }); (function tick() { rx += (mx - rx) * 0.16; ry += (my - ry) * 0.16; ring.style.transform = `translate(${rx}px, ${ry}px)`; requestAnimationFrame(tick) })();
-        document.querySelectorAll('a,button,summary,.feature-card').forEach(el => { el.addEventListener('mouseenter', () => { ring.style.width = '56px'; ring.style.height = '56px'; ring.style.borderColor = 'rgba(0,149,153,.7)' }); el.addEventListener('mouseleave', () => { ring.style.width = '38px'; ring.style.height = '38px'; ring.style.borderColor = 'rgba(2,19,70,.35)' }); });
-        ScrollTrigger.create({ start: 'top -40', onUpdate: self => { const n = document.getElementById('nav'); self.scroll() > 40 ? n.classList.add('nav-solid') : n.classList.remove('nav-solid'); } });
-        gsap.utils.toArray('.reveal').forEach(el => { gsap.to(el, { opacity: 1, y: 0, duration: .9, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 92%' } }) });
         const CRM_ENQUIRY_ENDPOINT = 'https://linearis.vercel.app/api/enquiries'; const contactForm = document.getElementById('contactForm'); const contactNote = document.getElementById('contactNote'); if (contactForm) { contactForm.addEventListener('submit', async e => { e.preventDefault(); const form = e.currentTarget; const formData = new FormData(form); const details = [...formData.entries()].filter(([key, value]) => !['name', 'email', 'company', 'phone', 'message'].includes(key) && String(value).trim()).map(([key, value]) => `${key}: ${value}`).join('\n'); const payload = { projectKey: form.dataset.projectKey, name: String(formData.get('name') || '').trim(), email: String(formData.get('email') || '').trim(), company: String(formData.get('company') || '').trim(), phone: String(formData.get('phone') || '').trim(), message: String(formData.get('message') || '').trim(), product: form.dataset.product, page: form.dataset.page, sourceUrl: window.location.href, details }; if (!payload.email || !payload.name) { contactNote.textContent = 'Please provide name and email.'; return; } contactNote.textContent = 'Sending your request...'; try { const response = await fetch(CRM_ENQUIRY_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) }); if (!response.ok) throw new Error('Request failed'); form.reset(); contactNote.textContent = 'Request received. It has been added to BuildDreams CRM.'; } catch (error) { contactNote.textContent = 'Submission failed. Please try again in a moment.'; } }) }
     </script>
 </body>

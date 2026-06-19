@@ -26,11 +26,13 @@
             --ink: #0b1020;
             --line: rgba(2, 19, 70, 0.08);
             --muted: #5a6472;
-            --paper: #fbfcfc;
+            --paper: #F8F8FF;
         }
 
         * {
             -webkit-font-smoothing: antialiased;
+            box-sizing: border-box;
+            text-rendering: geometricPrecision;
         }
 
         html,
@@ -38,6 +40,7 @@
             background: var(--paper);
             color: var(--ink);
             font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+            letter-spacing: 0;
         }
 
         .font-display {
@@ -67,12 +70,14 @@
         .btn {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: .55rem;
             padding: .85rem 1.4rem;
             border-radius: 999px;
-            font-weight: 500;
+            font-weight: 600;
             font-size: .925rem;
             transition: transform .3s ease, background-color .3s ease, color .3s ease, border-color .3s ease;
+            cursor: pointer;
         }
 
         .btn-primary {
@@ -113,8 +118,10 @@
             border-radius: 999px;
             font-size: .72rem;
             border: 1px solid var(--line);
+            background: rgba(255, 255, 255, .72);
             color: rgba(2, 19, 70, .72);
-            letter-spacing: .04em;
+            letter-spacing: 0;
+            text-transform: uppercase;
         }
 
         .hero-card {
@@ -128,35 +135,6 @@
         .reveal {
             opacity: 0;
             transform: translateY(24px);
-        }
-
-        .cursor-dot {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 10px;
-            height: 10px;
-            border-radius: 999px;
-            background: var(--teal);
-            pointer-events: none;
-            z-index: 9999;
-            mix-blend-mode: difference;
-            transition: transform .15s ease, width .2s ease, height .2s ease;
-            transform: translate(-50%, -50%);
-        }
-
-        .cursor-ring {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 38px;
-            height: 38px;
-            border-radius: 999px;
-            border: 1px solid rgba(2, 19, 70, .35);
-            pointer-events: none;
-            z-index: 9998;
-            transform: translate(-50%, -50%);
-            transition: width .25s ease, height .25s ease, border-color .25s ease;
         }
 
         .nav-solid {
@@ -553,14 +531,6 @@
             overscroll-behavior: contain;
         }
 
-        @media (max-width: 900px) {
-
-            .cursor-dot,
-            .cursor-ring {
-                display: none;
-            }
-        }
-
         html,
         body {
             overflow-x: hidden;
@@ -581,9 +551,6 @@
 </head>
 
 <body class="relative">
-
-    <div class="cursor-ring" id="cursorRing"></div>
-    <div class="cursor-dot" id="cursorDot"></div>
 
     <!-- NAV -->
     <header id="nav" class="fixed top-0 inset-x-0 z-50 transition-all bg-transparent">
@@ -612,20 +579,19 @@
             <div class="max-w-[1320px] mx-auto px-6 lg:px-10 grid md:grid-cols-2 gap-10 items-center">
                 <div class="order-2 md:order-1">
                     <div class="hero-card reveal">
-                        <div class="bg-gradient-to-br from-[#1E3A8A] via-[#3B82F6] to-[#8B5CF6] p-6 relative"
-                            id="simStage">
+                        <div class="scan-stage p-6 relative" id="simStage">
 
                             <!-- Top Label -->
                             <div class="flex justify-between items-center text-white/80 text-[12px] font-mono">
                                 <span>FLATWALA PLATFORM</span>
-                                <span class="px-2 py-1 rounded-full bg-white/10">LIVE</span>
+                                <span class="px-2 py-1 rounded-full bg-white/10 text-[#9ff8fb]">LIVE</span>
                             </div>
 
                             <!-- Main Content -->
                             <div class="mt-6 grid grid-cols-3 gap-4">
 
                                 <!-- Buyer -->
-                                <div class="bg-white/10 backdrop-blur rounded-xl p-4 text-white">
+                                <div class="border border-white/10 bg-white/10 backdrop-blur rounded-xl p-4 text-white">
                                     <div class="text-[11px] opacity-70">BUYER</div>
                                     <div class="mt-1 font-semibold">Discover Homes</div>
                                     <div class="mt-3 text-[12px] opacity-80">• Map Search</div>
@@ -634,7 +600,7 @@
                                 </div>
 
                                 <!-- Seller -->
-                                <div class="bg-white/10 backdrop-blur rounded-xl p-4 text-white">
+                                <div class="border border-white/10 bg-white/10 backdrop-blur rounded-xl p-4 text-white">
                                     <div class="text-[11px] opacity-70">SELLER</div>
                                     <div class="mt-1 font-semibold">List & Manage</div>
                                     <div class="mt-3 text-[12px] opacity-80">• Add Listings</div>
@@ -643,7 +609,7 @@
                                 </div>
 
                                 <!-- Admin -->
-                                <div class="bg-white/10 backdrop-blur rounded-xl p-4 text-white">
+                                <div class="border border-white/10 bg-white/10 backdrop-blur rounded-xl p-4 text-white">
                                     <div class="text-[11px] opacity-70">ADMIN</div>
                                     <div class="mt-1 font-semibold">Platform Control</div>
                                     <div class="mt-3 text-[12px] opacity-80">• Approvals</div>
@@ -652,8 +618,8 @@
                                 </div>
                             </div>
 
-                            <div class="mt-6 bg-white text-[#1F2937] rounded-xl p-4 shadow-sm">
-                                <div class="text-[11px] text-gray-500">PLATFORM INSIGHT</div>
+                            <div class="mt-6 bg-white text-navy rounded-xl p-4 shadow-sm">
+                                <div class="text-[11px] text-navy/45">PLATFORM INSIGHT</div>
                                 <div class="mt-1 font-semibold sim-live" id="simInsight">
                                     Unified real estate ecosystem connecting buyers, sellers & admins
                                 </div>
@@ -686,27 +652,28 @@
                     </div>
                 </div>
                 <div class="order-1 md:order-2 max-w-xl">
-                    <div class="chip reveal">READY PRODUCT · REAL ESTATE PLATFORM</div>
+                    <div class="chip reveal">REAL ESTATE MARKETPLACE · WHITE-LABEL READY</div>
                     <h1 class="reveal mt-6 text-[40px] md:text-[56px] leading-tight font-medium text-navy">FlatWala Real
                         Estate Platform</h1>
                     <p class="reveal mt-3 font-display italic text-[28px] md:text-[34px] leading-tight text-teal">
-                        Launch your own property marketplace in 2-4 weeks.
+                        Launch a branded property marketplace in 2-4 weeks.
                     </p>
-                    <p class="reveal mt-5 text-[16px] text-[color:var(--muted)] leading-relaxed">Problem: listings are
-                        scattered, leads get missed, and teams work in silos. Solution: one platform for buyers,
-                        sellers, and admins. Result: faster responses and a smoother buyer journey.</p>
+                    <p class="reveal mt-5 text-[16px] text-[color:var(--muted)] leading-relaxed">FlatWala brings
+                        listings, enquiries, approvals, and buyer discovery into one platform. Buyers get a smoother
+                        search experience, sellers manage listings cleanly, and admins keep the marketplace under
+                        control.</p>
 
                     <ul class="mt-6 space-y-3 text-[14px] text-navy/80 reveal">
                         <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-teal mt-1"></i>
-                            Buyer, Seller, and Admin portals in one login</li>
+                            Buyer, seller, and admin portals in one connected system</li>
                         <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-teal mt-1"></i>
-                            Map search and filters that help buyers decide faster</li>
+                            Map search, saved properties, and filters that speed up decisions</li>
                         <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-teal mt-1"></i>
-                            Admin controls to approve, track, and measure everything</li>
+                            Admin controls for approvals, enquiries, users, and reporting</li>
                     </ul>
 
                     <div class="mt-8 flex flex-wrap gap-3 reveal">
-                        <a href="#demo" class="btn btn-primary">Request launch plan <i data-lucide="arrow-right"
+                        <a href="#demo" class="btn btn-primary">Request a launch plan <i data-lucide="arrow-right"
                                 class="w-4 h-4"></i></a>
                         <a href="#suite" class="btn btn-ghost">Explore platform suite</a>
                     </div>
@@ -1082,46 +1049,10 @@
         lucide.createIcons();
 
         const lenis = new Lenis({ duration: 1.1, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
-        function raf(t) {
-            lenis.raf(t);
-            requestAnimationFrame(raf);
-        }
-        requestAnimationFrame(raf);
-
         gsap.registerPlugin(ScrollTrigger);
         lenis.on('scroll', ScrollTrigger.update);
         gsap.ticker.add(t => lenis.raf(t * 1000));
         gsap.ticker.lagSmoothing(0);
-
-        const dot = document.getElementById('cursorDot');
-        const ring = document.getElementById('cursorRing');
-        let mx = -100, my = -100, rx = -100, ry = -100;
-
-        window.addEventListener('mousemove', e => {
-            mx = e.clientX;
-            my = e.clientY;
-            dot.style.transform = `translate(${mx}px, ${my}px)`;
-        });
-
-        (function tick() {
-            rx += (mx - rx) * 0.16;
-            ry += (my - ry) * 0.16;
-            ring.style.transform = `translate(${rx}px, ${ry}px)`;
-            requestAnimationFrame(tick);
-        })();
-
-        document.querySelectorAll('a,button,summary,.feature-card,.sector-card,.screen-card').forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                ring.style.width = '56px';
-                ring.style.height = '56px';
-                ring.style.borderColor = 'rgba(0,149,153,.7)';
-            });
-            el.addEventListener('mouseleave', () => {
-                ring.style.width = '38px';
-                ring.style.height = '38px';
-                ring.style.borderColor = 'rgba(2,19,70,.35)';
-            });
-        });
 
         ScrollTrigger.create({
             start: 'top -40',

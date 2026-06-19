@@ -26,17 +26,21 @@
             --ink: #0b1020;
             --line: rgba(2, 19, 70, 0.08);
             --muted: #5a6472;
+            --paper: #F8F8FF;
         }
 
         * {
             -webkit-font-smoothing: antialiased;
+            box-sizing: border-box;
+            text-rendering: geometricPrecision;
         }
 
         html,
         body {
-            background: #fbfcfc;
+            background: var(--paper);
             color: var(--ink);
             font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+            letter-spacing: 0;
         }
 
         .font-display {
@@ -66,12 +70,14 @@
         .btn {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: .55rem;
             padding: .85rem 1.4rem;
             border-radius: 999px;
-            font-weight: 500;
+            font-weight: 600;
             font-size: .925rem;
             transition: transform .3s ease, background-color .3s ease, color .3s ease, border-color .3s ease;
+            cursor: pointer;
         }
 
         .btn-primary {
@@ -112,6 +118,10 @@
             border-radius: 999px;
             font-size: .72rem;
             border: 1px solid var(--line);
+            background: rgba(255, 255, 255, .72);
+            color: rgba(2, 19, 70, .72);
+            letter-spacing: 0;
+            text-transform: uppercase;
         }
 
         .hero-image {
@@ -126,35 +136,6 @@
         .reveal {
             opacity: 0;
             transform: translateY(24px);
-        }
-
-        .cursor-dot {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 10px;
-            height: 10px;
-            border-radius: 999px;
-            background: var(--teal);
-            pointer-events: none;
-            z-index: 9999;
-            mix-blend-mode: difference;
-            transition: transform .15s ease, width .2s ease, height .2s ease;
-            transform: translate(-50%, -50%);
-        }
-
-        .cursor-ring {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 38px;
-            height: 38px;
-            border-radius: 999px;
-            border: 1px solid rgba(2, 19, 70, .35);
-            pointer-events: none;
-            z-index: 9998;
-            transform: translate(-50%, -50%);
-            transition: width .25s ease, height .25s ease, border-color .25s ease;
         }
 
         .nav-solid {
@@ -173,14 +154,6 @@
 
         .lenis.lenis-smooth [data-lenis-prevent] {
             overscroll-behavior: contain;
-        }
-
-        @media (max-width: 900px) {
-
-            .cursor-dot,
-            .cursor-ring {
-                display: none;
-            }
         }
 
         html,
@@ -229,9 +202,6 @@
 </head>
 
 <body class="relative">
-
-    <div class="cursor-ring" id="cursorRing"></div>
-    <div class="cursor-dot" id="cursorDot"></div>
 
     <!-- NAV -->
     <header id="nav" class="fixed top-0 inset-x-0 z-50 transition-all bg-transparent">
@@ -287,28 +257,26 @@
                     </div>
                 </div>
                 <div class="order-1 md:order-2 max-w-xl">
-                    <div class="chip reveal">VOICE AUTOMATION</div>
+                    <div class="chip reveal">VOICE AI · CALL OPERATIONS</div>
                     <h1 class="reveal mt-6 text-[40px] md:text-[56px] leading-tight font-medium text-navy">Voice
-                        routing.
-                        Without the chaos.</h1>
+                        routing that answers every time.</h1>
                     <p class="reveal mt-4 text-[16px] text-[color:var(--muted)] leading-relaxed">Missed calls mean
-                        missed
-                        revenue. VocalNode answers instantly, handles common questions, qualifies leads, and books
-                        appointments so your staff can focus on the highest-value conversations.</p>
+                        missed revenue. VocalNode answers instantly, handles common questions, qualifies leads, and
+                        books appointments so your team can focus on the conversations that need a human touch.</p>
 
                     <ul class="mt-6 space-y-3 text-[14px] text-navy/80 reveal">
                         <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-teal mt-1"></i>
-                            24/7 call handling with natural responses</li>
+                            24/7 call handling with natural, business-aware responses</li>
                         <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-teal mt-1"></i>
-                            Lead qualification and booking without manual follow-up</li>
+                            Lead qualification, booking, and routing without manual follow-up</li>
                         <li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-teal mt-1"></i>
-                            Easy CRM and calendar integrations</li>
+                            CRM, calendar, and WhatsApp handoff options</li>
                     </ul>
 
                     <div class="mt-8 flex flex-wrap gap-3 reveal">
-                        <a href="#demo" class="btn btn-primary">Start 14-day free trial <i data-lucide="arrow-right"
+                        <a href="#demo" class="btn btn-primary">Book a voice AI demo <i data-lucide="arrow-right"
                                 class="w-4 h-4"></i></a>
-                        <a href="#demo" class="btn btn-ghost">Click to hear a sample call</a>
+                        <a href="#demo" class="btn btn-ghost">Hear a sample call</a>
                         <a href="https://wa.me/919356873562?text=VocalNode%20sample%20call%20request" target="_blank"
                             class="btn btn-ghost">WhatsApp us</a>
                         <a href="#how-it-works" class="btn btn-ghost">See how it works</a>
@@ -532,15 +500,19 @@
     <script>
         lucide.createIcons();
         const lenis = new Lenis({ duration: 1.1, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
-        function raf(t) { lenis.raf(t); requestAnimationFrame(raf); } requestAnimationFrame(raf);
         gsap.registerPlugin(ScrollTrigger);
         lenis.on('scroll', ScrollTrigger.update);
         gsap.ticker.add(t => lenis.raf(t * 1000));
         gsap.ticker.lagSmoothing(0);
-        const dot = document.getElementById('cursorDot'), ring = document.getElementById('cursorRing');
-        let mx = -100, my = -100, rx = -100, ry = -100; window.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; dot.style.transform = `translate(${mx}px, ${my}px)` }); (function tick() { rx += (mx - rx) * 0.16; ry += (my - ry) * 0.16; ring.style.transform = `translate(${rx}px, ${ry}px)`; requestAnimationFrame(tick) })();
-        document.querySelectorAll('a,button,summary,.feature-card').forEach(el => { el.addEventListener('mouseenter', () => { ring.style.width = '56px'; ring.style.height = '56px'; ring.style.borderColor = 'rgba(0,149,153,.7)' }); el.addEventListener('mouseleave', () => { ring.style.width = '38px'; ring.style.height = '38px'; ring.style.borderColor = 'rgba(2,19,70,.35)' }); });
-        ScrollTrigger.create({ start: 'top -40', onUpdate: self => { const n = document.getElementById('nav'); self.scroll() > 40 ? n.classList.add('nav-solid') : n.classList.remove('nav-solid'); } });
+
+        ScrollTrigger.create({
+            start: 'top -40',
+            onUpdate: self => {
+                const n = document.getElementById('nav');
+                if (n) n.classList.toggle('nav-solid', self.scroll() > 40);
+            }
+        });
+
         gsap.utils.toArray('.reveal').forEach(el => { gsap.to(el, { opacity: 1, y: 0, duration: .9, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 92%' } }) });
         const CRM_ENQUIRY_ENDPOINT = 'https://linearis.vercel.app/api/enquiries'; const contactForm = document.getElementById('contactForm'); const contactNote = document.getElementById('contactNote'); if (contactForm) { contactForm.addEventListener('submit', async e => { e.preventDefault(); const form = e.currentTarget; const formData = new FormData(form); const details = [...formData.entries()].filter(([key, value]) => !['name', 'email', 'company', 'phone', 'message'].includes(key) && String(value).trim()).map(([key, value]) => `${key}: ${value}`).join('\n'); const payload = { projectKey: form.dataset.projectKey, name: String(formData.get('name') || '').trim(), email: String(formData.get('email') || '').trim(), company: String(formData.get('company') || '').trim(), phone: String(formData.get('phone') || '').trim(), message: String(formData.get('message') || '').trim(), product: form.dataset.product, page: form.dataset.page, sourceUrl: window.location.href, details }; if (!payload.email || !payload.name) { contactNote.textContent = 'Please provide name and email.'; return; } contactNote.textContent = 'Sending your request...'; try { const response = await fetch(CRM_ENQUIRY_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) }); if (!response.ok) throw new Error('Request failed'); form.reset(); contactNote.textContent = 'Request received. It has been added to BuildDreams CRM.'; } catch (error) { contactNote.textContent = 'Submission failed. Please try again in a moment.'; } }) }
     </script>

@@ -532,35 +532,6 @@
             transform: translateY(24px);
         }
 
-        /* ── CURSOR ── */
-        .cursor-dot {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 10px;
-            height: 10px;
-            border-radius: 999px;
-            background: var(--teal);
-            pointer-events: none;
-            z-index: 9999;
-            mix-blend-mode: difference;
-            transform: translate(-50%, -50%);
-        }
-
-        .cursor-ring {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 38px;
-            height: 38px;
-            border-radius: 999px;
-            border: 1px solid rgba(7, 23, 61, .35);
-            pointer-events: none;
-            z-index: 9998;
-            transform: translate(-50%, -50%);
-            transition: width .25s ease, height .25s ease, border-color .25s ease;
-        }
-
         /* ── LENIS ── */
         html.lenis {
             height: auto;
@@ -576,11 +547,6 @@
 
         /* ── RESPONSIVE ── */
         @media (max-width: 980px) {
-
-            .cursor-dot,
-            .cursor-ring {
-                display: none;
-            }
 
             .hero {
                 min-height: 760px;
@@ -657,9 +623,6 @@
 </head>
 
 <body class="relative">
-    <div class="cursor-ring" id="cursorRing"></div>
-    <div class="cursor-dot" id="cursorDot"></div>
-
     <!-- WhatsApp Float -->
     <a href="https://wa.me/919356873562?text=Hi%2C%20I%20want%20to%20know%20more%20about%20FlowGuard" target="_blank"
         class="wa-float" title="Chat on WhatsApp" aria-label="Chat on WhatsApp">
@@ -1597,17 +1560,6 @@
                 gsap.to(el, { opacity: 1, y: 0, duration: .85, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 92%' } });
             });
         }
-
-        // Cursor
-        const dot = document.getElementById('cursorDot');
-        const ring = document.getElementById('cursorRing');
-        let mx = -100, my = -100, rx = -100, ry = -100;
-        window.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; dot.style.transform = `translate(${mx}px, ${my}px)`; });
-        (function tick() { rx += (mx - rx) * 0.16; ry += (my - ry) * 0.16; ring.style.transform = `translate(${rx}px, ${ry}px)`; requestAnimationFrame(tick); })();
-        document.querySelectorAll('a, button, input, textarea, select, .sector-card, .tile, .pricing-card').forEach(el => {
-            el.addEventListener('mouseenter', () => { ring.style.width = '56px'; ring.style.height = '56px'; ring.style.borderColor = 'rgba(0,143,146,.7)'; });
-            el.addEventListener('mouseleave', () => { ring.style.width = '38px'; ring.style.height = '38px'; ring.style.borderColor = 'rgba(7,23,61,.35)'; });
-        });
 
         // Nav scroll
         const updateNav = () => {

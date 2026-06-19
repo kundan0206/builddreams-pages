@@ -130,35 +130,6 @@
             transform: translateY(24px);
         }
 
-        .cursor-dot {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 10px;
-            height: 10px;
-            border-radius: 999px;
-            background: var(--teal);
-            pointer-events: none;
-            z-index: 9999;
-            mix-blend-mode: difference;
-            transition: transform .15s ease, width .2s ease, height .2s ease;
-            transform: translate(-50%, -50%);
-        }
-
-        .cursor-ring {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 38px;
-            height: 38px;
-            border-radius: 999px;
-            border: 1px solid rgba(2, 19, 70, .35);
-            pointer-events: none;
-            z-index: 9998;
-            transform: translate(-50%, -50%);
-            transition: width .25s ease, height .25s ease, border-color .25s ease;
-        }
-
         .nav-solid {
             background: rgba(255, 255, 255, .82);
             backdrop-filter: saturate(160%) blur(14px);
@@ -553,14 +524,6 @@
             overscroll-behavior: contain;
         }
 
-        @media (max-width: 900px) {
-
-            .cursor-dot,
-            .cursor-ring {
-                display: none;
-            }
-        }
-
         html,
         body {
             overflow-x: hidden;
@@ -581,9 +544,6 @@
 </head>
 
 <body class="relative">
-
-    <div class="cursor-ring" id="cursorRing"></div>
-    <div class="cursor-dot" id="cursorDot"></div>
 
     <!-- NAV -->
     <header id="nav" class="fixed top-0 inset-x-0 z-50 transition-all bg-transparent">
@@ -1132,36 +1092,6 @@
         lenis.on('scroll', ScrollTrigger.update);
         gsap.ticker.add(t => lenis.raf(t * 1000));
         gsap.ticker.lagSmoothing(0);
-
-        const dot = document.getElementById('cursorDot');
-        const ring = document.getElementById('cursorRing');
-        let mx = -100, my = -100, rx = -100, ry = -100;
-
-        window.addEventListener('mousemove', e => {
-            mx = e.clientX;
-            my = e.clientY;
-            dot.style.transform = `translate(${mx}px, ${my}px)`;
-        });
-
-        (function tick() {
-            rx += (mx - rx) * 0.16;
-            ry += (my - ry) * 0.16;
-            ring.style.transform = `translate(${rx}px, ${ry}px)`;
-            requestAnimationFrame(tick);
-        })();
-
-        document.querySelectorAll('a,button,summary,.feature-card,.sector-card,.screen-card').forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                ring.style.width = '56px';
-                ring.style.height = '56px';
-                ring.style.borderColor = 'rgba(0,149,153,.7)';
-            });
-            el.addEventListener('mouseleave', () => {
-                ring.style.width = '38px';
-                ring.style.height = '38px';
-                ring.style.borderColor = 'rgba(2,19,70,.35)';
-            });
-        });
 
         ScrollTrigger.create({
             start: 'top -40',
