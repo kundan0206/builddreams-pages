@@ -20,8 +20,9 @@
             --navy: #021346;
             --teal: #009599;
             --ink: #0b1020;
-            --line: rgba(2, 19, 70, 0.08);
-            --muted: #5a6472;
+            --mist: #F8F8FF;
+            --line: rgba(2, 19, 70, 0.12);
+            --muted: #475166;
         }
 
         * {
@@ -30,17 +31,17 @@
 
         html,
         body {
-            background: #fbfcfc;
+            background: var(--mist);
             color: var(--ink);
             font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
         }
 
         .font-display {
-            font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+            font: inherit;
         }
 
         .font-mono {
-            font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+            font: inherit;
         }
 
         .bg-navy {
