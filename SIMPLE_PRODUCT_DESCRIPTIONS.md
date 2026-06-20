@@ -8,7 +8,7 @@ What it is:
 A ready-made career platform that can be sold under your client brand (white-label).
 
 Simple pitch:
-"If a college or EdTech company wants its own placement and mentorship platform, Aspira gives them that without building software from scratch."
+"If a college or EdTech company wants its own placement and mentorship platform, Shape Careersgives them that without building software from scratch."
 
 Who to sell to:
 - Colleges and universities
